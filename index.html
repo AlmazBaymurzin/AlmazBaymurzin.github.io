@@ -67,53 +67,6 @@
             color: #6b4925;
         }
 
-        /* ПОИСКОВАЯ СТРОКА */
-        .search-container {
-            margin: 20px 0;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 16px 20px;
-            font-size: 1rem;
-            border: 2px solid #e8d5b5;
-            border-radius: 60px;
-            background: white;
-            outline: none;
-            transition: all 0.2s;
-            color: #2c241a;
-        }
-
-        .search-input:focus {
-            border-color: #8b5a2b;
-            box-shadow: 0 0 0 3px rgba(139,90,43,0.1);
-        }
-
-        .search-clear {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-            color: #b8956a;
-            display: none;
-        }
-
-        .search-clear:hover {
-            color: #8b5a2b;
-        }
-
-        .search-stats {
-            font-size: 0.8rem;
-            color: #b8956a;
-            margin-top: 8px;
-            padding-left: 10px;
-        }
-
         /* КАРТОЧКА ДНЯ */
         .card-of-day {
             background: linear-gradient(135deg, #fff5e6 0%, #ffe8d4 100%);
@@ -132,6 +85,10 @@
             font-weight: 600;
             color: #8b5a2b;
             margin-bottom: 16px;
+        }
+
+        .card-of-day-title span {
+            font-size: 1.3rem;
         }
 
         .card-of-day-content {
@@ -181,11 +138,6 @@
             cursor: pointer;
             font-size: 0.9rem;
             color: #8b5a2b;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-        }
-
-        .back-button:hover {
-            background: #f4ebdd;
         }
 
         .sections-grid {
@@ -202,12 +154,10 @@
             cursor: pointer;
             transition: all 0.2s ease;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
         .section-card:hover, .subcat-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             background: #fffbf5;
         }
 
@@ -242,12 +192,10 @@
             padding: 28px;
             transition: transform 0.2s;
             border: 1px solid rgba(139,90,43,0.15);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
         }
 
         .card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
         }
 
         .card-badge {
@@ -282,7 +230,6 @@
             padding: 24px;
             position: sticky;
             top: 20px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
         }
 
         .widget-title {
@@ -295,13 +242,13 @@
         }
 
         .holiday-item {
-            padding: 10px 0;
+            padding: 8px 0;
             border-bottom: 1px solid #f0e2d2;
             display: flex;
             align-items: center;
             gap: 10px;
             cursor: pointer;
-            transition: all 0.1s;
+            transition: background 0.1s;
             border-radius: 12px;
         }
 
@@ -338,17 +285,9 @@
             font-family: 'Georgia', serif;
         }
 
-        .no-results {
-            text-align: center;
-            padding: 60px 20px;
-            color: #b8956a;
-            font-size: 1rem;
-        }
-
         @media (max-width: 900px) {
             .main-layout { flex-direction: column; }
             .card-of-day-content { font-size: 1rem; }
-            h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -366,14 +305,7 @@
 
     <div class="main-layout">
         <div class="content-area">
-            <!-- ПОИСК -->
-            <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="🔍 Эҙләү... | Поиск на башкирском или русском...">
-                <button id="searchClear" class="search-clear">✖</button>
-                <div id="searchStats" class="search-stats"></div>
-            </div>
-
-            <div id="cardOfDayContainer"></div>
+            <div id="cardOfDayContainer"></div> <!-- Карточка дня -->
             <div id="motivationBlock" style="display: none;"></div>
             <div id="contentContainer"></div>
         </div>
@@ -424,10 +356,6 @@
                 "feb23": { name: "23 Февраль", nameRu: "23 Февраля", emoji: "🎖️",
                     greetings: [
                         { text: "23 февраль менән! Ир-егеттәр, һеҙ көслө һәм батыр булығыҙ!", translation: "С 23 февраля! Мужчины, будьте сильными и храбрыми!" }
-                    ] },
-                "newyear": { name: "Яңы йыл", nameRu: "Новый год", emoji: "🎄",
-                    greetings: [
-                        { text: "Яңы йыл менән! Бар хыялдарың тормошҡа ассын!", translation: "С Новым годом! Пусть все мечты сбудутся!" }
                     ] }
             } },
         "birthday": {
@@ -444,7 +372,7 @@
             } }
     };
 
-    // Собираем ВСЕ поздравления в один массив для поиска и карточки дня
+    // Собираем все поздравления в один массив (для карточки дня)
     for (let sectionKey in data) {
         for (let subKey in data[sectionKey].subcategories) {
             const sub = data[sectionKey].subcategories[subKey];
@@ -455,58 +383,13 @@
                     category: sub.name,
                     categoryRu: sub.nameRu,
                     section: data[sectionKey].name,
-                    sectionRu: data[sectionKey].nameRu,
                     emoji: sub.emoji
                 });
             });
         }
     }
 
-    // ========== ПОИСК ==========
-    let isSearchMode = false;
-    let lastSearchQuery = '';
-
-    function searchGreetings(query) {
-        if (!query.trim()) {
-            isSearchMode = false;
-            return null;
-        }
-        const lowerQuery = query.toLowerCase();
-        const results = allGreetings.filter(g => 
-            g.text.toLowerCase().includes(lowerQuery) || 
-            g.translation.toLowerCase().includes(lowerQuery)
-        );
-        isSearchMode = true;
-        return results;
-    }
-
-    function renderSearchResults(results, query) {
-        const container = document.getElementById('contentContainer');
-        const searchStats = document.getElementById('searchStats');
-        
-        if (!results || results.length === 0) {
-            container.innerHTML = `<div class="no-results">🔍 «${escapeHtml(query)}» буйынса бер нәмә табылмады<br>По запросу ничего не найдено</div>`;
-            searchStats.innerHTML = `0 һөҙөмтә / результатов`;
-            return;
-        }
-        
-        searchStats.innerHTML = `${results.length} һөҙөмтә / результатов: «${escapeHtml(query)}»`;
-        
-        let html = `<div class="cards-grid">`;
-        results.forEach(g => {
-            html += `
-                <div class="card">
-                    <div class="card-badge">${g.category} | ${g.categoryRu}<br><span style="font-size:0.6rem;">📁 ${g.section}</span></div>
-                    <div class="card-text">${escapeHtml(g.text)}</div>
-                    <div class="card-translation">💭 ${escapeHtml(g.translation)}</div>
-                </div>
-            `;
-        });
-        html += `</div>`;
-        container.innerHTML = html;
-    }
-
-    // ========== КАРТОЧКА ДНЯ ==========
+    // ========== КАРТОЧКА ДНЯ (рандомная, но фиксированная на сегодня) ==========
     function getTodaysGreeting() {
         const today = new Date().toDateString();
         let stored = localStorage.getItem('cardOfDay');
@@ -576,9 +459,6 @@
                 if (link && link.section && data[link.section] && data[link.section].subcategories[link.sub]) {
                     currentSection = link.section;
                     currentSubcat = link.sub;
-                    isSearchMode = false;
-                    document.getElementById('searchInput').value = '';
-                    document.getElementById('searchStats').innerHTML = '';
                     updateNavigation();
                     renderGreetings();
                 }
@@ -592,8 +472,6 @@
     const contentContainer = document.getElementById('contentContainer');
     const backBtn = document.getElementById('backBtn');
     const motivationBlock = document.getElementById('motivationBlock');
-    const searchInput = document.getElementById('searchInput');
-    const searchClear = document.getElementById('searchClear');
 
     function showMotivationBlock(show) {
         if (show) {
@@ -611,18 +489,13 @@
     }
 
     function updateNavigation() {
-        if (currentSection === null && !isSearchMode) {
+        if (currentSection === null) {
             backBtn.style.display = 'none';
             showMotivationBlock(true);
             renderCardOfDay();
-        } else if (isSearchMode) {
-            backBtn.style.display = 'inline-block';
-            showMotivationBlock(false);
-            document.getElementById('cardOfDayContainer').innerHTML = '';
         } else {
             backBtn.style.display = 'inline-block';
             showMotivationBlock(false);
-            document.getElementById('cardOfDayContainer').innerHTML = '';
         }
     }
 
@@ -660,9 +533,6 @@
         document.querySelectorAll('.subcat-card').forEach(card => {
             card.addEventListener('click', () => {
                 currentSubcat = card.getAttribute('data-subcat');
-                isSearchMode = false;
-                searchInput.value = '';
-                document.getElementById('searchStats').innerHTML = '';
                 updateNavigation();
                 renderGreetings();
             });
@@ -684,9 +554,6 @@
             card.addEventListener('click', () => {
                 currentSection = card.getAttribute('data-section');
                 currentSubcat = null;
-                isSearchMode = false;
-                searchInput.value = '';
-                document.getElementById('searchStats').innerHTML = '';
                 updateNavigation();
                 renderSubcategories();
             });
@@ -694,19 +561,7 @@
     }
 
     backBtn.addEventListener('click', () => {
-        if (isSearchMode) {
-            isSearchMode = false;
-            searchInput.value = '';
-            document.getElementById('searchStats').innerHTML = '';
-            if (currentSection === null) {
-                renderSections();
-            } else if (currentSubcat === null) {
-                renderSubcategories();
-            } else {
-                renderGreetings();
-            }
-            updateNavigation();
-        } else if (currentSubcat !== null) {
+        if (currentSubcat !== null) {
             currentSubcat = null;
             updateNavigation();
             renderSubcategories();
@@ -715,45 +570,6 @@
             updateNavigation();
             renderSections();
         }
-    });
-
-    // Обработчик поиска
-    searchInput.addEventListener('input', (e) => {
-        const query = e.target.value;
-        lastSearchQuery = query;
-        if (query.trim().length > 0) {
-            const results = searchGreetings(query);
-            renderSearchResults(results, query);
-            updateNavigation();
-            searchClear.style.display = 'block';
-        } else {
-            isSearchMode = false;
-            searchClear.style.display = 'none';
-            document.getElementById('searchStats').innerHTML = '';
-            if (currentSection === null) {
-                renderSections();
-            } else if (currentSubcat === null) {
-                renderSubcategories();
-            } else {
-                renderGreetings();
-            }
-            updateNavigation();
-        }
-    });
-
-    searchClear.addEventListener('click', () => {
-        searchInput.value = '';
-        searchClear.style.display = 'none';
-        document.getElementById('searchStats').innerHTML = '';
-        isSearchMode = false;
-        if (currentSection === null) {
-            renderSections();
-        } else if (currentSubcat === null) {
-            renderSubcategories();
-        } else {
-            renderGreetings();
-        }
-        updateNavigation();
     });
 
     function renderCurrentDate() {
