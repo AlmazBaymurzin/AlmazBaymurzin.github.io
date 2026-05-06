@@ -10,43 +10,53 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
             background: linear-gradient(135deg, #fef9e8 0%, #f0e6d8 100%);
             color: #2c241a;
             padding: 20px;
             min-height: 100vh;
         }
+
         .container {
             max-width: 1600px;
             margin: 0 auto;
         }
+
         .main-layout {
             display: flex;
             gap: 30px;
             margin-top: 20px;
         }
+
         .content-area {
             flex: 3;
             min-width: 0;
         }
+
         .sidebar {
             flex: 1.2;
             min-width: 260px;
         }
+
         header {
             text-align: center;
             padding: 1.5rem 0 0.5rem 0;
         }
+
         h1 {
             font-size: 2.5rem;
             color: #8b5a2b;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.05);
         }
+
         .sub {
             font-size: 1rem;
             color: #a07649;
             margin-top: 6px;
         }
+
         .current-date-box {
             background: rgba(139,90,43,0.08);
             display: inline-block;
@@ -56,20 +66,13 @@
             font-size: 0.9rem;
             color: #6b4925;
         }
-        .loading, .error {
-            text-align: center;
-            padding: 60px;
-            color: #b8956a;
-        }
-        .error {
-            color: #c96a2a;
-            background: #fff0e6;
-            border-radius: 32px;
-        }
+
+        /* ПОИСКОВАЯ СТРОКА */
         .search-container {
             margin: 20px 0;
             position: relative;
         }
+
         .search-input {
             width: 100%;
             padding: 16px 20px;
@@ -78,10 +81,15 @@
             border-radius: 60px;
             background: white;
             outline: none;
+            transition: all 0.2s;
+            color: #2c241a;
         }
+
         .search-input:focus {
             border-color: #8b5a2b;
+            box-shadow: 0 0 0 3px rgba(139,90,43,0.1);
         }
+
         .search-clear {
             position: absolute;
             right: 20px;
@@ -94,19 +102,28 @@
             color: #b8956a;
             display: none;
         }
+
+        .search-clear:hover {
+            color: #8b5a2b;
+        }
+
         .search-stats {
             font-size: 0.8rem;
             color: #b8956a;
             margin-top: 8px;
             padding-left: 10px;
         }
+
+        /* КАРТОЧКА ДНЯ */
         .card-of-day {
             background: linear-gradient(135deg, #fff5e6 0%, #ffe8d4 100%);
             border-radius: 32px;
             padding: 20px 28px;
             margin: 20px 0;
             border: 2px solid #e8c9a8;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
         }
+
         .card-of-day-title {
             display: flex;
             align-items: center;
@@ -116,6 +133,7 @@
             color: #8b5a2b;
             margin-bottom: 16px;
         }
+
         .card-of-day-content {
             font-size: 1.2rem;
             line-height: 1.45;
@@ -123,23 +141,36 @@
             color: #4a2c1a;
             margin-bottom: 12px;
         }
+
         .card-of-day-trans {
             font-size: 0.85rem;
             color: #8f7a64;
         }
+
+        /* Мотивирующий блок */
         .motivation-block {
             background: linear-gradient(135deg, #e8dcc8 0%, #dacaa8 100%);
             border-radius: 32px;
             padding: 28px 32px;
             margin: 25px 0 20px 0;
             text-align: center;
+            border: 1px solid rgba(139,90,43,0.2);
         }
+
         .motivation-quote {
             font-size: 1.3rem;
             font-style: italic;
             color: #4a2c1a;
+            line-height: 1.5;
             font-family: 'Georgia', serif;
         }
+
+        .motivation-author {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: #8b6946;
+        }
+
         .back-button {
             display: inline-block;
             background: white;
@@ -150,13 +181,20 @@
             cursor: pointer;
             font-size: 0.9rem;
             color: #8b5a2b;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
         }
+
+        .back-button:hover {
+            background: #f4ebdd;
+        }
+
         .sections-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 20px;
             margin: 20px 0;
         }
+
         .section-card, .subcat-card {
             background: white;
             border-radius: 28px;
@@ -166,40 +204,52 @@
             text-align: center;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
+
         .section-card:hover, .subcat-card:hover {
             transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             background: #fffbf5;
         }
+
         .section-emoji, .subcat-emoji {
             font-size: 2.8rem;
             display: block;
             margin-bottom: 10px;
         }
+
         .section-name, .subcat-name {
             font-size: 1.2rem;
             font-weight: 600;
             color: #5c3e1e;
         }
+
         .section-desc, .subcat-desc {
             font-size: 0.75rem;
             color: #b8956a;
+            margin-top: 6px;
         }
+
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 24px;
             margin: 20px 0;
         }
+
         .card {
             background: white;
             border-radius: 32px;
             padding: 28px;
             transition: transform 0.2s;
             border: 1px solid rgba(139,90,43,0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
         }
+
         .card:hover {
             transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
         }
+
         .card-badge {
             display: inline-block;
             background: #f4ebdd;
@@ -210,6 +260,7 @@
             color: #8b5a2b;
             margin-bottom: 16px;
         }
+
         .card-text {
             font-size: 1.3rem;
             line-height: 1.45;
@@ -217,19 +268,23 @@
             color: #2c241a;
             margin-bottom: 20px;
         }
+
         .card-translation {
             font-size: 0.85rem;
             color: #8f7a64;
             border-top: 1px solid #f0e2d2;
             padding-top: 16px;
         }
+
         .holidays-widget {
             background: white;
             border-radius: 32px;
             padding: 24px;
             position: sticky;
             top: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
         }
+
         .widget-title {
             font-size: 1.2rem;
             font-weight: 700;
@@ -238,6 +293,7 @@
             padding-bottom: 12px;
             margin-bottom: 18px;
         }
+
         .holiday-item {
             padding: 10px 0;
             border-bottom: 1px solid #f0e2d2;
@@ -245,21 +301,27 @@
             align-items: center;
             gap: 10px;
             cursor: pointer;
+            transition: all 0.1s;
+            border-radius: 12px;
         }
+
         .holiday-item:hover {
             background: #fef5e8;
             padding-left: 6px;
         }
+
         .holiday-date {
             font-size: 0.7rem;
             background: #f4ebdd;
             padding: 2px 8px;
             border-radius: 20px;
         }
+
         .holiday-name {
             font-size: 0.85rem;
             color: #3a2a1a;
         }
+
         .footer {
             text-align: center;
             margin-top: 50px;
@@ -267,18 +329,25 @@
             background: rgba(139,90,43,0.05);
             border-radius: 48px;
         }
+
         .project-name {
             font-size: 1.8rem;
-            font-family: 'Georgia', serif;
+            font-weight: 400;
+            letter-spacing: 2px;
             color: #8b5a2b;
+            font-family: 'Georgia', serif;
         }
-        .last-updated {
-            font-size: 0.7rem;
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
             color: #b8956a;
-            margin-top: 12px;
+            font-size: 1rem;
         }
+
         @media (max-width: 900px) {
             .main-layout { flex-direction: column; }
+            .card-of-day-content { font-size: 1rem; }
             h1 { font-size: 1.8rem; }
         }
     </style>
@@ -297,17 +366,20 @@
 
     <div class="main-layout">
         <div class="content-area">
+            <!-- ПОИСК -->
             <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="🔍 Эҙләү | Поиск...">
+                <input type="text" id="searchInput" class="search-input" placeholder="🔍 Эҙләү... | Поиск на башкирском или русском...">
                 <button id="searchClear" class="search-clear">✖</button>
                 <div id="searchStats" class="search-stats"></div>
             </div>
+
             <div id="cardOfDayContainer"></div>
             <div id="motivationBlock" style="display: none;"></div>
-            <div id="contentContainer"><div class="loading">📡 Мәғлүмәт тейәлә...<br>Загрузка...</div></div>
+            <div id="contentContainer"></div>
         </div>
+
         <div class="sidebar">
-            <div class="holidays-widget">
+            <div class="holidays-widget" id="holidaysWidget">
                 <div class="widget-title">📅 Яҡын киләсәк байрамдар</div>
                 <div id="holidaysContent"></div>
             </div>
@@ -316,301 +388,399 @@
 
     <div class="footer">
         <div class="project-name">ЙЫЛЫ һҮҘҘӘР<br><small>yily huzzar</small></div>
-        <div>❤️ Йөрәк йылыһы — туған телдә әйтелгән һүҙҙә</div>
-        <div id="lastUpdated" class="last-updated"></div>
+        <div style="font-size:0.8rem; margin-top:12px;">❤️ Йөрәк йылыһы — туған телдә әйтелгән һүҙҙә</div>
     </div>
 </div>
 
 <script>
-    // ВАША ССЫЛКА НА CSV (исправлена через прокси)
-    const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTDLDzoh4yRexTcjzC-O2uV04i1_jwtzgFvBmvniTrkLKTOh9RAIIZO1ZkqsYWaP2u4CCDL6wj954De/pub?output=csv";
-    // Прокси для обхода CORS
-    const PROXY_URL = "https://api.allorigins.win/raw?url=";
-    
-    let siteData = null;
-    let currentSection = null;
-    let currentSubcat = null;
+    // ========== БАЗА ДАННЫХ С ПОЗДРАВЛЕНИЯМИ ==========
+    const allGreetings = [];
+
+    const data = {
+        "professional": {
+            name: "Һөнәри байрамдар", nameRu: "Профессиональные праздники", emoji: "💼",
+            subcategories: {
+                "border_day": { name: "Сиксе көнө", nameRu: "День пограничника", emoji: "🛡️",
+                    greetings: [
+                        { text: "Сик һаҡсылары көнө менән! Тыуған ил сиктәре ныҡлы булһын!", translation: "С Днём пограничника! Пусть границы Родины будут крепкими!" },
+                        { text: "Һәр көнөң тыныс, хеҙмәтең еңел булһын, сиксе!", translation: "Пусть каждый твой день будет мирным, а служба лёгкой!" }
+                    ] },
+                "military_day": { name: "Хәрби көнө", nameRu: "День военного", emoji: "⭐",
+                    greetings: [
+                        { text: "Ватанды һаҡлаусы! Көсөң, батырлығың артһын!", translation: "Защитник Отечества! Пусть твои сила и храбрость растут!" }
+                    ] },
+                "doctor_day": { name: "Табип көнө", nameRu: "День врача", emoji: "🩺",
+                    greetings: [
+                        { text: "Табиптар көнө менән! Һеҙҙең ҡулдар меңләгән кешене ҡотҡара!", translation: "С Днём врача! Ваши руки спасают тысячи людей!" }
+                    ] }
+            } },
+        "holidays": {
+            name: "Байрамдар", nameRu: "Праздники", emoji: "🎉",
+            subcategories: {
+                "march8": { name: "8 Март", nameRu: "8 Марта", emoji: "🌷",
+                    greetings: [
+                        { text: "8 Март менән! Һәр ҡатын-ҡыҙ ҡояш нурҙары кеүек яҡты булһын!", translation: "С 8 Марта! Пусть каждая женщина будет светлой!" }
+                    ] },
+                "feb23": { name: "23 Февраль", nameRu: "23 Февраля", emoji: "🎖️",
+                    greetings: [
+                        { text: "23 февраль менән! Ир-егеттәр, һеҙ көслө һәм батыр булығыҙ!", translation: "С 23 февраля! Мужчины, будьте сильными и храбрыми!" }
+                    ] },
+                "newyear": { name: "Яңы йыл", nameRu: "Новый год", emoji: "🎄",
+                    greetings: [
+                        { text: "Яңы йыл менән! Бар хыялдарың тормошҡа ассын!", translation: "С Новым годом! Пусть все мечты сбудутся!" }
+                    ] }
+            } },
+        "birthday": {
+            name: "Тыуған көн", nameRu: "День рождения", emoji: "🎂",
+            subcategories: {
+                "mother": { name: "Әсәйемә", nameRu: "Маме", emoji: "👩‍👧",
+                    greetings: [
+                        { text: "Әсәйем, тыуған көнөң менән! Һин донъяла иң яҡшы!", translation: "Мамочка, с днём рождения! Ты — лучшая на свете!" }
+                    ] },
+                "father": { name: "Атайыма", nameRu: "Папе", emoji: "👨‍👧‍👦",
+                    greetings: [
+                        { text: "Атайым, тыуған көнөң менән! Һин беҙҙең терәк!", translation: "Папа, с днём рождения! Ты наша опора!" }
+                    ] }
+            } }
+    };
+
+    // Собираем ВСЕ поздравления в один массив для поиска и карточки дня
+    for (let sectionKey in data) {
+        for (let subKey in data[sectionKey].subcategories) {
+            const sub = data[sectionKey].subcategories[subKey];
+            sub.greetings.forEach(g => {
+                allGreetings.push({
+                    text: g.text,
+                    translation: g.translation,
+                    category: sub.name,
+                    categoryRu: sub.nameRu,
+                    section: data[sectionKey].name,
+                    sectionRu: data[sectionKey].nameRu,
+                    emoji: sub.emoji
+                });
+            });
+        }
+    }
+
+    // ========== ПОИСК ==========
     let isSearchMode = false;
-    
-    const contentContainer = document.getElementById('contentContainer');
-    const backBtn = document.getElementById('backBtn');
-    const motivationBlock = document.getElementById('motivationBlock');
-    const searchInput = document.getElementById('searchInput');
-    const searchClear = document.getElementById('searchClear');
-    const cardOfDayContainer = document.getElementById('cardOfDayContainer');
-    
-    // Парсинг CSV
-    function parseCSV(csvText) {
-        const rows = [];
-        const regex = /(?:,|\n|^)(?:"([^"]*(?:""[^"]*)*)"|([^",\n]*))/g;
-        let row = [];
-        let match;
-        while ((match = regex.exec(csvText)) !== null) {
-            if (match[0].startsWith('\n') && row.length) {
-                rows.push(row);
-                row = [];
-            }
-            let value = match[1] !== undefined ? match[1].replace(/""/g, '"') : (match[2] || '');
-            row.push(value.trim());
+    let lastSearchQuery = '';
+
+    function searchGreetings(query) {
+        if (!query.trim()) {
+            isSearchMode = false;
+            return null;
         }
-        if (row.length) rows.push(row);
-        return rows;
+        const lowerQuery = query.toLowerCase();
+        const results = allGreetings.filter(g => 
+            g.text.toLowerCase().includes(lowerQuery) || 
+            g.translation.toLowerCase().includes(lowerQuery)
+        );
+        isSearchMode = true;
+        return results;
     }
-    
-    // Загрузка данных из Google Sheets через прокси
-    async function loadData() {
-        try {
-            const response = await fetch(PROXY_URL + encodeURIComponent(CSV_URL));
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            const csvText = await response.text();
-            const rows = parseCSV(csvText);
-            if (rows.length < 2) throw new Error("Таблица пуста");
-            
-            const headers = rows[0];
-            const getCol = (name) => headers.indexOf(name);
-            
-            const sections = {};
-            const allGreetings = [];
-            
-            for (let i = 1; i < rows.length; i++) {
-                const row = rows[i];
-                const sectionKey = row[getCol("category_section")]?.trim() || "other";
-                const sectionBa = row[getCol("category_name_ba")]?.trim() || "Бүлек";
-                const sectionRu = row[getCol("category_name_ru")]?.trim() || "Раздел";
-                const subBa = row[getCol("subcategory_name_ba")]?.trim() || "Категория";
-                const subRu = row[getCol("subcategory_name_ru")]?.trim() || "Категория";
-                const emoji = row[getCol("emoji")]?.trim() || "💬";
-                const textBa = row[getCol("greeting_text_ba")]?.trim();
-                const transRu = row[getCol("greeting_translation_ru")]?.trim() || "";
-                
-                if (!textBa) continue;
-                
-                if (!sections[sectionKey]) {
-                    sections[sectionKey] = { name: sectionBa, nameRu: sectionRu, emoji: emoji, subcategories: {} };
-                }
-                if (!sections[sectionKey].subcategories[subBa]) {
-                    sections[sectionKey].subcategories[subBa] = { name: subBa, nameRu: subRu, emoji: emoji, greetings: [] };
-                }
-                sections[sectionKey].subcategories[subBa].greetings.push({ text: textBa, translation: transRu });
-                allGreetings.push({ text: textBa, translation: transRu, category: subBa, categoryRu: subRu, section: sectionBa, emoji: emoji });
-            }
-            
-            siteData = { sections, allGreetings, lastUpdate: new Date() };
-            document.getElementById('lastUpdated').innerHTML = `🔄 ${siteData.lastUpdate.toLocaleString('ru-RU')}`;
-            return true;
-        } catch (error) {
-            contentContainer.innerHTML = `<div class="error">❌ Ошибка: ${error.message}<br><br>Проверьте, что таблица опубликована как CSV.</div>`;
-            return false;
+
+    function renderSearchResults(results, query) {
+        const container = document.getElementById('contentContainer');
+        const searchStats = document.getElementById('searchStats');
+        
+        if (!results || results.length === 0) {
+            container.innerHTML = `<div class="no-results">🔍 «${escapeHtml(query)}» буйынса бер нәмә табылмады<br>По запросу ничего не найдено</div>`;
+            searchStats.innerHTML = `0 һөҙөмтә / результатов`;
+            return;
         }
-    }
-    
-    // Отрисовка интерфейса (сокращённо, как в предыдущем работающем коде)
-    function renderSections() {
-        if (!siteData) return;
-        let html = `<div class="sections-grid">`;
-        for (let [key, sec] of Object.entries(siteData.sections)) {
-            html += `<div class="section-card" data-section="${key}">
-                        <span class="section-emoji">${sec.emoji}</span>
-                        <div class="section-name">${escapeHtml(sec.name)}</div>
-                        <div class="section-desc">${escapeHtml(sec.nameRu)}</div>
-                    </div>`;
-        }
-        html += `</div>`;
-        contentContainer.innerHTML = html;
-        document.querySelectorAll('.section-card').forEach(card => {
-            card.addEventListener('click', () => {
-                currentSection = card.dataset.section;
-                currentSubcat = null;
-                isSearchMode = false;
-                searchInput.value = '';
-                document.getElementById('searchStats').innerHTML = '';
-                updateUI();
-                renderSubcategories();
-            });
-        });
-    }
-    
-    function renderSubcategories() {
-        if (!siteData || !currentSection) return;
-        const sec = siteData.sections[currentSection];
-        let html = `<div class="sections-grid">`;
-        for (let [key, sub] of Object.entries(sec.subcategories)) {
-            html += `<div class="subcat-card" data-subcat="${key}">
-                        <span class="subcat-emoji">${sub.emoji}</span>
-                        <div class="subcat-name">${escapeHtml(sub.name)}</div>
-                        <div class="subcat-desc">${escapeHtml(sub.nameRu)}</div>
-                    </div>`;
-        }
-        html += `</div>`;
-        contentContainer.innerHTML = html;
-        document.querySelectorAll('.subcat-card').forEach(card => {
-            card.addEventListener('click', () => {
-                currentSubcat = card.dataset.subcat;
-                isSearchMode = false;
-                searchInput.value = '';
-                updateUI();
-                renderGreetings();
-            });
-        });
-    }
-    
-    function renderGreetings() {
-        if (!siteData || !currentSection || !currentSubcat) return;
-        const sub = siteData.sections[currentSection].subcategories[currentSubcat];
+        
+        searchStats.innerHTML = `${results.length} һөҙөмтә / результатов: «${escapeHtml(query)}»`;
+        
         let html = `<div class="cards-grid">`;
-        sub.greetings.forEach(g => {
-            html += `<div class="card">
-                        <div class="card-badge">${sub.name} | ${sub.nameRu}</div>
-                        <div class="card-text">${escapeHtml(g.text)}</div>
-                        <div class="card-translation">💭 ${escapeHtml(g.translation)}</div>
-                    </div>`;
+        results.forEach(g => {
+            html += `
+                <div class="card">
+                    <div class="card-badge">${g.category} | ${g.categoryRu}<br><span style="font-size:0.6rem;">📁 ${g.section}</span></div>
+                    <div class="card-text">${escapeHtml(g.text)}</div>
+                    <div class="card-translation">💭 ${escapeHtml(g.translation)}</div>
+                </div>
+            `;
         });
         html += `</div>`;
-        contentContainer.innerHTML = html;
+        container.innerHTML = html;
     }
-    
+
+    // ========== КАРТОЧКА ДНЯ ==========
     function getTodaysGreeting() {
-        if (!siteData?.allGreetings.length) return null;
         const today = new Date().toDateString();
         let stored = localStorage.getItem('cardOfDay');
         if (stored) {
             const parsed = JSON.parse(stored);
             if (parsed.date === today) return parsed.greeting;
         }
-        const random = siteData.allGreetings[Math.floor(Math.random() * siteData.allGreetings.length)];
-        localStorage.setItem('cardOfDay', JSON.stringify({ date: today, greeting: random }));
-        return random;
+        const randomIndex = Math.floor(Math.random() * allGreetings.length);
+        const greeting = allGreetings[randomIndex];
+        localStorage.setItem('cardOfDay', JSON.stringify({ date: today, greeting: greeting }));
+        return greeting;
     }
-    
+
     function renderCardOfDay() {
         const card = getTodaysGreeting();
-        if (!card) return;
-        cardOfDayContainer.innerHTML = `
+        const container = document.getElementById('cardOfDayContainer');
+        if (!container) return;
+        container.innerHTML = `
             <div class="card-of-day">
-                <div class="card-of-day-title">⭐ Бөгөнгө йылы һүҙ / Слово дня</div>
+                <div class="card-of-day-title"><span>⭐</span> Бөгөнгө йылы һүҙ / Тёплое слово дня</div>
                 <div class="card-of-day-content">${escapeHtml(card.text)}</div>
                 <div class="card-of-day-trans">💭 ${escapeHtml(card.translation)}</div>
-                <div style="font-size:0.7rem; margin-top:10px;">🏷️ ${card.category} | ${card.section}</div>
+                <div style="font-size:0.7rem; margin-top:10px; color:#b8956a;">🏷️ ${card.category} | ${card.section}</div>
             </div>
         `;
     }
-    
-    function searchGreetings(query) {
-        if (!siteData) return [];
-        const q = query.toLowerCase();
-        return siteData.allGreetings.filter(g => g.text.toLowerCase().includes(q) || g.translation.toLowerCase().includes(q));
+
+    // ========== ПРАЗДНИКИ С КЛИКАБЕЛЬНОСТЬЮ ==========
+    const holidaysDB = {
+        international: [
+            { date: "01-01", name: "Яңы йыл", nameRu: "Новый год", linkTo: { section: "holidays", sub: "newyear" } },
+            { date: "03-08", name: "8 Март", nameRu: "8 Марта", linkTo: { section: "holidays", sub: "march8" } },
+            { date: "02-23", name: "23 Февраль", nameRu: "23 Февраля", linkTo: { section: "holidays", sub: "feb23" } }
+        ]
+    };
+
+    function getUpcomingHolidays() {
+        const today = new Date();
+        const upcoming = [];
+        holidaysDB.international.forEach(h => {
+            const [month, day] = h.date.split('-');
+            const holidayDate = new Date(today.getFullYear(), parseInt(month)-1, parseInt(day));
+            if (holidayDate >= today) {
+                upcoming.push({ ...h, displayDate: `${day}.${month}` });
+            }
+        });
+        return upcoming.slice(0, 5);
     }
-    
-    function renderSearchResults(results, query) {
-        if (!results.length) {
-            contentContainer.innerHTML = `<div class="no-results">🔍 «${escapeHtml(query)}» буйынса табылмады</div>`;
-            document.getElementById('searchStats').innerHTML = `0 результатов`;
-            return;
+
+    function renderHolidaysWidget() {
+        const container = document.getElementById('holidaysContent');
+        if (!container) return;
+        const holidays = getUpcomingHolidays();
+        let html = '';
+        holidays.forEach(h => {
+            html += `
+                <div class="holiday-item" data-holiday='${JSON.stringify(h.linkTo)}'>
+                    <span class="holiday-date">${h.displayDate}</span>
+                    <span class="holiday-name">${h.name}</span>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+        document.querySelectorAll('.holiday-item').forEach(el => {
+            el.addEventListener('click', (e) => {
+                const link = JSON.parse(el.getAttribute('data-holiday'));
+                if (link && link.section && data[link.section] && data[link.section].subcategories[link.sub]) {
+                    currentSection = link.section;
+                    currentSubcat = link.sub;
+                    isSearchMode = false;
+                    document.getElementById('searchInput').value = '';
+                    document.getElementById('searchStats').innerHTML = '';
+                    updateNavigation();
+                    renderGreetings();
+                }
+            });
+        });
+    }
+
+    // ========== НАВИГАЦИЯ ==========
+    let currentSection = null;
+    let currentSubcat = null;
+    const contentContainer = document.getElementById('contentContainer');
+    const backBtn = document.getElementById('backBtn');
+    const motivationBlock = document.getElementById('motivationBlock');
+    const searchInput = document.getElementById('searchInput');
+    const searchClear = document.getElementById('searchClear');
+
+    function showMotivationBlock(show) {
+        if (show) {
+            motivationBlock.style.display = 'block';
+            motivationBlock.innerHTML = `
+                <div class="motivation-block">
+                    <div class="motivation-quote">«Туған телдә әйтелгән йылы һүҙ — йөрәккә шифа»</div>
+                    <div class="motivation-author">— Башҡорт халыҡ мәҡәле</div>
+                    <div style="margin-top:16px;">🌾 Кешенең туған телендә ҡотлау — уның йөрәгенә иң ҡыҫҡа юл.</div>
+                </div>
+            `;
+        } else {
+            motivationBlock.style.display = 'none';
         }
-        document.getElementById('searchStats').innerHTML = `${results.length} результатов: «${escapeHtml(query)}»`;
+    }
+
+    function updateNavigation() {
+        if (currentSection === null && !isSearchMode) {
+            backBtn.style.display = 'none';
+            showMotivationBlock(true);
+            renderCardOfDay();
+        } else if (isSearchMode) {
+            backBtn.style.display = 'inline-block';
+            showMotivationBlock(false);
+            document.getElementById('cardOfDayContainer').innerHTML = '';
+        } else {
+            backBtn.style.display = 'inline-block';
+            showMotivationBlock(false);
+            document.getElementById('cardOfDayContainer').innerHTML = '';
+        }
+    }
+
+    function renderGreetings() {
+        if (!currentSection || !currentSubcat) return;
+        const subcat = data[currentSection].subcategories[currentSubcat];
+        const greetingsList = subcat.greetings;
         let html = `<div class="cards-grid">`;
-        results.forEach(g => {
-            html += `<div class="card">
-                        <div class="card-badge">${g.category} | ${g.categoryRu}<br><span style="font-size:0.6rem;">📁 ${g.section}</span></div>
-                        <div class="card-text">${escapeHtml(g.text)}</div>
-                        <div class="card-translation">💭 ${escapeHtml(g.translation)}</div>
-                    </div>`;
+        greetingsList.forEach(g => {
+            html += `
+                <div class="card">
+                    <div class="card-badge">${subcat.name} | ${subcat.nameRu}</div>
+                    <div class="card-text">${escapeHtml(g.text)}</div>
+                    <div class="card-translation">💭 ${escapeHtml(g.translation)}</div>
+                </div>
+            `;
         });
         html += `</div>`;
         contentContainer.innerHTML = html;
     }
-    
-    function updateUI() {
-        if (currentSection === null && !isSearchMode) {
-            backBtn.style.display = 'none';
-            motivationBlock.style.display = 'block';
-            motivationBlock.innerHTML = `<div class="motivation-block"><div class="motivation-quote">«Туған телдә әйтелгән йылы һүҙ — йөрәккә шифа»</div><div class="motivation-author">— Башҡорт халыҡ мәҡәле</div><div style="margin-top:16px;">🌾 Кешенең туған телендә ҡотлау — уның йөрәгенә иң ҡыҫҡа юл.</div></div>`;
-            renderCardOfDay();
-        } else {
-            backBtn.style.display = 'inline-block';
-            motivationBlock.style.display = 'none';
-            cardOfDayContainer.innerHTML = '';
+
+    function renderSubcategories() {
+        if (!currentSection) return;
+        const section = data[currentSection];
+        let html = `<div class="sections-grid">`;
+        for (let [key, subcat] of Object.entries(section.subcategories)) {
+            html += `<div class="subcat-card" data-subcat="${key}">
+                        <span class="subcat-emoji">${subcat.emoji}</span>
+                        <div class="subcat-name">${subcat.name}</div>
+                        <div class="subcat-desc">${subcat.nameRu}</div>
+                    </div>`;
         }
+        html += `</div>`;
+        contentContainer.innerHTML = html;
+        document.querySelectorAll('.subcat-card').forEach(card => {
+            card.addEventListener('click', () => {
+                currentSubcat = card.getAttribute('data-subcat');
+                isSearchMode = false;
+                searchInput.value = '';
+                document.getElementById('searchStats').innerHTML = '';
+                updateNavigation();
+                renderGreetings();
+            });
+        });
     }
-    
-    function renderDate() {
-        const now = new Date();
-        const ruDate = now.toLocaleDateString('ru-RU', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-        const baMap = { 'понедельник':'Дүшәмбе', 'вторник':'Шишәмбе', 'среда':'Шаршамбы', 'четверг':'Кесаҙна', 'пятница':'Йома', 'суббота':'Шәмбе', 'воскресенье':'Йәкшәмбе' };
-        let baDate = ruDate;
-        for (let [ru, ba] of Object.entries(baMap)) baDate = baDate.replace(ru, ba);
-        document.getElementById('currentDateBox').innerHTML = `📅 ${baDate}`;
+
+    function renderSections() {
+        let html = `<div class="sections-grid">`;
+        for (let [key, section] of Object.entries(data)) {
+            html += `<div class="section-card" data-section="${key}">
+                        <span class="section-emoji">${section.emoji}</span>
+                        <div class="section-name">${section.name}</div>
+                        <div class="section-desc">${section.nameRu}</div>
+                    </div>`;
+        }
+        html += `</div>`;
+        contentContainer.innerHTML = html;
+        document.querySelectorAll('.section-card').forEach(card => {
+            card.addEventListener('click', () => {
+                currentSection = card.getAttribute('data-section');
+                currentSubcat = null;
+                isSearchMode = false;
+                searchInput.value = '';
+                document.getElementById('searchStats').innerHTML = '';
+                updateNavigation();
+                renderSubcategories();
+            });
+        });
     }
-    
-    function escapeHtml(str) {
-        return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;');
-    }
-    
+
     backBtn.addEventListener('click', () => {
         if (isSearchMode) {
             isSearchMode = false;
             searchInput.value = '';
             document.getElementById('searchStats').innerHTML = '';
-            if (currentSubcat) renderGreetings();
-            else if (currentSection) renderSubcategories();
-            else renderSections();
-            updateUI();
-        } else if (currentSubcat) {
+            if (currentSection === null) {
+                renderSections();
+            } else if (currentSubcat === null) {
+                renderSubcategories();
+            } else {
+                renderGreetings();
+            }
+            updateNavigation();
+        } else if (currentSubcat !== null) {
             currentSubcat = null;
+            updateNavigation();
             renderSubcategories();
-            updateUI();
-        } else if (currentSection) {
+        } else if (currentSection !== null) {
             currentSection = null;
+            updateNavigation();
             renderSections();
-            updateUI();
         }
     });
-    
+
+    // Обработчик поиска
     searchInput.addEventListener('input', (e) => {
-        const q = e.target.value;
-        if (q.trim()) {
-            const results = searchGreetings(q);
-            renderSearchResults(results, q);
-            isSearchMode = true;
-            updateUI();
+        const query = e.target.value;
+        lastSearchQuery = query;
+        if (query.trim().length > 0) {
+            const results = searchGreetings(query);
+            renderSearchResults(results, query);
+            updateNavigation();
             searchClear.style.display = 'block';
         } else {
             isSearchMode = false;
             searchClear.style.display = 'none';
             document.getElementById('searchStats').innerHTML = '';
-            if (currentSubcat) renderGreetings();
-            else if (currentSection) renderSubcategories();
-            else renderSections();
-            updateUI();
+            if (currentSection === null) {
+                renderSections();
+            } else if (currentSubcat === null) {
+                renderSubcategories();
+            } else {
+                renderGreetings();
+            }
+            updateNavigation();
         }
     });
-    
+
     searchClear.addEventListener('click', () => {
         searchInput.value = '';
         searchClear.style.display = 'none';
-        isSearchMode = false;
         document.getElementById('searchStats').innerHTML = '';
-        if (currentSubcat) renderGreetings();
-        else if (currentSection) renderSubcategories();
-        else renderSections();
-        updateUI();
-    });
-    
-    // Запуск
-    renderDate();
-    loadData().then(success => {
-        if (success) {
+        isSearchMode = false;
+        if (currentSection === null) {
             renderSections();
-            updateUI();
+        } else if (currentSubcat === null) {
+            renderSubcategories();
+        } else {
+            renderGreetings();
         }
+        updateNavigation();
     });
-    
-    // Простые праздники для примера
-    document.getElementById('holidaysContent').innerHTML = `
-        <div class="holiday-item"><span class="holiday-date">8 Март</span><span class="holiday-name">8 Марта</span></div>
-        <div class="holiday-item"><span class="holiday-date">23 Февр</span><span class="holiday-name">23 Февраля</span></div>
-        <div class="holiday-item"><span class="holiday-date">1 Ғин</span><span class="holiday-name">Яңы йыл</span></div>
-    `;
+
+    function renderCurrentDate() {
+        const now = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const ruDate = now.toLocaleDateString('ru-RU', options);
+        const baMap = { 'понедельник':'Дүшәмбе', 'вторник':'Шишәмбе', 'среда':'Шаршамбы',
+            'четверг':'Кесаҙна', 'пятница':'Йома', 'суббота':'Шәмбе', 'воскресенье':'Йәкшәмбе' };
+        let baDate = ruDate;
+        for (let [ru, ba] of Object.entries(baMap)) baDate = baDate.replace(ru, ba);
+        document.getElementById('currentDateBox').innerHTML = `📅 ${baDate}`;
+    }
+
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    // СТАРТ
+    renderCurrentDate();
+    renderHolidaysWidget();
+    renderSections();
+    updateNavigation();
 </script>
 </body>
 </html>
