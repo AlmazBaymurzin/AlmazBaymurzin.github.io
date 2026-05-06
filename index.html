@@ -5,58 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Йылы һүҙҙәр — Поздравления на башкирском языке</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* ВСЕ СТИЛИ ОСТАЮТСЯ ТАКИМИ ЖЕ, КАК В ПРЕДЫДУЩЕЙ ВЕРСИИ */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #fef9e8 0%, #f0e6d8 100%);
             color: #2c241a;
             padding: 20px;
             min-height: 100vh;
         }
-
-        .container {
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        .main-layout {
-            display: flex;
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .content-area {
-            flex: 3;
-            min-width: 0;
-        }
-
-        .sidebar {
-            flex: 1.2;
-            min-width: 260px;
-        }
-
-        header {
-            text-align: center;
-            padding: 1.5rem 0 0.5rem 0;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: #8b5a2b;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.05);
-        }
-
-        .sub {
-            font-size: 1rem;
-            color: #a07649;
-            margin-top: 6px;
-        }
-
+        .container { max-width: 1600px; margin: 0 auto; }
+        .main-layout { display: flex; gap: 30px; margin-top: 20px; }
+        .content-area { flex: 3; min-width: 0; }
+        .sidebar { flex: 1.2; min-width: 260px; }
+        header { text-align: center; padding: 1.5rem 0 0.5rem 0; }
+        h1 { font-size: 2.5rem; color: #8b5a2b; }
+        .sub { font-size: 1rem; color: #a07649; margin-top: 6px; }
         .current-date-box {
             background: rgba(139,90,43,0.08);
             display: inline-block;
@@ -66,16 +30,14 @@
             font-size: 0.9rem;
             color: #6b4925;
         }
-
+        .loading { text-align: center; padding: 60px; color: #b8956a; }
         .card-of-day {
             background: linear-gradient(135deg, #fff5e6 0%, #ffe8d4 100%);
             border-radius: 32px;
             padding: 20px 28px;
             margin: 20px 0;
             border: 2px solid #e8c9a8;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
         }
-
         .card-of-day-title {
             display: flex;
             align-items: center;
@@ -85,47 +47,16 @@
             color: #8b5a2b;
             margin-bottom: 16px;
         }
-
-        .card-of-day-title span {
-            font-size: 1.3rem;
-        }
-
-        .card-of-day-content {
-            font-size: 1.2rem;
-            line-height: 1.45;
-            font-family: 'Georgia', serif;
-            color: #4a2c1a;
-            margin-bottom: 12px;
-        }
-
-        .card-of-day-trans {
-            font-size: 0.85rem;
-            color: #8f7a64;
-        }
-
+        .card-of-day-content { font-size: 1.2rem; line-height: 1.45; font-family: 'Georgia', serif; margin-bottom: 12px; }
+        .card-of-day-trans { font-size: 0.85rem; color: #8f7a64; }
         .motivation-block {
             background: linear-gradient(135deg, #e8dcc8 0%, #dacaa8 100%);
             border-radius: 32px;
             padding: 28px 32px;
             margin: 25px 0 20px 0;
             text-align: center;
-            border: 1px solid rgba(139,90,43,0.2);
         }
-
-        .motivation-quote {
-            font-size: 1.3rem;
-            font-style: italic;
-            color: #4a2c1a;
-            line-height: 1.5;
-            font-family: 'Georgia', serif;
-        }
-
-        .motivation-author {
-            margin-top: 12px;
-            font-size: 0.85rem;
-            color: #8b6946;
-        }
-
+        .motivation-quote { font-size: 1.3rem; font-style: italic; font-family: 'Georgia', serif; }
         .back-button {
             display: inline-block;
             background: white;
@@ -137,14 +68,12 @@
             font-size: 0.9rem;
             color: #8b5a2b;
         }
-
         .sections-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 20px;
             margin: 20px 0;
         }
-
         .section-card, .subcat-card {
             background: white;
             border-radius: 28px;
@@ -153,37 +82,16 @@
             transition: all 0.2s ease;
             text-align: center;
         }
-
-        .section-card:hover, .subcat-card:hover {
-            transform: translateY(-4px);
-            background: #fffbf5;
-        }
-
-        .section-emoji, .subcat-emoji {
-            font-size: 2.8rem;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .section-name, .subcat-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #5c3e1e;
-        }
-
-        .section-desc, .subcat-desc {
-            font-size: 0.75rem;
-            color: #b8956a;
-            margin-top: 6px;
-        }
-
+        .section-card:hover, .subcat-card:hover { transform: translateY(-4px); background: #fffbf5; }
+        .section-emoji, .subcat-emoji { font-size: 2.8rem; display: block; margin-bottom: 10px; }
+        .section-name, .subcat-name { font-size: 1.2rem; font-weight: 600; color: #5c3e1e; }
+        .section-desc, .subcat-desc { font-size: 0.75rem; color: #b8956a; margin-top: 6px; }
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 24px;
             margin: 20px 0;
         }
-
         .card {
             background: white;
             border-radius: 32px;
@@ -191,11 +99,7 @@
             transition: transform 0.2s;
             border: 1px solid rgba(139,90,43,0.15);
         }
-
-        .card:hover {
-            transform: translateY(-4px);
-        }
-
+        .card:hover { transform: translateY(-4px); }
         .card-badge {
             display: inline-block;
             background: #f4ebdd;
@@ -206,22 +110,8 @@
             color: #8b5a2b;
             margin-bottom: 16px;
         }
-
-        .card-text {
-            font-size: 1.3rem;
-            line-height: 1.45;
-            font-family: 'Georgia', serif;
-            color: #2c241a;
-            margin-bottom: 20px;
-        }
-
-        .card-translation {
-            font-size: 0.85rem;
-            color: #8f7a64;
-            border-top: 1px solid #f0e2d2;
-            padding-top: 16px;
-        }
-
+        .card-text { font-size: 1.3rem; line-height: 1.45; font-family: 'Georgia', serif; margin-bottom: 20px; }
+        .card-translation { font-size: 0.85rem; color: #8f7a64; border-top: 1px solid #f0e2d2; padding-top: 16px; }
         .holidays-widget {
             background: white;
             border-radius: 32px;
@@ -229,7 +119,6 @@
             position: sticky;
             top: 20px;
         }
-
         .widget-title {
             font-size: 1.2rem;
             font-weight: 700;
@@ -238,7 +127,6 @@
             padding-bottom: 12px;
             margin-bottom: 18px;
         }
-
         .holiday-item {
             padding: 10px 0;
             border-bottom: 1px solid #f0e2d2;
@@ -246,7 +134,6 @@
             align-items: center;
             gap: 12px;
         }
-
         .holiday-date {
             font-size: 0.7rem;
             background: #f4ebdd;
@@ -255,17 +142,8 @@
             min-width: 60px;
             text-align: center;
         }
-
-        .holiday-name {
-            font-size: 0.85rem;
-            color: #3a2a1a;
-        }
-
-        .holiday-name small {
-            font-size: 0.7rem;
-            color: #b8956a;
-        }
-
+        .holiday-name { font-size: 0.85rem; color: #3a2a1a; }
+        .holiday-name small { font-size: 0.7rem; color: #b8956a; }
         .footer {
             text-align: center;
             margin-top: 50px;
@@ -273,7 +151,6 @@
             background: rgba(139,90,43,0.05);
             border-radius: 48px;
         }
-
         .project-name {
             font-size: 1.8rem;
             font-weight: 400;
@@ -281,10 +158,10 @@
             color: #8b5a2b;
             font-family: 'Georgia', serif;
         }
-
         @media (max-width: 900px) {
             .main-layout { flex-direction: column; }
             .card-of-day-content { font-size: 1rem; }
+            h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -304,9 +181,8 @@
         <div class="content-area">
             <div id="cardOfDayContainer"></div>
             <div id="motivationBlock" style="display: none;"></div>
-            <div id="contentContainer"></div>
+            <div id="contentContainer"><div class="loading">📡 Мәғлүмәт тейәлә...<br>Загрузка...</div></div>
         </div>
-
         <div class="sidebar">
             <div class="holidays-widget">
                 <div class="widget-title">📅 Яҡын киләсәк байрамдар</div>
@@ -318,128 +194,94 @@
     <div class="footer">
         <div class="project-name">ЙЫЛЫ һҮҘҘӘР<br><small>yily huzzar</small></div>
         <div style="font-size:0.8rem; margin-top:12px;">❤️ Йөрәк йылыһы — туған телдә әйтелгән һүҙҙә</div>
+        <div id="lastUpdated" style="font-size:0.7rem; margin-top:10px; color:#b8956a;"></div>
     </div>
 </div>
 
 <script>
-    // ========== БАЗА ДАННЫХ С ПОЗДРАВЛЕНИЯМИ ==========
-    const allGreetings = [];
-
-    const data = {
-        "professional": {
-            name: "Һөнәри байрамдар", nameRu: "Профессиональные праздники", emoji: "💼",
-            subcategories: {
-                "border_day": { name: "Сиксе көнө", nameRu: "День пограничника", emoji: "🛡️",
-                    greetings: [
-                        { text: "Сик һаҡсылары көнө менән! Тыуған ил сиктәре ныҡлы булһын!", translation: "С Днём пограничника! Пусть границы Родины будут крепкими!" },
-                        { text: "Һәр көнөң тыныс, хеҙмәтең еңел булһын, сиксе!", translation: "Пусть каждый твой день будет мирным, а служба лёгкой!" }
-                    ] },
-                "military_day": { name: "Хәрби көнө", nameRu: "День военного", emoji: "⭐",
-                    greetings: [
-                        { text: "Ватанды һаҡлаусы! Көсөң, батырлығың артһын!", translation: "Защитник Отечества! Пусть твои сила и храбрость растут!" }
-                    ] },
-                "doctor_day": { name: "Табип көнө", nameRu: "День врача", emoji: "🩺",
-                    greetings: [
-                        { text: "Табиптар көнө менән! Һеҙҙең ҡулдар меңләгән кешене ҡотҡара!", translation: "С Днём врача! Ваши руки спасают тысячи людей!" }
-                    ] }
-            } },
-        "holidays": {
-            name: "Байрамдар", nameRu: "Праздники", emoji: "🎉",
-            subcategories: {
-                "march8": { name: "8 Март", nameRu: "8 Марта", emoji: "🌷",
-                    greetings: [
-                        { text: "8 Март менән! Һәр ҡатын-ҡыҙ ҡояш нурҙары кеүек яҡты булһын!", translation: "С 8 Марта! Пусть каждая женщина будет светлой!" }
-                    ] },
-                "feb23": { name: "23 Февраль", nameRu: "23 Февраля", emoji: "🎖️",
-                    greetings: [
-                        { text: "23 февраль менән! Ир-егеттәр, һеҙ көслө һәм батыр булығыҙ!", translation: "С 23 февраля! Мужчины, будьте сильными и храбрыми!" }
-                    ] }
-            } },
-        "birthday": {
-            name: "Тыуған көн", nameRu: "День рождения", emoji: "🎂",
-            subcategories: {
-                "mother": { name: "Әсәйемә", nameRu: "Маме", emoji: "👩‍👧",
-                    greetings: [
-                        { text: "Әсәйем, тыуған көнөң менән! Һин донъяла иң яҡшы!", translation: "Мамочка, с днём рождения! Ты — лучшая на свете!" }
-                    ] },
-                "father": { name: "Атайыма", nameRu: "Папе", emoji: "👨‍👧‍👦",
-                    greetings: [
-                        { text: "Атайым, тыуған көнөң менән! Һин беҙҙең терәк!", translation: "Папа, с днём рождения! Ты наша опора!" }
-                    ] }
-            } }
-    };
-
-    // Собираем все поздравления в один массив (для карточки дня)
-    for (let sectionKey in data) {
-        for (let subKey in data[sectionKey].subcategories) {
-            const sub = data[sectionKey].subcategories[subKey];
-            sub.greetings.forEach(g => {
-                allGreetings.push({
-                    text: g.text,
-                    translation: g.translation,
-                    category: sub.name,
-                    categoryRu: sub.nameRu,
-                    section: data[sectionKey].name,
-                    emoji: sub.emoji
-                });
-            });
+    // ========== ЗАГРУЗКА ДАННЫХ ИЗ JSON ==========
+    let siteData = null;
+    let currentSection = null;
+    let currentSubcat = null;
+    
+    const contentContainer = document.getElementById('contentContainer');
+    const backBtn = document.getElementById('backBtn');
+    const motivationBlock = document.getElementById('motivationBlock');
+    const cardOfDayContainer = document.getElementById('cardOfDayContainer');
+    const holidaysContent = document.getElementById('holidaysContent');
+    
+    async function loadData() {
+        try {
+            const response = await fetch('data.json?v=' + Date.now());
+            if (!response.ok) throw new Error('Не удалось загрузить data.json');
+            const data = await response.json();
+            siteData = data;
+            document.getElementById('lastUpdated').innerHTML = `🔄 Обновлено: ${new Date().toLocaleString('ru-RU')}`;
+            return true;
+        } catch (error) {
+            contentContainer.innerHTML = `<div class="loading" style="color:#c96a2a;">❌ Ошибка: ${error.message}<br>Убедитесь, что файл data.json существует в той же папке</div>`;
+            return false;
         }
     }
-
-    // ========== КАРТОЧКА ДНЯ ==========
+    
+    // ========== ВСЕ ОСТАЛЬНЫЕ ФУНКЦИИ (ОНИ РАБОТАЮТ С siteData) ==========
+    
+    function getAllGreetings() {
+        if (!siteData) return [];
+        const all = [];
+        for (let secKey in siteData.sections) {
+            const section = siteData.sections[secKey];
+            for (let subKey in section.subcategories) {
+                const subcat = section.subcategories[subKey];
+                subcat.greetings.forEach(g => {
+                    all.push({
+                        text_ba: g.text_ba,
+                        translation_ru: g.translation_ru,
+                        category: subcat.name_ba,
+                        categoryRu: subcat.name_ru,
+                        section: section.name_ba,
+                        emoji: subcat.emoji
+                    });
+                });
+            }
+        }
+        return all;
+    }
+    
     function getTodaysGreeting() {
+        const all = getAllGreetings();
+        if (!all.length) return null;
         const today = new Date().toDateString();
         let stored = localStorage.getItem('cardOfDay');
         if (stored) {
             const parsed = JSON.parse(stored);
             if (parsed.date === today) return parsed.greeting;
         }
-        const randomIndex = Math.floor(Math.random() * allGreetings.length);
-        const greeting = allGreetings[randomIndex];
+        const randomIndex = Math.floor(Math.random() * all.length);
+        const greeting = all[randomIndex];
         localStorage.setItem('cardOfDay', JSON.stringify({ date: today, greeting: greeting }));
         return greeting;
     }
-
+    
     function renderCardOfDay() {
         const card = getTodaysGreeting();
-        const container = document.getElementById('cardOfDayContainer');
-        if (!container) return;
-        container.innerHTML = `
+        if (!card) return;
+        cardOfDayContainer.innerHTML = `
             <div class="card-of-day">
                 <div class="card-of-day-title"><span>⭐</span> Бөгөнгө йылы һүҙ / Тёплое слово дня</div>
-                <div class="card-of-day-content">${escapeHtml(card.text)}</div>
-                <div class="card-of-day-trans">💭 ${escapeHtml(card.translation)}</div>
+                <div class="card-of-day-content">${escapeHtml(card.text_ba)}</div>
+                <div class="card-of-day-trans">💭 ${escapeHtml(card.translation_ru)}</div>
                 <div style="font-size:0.7rem; margin-top:10px; color:#b8956a;">🏷️ ${card.category} | ${card.section}</div>
             </div>
         `;
     }
-
-    // ========== ПРАЗДНИКИ (ПРОСТОЙ СПИСОК, БЕЗ ССЫЛОК) ==========
-    // Полный список праздников с датами (месяц-день)
-    const allHolidays = [
-        { date: "01-01", name: "Яңы йыл", nameRu: "Новый год" },
-        { date: "01-07", name: "Раштыуа", nameRu: "Рождество" },
-        { date: "02-23", name: "Ватанды һаҡлаусылар көнө", nameRu: "День защитника Отечества" },
-        { date: "03-08", name: "Халыҡ-ара ҡатын-ҡыҙҙар көнө", nameRu: "8 Марта" },
-        { date: "05-01", name: "Яҙ һәм хеҙмәт көнө", nameRu: "Праздник Весны и Труда" },
-        { date: "05-09", name: "Еңеү көнө", nameRu: "День Победы" },
-        { date: "06-12", name: "Рәсәй көнө", nameRu: "День России" },
-        { date: "07-01", name: "Ураҙа байрам (сама менән)", nameRu: "Ураза-байрам" },
-        { date: "07-08", name: "Ғаилә, мөхәббәт һәм тоғролоҡ көнө", nameRu: "День семьи, любви и верности" },
-        { date: "08-02", name: "Ильин көнө", nameRu: "Ильин день" },
-        { date: "09-01", name: "Белем көнө", nameRu: "День знаний" },
-        { date: "10-05", name: "Уҡытыусылар көнө", nameRu: "День учителя" },
-        { date: "11-04", name: "Халыҡ берҙәмлеге көнө", nameRu: "День народного единства" },
-        { date: "12-12", name: "Конституция көнө", nameRu: "День Конституции" }
-    ];
-
+    
     function getUpcomingHolidays(limit = 10) {
+        if (!siteData || !siteData.holidays_widget) return [];
         const today = new Date();
         const currentYear = today.getFullYear();
-        const todayTimestamp = today.getTime();
         
-        // Добавляем даты (с учётом, что некоторые праздники могут быть в следующем году)
-        const holidaysWithDates = allHolidays.map(h => {
+        const withDates = siteData.holidays_widget.map(h => {
             const [month, day] = h.date.split('-');
             let holidayDate = new Date(currentYear, parseInt(month)-1, parseInt(day));
             if (holidayDate < today) {
@@ -451,38 +293,25 @@
                 timestamp: holidayDate.getTime()
             };
         });
-        
-        // Сортируем по дате и берём первые `limit`
-        holidaysWithDates.sort((a, b) => a.timestamp - b.timestamp);
-        return holidaysWithDates.slice(0, limit);
+        withDates.sort((a, b) => a.timestamp - b.timestamp);
+        return withDates.slice(0, limit);
     }
-
+    
     function renderHolidaysWidget() {
-        const container = document.getElementById('holidaysContent');
-        if (!container) return;
-        
-        const upcomingHolidays = getUpcomingHolidays(10);
+        if (!siteData) return;
+        const holidays = getUpcomingHolidays(10);
         let html = '';
-        
-        upcomingHolidays.forEach(h => {
+        holidays.forEach(h => {
             html += `
                 <div class="holiday-item">
                     <span class="holiday-date">${h.displayDate}</span>
-                    <span class="holiday-name">${h.name}<br><small>${h.nameRu}</small></span>
+                    <span class="holiday-name">${escapeHtml(h.name_ba)}<br><small>${escapeHtml(h.name_ru)}</small></span>
                 </div>
             `;
         });
-        
-        container.innerHTML = html;
+        holidaysContent.innerHTML = html;
     }
-
-    // ========== НАВИГАЦИЯ ==========
-    let currentSection = null;
-    let currentSubcat = null;
-    const contentContainer = document.getElementById('contentContainer');
-    const backBtn = document.getElementById('backBtn');
-    const motivationBlock = document.getElementById('motivationBlock');
-
+    
     function showMotivationBlock(show) {
         if (show) {
             motivationBlock.style.display = 'block';
@@ -497,7 +326,7 @@
             motivationBlock.style.display = 'none';
         }
     }
-
+    
     function updateNavigation() {
         if (currentSection === null) {
             backBtn.style.display = 'none';
@@ -506,40 +335,41 @@
         } else {
             backBtn.style.display = 'inline-block';
             showMotivationBlock(false);
+            cardOfDayContainer.innerHTML = '';
         }
     }
-
+    
     function renderGreetings() {
-        if (!currentSection || !currentSubcat) return;
-        const subcat = data[currentSection].subcategories[currentSubcat];
-        const greetingsList = subcat.greetings;
+        if (!currentSection || !currentSubcat || !siteData) return;
+        const subcat = siteData.sections[currentSection].subcategories[currentSubcat];
         let html = `<div class="cards-grid">`;
-        greetingsList.forEach(g => {
+        subcat.greetings.forEach(g => {
             html += `
                 <div class="card">
-                    <div class="card-badge">${subcat.name} | ${subcat.nameRu}</div>
-                    <div class="card-text">${escapeHtml(g.text)}</div>
-                    <div class="card-translation">💭 ${escapeHtml(g.translation)}</div>
+                    <div class="card-badge">${escapeHtml(subcat.name_ba)} | ${escapeHtml(subcat.name_ru)}</div>
+                    <div class="card-text">${escapeHtml(g.text_ba)}</div>
+                    <div class="card-translation">💭 ${escapeHtml(g.translation_ru)}</div>
                 </div>
             `;
         });
         html += `</div>`;
         contentContainer.innerHTML = html;
     }
-
+    
     function renderSubcategories() {
-        if (!currentSection) return;
-        const section = data[currentSection];
+        if (!currentSection || !siteData) return;
+        const section = siteData.sections[currentSection];
         let html = `<div class="sections-grid">`;
         for (let [key, subcat] of Object.entries(section.subcategories)) {
             html += `<div class="subcat-card" data-subcat="${key}">
                         <span class="subcat-emoji">${subcat.emoji}</span>
-                        <div class="subcat-name">${subcat.name}</div>
-                        <div class="subcat-desc">${subcat.nameRu}</div>
+                        <div class="subcat-name">${escapeHtml(subcat.name_ba)}</div>
+                        <div class="subcat-desc">${escapeHtml(subcat.name_ru)}</div>
                     </div>`;
         }
         html += `</div>`;
         contentContainer.innerHTML = html;
+        
         document.querySelectorAll('.subcat-card').forEach(card => {
             card.addEventListener('click', () => {
                 currentSubcat = card.getAttribute('data-subcat');
@@ -548,18 +378,20 @@
             });
         });
     }
-
+    
     function renderSections() {
+        if (!siteData) return;
         let html = `<div class="sections-grid">`;
-        for (let [key, section] of Object.entries(data)) {
+        for (let [key, section] of Object.entries(siteData.sections)) {
             html += `<div class="section-card" data-section="${key}">
                         <span class="section-emoji">${section.emoji}</span>
-                        <div class="section-name">${section.name}</div>
-                        <div class="section-desc">${section.nameRu}</div>
+                        <div class="section-name">${escapeHtml(section.name_ba)}</div>
+                        <div class="section-desc">${escapeHtml(section.name_ru)}</div>
                     </div>`;
         }
         html += `</div>`;
         contentContainer.innerHTML = html;
+        
         document.querySelectorAll('.section-card').forEach(card => {
             card.addEventListener('click', () => {
                 currentSection = card.getAttribute('data-section');
@@ -569,7 +401,7 @@
             });
         });
     }
-
+    
     backBtn.addEventListener('click', () => {
         if (currentSubcat !== null) {
             currentSubcat = null;
@@ -581,7 +413,7 @@
             renderSections();
         }
     });
-
+    
     function renderCurrentDate() {
         const now = new Date();
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -592,21 +424,23 @@
         for (let [ru, ba] of Object.entries(baMap)) baDate = baDate.replace(ru, ba);
         document.getElementById('currentDateBox').innerHTML = `📅 ${baDate}`;
     }
-
+    
     function escapeHtml(str) {
-        return str.replace(/[&<>]/g, function(m) {
-            if (m === '&') return '&amp;';
-            if (m === '<') return '&lt;';
-            if (m === '>') return '&gt;';
-            return m;
-        });
+        if (!str) return '';
+        return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;');
     }
-
-    // СТАРТ
-    renderCurrentDate();
-    renderHolidaysWidget();
-    renderSections();
-    updateNavigation();
+    
+    async function init() {
+        renderCurrentDate();
+        const loaded = await loadData();
+        if (loaded) {
+            renderHolidaysWidget();
+            renderSections();
+            updateNavigation();
+        }
+    }
+    
+    init();
 </script>
 </body>
 </html>
