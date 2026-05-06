@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ba">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Йылы һүҙҙәр | Проект ЙЫЛЫ hуззар</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+            background: linear-gradient(135deg, #f5f0fa 0%, #e8e0f0 100%);
+            color: #2d1b3c;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: #4a2c6d;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+            letter-spacing: -0.5px;
+        }
+
+        .sub {
+            font-size: 1.2rem;
+            color: #6b4c8a;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* Фильтр-кнопки */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .filter-btn {
+            background: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            color: #4a2c6d;
+        }
+
+        .filter-btn.active {
+            background: #4a2c6d;
+            color: white;
+            box-shadow: 0 4px 12px rgba(74,44,109,0.3);
+        }
+
+        .filter-btn:hover {
+            background: #e1d5ed;
+        }
+
+        /* Сетка карточек */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 32px;
+            padding: 24px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid rgba(106, 76, 147, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 28px -12px rgba(0,0,0,0.2);
+        }
+
+        .card-category {
+            display: inline-block;
+            background: #f0eaf8;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #5a3a7a;
+            margin-bottom: 16px;
+        }
+
+        .card-text {
+            font-size: 1.4rem;
+            line-height: 1.4;
+            font-weight: 450;
+            color: #1e102c;
+            margin-bottom: 20px;
+            font-family: 'Georgia', serif;
+        }
+
+        .card-translation {
+            font-size: 0.9rem;
+            color: #6c5a7c;
+            border-top: 1px dashed #e2d6ed;
+            padding-top: 16px;
+            margin-top: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: #5e4681;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 650px) {
+            h1 { font-size: 2rem; }
+            .card-text { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>✨ ЙЫЛЫ һҮҘҘӘР ✨</h1>
+        <div class="sub">Башҡортса ҡотлауҙар, теләктәр һәм хуплау һүҙҙәре</div>
+    </header>
+
+    <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">Барыһы ла</button>
+        <button class="filter-btn" data-filter="congrats">Ҡотлауҙар</button>
+        <button class="filter-btn" data-filter="wishes">Теләктәр</button>
+        <button class="filter-btn" data-filter="support">Хуплау / ярҙам</button>
+    </div>
+
+    <div class="cards-grid" id="cardsContainer"></div>
+    <div class="footer">
+        ❤️ Йылы күңелдән — башҡортса тәүфиҡлы булһын!<br>
+        Проект ЙЫЛЫ hуззар
+    </div>
+</div>
+
+<script>
+    // БАЗА ДАННЫХ (вы легко добавите свои слова)
+    const phrases = [
+        { text: "Тыуған көнөң менән! Ғүмерең оҙон, бәхетең ҡойон булһын!", translation: "С днём рождения! Долгой жизни и пусть счастье льётся рекой!", category: "congrats" },
+        { text: "Яңы йыл менән! Бар хыялдарың тормошҡа ассын!", translation: "С Новым годом! Пусть все мечты сбудутся!", category: "congrats" },
+        { text: "Тыныслыҡ, изгелек һәм ихлас күңел һиңә юлдаш булһын.", translation: "Пусть мир, доброта и искренность будут твоими спутниками.", category: "wishes" },
+        { text: "Һәр көнөң шатлыҡлы булһын. Көнөң ҡояшлы, кисәң йылы булһын!", translation: "Каждый день пусть будет радостным. День солнечный, вечер тёплым!", category: "wishes" },
+        { text: "Һин барыһын да еңә алаһың! Һиңә ышанам.", translation: "Ты всё сможешь! Я верю в тебя.", category: "support" },
+        { text: "Җырылма — алда нурлы көндәр көтә! Һин көслө.", translation: "Не унывай — впереди светлые дни! Ты сильный.", category: "support" },
+        { text: "Уңыштар һинең эҙенән тотҡан булһын! Алға!", translation: "Пусть удача следует за тобой по пятам! Вперёд!", category: "wishes" },
+        { text: "Бәләкәй ғаилә байрамығыҙ менән! Ихлас ҡотлайым.", translation: "С вашим маленьким семейным праздником! Искренне поздравляю.", category: "congrats" },
+        { text: "Һиңә тик яҡшы хәбәрҙәр генә килһен. Күңелең тыныс булһын.", translation: "Пусть тебе приходят только хорошие новости. Пусть душа будет спокойна.", category: "support" }
+    ];
+
+    function renderCards(filter = 'all') {
+        const container = document.getElementById('cardsContainer');
+        if (!container) return;
+        
+        const filtered = filter === 'all' ? phrases : phrases.filter(p => p.category === filter);
+        
+        if (filtered.length === 0) {
+            container.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem;">Был категорияла әлегә һүҙҙәр юк 🤍</div>`;
+            return;
+        }
+        
+        const categoryNames = {
+            congrats: '🎉 Ҡотлау',
+            wishes: '🌠 Теләк',
+            support: '💛 Хуплау'
+        };
+        
+        container.innerHTML = filtered.map(phrase => `
+            <div class="card">
+                <div class="card-category">${categoryNames[phrase.category] || phrase.category}</div>
+                <div class="card-text">${escapeHtml(phrase.text)}</div>
+                <div class="card-translation">💭 ${escapeHtml(phrase.translation)}</div>
+            </div>
+        `).join('');
+    }
+
+    // простой экейпинг для безопасности
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+            return c;
+        });
+    }
+
+    // обработка фильтров
+    function initFilters() {
+        const btns = document.querySelectorAll('.filter-btn');
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.getAttribute('data-filter');
+                renderCards(filter);
+            });
+        });
+    }
+
+    renderCards('all');
+    initFilters();
+</script>
+</body>
+</html>
