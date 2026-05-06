@@ -67,7 +67,6 @@
             color: #6b4925;
         }
 
-        /* КАРТОЧКА ДНЯ */
         .card-of-day {
             background: linear-gradient(135deg, #fff5e6 0%, #ffe8d4 100%);
             border-radius: 32px;
@@ -104,7 +103,6 @@
             color: #8f7a64;
         }
 
-        /* Мотивирующий блок */
         .motivation-block {
             background: linear-gradient(135deg, #e8dcc8 0%, #dacaa8 100%);
             border-radius: 32px;
@@ -242,31 +240,30 @@
         }
 
         .holiday-item {
-            padding: 8px 0;
+            padding: 10px 0;
             border-bottom: 1px solid #f0e2d2;
             display: flex;
             align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            transition: background 0.1s;
-            border-radius: 12px;
-        }
-
-        .holiday-item:hover {
-            background: #fef5e8;
-            padding-left: 6px;
+            gap: 12px;
         }
 
         .holiday-date {
             font-size: 0.7rem;
             background: #f4ebdd;
-            padding: 2px 8px;
+            padding: 3px 10px;
             border-radius: 20px;
+            min-width: 60px;
+            text-align: center;
         }
 
         .holiday-name {
             font-size: 0.85rem;
             color: #3a2a1a;
+        }
+
+        .holiday-name small {
+            font-size: 0.7rem;
+            color: #b8956a;
         }
 
         .footer {
@@ -305,13 +302,13 @@
 
     <div class="main-layout">
         <div class="content-area">
-            <div id="cardOfDayContainer"></div> <!-- Карточка дня -->
+            <div id="cardOfDayContainer"></div>
             <div id="motivationBlock" style="display: none;"></div>
             <div id="contentContainer"></div>
         </div>
 
         <div class="sidebar">
-            <div class="holidays-widget" id="holidaysWidget">
+            <div class="holidays-widget">
                 <div class="widget-title">📅 Яҡын киләсәк байрамдар</div>
                 <div id="holidaysContent"></div>
             </div>
@@ -389,7 +386,7 @@
         }
     }
 
-    // ========== КАРТОЧКА ДНЯ (рандомная, но фиксированная на сегодня) ==========
+    // ========== КАРТОЧКА ДНЯ ==========
     function getTodaysGreeting() {
         const today = new Date().toDateString();
         let stored = localStorage.getItem('cardOfDay');
@@ -417,53 +414,66 @@
         `;
     }
 
-    // ========== ПРАЗДНИКИ С КЛИКАБЕЛЬНОСТЬЮ ==========
-    const holidaysDB = {
-        international: [
-            { date: "01-01", name: "Яңы йыл", nameRu: "Новый год", linkTo: { section: "holidays", sub: "newyear" } },
-            { date: "03-08", name: "8 Март", nameRu: "8 Марта", linkTo: { section: "holidays", sub: "march8" } },
-            { date: "02-23", name: "23 Февраль", nameRu: "23 Февраля", linkTo: { section: "holidays", sub: "feb23" } }
-        ]
-    };
+    // ========== ПРАЗДНИКИ (ПРОСТОЙ СПИСОК, БЕЗ ССЫЛОК) ==========
+    // Полный список праздников с датами (месяц-день)
+    const allHolidays = [
+        { date: "01-01", name: "Яңы йыл", nameRu: "Новый год" },
+        { date: "01-07", name: "Раштыуа", nameRu: "Рождество" },
+        { date: "02-23", name: "Ватанды һаҡлаусылар көнө", nameRu: "День защитника Отечества" },
+        { date: "03-08", name: "Халыҡ-ара ҡатын-ҡыҙҙар көнө", nameRu: "8 Марта" },
+        { date: "05-01", name: "Яҙ һәм хеҙмәт көнө", nameRu: "Праздник Весны и Труда" },
+        { date: "05-09", name: "Еңеү көнө", nameRu: "День Победы" },
+        { date: "06-12", name: "Рәсәй көнө", nameRu: "День России" },
+        { date: "07-01", name: "Ураҙа байрам (сама менән)", nameRu: "Ураза-байрам" },
+        { date: "07-08", name: "Ғаилә, мөхәббәт һәм тоғролоҡ көнө", nameRu: "День семьи, любви и верности" },
+        { date: "08-02", name: "Ильин көнө", nameRu: "Ильин день" },
+        { date: "09-01", name: "Белем көнө", nameRu: "День знаний" },
+        { date: "10-05", name: "Уҡытыусылар көнө", nameRu: "День учителя" },
+        { date: "11-04", name: "Халыҡ берҙәмлеге көнө", nameRu: "День народного единства" },
+        { date: "12-12", name: "Конституция көнө", nameRu: "День Конституции" }
+    ];
 
-    function getUpcomingHolidays() {
+    function getUpcomingHolidays(limit = 10) {
         const today = new Date();
-        const upcoming = [];
-        holidaysDB.international.forEach(h => {
+        const currentYear = today.getFullYear();
+        const todayTimestamp = today.getTime();
+        
+        // Добавляем даты (с учётом, что некоторые праздники могут быть в следующем году)
+        const holidaysWithDates = allHolidays.map(h => {
             const [month, day] = h.date.split('-');
-            const holidayDate = new Date(today.getFullYear(), parseInt(month)-1, parseInt(day));
-            if (holidayDate >= today) {
-                upcoming.push({ ...h, displayDate: `${day}.${month}` });
+            let holidayDate = new Date(currentYear, parseInt(month)-1, parseInt(day));
+            if (holidayDate < today) {
+                holidayDate = new Date(currentYear + 1, parseInt(month)-1, parseInt(day));
             }
+            return {
+                ...h,
+                displayDate: `${day}.${month}`,
+                timestamp: holidayDate.getTime()
+            };
         });
-        return upcoming.slice(0, 5);
+        
+        // Сортируем по дате и берём первые `limit`
+        holidaysWithDates.sort((a, b) => a.timestamp - b.timestamp);
+        return holidaysWithDates.slice(0, limit);
     }
 
     function renderHolidaysWidget() {
         const container = document.getElementById('holidaysContent');
         if (!container) return;
-        const holidays = getUpcomingHolidays();
+        
+        const upcomingHolidays = getUpcomingHolidays(10);
         let html = '';
-        holidays.forEach(h => {
+        
+        upcomingHolidays.forEach(h => {
             html += `
-                <div class="holiday-item" data-holiday='${JSON.stringify(h.linkTo)}'>
+                <div class="holiday-item">
                     <span class="holiday-date">${h.displayDate}</span>
-                    <span class="holiday-name">${h.name}</span>
+                    <span class="holiday-name">${h.name}<br><small>${h.nameRu}</small></span>
                 </div>
             `;
         });
+        
         container.innerHTML = html;
-        document.querySelectorAll('.holiday-item').forEach(el => {
-            el.addEventListener('click', (e) => {
-                const link = JSON.parse(el.getAttribute('data-holiday'));
-                if (link && link.section && data[link.section] && data[link.section].subcategories[link.sub]) {
-                    currentSection = link.section;
-                    currentSubcat = link.sub;
-                    updateNavigation();
-                    renderGreetings();
-                }
-            });
-        });
     }
 
     // ========== НАВИГАЦИЯ ==========
