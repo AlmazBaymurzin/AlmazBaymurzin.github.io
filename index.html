@@ -7,7 +7,6 @@
     <title>Йылы һүҙҙәр — Поздравления на башкирском языке</title>
     
     <!-- ========== SEO МЕТА-ТЕГИ ========== -->
-    <!-- Основные -->
     <meta name="description" content="Башҡортса ҡотлауҙар, теләктәр һәм хуплау һүҙҙәре. Поздравления, пожелания и слова поддержки на башкирском языке. Йылы һүҙҙәр проекты.">
     <meta name="keywords" content="башкирские поздравления, башҡортса ҡотлау, йылы һүҙҙәр, башкирский язык, тёплые слова, поздравления на башкирском, башкирские пожелания, башкирские открытки, день рождения на башкирском, 8 марта на башкирском, 23 февраля на башкирском">
     <meta name="author" content="Алмаз Баймурзин, Project Yily Huzzar">
@@ -15,7 +14,7 @@
     <meta name="copyright" content="Project Yily Huzzar">
     <meta name="robots" content="index, follow">
     
-    <!-- Open Graph (для соцсетей: Telegram, VK, WhatsApp, Facebook) -->
+    <!-- Open Graph (для соцсетей) -->
     <meta property="og:title" content="Йылы һүҙҙәр | Поздравления на башкирском">
     <meta property="og:description" content="Коллекция поздравлений, пожеланий и слов поддержки на башкирском языке с переводом на русский.">
     <meta property="og:type" content="website">
@@ -179,6 +178,11 @@
             cursor: pointer;
             font-size: 0.9rem;
             color: #8b5a2b;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .back-button:hover {
+            background: #f4ebdd;
         }
 
         .sections-grid {
@@ -195,10 +199,12 @@
             cursor: pointer;
             transition: all 0.2s ease;
             text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
         .section-card:hover, .subcat-card:hover {
             transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             background: #fffbf5;
         }
 
@@ -233,10 +239,12 @@
             padding: 28px;
             transition: transform 0.2s;
             border: 1px solid rgba(139,90,43,0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
         }
 
         .card:hover {
             transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
         }
 
         .card-badge {
@@ -271,6 +279,7 @@
             padding: 24px;
             position: sticky;
             top: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
         }
 
         .widget-title {
@@ -479,7 +488,6 @@
     function getUpcomingHolidays(limit = 10) {
         const today = new Date();
         const currentYear = today.getFullYear();
-        const todayTimestamp = today.getTime();
         
         const holidaysWithDates = allHolidays.map(h => {
             const [month, day] = h.date.split('-');
@@ -520,6 +528,8 @@
     // ========== НАВИГАЦИЯ ==========
     let currentSection = null;
     let currentSubcat = null;
+    let isSearchMode = false;
+    
     const contentContainer = document.getElementById('contentContainer');
     const backBtn = document.getElementById('backBtn');
     const motivationBlock = document.getElementById('motivationBlock');
@@ -540,13 +550,17 @@
     }
 
     function updateNavigation() {
-        if (currentSection === null) {
+        if (currentSection === null && !isSearchMode) {
             backBtn.style.display = 'none';
             showMotivationBlock(true);
             renderCardOfDay();
         } else {
             backBtn.style.display = 'inline-block';
             showMotivationBlock(false);
+            // Если мы в режиме поиска или на внутренней странице — карточку дня не показываем
+            if (!isSearchMode && currentSection !== null) {
+                document.getElementById('cardOfDayContainer').innerHTML = '';
+            }
         }
     }
 
@@ -581,9 +595,11 @@
         }
         html += `</div>`;
         contentContainer.innerHTML = html;
+        
         document.querySelectorAll('.subcat-card').forEach(card => {
             card.addEventListener('click', () => {
                 currentSubcat = card.getAttribute('data-subcat');
+                isSearchMode = false;
                 updateNavigation();
                 renderGreetings();
             });
@@ -601,25 +617,48 @@
         }
         html += `</div>`;
         contentContainer.innerHTML = html;
+        
         document.querySelectorAll('.section-card').forEach(card => {
             card.addEventListener('click', () => {
                 currentSection = card.getAttribute('data-section');
                 currentSubcat = null;
+                isSearchMode = false;
                 updateNavigation();
                 renderSubcategories();
             });
         });
     }
 
+    // ========== ИСПРАВЛЕННАЯ КНОПКА НАЗАД ==========
     backBtn.addEventListener('click', () => {
+        // Если мы в режиме поиска — выходим из поиска
+        if (isSearchMode) {
+            isSearchMode = false;
+            if (currentSection && currentSubcat) {
+                renderGreetings();
+            } else if (currentSection) {
+                renderSubcategories();
+            } else {
+                renderSections();
+            }
+            updateNavigation();
+            return;
+        }
+        
+        // Если мы на уровне поздравлений (есть и раздел, и подкатегория)
         if (currentSubcat !== null) {
             currentSubcat = null;
             updateNavigation();
             renderSubcategories();
-        } else if (currentSection !== null) {
+            return;
+        }
+        
+        // Если мы на уровне подкатегорий (есть раздел, но нет подкатегории)
+        if (currentSection !== null) {
             currentSection = null;
             updateNavigation();
             renderSections();
+            return;
         }
     });
 
@@ -635,6 +674,7 @@
     }
 
     function escapeHtml(str) {
+        if (!str) return '';
         return str.replace(/[&<>]/g, function(m) {
             if (m === '&') return '&amp;';
             if (m === '<') return '&lt;';
