@@ -238,6 +238,7 @@
             transition: transform 0.2s;
             border: 1px solid rgba(139,90,43,0.15);
             box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            position: relative;
         }
 
         .card:hover {
@@ -269,6 +270,84 @@
             color: #8f7a64;
             border-top: 1px solid #f0e2d2;
             padding-top: 16px;
+            margin-bottom: 16px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .share-btn, .copy-only-btn {
+            border: none;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .share-btn {
+            background: #f0e2d2;
+            color: #8b5a2b;
+        }
+
+        .share-btn:hover {
+            background: #e8c9a8;
+            transform: translateY(-1px);
+        }
+
+        .copy-only-btn {
+            background: #e8dcc8;
+            color: #6b4925;
+        }
+
+        .copy-only-btn:hover {
+            background: #dacaa8;
+            transform: translateY(-1px);
+        }
+
+        .copy-stats {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            font-size: 0.65rem;
+            color: #b8956a;
+            background: rgba(255,255,255,0.8);
+            padding: 2px 6px;
+            border-radius: 12px;
+        }
+
+        .toast-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4caf50;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            z-index: 1000;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
         }
 
         .holidays-widget {
@@ -316,6 +395,47 @@
             color: #b8956a;
         }
 
+        .stats-panel {
+            background: white;
+            border-radius: 32px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 20px;
+        }
+
+        .stats-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #8b5a2b;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stats-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 0.8rem;
+            border-bottom: 1px solid #f0e2d2;
+        }
+
+        .stats-reset {
+            margin-top: 12px;
+            text-align: center;
+        }
+
+        .reset-stats-btn {
+            background: none;
+            border: none;
+            color: #b8956a;
+            font-size: 0.7rem;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
         .footer {
             text-align: center;
             margin-top: 50px;
@@ -336,6 +456,7 @@
             .main-layout { flex-direction: column; }
             .card-of-day-content { font-size: 1rem; }
             h1 { font-size: 1.8rem; }
+            .button-group { flex-direction: column; }
         }
     </style>
 </head>
@@ -359,6 +480,13 @@
         </div>
 
         <div class="sidebar">
+            <div class="stats-panel" id="statsPanel">
+                <div class="stats-title">📊 Күсереп алыу статистикаһы<br><small>Статистика копирований</small></div>
+                <div id="statsContent"></div>
+                <div class="stats-reset">
+                    <button class="reset-stats-btn" onclick="resetAllStats()">Сбросить статистику</button>
+                </div>
+            </div>
             <div class="holidays-widget">
                 <div class="widget-title">📅 Яҡын киләсәк байрамдар</div>
                 <div id="holidaysContent"></div>
@@ -379,18 +507,180 @@
     let currentSubcat = null;
     let isSearchMode = false;
     
+    // Ключ для хранения статистики в localStorage
+    const STATS_KEY = 'greeting_copy_stats';
+    
     const contentContainer = document.getElementById('contentContainer');
     const backBtn = document.getElementById('backBtn');
     const motivationBlock = document.getElementById('motivationBlock');
     const cardOfDayContainer = document.getElementById('cardOfDayContainer');
     const holidaysContent = document.getElementById('holidaysContent');
+    const statsContent = document.getElementById('statsContent');
     
+    // ========== ФУНКЦИИ СТАТИСТИКИ ==========
+    function getStats() {
+        const saved = localStorage.getItem(STATS_KEY);
+        if (saved) {
+            return JSON.parse(saved);
+        }
+        return {};
+    }
+    
+    function saveStats(stats) {
+        localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+        renderStats();
+    }
+    
+    function incrementStats(greetingId, type) {
+        const stats = getStats();
+        if (!stats[greetingId]) {
+            stats[greetingId] = { full: 0, only_ba: 0, text_ba: '', text_ru: '' };
+        }
+        if (type === 'full') {
+            stats[greetingId].full++;
+        } else if (type === 'only_ba') {
+            stats[greetingId].only_ba++;
+        }
+        saveStats(stats);
+    }
+    
+    function renderStats() {
+        const stats = getStats();
+        const entries = Object.entries(stats);
+        
+        if (entries.length === 0) {
+            statsContent.innerHTML = '<div style="text-align:center; color:#b8956a; padding:10px;">Пока нет копирований</div>';
+            return;
+        }
+        
+        // Сортируем по общему количеству копирований
+        const sorted = entries.sort((a, b) => {
+            const totalA = a[1].full + a[1].only_ba;
+            const totalB = b[1].full + b[1].only_ba;
+            return totalB - totalA;
+        });
+        
+        let html = '';
+        sorted.slice(0, 10).forEach(([id, data]) => {
+            const total = data.full + data.only_ba;
+            const baText = (data.text_ba || '').substring(0, 40) + ((data.text_ba || '').length > 40 ? '...' : '');
+            html += `
+                <div class="stats-item">
+                    <span title="${escapeHtml(data.text_ba || '')}">📖 ${escapeHtml(baText)}</span>
+                    <span>📊 ${total}</span>
+                </div>
+                <div class="stats-item" style="font-size:0.7rem; color:#b8956a; padding-left:15px;">
+                    <span>📤 Полный: ${data.full}</span>
+                    <span>📋 Только баш.: ${data.only_ba}</span>
+                </div>
+            `;
+        });
+        
+        statsContent.innerHTML = html;
+    }
+    
+    function resetAllStats() {
+        if (confirm('Сбросить всю статистику копирований?')) {
+            localStorage.removeItem(STATS_KEY);
+            renderStats();
+            showToast('Статистика сброшена');
+        }
+    }
+    
+    // ========== ФУНКЦИИ КОПИРОВАНИЯ ==========
+    async function copyToClipboard(ruText, baText, greetingId) {
+        const shareText = `${baText}\n\n💭 ${ruText}`;
+        
+        // Инкрементируем статистику
+        incrementStats(greetingId, 'full');
+        
+        // Пробуем использовать Web Share API (особенно полезно на мобильных устройствах)
+        if (navigator.share && window.innerWidth <= 768) {
+            try {
+                await navigator.share({
+                    title: 'Поздравление на башкирском',
+                    text: shareText
+                });
+                showToast('Поделились!');
+                return;
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    console.log('Share cancelled or failed:', err);
+                }
+                // Если пользователь отменил или share не работает, продолжаем с копированием
+            }
+        }
+        
+        // Fallback: копирование в буфер обмена
+        try {
+            await navigator.clipboard.writeText(shareText);
+            showToast('✅ Поздравление скопировано!');
+        } catch (err) {
+            // Старый метод для браузеров без clipboard API
+            const textarea = document.createElement('textarea');
+            textarea.value = shareText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            showToast('✅ Поздравление скопировано!');
+        }
+    }
+    
+    async function copyOnlyBashkir(baText, greetingId) {
+        // Инкрементируем статистику
+        incrementStats(greetingId, 'only_ba');
+        
+        // Пробуем использовать Web Share API для мобильных
+        if (navigator.share && window.innerWidth <= 768) {
+            try {
+                await navigator.share({
+                    title: 'Поздравление на башкирском',
+                    text: baText
+                });
+                showToast('Поделились!');
+                return;
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    console.log('Share cancelled or failed:', err);
+                }
+            }
+        }
+        
+        // Копирование только башкирского текста
+        try {
+            await navigator.clipboard.writeText(baText);
+            showToast('✅ Только башкирский текст скопирован!');
+        } catch (err) {
+            const textarea = document.createElement('textarea');
+            textarea.value = baText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            showToast('✅ Только башкирский текст скопирован!');
+        }
+    }
+    
+    function showToast(message) {
+        const toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.remove();
+        }, 2000);
+    }
+    
+    // ========== ОСНОВНАЯ ЛОГИКА ==========
     async function loadData() {
         try {
             const response = await fetch('data.json?v=' + Date.now());
             if (!response.ok) throw new Error('Не удалось загрузить data.json');
             const data = await response.json();
             siteData = data;
+            renderStats(); // Показываем статистику
             return true;
         } catch (error) {
             contentContainer.innerHTML = `<div style="text-align:center; padding:60px; color:#c96a2a;">❌ Ошибка: ${error.message}<br>Убедитесь, что файл data.json существует</div>`;
@@ -448,7 +738,6 @@
         `;
     }
     
-    // ========== ИСПРАВЛЕННЫЙ ВИДЖЕТ ПРАЗДНИКОВ ==========
     function renderHolidaysWidget() {
         if (!siteData || !siteData.holidays_widget) {
             if (holidaysContent) holidaysContent.innerHTML = '<div class="holiday-item">Загрузка...</div>';
@@ -461,7 +750,6 @@
             return;
         }
         
-        // Сортируем по дате (ближайшие сначала)
         const today = new Date();
         const currentYear = today.getFullYear();
         
@@ -526,20 +814,59 @@
         }
     }
     
+    // Генерация уникального ID для поздравления
+    function generateGreetingId(sectionKey, subcatKey, index, text) {
+        return `${sectionKey}_${subcatKey}_${index}_${text.substring(0, 20)}`.replace(/[^a-zA-Z0-9_-]/g, '_');
+    }
+    
     function renderGreetings() {
         if (!siteData || !currentSection || !currentSubcat) return;
         const subcat = siteData.sections[currentSection].subcategories[currentSubcat];
         if (!subcat) return;
+        
         let html = `<div class="cards-grid">`;
-        subcat.greetings.forEach(g => {
+        
+        subcat.greetings.forEach((g, index) => {
+            const greetingId = generateGreetingId(currentSection, currentSubcat, index, g.text_ba);
+            const stats = getStats();
+            const copyCount = stats[greetingId] ? (stats[greetingId].full + stats[greetingId].only_ba) : 0;
+            
             html += `<div class="card">
                         <div class="card-badge">${escapeHtml(subcat.name_ba)} | ${escapeHtml(subcat.name_ru)}</div>
                         <div class="card-text">${escapeHtml(g.text_ba)}</div>
                         <div class="card-translation">💭 ${escapeHtml(g.translation_ru)}</div>
+                        <div class="button-group">
+                            <button class="share-btn" data-type="full" data-ba="${escapeHtml(g.text_ba).replace(/'/g, "\\'")}" data-ru="${escapeHtml(g.translation_ru).replace(/'/g, "\\'")}" data-id="${greetingId}">
+                                📤 Поделиться
+                            </button>
+                            <button class="copy-only-btn" data-type="only_ba" data-ba="${escapeHtml(g.text_ba).replace(/'/g, "\\'")}" data-id="${greetingId}">
+                                📋 Только башкирский
+                            </button>
+                        </div>
+                        ${copyCount > 0 ? `<div class="copy-stats">📊 ${copyCount}</div>` : ''}
                     </div>`;
         });
+        
         html += `</div>`;
         contentContainer.innerHTML = html;
+        
+        // Добавляем обработчики для кнопок
+        document.querySelectorAll('.share-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const baText = btn.getAttribute('data-ba');
+                const ruText = btn.getAttribute('data-ru');
+                const id = btn.getAttribute('data-id');
+                copyToClipboard(ruText, baText, id);
+            });
+        });
+        
+        document.querySelectorAll('.copy-only-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const baText = btn.getAttribute('data-ba');
+                const id = btn.getAttribute('data-id');
+                copyOnlyBashkir(baText, id);
+            });
+        });
     }
     
     function renderSubcategories() {
@@ -591,7 +918,6 @@
         });
     }
     
-    // ========== ИСПРАВЛЕННАЯ КНОПКА НАЗАД ==========
     backBtn.addEventListener('click', () => {
         if (isSearchMode) {
             isSearchMode = false;
@@ -623,8 +949,10 @@
         const now = new Date();
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         const ruDate = now.toLocaleDateString('ru-RU', options);
-        const baMap = { 'понедельник':'Дүшәмбе', 'вторник':'Шишәмбе', 'среда':'Шаршамбы',
-            'четверг':'Кесаҙна', 'пятница':'Йома', 'суббота':'Шәмбе', 'воскресенье':'Йәкшәмбе' };
+        const baMap = { 
+            'понедельник':'Дүшәмбе', 'вторник':'Шишәмбе', 'среда':'Шаршамбы',
+            'четверг':'Кесаҙна', 'пятница':'Йома', 'суббота':'Шәмбе', 'воскресенье':'Йәкшәмбе' 
+        };
         let baDate = ruDate;
         for (let [ru, ba] of Object.entries(baMap)) baDate = baDate.replace(ru, ba);
         document.getElementById('currentDateBox').innerHTML = `📅 ${baDate}`;
