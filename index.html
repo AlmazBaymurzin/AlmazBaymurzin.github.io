@@ -14,7 +14,7 @@
     <meta name="copyright" content="Project Yily Huzzar">
     <meta name="robots" content="index, follow">
     
-    <!-- Open Graph (для соцсетей) -->
+    <!-- Open Graph -->
     <meta property="og:title" content="Йылы һүҙҙәр | Поздравления на башкирском">
     <meta property="og:description" content="Коллекция поздравлений, пожеланий и слов поддержки на башкирском языке с переводом на русский.">
     <meta property="og:type" content="website">
@@ -26,23 +26,6 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Йылы һүҙҙәр | Поздравления на башкирском">
     <meta name="twitter:description" content="Поздравления на башкирском языке с переводом на русский.">
-    
-    <!-- Структурированные данные -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Йылы һүҙҙәр | Yily Huzzar",
-      "alternateName": "Поздравления на башкирском языке",
-      "url": "https://almazbaymurzin.github.io",
-      "description": "Коллекция поздравлений, пожеланий и слов поддержки на башкирском языке с переводом на русский",
-      "inLanguage": ["ba", "ru"],
-      "creator": {
-        "@type": "Person",
-        "name": "Алмаз Баймурзин"
-      }
-    }
-    </script>
     
     <style>
         * {
@@ -124,10 +107,6 @@
             font-weight: 600;
             color: #8b5a2b;
             margin-bottom: 16px;
-        }
-
-        .card-of-day-title span {
-            font-size: 1.3rem;
         }
 
         .card-of-day-content {
@@ -282,7 +261,7 @@
 
         .share-btn, .copy-only-btn {
             border: none;
-            padding: 6px 12px;
+            padding: 8px 12px;
             border-radius: 20px;
             cursor: pointer;
             font-size: 0.75rem;
@@ -320,8 +299,8 @@
             right: 12px;
             font-size: 0.65rem;
             color: #b8956a;
-            background: rgba(255,255,255,0.8);
-            padding: 2px 6px;
+            background: rgba(255,255,255,0.9);
+            padding: 2px 8px;
             border-radius: 12px;
         }
 
@@ -501,13 +480,12 @@
 </div>
 
 <script>
-    // ========== ЗАГРУЗКА ДАННЫХ ИЗ data.json ==========
+    // ========== ЗАГРУЗКА ДАННЫХ ==========
     let siteData = null;
     let currentSection = null;
     let currentSubcat = null;
     let isSearchMode = false;
     
-    // Ключ для хранения статистики в localStorage
     const STATS_KEY = 'greeting_copy_stats';
     
     const contentContainer = document.getElementById('contentContainer');
@@ -517,7 +495,7 @@
     const holidaysContent = document.getElementById('holidaysContent');
     const statsContent = document.getElementById('statsContent');
     
-    // ========== ФУНКЦИИ СТАТИСТИКИ ==========
+    // ========== СТАТИСТИКА ==========
     function getStats() {
         const saved = localStorage.getItem(STATS_KEY);
         if (saved) {
@@ -531,10 +509,10 @@
         renderStats();
     }
     
-    function incrementStats(greetingId, type) {
+    function incrementStats(greetingId, type, baText, ruText) {
         const stats = getStats();
         if (!stats[greetingId]) {
-            stats[greetingId] = { full: 0, only_ba: 0, text_ba: '', text_ru: '' };
+            stats[greetingId] = { full: 0, only_ba: 0, text_ba: baText, text_ru: ruText };
         }
         if (type === 'full') {
             stats[greetingId].full++;
@@ -553,7 +531,6 @@
             return;
         }
         
-        // Сортируем по общему количеству копирований
         const sorted = entries.sort((a, b) => {
             const totalA = a[1].full + a[1].only_ba;
             const totalB = b[1].full + b[1].only_ba;
@@ -584,17 +561,20 @@
             localStorage.removeItem(STATS_KEY);
             renderStats();
             showToast('Статистика сброшена');
+            // Обновляем отображение карточек, чтобы убрать счётчики
+            if (currentSection && currentSubcat) {
+                renderGreetings();
+            }
         }
     }
     
-    // ========== ФУНКЦИИ КОПИРОВАНИЯ ==========
+    // ========== КОПИРОВАНИЕ ==========
     async function copyToClipboard(ruText, baText, greetingId) {
         const shareText = `${baText}\n\n💭 ${ruText}`;
         
-        // Инкрементируем статистику
-        incrementStats(greetingId, 'full');
+        incrementStats(greetingId, 'full', baText, ruText);
         
-        // Пробуем использовать Web Share API (особенно полезно на мобильных устройствах)
+        // Web Share API для мобильных
         if (navigator.share && window.innerWidth <= 768) {
             try {
                 await navigator.share({
@@ -605,18 +585,16 @@
                 return;
             } catch (err) {
                 if (err.name !== 'AbortError') {
-                    console.log('Share cancelled or failed:', err);
+                    console.log('Share failed:', err);
                 }
-                // Если пользователь отменил или share не работает, продолжаем с копированием
             }
         }
         
-        // Fallback: копирование в буфер обмена
+        // Копирование в буфер обмена
         try {
             await navigator.clipboard.writeText(shareText);
             showToast('✅ Поздравление скопировано!');
         } catch (err) {
-            // Старый метод для браузеров без clipboard API
             const textarea = document.createElement('textarea');
             textarea.value = shareText;
             document.body.appendChild(textarea);
@@ -625,13 +603,17 @@
             document.body.removeChild(textarea);
             showToast('✅ Поздравление скопировано!');
         }
+        
+        // Обновляем счётчик на карточке
+        if (currentSection && currentSubcat) {
+            renderGreetings();
+        }
     }
     
     async function copyOnlyBashkir(baText, greetingId) {
-        // Инкрементируем статистику
-        incrementStats(greetingId, 'only_ba');
+        incrementStats(greetingId, 'only_ba', baText, '');
         
-        // Пробуем использовать Web Share API для мобильных
+        // Web Share API для мобильных
         if (navigator.share && window.innerWidth <= 768) {
             try {
                 await navigator.share({
@@ -642,12 +624,11 @@
                 return;
             } catch (err) {
                 if (err.name !== 'AbortError') {
-                    console.log('Share cancelled or failed:', err);
+                    console.log('Share failed:', err);
                 }
             }
         }
         
-        // Копирование только башкирского текста
         try {
             await navigator.clipboard.writeText(baText);
             showToast('✅ Только башкирский текст скопирован!');
@@ -660,6 +641,10 @@
             document.body.removeChild(textarea);
             showToast('✅ Только башкирский текст скопирован!');
         }
+        
+        if (currentSection && currentSubcat) {
+            renderGreetings();
+        }
     }
     
     function showToast(message) {
@@ -667,10 +652,7 @@
         toast.className = 'toast-notification';
         toast.textContent = message;
         document.body.appendChild(toast);
-        
-        setTimeout(() => {
-            toast.remove();
-        }, 2000);
+        setTimeout(() => toast.remove(), 2000);
     }
     
     // ========== ОСНОВНАЯ ЛОГИКА ==========
@@ -680,7 +662,7 @@
             if (!response.ok) throw new Error('Не удалось загрузить data.json');
             const data = await response.json();
             siteData = data;
-            renderStats(); // Показываем статистику
+            renderStats();
             return true;
         } catch (error) {
             contentContainer.innerHTML = `<div style="text-align:center; padding:60px; color:#c96a2a;">❌ Ошибка: ${error.message}<br>Убедитесь, что файл data.json существует</div>`;
@@ -814,11 +796,11 @@
         }
     }
     
-    // Генерация уникального ID для поздравления
     function generateGreetingId(sectionKey, subcatKey, index, text) {
         return `${sectionKey}_${subcatKey}_${index}_${text.substring(0, 20)}`.replace(/[^a-zA-Z0-9_-]/g, '_');
     }
     
+    // ========== ИСПРАВЛЕННАЯ ФУНКЦИЯ ОТОБРАЖЕНИЯ ==========
     function renderGreetings() {
         if (!siteData || !currentSection || !currentSubcat) return;
         const subcat = siteData.sections[currentSection].subcategories[currentSubcat];
@@ -831,15 +813,21 @@
             const stats = getStats();
             const copyCount = stats[greetingId] ? (stats[greetingId].full + stats[greetingId].only_ba) : 0;
             
+            // Экранируем текст для безопасного вставки в HTML
+            const safeTextBa = escapeHtml(g.text_ba);
+            const safeTextRu = escapeHtml(g.translation_ru);
+            const safeSubcatNameBa = escapeHtml(subcat.name_ba);
+            const safeSubcatNameRu = escapeHtml(subcat.name_ru);
+            
             html += `<div class="card">
-                        <div class="card-badge">${escapeHtml(subcat.name_ba)} | ${escapeHtml(subcat.name_ru)}</div>
-                        <div class="card-text">${escapeHtml(g.text_ba)}</div>
-                        <div class="card-translation">💭 ${escapeHtml(g.translation_ru)}</div>
+                        <div class="card-badge">${safeSubcatNameBa} | ${safeSubcatNameRu}</div>
+                        <div class="card-text">${safeTextBa}</div>
+                        <div class="card-translation">💭 ${safeTextRu}</div>
                         <div class="button-group">
-                            <button class="share-btn" data-type="full" data-ba="${escapeHtml(g.text_ba).replace(/'/g, "\\'")}" data-ru="${escapeHtml(g.translation_ru).replace(/'/g, "\\'")}" data-id="${greetingId}">
+                            <button class="share-btn" data-type="full" data-ba='${safeTextBa.replace(/'/g, "\\'")}' data-ru='${safeTextRu.replace(/'/g, "\\'")}' data-id="${greetingId}">
                                 📤 Поделиться
                             </button>
-                            <button class="copy-only-btn" data-type="only_ba" data-ba="${escapeHtml(g.text_ba).replace(/'/g, "\\'")}" data-id="${greetingId}">
+                            <button class="copy-only-btn" data-type="only_ba" data-ba='${safeTextBa.replace(/'/g, "\\'")}' data-id="${greetingId}">
                                 📋 Только башкирский
                             </button>
                         </div>
@@ -876,7 +864,7 @@
         let html = `<div class="sections-grid">`;
         for (let [key, subcat] of Object.entries(section.subcategories)) {
             html += `<div class="subcat-card" data-subcat="${key}">
-                        <span class="subcat-emoji">${subcat.emoji}</span>
+                        <span class="subcat-emoji">${escapeHtml(subcat.emoji)}</span>
                         <div class="subcat-name">${escapeHtml(subcat.name_ba)}</div>
                         <div class="subcat-desc">${escapeHtml(subcat.name_ru)}</div>
                     </div>`;
@@ -899,7 +887,7 @@
         let html = `<div class="sections-grid">`;
         for (let [key, section] of Object.entries(siteData.sections)) {
             html += `<div class="section-card" data-section="${key}">
-                        <span class="section-emoji">${section.emoji}</span>
+                        <span class="section-emoji">${escapeHtml(section.emoji)}</span>
                         <div class="section-name">${escapeHtml(section.name_ba)}</div>
                         <div class="section-desc">${escapeHtml(section.name_ru)}</div>
                     </div>`;
