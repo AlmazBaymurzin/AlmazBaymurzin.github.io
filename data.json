@@ -219,6 +219,13 @@
           ]
         }
       }
+    },
+    "live": {
+      "name_ba": "Яҡты иҫтәлек",
+      "name_ru": "Светлая память",
+      "emoji": "🕯️",
+      "order": 999,
+      "subcategories": {}
     }
   },
   "holidays_widget": [
