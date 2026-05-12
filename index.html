@@ -92,8 +92,8 @@
 
         .card-of-day {
             background: linear-gradient(135deg, #fff5e6 0%, #ffe8d4 100%);
-            border-radius: 32px;
-            padding: 20px 28px;
+            border-radius: 24px;
+            padding: 16px 20px;
             margin: 20px 0;
             border: 2px solid #e8c9a8;
             box-shadow: 0 8px 20px rgba(0,0,0,0.08);
@@ -103,45 +103,45 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
             color: #8b5a2b;
-            margin-bottom: 16px;
-        }
-
-        .card-of-day-content {
-            font-size: 1.2rem;
-            line-height: 1.45;
-            font-family: 'Georgia', serif;
-            color: #4a2c1a;
             margin-bottom: 12px;
         }
 
+        .card-of-day-content {
+            font-size: 1rem;
+            line-height: 1.4;
+            font-family: 'Georgia', serif;
+            color: #4a2c1a;
+            margin-bottom: 10px;
+        }
+
         .card-of-day-trans {
-            font-size: 0.85rem;
-            color: #8f7a64;
+            font-size: 0.75rem;
+            color: #a08c78;
         }
 
         .motivation-block {
             background: linear-gradient(135deg, #e8dcc8 0%, #dacaa8 100%);
-            border-radius: 32px;
-            padding: 28px 32px;
+            border-radius: 24px;
+            padding: 20px 24px;
             margin: 25px 0 20px 0;
             text-align: center;
             border: 1px solid rgba(139,90,43,0.2);
         }
 
         .motivation-quote {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-style: italic;
             color: #4a2c1a;
-            line-height: 1.5;
+            line-height: 1.4;
             font-family: 'Georgia', serif;
         }
 
         .motivation-author {
-            margin-top: 12px;
-            font-size: 0.85rem;
+            margin-top: 10px;
+            font-size: 0.75rem;
             color: #8b6946;
         }
 
@@ -153,7 +153,7 @@
             border-radius: 40px;
             margin: 15px 0;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #8b5a2b;
             box-shadow: 0 2px 6px rgba(0,0,0,0.05);
         }
@@ -164,15 +164,15 @@
 
         .sections-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
             margin: 20px 0;
         }
 
         .section-card, .subcat-card {
             background: white;
-            border-radius: 28px;
-            padding: 24px;
+            border-radius: 20px;
+            padding: 20px;
             cursor: pointer;
             transition: all 0.2s ease;
             text-align: center;
@@ -180,95 +180,96 @@
         }
 
         .section-card:hover, .subcat-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             background: #fffbf5;
         }
 
         .section-emoji, .subcat-emoji {
-            font-size: 2.8rem;
+            font-size: 2.4rem;
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .section-name, .subcat-name {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: #5c3e1e;
         }
 
         .section-desc, .subcat-desc {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #b8956a;
-            margin-top: 6px;
+            margin-top: 4px;
         }
 
+        /* ========== ОПТИМИЗИРОВАННЫЕ КАРТОЧКИ ========== */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 24px;
-            margin: 20px 0;
+            gap: 16px;
+            margin: 16px 0;
         }
 
         .card {
             background: white;
-            border-radius: 32px;
-            padding: 28px;
+            border-radius: 20px;
+            padding: 16px;
             transition: transform 0.2s;
-            border: 1px solid rgba(139,90,43,0.15);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            border: 1px solid rgba(139,90,43,0.12);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             position: relative;
         }
 
         .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.08);
         }
 
         .card-badge {
             display: inline-block;
             background: #f4ebdd;
-            padding: 4px 12px;
-            border-radius: 30px;
-            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.6rem;
             font-weight: 600;
             color: #8b5a2b;
-            margin-bottom: 16px;
+            margin-bottom: 10px;
         }
 
         .card-text {
-            font-size: 1.3rem;
-            line-height: 1.45;
+            font-size: 0.95rem;
+            line-height: 1.4;
             font-family: 'Georgia', serif;
             color: #2c241a;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .card-translation {
-            font-size: 0.85rem;
-            color: #8f7a64;
+            font-size: 0.7rem;
+            color: #b8a690;
             border-top: 1px solid #f0e2d2;
-            padding-top: 16px;
-            margin-bottom: 16px;
+            padding-top: 8px;
+            margin-bottom: 10px;
         }
 
         .button-group {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
-            margin-top: 12px;
+            margin-top: 8px;
         }
 
         .share-btn, .copy-only-btn {
             border: none;
-            padding: 8px 12px;
-            border-radius: 20px;
+            padding: 6px 10px;
+            border-radius: 16px;
             cursor: pointer;
-            font-size: 0.75rem;
+            font-size: 0.68rem;
             transition: all 0.2s;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             flex: 1;
             justify-content: center;
         }
@@ -295,13 +296,13 @@
 
         .copy-stats {
             position: absolute;
-            bottom: 12px;
-            right: 12px;
-            font-size: 0.65rem;
-            color: #b8956a;
+            bottom: 8px;
+            right: 8px;
+            font-size: 0.55rem;
+            color: #c8b598;
             background: rgba(255,255,255,0.9);
-            padding: 2px 8px;
-            border-radius: 12px;
+            padding: 2px 6px;
+            border-radius: 10px;
         }
 
         .toast-notification {
@@ -311,9 +312,9 @@
             transform: translateX(-50%);
             background: #4caf50;
             color: white;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 40px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             z-index: 1000;
             animation: slideUp 0.3s ease-out;
         }
@@ -331,78 +332,83 @@
 
         .holidays-widget {
             background: white;
-            border-radius: 32px;
-            padding: 24px;
+            border-radius: 20px;
+            padding: 18px;
             position: sticky;
             top: 20px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
         }
 
         .widget-title {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 700;
             color: #8b5a2b;
             border-bottom: 2px solid #f0e2d2;
-            padding-bottom: 12px;
-            margin-bottom: 18px;
+            padding-bottom: 10px;
+            margin-bottom: 14px;
         }
 
         .holiday-item {
-            padding: 10px 0;
+            padding: 8px 0;
             border-bottom: 1px solid #f0e2d2;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .holiday-date {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             background: #f4ebdd;
-            padding: 3px 10px;
-            border-radius: 20px;
-            min-width: 60px;
+            padding: 2px 8px;
+            border-radius: 16px;
+            min-width: 50px;
             text-align: center;
         }
 
         .holiday-name {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #3a2a1a;
         }
 
         .holiday-name small {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: #b8956a;
         }
 
         .stats-panel {
             background: white;
-            border-radius: 32px;
-            padding: 20px;
+            border-radius: 20px;
+            padding: 16px;
             margin-bottom: 20px;
             position: sticky;
             top: 20px;
         }
 
         .stats-title {
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 700;
             color: #8b5a2b;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+        }
+
+        .stats-title small {
+            font-size: 0.65rem;
+            font-weight: normal;
         }
 
         .stats-item {
             display: flex;
             justify-content: space-between;
-            padding: 6px 0;
-            font-size: 0.8rem;
+            padding: 5px 0;
+            font-size: 0.7rem;
             border-bottom: 1px solid #f0e2d2;
         }
 
         .stats-reset {
-            margin-top: 12px;
+            margin-top: 10px;
             text-align: center;
         }
 
@@ -410,21 +416,21 @@
             background: none;
             border: none;
             color: #b8956a;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             cursor: pointer;
             text-decoration: underline;
         }
 
         .footer {
             text-align: center;
-            margin-top: 50px;
-            padding: 35px 25px;
+            margin-top: 40px;
+            padding: 25px 20px;
             background: rgba(139,90,43,0.05);
-            border-radius: 48px;
+            border-radius: 40px;
         }
 
         .project-name {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 400;
             letter-spacing: 2px;
             color: #8b5a2b;
@@ -433,9 +439,10 @@
 
         @media (max-width: 900px) {
             .main-layout { flex-direction: column; }
-            .card-of-day-content { font-size: 1rem; }
-            h1 { font-size: 1.8rem; }
+            .card-of-day-content { font-size: 0.9rem; }
+            h1 { font-size: 1.6rem; }
             .button-group { flex-direction: column; }
+            .cards-grid { grid-template-columns: 1fr; gap: 12px; }
         }
     </style>
 </head>
@@ -475,7 +482,7 @@
 
     <div class="footer">
         <div class="project-name">ЙЫЛЫ һҮҘҘӘР<br><small>yily huzzar</small></div>
-        <div style="font-size:0.8rem; margin-top:12px;">❤️ Йөрәк йылыһы — туған телдә әйтелгән һүҙҙә</div>
+        <div style="font-size:0.75rem; margin-top:10px;">❤️ Йөрәк йылыһы — туған телдә әйтелгән һүҙҙә</div>
     </div>
 </div>
 
@@ -527,7 +534,7 @@
         const entries = Object.entries(stats);
         
         if (entries.length === 0) {
-            statsContent.innerHTML = '<div style="text-align:center; color:#b8956a; padding:10px;">Пока нет копирований</div>';
+            statsContent.innerHTML = '<div style="text-align:center; color:#b8956a; padding:8px;">Пока нет копирований</div>';
             return;
         }
         
@@ -538,15 +545,15 @@
         });
         
         let html = '';
-        sorted.slice(0, 10).forEach(([id, data]) => {
+        sorted.slice(0, 8).forEach(([id, data]) => {
             const total = data.full + data.only_ba;
-            const baText = (data.text_ba || '').substring(0, 40) + ((data.text_ba || '').length > 40 ? '...' : '');
+            const baText = (data.text_ba || '').substring(0, 35) + ((data.text_ba || '').length > 35 ? '...' : '');
             html += `
                 <div class="stats-item">
                     <span title="${escapeHtml(data.text_ba || '')}">📖 ${escapeHtml(baText)}</span>
                     <span>📊 ${total}</span>
                 </div>
-                <div class="stats-item" style="font-size:0.7rem; color:#b8956a; padding-left:15px;">
+                <div class="stats-item" style="font-size:0.65rem; color:#c8b598; padding-left:12px;">
                     <span>📤 Полный: ${data.full}</span>
                     <span>📋 Только баш.: ${data.only_ba}</span>
                 </div>
@@ -561,7 +568,6 @@
             localStorage.removeItem(STATS_KEY);
             renderStats();
             showToast('Статистика сброшена');
-            // Обновляем отображение карточек, чтобы убрать счётчики
             if (currentSection && currentSubcat) {
                 renderGreetings();
             }
@@ -574,7 +580,6 @@
         
         incrementStats(greetingId, 'full', baText, ruText);
         
-        // Web Share API для мобильных
         if (navigator.share && window.innerWidth <= 768) {
             try {
                 await navigator.share({
@@ -590,7 +595,6 @@
             }
         }
         
-        // Копирование в буфер обмена
         try {
             await navigator.clipboard.writeText(shareText);
             showToast('✅ Поздравление скопировано!');
@@ -604,7 +608,6 @@
             showToast('✅ Поздравление скопировано!');
         }
         
-        // Обновляем счётчик на карточке
         if (currentSection && currentSubcat) {
             renderGreetings();
         }
@@ -613,7 +616,6 @@
     async function copyOnlyBashkir(baText, greetingId) {
         incrementStats(greetingId, 'only_ba', baText, '');
         
-        // Web Share API для мобильных
         if (navigator.share && window.innerWidth <= 768) {
             try {
                 await navigator.share({
@@ -715,7 +717,7 @@
                 <div class="card-of-day-title"><span>⭐</span> Бөгөнгө йылы һүҙ / Тёплое слово дня</div>
                 <div class="card-of-day-content">${escapeHtml(card.text_ba)}</div>
                 <div class="card-of-day-trans">💭 ${escapeHtml(card.translation_ru)}</div>
-                <div style="font-size:0.7rem; margin-top:10px; color:#b8956a;">🏷️ ${card.category} | ${card.section}</div>
+                <div style="font-size:0.65rem; margin-top:8px; color:#c8b598;">🏷️ ${card.category} | ${card.section}</div>
             </div>
         `;
     }
@@ -752,7 +754,7 @@
         });
         
         holidaysWithDates.sort((a, b) => a.timestamp - b.timestamp);
-        const upcoming = holidaysWithDates.slice(0, 10);
+        const upcoming = holidaysWithDates.slice(0, 8);
         
         let html = '';
         upcoming.forEach(h => {
@@ -776,7 +778,7 @@
                 <div class="motivation-block">
                     <div class="motivation-quote">«Туған телдә әйтелгән йылы һүҙ — йөрәккә шифа»</div>
                     <div class="motivation-author">— Башҡорт халыҡ мәҡәле</div>
-                    <div style="margin-top:16px;">🌾 Кешенең туған телендә ҡотлау — уның йөрәгенә иң ҡыҫҡа юл.</div>
+                    <div style="margin-top:12px; font-size:0.8rem;">🌾 Кешенең туған телендә ҡотлау — уның йөрәгенә иң ҡыҫҡа юл.</div>
                 </div>
             `;
         } else {
@@ -800,7 +802,6 @@
         return `${sectionKey}_${subcatKey}_${index}_${text.substring(0, 20)}`.replace(/[^a-zA-Z0-9_-]/g, '_');
     }
     
-    // ========== ИСПРАВЛЕННАЯ ФУНКЦИЯ ОТОБРАЖЕНИЯ ==========
     function renderGreetings() {
         if (!siteData || !currentSection || !currentSubcat) return;
         const subcat = siteData.sections[currentSection].subcategories[currentSubcat];
@@ -813,7 +814,6 @@
             const stats = getStats();
             const copyCount = stats[greetingId] ? (stats[greetingId].full + stats[greetingId].only_ba) : 0;
             
-            // Экранируем текст для безопасного вставки в HTML
             const safeTextBa = escapeHtml(g.text_ba);
             const safeTextRu = escapeHtml(g.translation_ru);
             const safeSubcatNameBa = escapeHtml(subcat.name_ba);
@@ -838,7 +838,6 @@
         html += `</div>`;
         contentContainer.innerHTML = html;
         
-        // Добавляем обработчики для кнопок
         document.querySelectorAll('.share-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const baText = btn.getAttribute('data-ba');
