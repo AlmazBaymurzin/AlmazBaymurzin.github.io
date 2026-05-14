@@ -426,6 +426,62 @@
             text-decoration: underline;
         }
 
+        /* ========== БЛОК ПОЖЕРТВОВАНИЙ ========== */
+        .donation-block {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe8d4 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            border: 1px solid rgba(139,90,43,0.2);
+        }
+
+        .donation-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #8b5a2b;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .donation-text {
+            font-size: 0.75rem;
+            color: #6b4925;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .donation-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #8b5a2b;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .donation-btn:hover {
+            background: #6b4220;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139,90,43,0.3);
+        }
+
+        .donation-note {
+            font-size: 0.6rem;
+            color: #b8956a;
+            margin-top: 12px;
+        }
+
         .footer {
             text-align: center;
             margin-top: 40px;
@@ -482,6 +538,23 @@
                 <div class="widget-title">📅 Яҡын киләсәк байрамдар</div>
                 <div id="holidaysContent"></div>
             </div>
+            
+            <!-- ========== БЛОК ПОЖЕРТВОВАНИЙ ========== -->
+            <div class="donation-block">
+                <div class="donation-title">
+                    ☕ Проектҡа ярҙам / Помочь проекту
+                </div>
+                <div class="donation-text">
+                    Һеҙҙең ярҙам — проектты үҫтереү өсөн иң яҡшы этәргес.<br>
+                    Ваша поддержка — лучший стимул для развития проекта.
+                </div>
+                <button class="donation-btn" id="donationBtn">
+                    🤝 Помочь / Ярҙам итеү
+                </button>
+                <div class="donation-note">
+                    ЮMoney · Банковская карта · СБП
+                </div>
+            </div>
         </div>
     </div>
 
@@ -506,6 +579,13 @@
     const cardOfDayContainer = document.getElementById('cardOfDayContainer');
     const holidaysContent = document.getElementById('holidaysContent');
     const statsContent = document.getElementById('statsContent');
+    
+    // ========== ДОНАТЫ ==========
+    const DONATION_URL = 'https://yoomoney.ru/to/4100119532722543';
+    
+    document.getElementById('donationBtn')?.addEventListener('click', () => {
+        window.open(DONATION_URL, '_blank');
+    });
     
     // ========== СТАТИСТИКА ==========
     function getStats() {
