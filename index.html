@@ -512,6 +512,225 @@
             font-family: 'Georgia', serif;
         }
 
+        /* ================================================================ */
+        /* ========== УЛУЧШЕННЫЙ ИНДИКАТОР ЗАГРУЗКИ ========== */
+        /* ================================================================ */
+        .loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            min-height: 300px;
+        }
+
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(139, 90, 43, 0.1);
+            border-top: 4px solid #8b5a2b;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            font-size: 1.1rem;
+            color: #8b5a2b;
+            margin-bottom: 8px;
+        }
+
+        .loader-sub {
+            font-size: 0.8rem;
+            color: #b8956a;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .progress-container {
+            width: 100%;
+            max-width: 300px;
+            height: 6px;
+            background: rgba(139, 90, 43, 0.1);
+            border-radius: 10px;
+            margin-top: 16px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #8b5a2b, #c9a87c);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        /* ========== УЛУЧШЕННОЕ СООБЩЕНИЕ ОБ ОШИБКЕ ========== */
+        .error-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            min-height: 300px;
+            background: rgba(201, 106, 42, 0.05);
+            border-radius: 24px;
+            border: 2px dashed #c96a2a;
+        }
+
+        .error-icon {
+            font-size: 4rem;
+            margin-bottom: 16px;
+        }
+
+        .error-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #8b5a2b;
+            margin-bottom: 8px;
+        }
+
+        .error-message {
+            font-size: 0.9rem;
+            color: #8b5a2b;
+            margin-bottom: 20px;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .error-btn {
+            background: #8b5a2b;
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .error-btn:hover {
+            background: #6b4220;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 90, 43, 0.3);
+        }
+
+        .error-details {
+            font-size: 0.65rem;
+            color: #b8956a;
+            margin-top: 12px;
+        }
+
+        /* ========== СКЕЛЕТОН (карточки-заглушки) ========== */
+        .skeleton-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .skeleton-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            animation: shimmer 1.5s ease-in-out infinite;
+        }
+
+        .skeleton-emoji {
+            width: 40px;
+            height: 40px;
+            background: #f0e6d8;
+            border-radius: 50%;
+            margin: 0 auto 8px;
+        }
+
+        .skeleton-line {
+            height: 16px;
+            background: #f0e6d8;
+            border-radius: 8px;
+            margin: 6px auto;
+        }
+
+        .skeleton-line.short {
+            width: 60%;
+        }
+
+        .skeleton-line.long {
+            width: 80%;
+        }
+
+        @keyframes shimmer {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Скелетон для карточек поздравлений */
+        .skeleton-greeting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        .skeleton-greeting {
+            background: white;
+            border-radius: 20px;
+            padding: 16px;
+            border: 1px solid rgba(139,90,43,0.12);
+            animation: shimmer 1.5s ease-in-out infinite;
+        }
+
+        .skeleton-badge {
+            width: 100px;
+            height: 20px;
+            background: #f0e6d8;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+
+        .skeleton-text-line {
+            height: 18px;
+            background: #f0e6d8;
+            border-radius: 4px;
+            margin: 6px 0;
+        }
+
+        .skeleton-text-line.w70 { width: 70%; }
+        .skeleton-text-line.w60 { width: 60%; }
+        .skeleton-text-line.w90 { width: 90%; }
+        .skeleton-text-line.w80 { width: 80%; }
+
+        .skeleton-divider {
+            height: 1px;
+            background: #f0e6d8;
+            margin: 10px 0;
+        }
+
+        .skeleton-btn-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .skeleton-btn {
+            flex: 1;
+            height: 30px;
+            background: #f0e6d8;
+            border-radius: 16px;
+        }
+
         @media (max-width: 900px) {
             .main-layout { flex-direction: column; }
             .card-of-day-content { font-size: 0.9rem; }
@@ -537,7 +756,7 @@
         <div class="content-area">
             <div id="cardOfDayContainer"></div>
             <div id="motivationBlock" style="display: none;"></div>
-            <div id="contentContainer"><div style="text-align:center; padding:60px;">📡 Мәғлүмәт тейәлә...</div></div>
+            <div id="contentContainer"></div>
         </div>
 
         <div class="sidebar">
@@ -756,20 +975,167 @@
         setTimeout(() => toast.remove(), 2000);
     }
     
-    // ========== ОСНОВНАЯ ЛОГИКА ==========
-    async function loadData() {
+    // ================================================================
+    // ========== УЛУЧШЕННАЯ ЗАГРУЗКА С ИНДИКАТОРАМИ ==========
+    // ================================================================
+    
+    // ---------- ИНДИКАТОР ЗАГРУЗКИ (спиннер + прогресс) ----------
+    function showLoader() {
+        contentContainer.innerHTML = `
+            <div class="loader-container">
+                <div class="loader-spinner"></div>
+                <div class="loader-text">📡 Мәғлүмәт тейәлә...</div>
+                <div class="loader-sub">Загрузка поздравлений</div>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+        `;
+        
+        // Анимируем прогресс-бар (для красоты)
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += Math.random() * 10;
+            if (progress > 90) progress = 90;
+            const bar = document.getElementById('progressBar');
+            if (bar) bar.style.width = Math.min(progress, 90) + '%';
+        }, 300);
+        
+        window._loaderInterval = interval;
+    }
+    
+    // ---------- СКЕЛЕТОН (карточки-заглушки) ----------
+    function showSkeleton() {
+        // Скелетон для разделов
+        let html = `<div class="skeleton-grid">`;
+        for (let i = 0; i < 6; i++) {
+            html += `
+                <div class="skeleton-card">
+                    <div class="skeleton-emoji"></div>
+                    <div class="skeleton-line short"></div>
+                    <div class="skeleton-line long"></div>
+                </div>
+            `;
+        }
+        html += `</div>`;
+        contentContainer.innerHTML = html;
+    }
+    
+    function showSkeletonGreetings() {
+        // Скелетон для карточек поздравлений
+        let html = `<div class="skeleton-greeting-grid">`;
+        for (let i = 0; i < 4; i++) {
+            html += `
+                <div class="skeleton-greeting">
+                    <div class="skeleton-badge"></div>
+                    <div class="skeleton-text-line w90"></div>
+                    <div class="skeleton-text-line w70"></div>
+                    <div class="skeleton-text-line w80"></div>
+                    <div class="skeleton-divider"></div>
+                    <div class="skeleton-text-line w60"></div>
+                    <div class="skeleton-divider"></div>
+                    <div class="skeleton-btn-group">
+                        <div class="skeleton-btn"></div>
+                        <div class="skeleton-btn"></div>
+                    </div>
+                </div>
+            `;
+        }
+        html += `</div>`;
+        contentContainer.innerHTML = html;
+    }
+    
+    // ---------- СООБЩЕНИЕ ОБ ОШИБКЕ ----------
+    function showError(message, details = '') {
+        if (window._loaderInterval) {
+            clearInterval(window._loaderInterval);
+            window._loaderInterval = null;
+        }
+        
+        contentContainer.innerHTML = `
+            <div class="error-container">
+                <div class="error-icon">😔</div>
+                <div class="error-title">${escapeHtml(message)}</div>
+                <div class="error-message">
+                    ${escapeHtml(details || 'Попробуйте обновить страницу или повторить позже')}
+                </div>
+                <button class="error-btn" onclick="retryLoad()">
+                    🔄 Повторить / Ҡабатлау
+                </button>
+                <div class="error-details">
+                    Если проблема повторяется, проверьте файл <strong>data.json</strong>
+                </div>
+            </div>
+        `;
+    }
+    
+    // ---------- ПОВТОРНАЯ ЗАГРУЗКА ----------
+    async function retryLoad() {
+        showLoader();
+        await new Promise(resolve => setTimeout(resolve, 500));
         try {
             const response = await fetch('data.json?v=' + Date.now());
-            if (!response.ok) throw new Error('Не удалось загрузить data.json');
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const data = await response.json();
             siteData = data;
             renderStats();
-            return true;
+            renderHolidaysWidget();
+            renderSections();
+            updateNavigation();
         } catch (error) {
-            contentContainer.innerHTML = `<div style="text-align:center; padding:60px; color:#c96a2a;">❌ Ошибка: ${error.message}<br>Убедитесь, что файл data.json существует</div>`;
+            showError('Не удалось загрузить данные', error.message);
+        }
+    }
+    
+    // ---------- ОСНОВНАЯ ЗАГРУЗКА ДАННЫХ ----------
+    async function loadData() {
+        // Показываем индикатор с прогрессом
+        showLoader();
+        
+        try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 10000);
+            
+            const response = await fetch('data.json?v=' + Date.now(), {
+                signal: controller.signal
+            });
+            
+            clearTimeout(timeoutId);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
+            // Небольшая задержка для демонстрации анимации (можно убрать)
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            const data = await response.json();
+            
+            if (!data.sections) {
+                throw new Error('Неверная структура data.json: нет секции "sections"');
+            }
+            
+            siteData = data;
+            return true;
+            
+        } catch (error) {
+            let userMessage = 'Не удалось загрузить поздравления';
+            let details = error.message;
+            
+            if (error.name === 'AbortError') {
+                userMessage = 'Загрузка заняла слишком много времени';
+                details = 'Проверьте подключение к интернету';
+            } else if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                userMessage = 'Нет соединения с сервером';
+                details = 'Проверьте интернет-соединение';
+            }
+            
+            showError(userMessage, details);
             return false;
         }
     }
+    
+    // ========== ОСТАЛЬНАЯ ЛОГИКА ==========
     
     function getAllGreetings() {
         if (!siteData) return [];
@@ -959,29 +1325,43 @@
         if (!siteData || !currentSection) return;
         const section = siteData.sections[currentSection];
         if (!section) return;
-        let html = `<div class="sections-grid">`;
-        for (let [key, subcat] of Object.entries(section.subcategories)) {
-            html += `<div class="subcat-card" data-subcat="${key}">
-                        <span class="subcat-emoji">${escapeHtml(subcat.emoji)}</span>
-                        <div class="subcat-name">${escapeHtml(subcat.name_ba)}</div>
-                        <div class="subcat-desc">${escapeHtml(subcat.name_ru)}</div>
-                    </div>`;
-        }
-        html += `</div>`;
-        contentContainer.innerHTML = html;
         
-        document.querySelectorAll('.subcat-card').forEach(card => {
-            card.addEventListener('click', () => {
-                currentSubcat = card.getAttribute('data-subcat');
-                isSearchMode = false;
-                updateNavigation();
-                renderGreetings();
+        // Показываем скелетон, пока загружаются подкатегории
+        showSkeleton();
+        
+        // Небольшая задержка для плавности (можно убрать)
+        setTimeout(() => {
+            let html = `<div class="sections-grid">`;
+            for (let [key, subcat] of Object.entries(section.subcategories)) {
+                html += `<div class="subcat-card" data-subcat="${key}">
+                            <span class="subcat-emoji">${escapeHtml(subcat.emoji)}</span>
+                            <div class="subcat-name">${escapeHtml(subcat.name_ba)}</div>
+                            <div class="subcat-desc">${escapeHtml(subcat.name_ru)}</div>
+                        </div>`;
+            }
+            html += `</div>`;
+            contentContainer.innerHTML = html;
+            
+            document.querySelectorAll('.subcat-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    currentSubcat = card.getAttribute('data-subcat');
+                    isSearchMode = false;
+                    updateNavigation();
+                    renderGreetings();
+                });
             });
-        });
+        }, 300);
     }
     
     function renderSections() {
         if (!siteData) return;
+        
+        // Останавливаем анимацию прогресса
+        if (window._loaderInterval) {
+            clearInterval(window._loaderInterval);
+            window._loaderInterval = null;
+        }
+        
         let html = `<div class="sections-grid">`;
         for (let [key, section] of Object.entries(siteData.sections)) {
             html += `<div class="section-card" data-section="${key}">
@@ -1054,14 +1434,21 @@
         });
     }
     
+    // ========== ИНИЦИАЛИЗАЦИЯ ==========
     async function init() {
         renderCurrentDate();
+        
+        // Показываем скелетон до загрузки данных
+        showSkeleton();
+        
         const loaded = await loadData();
+        
         if (loaded) {
             renderHolidaysWidget();
             renderSections();
             updateNavigation();
         }
+        // Если не загрузилось, showError уже показан в loadData
     }
     
     init();
