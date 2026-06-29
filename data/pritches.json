@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "pritches": {
+      "name_ba": "Мәҫәлдәр",
+      "name_ru": "Притчи",
+      "emoji": "📖",
+      "order": 6,
+      "subcategories": {}
+    }
+  },
+  "holidays_widget": []
+}
