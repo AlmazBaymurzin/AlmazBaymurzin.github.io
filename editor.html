@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 Редактор поздравлений | Башкирские поздравления</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .header {
+            background: white;
+            border-radius: 20px;
+            padding: 20px 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #667eea;
+            font-size: 28px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .toolbar {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary { background: #667eea; color: white; }
+        .btn-primary:hover { background: #5a67d8; transform: translateY(-2px); }
+        .btn-success { background: #48bb78; color: white; }
+        .btn-success:hover { background: #38a169; }
+        .btn-danger { background: #f56565; color: white; }
+        .btn-danger:hover { background: #e53e3e; }
+        .btn-secondary { background: #a0aec0; color: white; }
+        .btn-secondary:hover { background: #718096; }
+        .btn-warning { background: #ecc94b; color: #744210; }
+        .btn-warning:hover { background: #d69e2e; }
+        .btn-info { background: #4299e1; color: white; }
+        .btn-info:hover { background: #3182ce; }
+        .btn-sm { padding: 5px 12px; font-size: 12px; }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 15px;
+            flex-wrap: wrap;
+        }
+        .tab {
+            padding: 10px 25px;
+            border: none;
+            background: #edf2f7;
+            cursor: pointer;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .tab.active { background: #667eea; color: white; }
+        .content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            min-height: 400px;
+        }
+        .file-info {
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: #f7fafc;
+            border-radius: 8px;
+        }
+        .section-card {
+            background: #f7fafc;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        .section-header {
+            background: #667eea;
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .section-header:hover { background: #5a67d8; }
+        .section-header .toggle-icon {
+            font-size: 18px;
+            transition: transform 0.2s;
+        }
+        .section-header.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+        .section-body {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .section-body.collapsed {
+            display: none;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .section-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .section-file-badge {
+            font-size: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 2px 10px;
+            border-radius: 12px;
+            margin-left: 10px;
+            white-space: nowrap;
+        }
+        .subcategory {
+            background: white;
+            margin: 15px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+        .subcategory-header {
+            background: #edf2f7;
+            padding: 12px 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .subcategory-header:hover { background: #e2e8f0; }
+        .subcategory-header .toggle-icon {
+            font-size: 14px;
+            transition: transform 0.2s;
+        }
+        .subcategory-header.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+        .subcategory-body {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .subcategory-body.collapsed {
+            display: none;
+        }
+        .greeting-item {
+            padding: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+        .greeting-text {
+            background: #fef5e7;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .translation-text {
+            background: #e6f7ff;
+            padding: 10px;
+            border-radius: 8px;
+            color: #666;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .inline-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            width: 500px;
+            max-width: 90%;
+            max-height: 80%;
+            overflow-y: auto;
+        }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 500; color: #4a5568; }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        textarea { resize: vertical; min-height: 80px; }
+        .form-hint {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+        .file-selector {
+            background: #f0f4ff;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #d4e0ff;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .stat-number { font-size: 36px; font-weight: bold; }
+        .stat-label { font-size: 14px; opacity: 0.9; margin-top: 5px; }
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: #f7fafc;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .file-item.main-file {
+            background: #f0f4ff;
+            border-color: #667eea;
+        }
+        .file-item .file-name {
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .file-item .file-meta {
+            font-size: 12px;
+            color: #666;
+        }
+        .file-item .file-actions {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .file-grid {
+            display: grid;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .file-badge-new {
+            background: #48bb78;
+            color: white;
+            font-size: 9px;
+            padding: 1px 8px;
+            border-radius: 10px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in { animation: fadeIn 0.3s ease-out; }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            border-radius: 12px;
+            color: white;
+            font-weight: 500;
+            z-index: 2000;
+            animation: slideUp 0.3s ease-out;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            max-width: 90%;
+        }
+        .toast.success { background: #48bb78; }
+        .toast.error { background: #f56565; }
+        .toast.info { background: #4299e1; }
+        .toast.warning { background: #ecc94b; color: #744210; }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .github-status {
+            font-size: 12px;
+            margin-left: 10px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background: #edf2f7;
+        }
+        .github-status.success { background: #c6f6d5; color: #22543d; }
+        .github-status.error { background: #fed7d7; color: #742a2a; }
+        .github-status.loading { background: #fefcbf; color: #744210; }
+        @media (max-width: 768px) {
+            .toolbar { flex-direction: column; }
+            .btn { justify-content: center; }
+            .modal-content { width: 95%; padding: 20px; }
+            .section-header { flex-direction: column; align-items: stretch; gap: 10px; }
+            .section-actions { justify-content: flex-start; }
+            .stats { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><span>🎉</span> Редактор поздравлений (башкирский язык)</h1>
+            <div class="toolbar">
+                <button class="btn btn-primary" onclick="loadAllData()">📂 Загрузить всё</button>
+                <button class="btn btn-success" onclick="saveAllData()">💾 Сохранить всё</button>
+                <button class="btn btn-warning" onclick="saveToGitHub()">🐙 Сохранить на GitHub</button>
+                <button class="btn btn-info" onclick="loadFromGitHub()">📥 Загрузить с GitHub</button>
+                <button class="btn btn-info" onclick="scanDataFolder()">🔍 Сканировать папку</button>
+                <button class="btn btn-secondary" onclick="exportCSV()">📥 Экспорт CSV</button>
+                <button class="btn btn-danger" onclick="clearAll()">🗑️ Очистить всё</button>
+            </div>
+            <div id="fileInfo" class="file-info">📊 Загружено: 0 файлов, 0 разделов</div>
+            <div id="githubStatus" class="github-status" style="margin-top: 10px;"></div>
+        </div>
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('sections')">📁 Разделы</button>
+            <button class="tab" onclick="switchTab('holidays')">📅 Праздники</button>
+            <button class="tab" onclick="switchTab('files')">📄 Файлы</button>
+            <button class="tab" onclick="switchTab('stats')">📊 Статистика</button>
+            <button class="tab" onclick="switchTab('settings')">⚙️ GitHub</button>
+        </div>
+        <div class="content" id="content"></div>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Редактировать</h3>
+            <div id="modalForm"></div>
+            <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap;">
+                <button class="btn btn-secondary" onclick="closeModal()">Отмена</button>
+                <button class="btn btn-primary" onclick="saveModal()">Сохранить</button>
+            </div>
+        </div>
+    </div>
+    <script>
+    // ============================================================
+    // ===== КОНФИГУРАЦИЯ =====
+    // ============================================================
+    let FILE_CONFIG = {
+        'professional': 'data/data_professional.json',
+        'holidays': 'data/data_holidays.json',
+        'birthday': 'data/data_birthday.json',
+        'military': 'data/data_military.json',
+        'wedding': 'data/data_wedding.json',
+        'live': 'data/data_live.json'
+    };
+    let FILE_SECTIONS = {};
+    function rebuildFileSections() {
+        FILE_SECTIONS = {};
+        for (const [section, file] of Object.entries(FILE_CONFIG)) {
+            if (!FILE_SECTIONS[file]) FILE_SECTIONS[file] = [];
+            FILE_SECTIONS[file].push(section);
+        }
+    }
+    rebuildFileSections();
+    const MAIN_FILE = 'data/data.json';
+    let allFilesData = {};
+    let currentData = { sections: {}, holidays_widget: [] };
+    let currentModalContext = null;
+    let expandedSections = new Set();
+    let expandedSubcats = new Set();
+    let githubConfig = {
+        token: localStorage.getItem('github_token') || '',
+        repo: localStorage.getItem('github_repo') || '',
+        branch: localStorage.getItem('github_branch') || 'main'
+    };
+
+    // ============================================================
+    // ===== ОСНОВНЫЕ ФУНКЦИИ =====
+    // ============================================================
+    function getFileForSection(sectionKey) {
+        return FILE_CONFIG[sectionKey] || MAIN_FILE;
+    }
+    function getAllFiles() {
+        const files = {};
+        const mainData = {
+            sections: {},
+            holidays_widget: currentData.holidays_widget || []
+        };
+        for (const [key, section] of Object.entries(currentData.sections)) {
+            const filePath = getFileForSection(key);
+            if (filePath === MAIN_FILE) {
+                mainData.sections[key] = section;
+            }
+        }
+        if (Object.keys(mainData.sections).length > 0 || mainData.holidays_widget.length > 0) {
+            files[MAIN_FILE] = mainData;
+        }
+        for (const [key, data] of Object.entries(allFilesData)) {
+            const filePath = FILE_CONFIG[key] || `data/${key}.json`;
+            if (filePath !== MAIN_FILE && data.sections && Object.keys(data.sections).length > 0) {
+                files[filePath] = data;
+            }
+        }
+        return files;
+    }
+
+    // ============================================================
+    // ===== СКАНИРОВАНИЕ ПАПКИ =====
+    // ============================================================
+    async function scanDataFolder() {
+        if (!githubConfig.token || !githubConfig.repo) {
+            showToast('❌ Сначала настройте GitHub в вкладке ⚙️ GitHub!', 'error');
+            switchTab('settings');
+            return;
+        }
+        const statusDiv = document.getElementById('githubStatus');
+        statusDiv.textContent = '🔍 Сканирование папки data/...';
+        statusDiv.className = 'github-status loading';
+        showToast('🔍 Сканирование папки data/...', 'info');
+        try {
+            const url = `https://api.github.com/repos/${githubConfig.repo}/contents/data?ref=${githubConfig.branch}`;
+            const response = await fetch(url, {
+                headers: { 'Authorization': `token ${githubConfig.token}` }
+            });
+            if (!response.ok) {
+                if (response.status === 404) {
+                    showToast('❌ Папка data/ не найдена на GitHub', 'error');
+                    statusDiv.textContent = '❌ Папка data/ не найдена';
+                    statusDiv.className = 'github-status error';
+                    return;
+                }
+                const error = await response.json();
+                showToast(`❌ Ошибка: ${error.message}`, 'error');
+                statusDiv.textContent = `❌ ${error.message}`;
+                statusDiv.className = 'github-status error';
+                return;
+            }
+            const files = await response.json();
+            const jsonFiles = files.filter(f => f.name.endsWith('.json'));
+            let newFilesCount = 0;
+            for (const file of jsonFiles) {
+                const fileName = file.name.replace('.json', '');
+                const filePath = `data/${file.name}`;
+                if (filePath === MAIN_FILE) continue;
+                let exists = false;
+                for (const [key, path] of Object.entries(FILE_CONFIG)) {
+                    if (path === filePath) {
+                        exists = true;
+                        break;
+                    }
+                }
+                if (!exists) {
+                    FILE_CONFIG[fileName] = filePath;
+                    newFilesCount++;
+                    console.log(`📄 Добавлен новый файл в конфиг: ${filePath}`);
+                }
+            }
+            rebuildFileSections();
+            let loadedCount = 0;
+            const loadedData = {};
+            for (const file of jsonFiles) {
+                const filePath = `data/${file.name}`;
+                try {
+                    const contentUrl = `https://api.github.com/repos/${githubConfig.repo}/contents/${filePath}?ref=${githubConfig.branch}`;
+                    const contentResponse = await fetch(contentUrl, {
+                        headers: { 'Authorization': `token ${githubConfig.token}` }
+                    });
+                    if (contentResponse.ok) {
+                        const fileData = await contentResponse.json();
+                        const content = decodeURIComponent(escape(atob(fileData.content)));
+                        const parsed = JSON.parse(content);
+                        const key = file.name.replace('.json', '');
+                        if (key === 'data') {
+                            loadedData['main'] = parsed;
+                        } else {
+                            loadedData[key] = parsed;
+                        }
+                        loadedCount++;
+                        console.log(`✅ Загружено: ${filePath}`);
+                    }
+                } catch (e) {
+                    console.warn(`⚠️ Не удалось загрузить ${filePath}:`, e);
+                }
+            }
+            allFilesData = loadedData;
+            currentData = { sections: {}, holidays_widget: [] };
+            for (const [key, data] of Object.entries(loadedData)) {
+                if (data.sections) {
+                    for (const [sectionKey, section] of Object.entries(data.sections)) {
+                        currentData.sections[sectionKey] = section;
+                    }
+                }
+                if (data.holidays_widget) {
+                    currentData.holidays_widget = [...currentData.holidays_widget, ...data.holidays_widget];
+                }
+            }
+            const uniqueHolidays = new Map();
+            currentData.holidays_widget.forEach(h => {
+                const key = h.date;
+                if (!uniqueHolidays.has(key)) {
+                    uniqueHolidays.set(key, h);
+                }
+            });
+            currentData.holidays_widget = Array.from(uniqueHolidays.values());
+            currentData.holidays_widget.sort((a, b) => a.date.localeCompare(b.date));
+            document.getElementById('fileInfo').textContent = 
+                `📊 Загружено: ${loadedCount} файлов, ${Object.keys(currentData.sections).length} разделов, ${currentData.holidays_widget.length} праздников`;
+            statusDiv.textContent = `✅ Найдено ${jsonFiles.length} JSON файлов, добавлено ${newFilesCount} новых`;
+            statusDiv.className = 'github-status success';
+            expandedSections.clear();
+            expandedSubcats.clear();
+            renderSections();
+            renderFiles();
+            showToast(`✅ Найдено ${jsonFiles.length} JSON файлов, загружено ${loadedCount}`, 'success');
+        } catch (error) {
+            console.error('❌ Ошибка сканирования:', error);
+            showToast(`❌ Ошибка: ${error.message}`, 'error');
+            statusDiv.textContent = `❌ ${error.message}`;
+            statusDiv.className = 'github-status error';
+        }
+    }
+
+    // ============================================================
+    // ===== ЗАГРУЗКА ДАННЫХ =====
+    // ============================================================
+    async function loadAllData() {
+        const results = {};
+        let loadedCount = 0;
+        const totalFiles = Object.keys(FILE_CONFIG).length + 1;
+        showToast('⏳ Загрузка данных...', 'info');
+        try {
+            const response = await fetch(MAIN_FILE + '?v=' + Date.now());
+            if (response.ok) {
+                const data = await response.json();
+                results['main'] = data;
+                loadedCount++;
+                console.log(`✅ Загружено: ${MAIN_FILE}`);
+            }
+        } catch (e) {
+            console.warn(`⚠️ Ошибка загрузки ${MAIN_FILE}:`, e);
+            results['main'] = { sections: {}, holidays_widget: [] };
+        }
+        for (const [sectionKey, filePath] of Object.entries(FILE_CONFIG)) {
+            try {
+                const response = await fetch(filePath + '?v=' + Date.now());
+                if (response.ok) {
+                    const data = await response.json();
+                    results[sectionKey] = data;
+                    loadedCount++;
+                    console.log(`✅ Загружено: ${filePath}`);
+                } else {
+                    results[sectionKey] = { sections: {} };
+                }
+            } catch (e) {
+                console.warn(`⚠️ Ошибка загрузки ${filePath}:`, e);
+                results[sectionKey] = { sections: {} };
+            }
+        }
+        allFilesData = results;
+        currentData = { sections: {}, holidays_widget: [] };
+        for (const [key, data] of Object.entries(results)) {
+            if (data.sections) {
+                for (const [sectionKey, section] of Object.entries(data.sections)) {
+                    currentData.sections[sectionKey] = section;
+                }
+            }
+            if (data.holidays_widget) {
+                currentData.holidays_widget = [...currentData.holidays_widget, ...data.holidays_widget];
+            }
+        }
+        const uniqueHolidays = new Map();
+        currentData.holidays_widget.forEach(h => {
+            const key = h.date;
+            if (!uniqueHolidays.has(key)) {
+                uniqueHolidays.set(key, h);
+            }
+        });
+        currentData.holidays_widget = Array.from(uniqueHolidays.values());
+        currentData.holidays_widget.sort((a, b) => a.date.localeCompare(b.date));
+        document.getElementById('fileInfo').textContent = 
+            `📊 Загружено: ${loadedCount}/${totalFiles} файлов, ${Object.keys(currentData.sections).length} разделов, ${currentData.holidays_widget.length} праздников`;
+        expandedSections.clear();
+        expandedSubcats.clear();
+        renderSections();
+        showToast(`✅ Загружено ${Object.keys(currentData.sections).length} разделов`, 'success');
+    }
+
+    // ============================================================
+    // ===== ЗАГРУЗКА С GITHUB =====
+    // ============================================================
+    async function loadFromGitHub() {
+        if (!githubConfig.token || !githubConfig.repo) {
+            showToast('❌ Сначала настройте GitHub в вкладке ⚙️ GitHub!', 'error');
+            switchTab('settings');
+            return;
+        }
+        const statusDiv = document.getElementById('githubStatus');
+        statusDiv.textContent = '⏳ Загрузка с GitHub...';
+        statusDiv.className = 'github-status loading';
+        showToast('⏳ Загрузка с GitHub...', 'info');
+        try {
+            const listUrl = `https://api.github.com/repos/${githubConfig.repo}/contents/data?ref=${githubConfig.branch}`;
+            const listResponse = await fetch(listUrl, {
+                headers: { 'Authorization': `token ${githubConfig.token}` }
+            });
+            let allFiles = [];
+            if (listResponse.ok) {
+                const files = await listResponse.json();
+                allFiles = files.filter(f => f.name.endsWith('.json')).map(f => f.path);
+                console.log('📄 Найдены файлы:', allFiles);
+                statusDiv.textContent = `🔍 Найдено ${allFiles.length} JSON файлов, загрузка...`;
+            } else {
+                statusDiv.textContent = '⚠️ Не удалось получить список, загружаем стандартные файлы';
+                allFiles = [
+                    'data/data.json',
+                    'data/data_professional.json',
+                    'data/data_holidays.json',
+                    'data/data_birthday.json',
+                    'data/data_military.json',
+                    'data/data_wedding.json',
+                    'data/data_live.json'
+                ];
+            }
+            const loadedData = {};
+            let loadedCount = 0;
+            let newFilesCount = 0;
+            for (const filePath of allFiles) {
+                try {
+                    const url = `https://api.github.com/repos/${githubConfig.repo}/contents/${filePath}?ref=${githubConfig.branch}`;
+                    const response = await fetch(url, {
+                        headers: { 'Authorization': `token ${githubConfig.token}` }
+                    });
+                    if (response.ok) {
+                        const fileData = await response.json();
+                        const content = decodeURIComponent(escape(atob(fileData.content)));
+                        const parsed = JSON.parse(content);
+                        const key = filePath.replace('data/', '').replace('.json', '');
+                        if (key === 'data') {
+                            loadedData['main'] = parsed;
+                        } else {
+                            loadedData[key] = parsed;
+                        }
+                        loadedCount++;
+                        console.log(`✅ Загружено: ${filePath}`);
+                    }
+                } catch (e) {
+                    console.warn(`⚠️ Не удалось загрузить ${filePath}:`, e);
+                }
+            }
+            allFilesData = loadedData;
+            currentData = { sections: {}, holidays_widget: [] };
+            for (const [key, data] of Object.entries(loadedData)) {
+                if (data.sections) {
+                    for (const [sectionKey, section] of Object.entries(data.sections)) {
+                        currentData.sections[sectionKey] = section;
+                    }
+                }
+                if (data.holidays_widget) {
+                    currentData.holidays_widget = [...currentData.holidays_widget, ...data.holidays_widget];
+                }
+            }
+            let configUpdated = false;
+            for (const filePath of allFiles) {
+                if (filePath === MAIN_FILE) continue;
+                const key = filePath.replace('data/', '').replace('.json', '');
+                let exists = false;
+                for (const [existingKey, existingPath] of Object.entries(FILE_CONFIG)) {
+                    if (existingPath === filePath) {
+                        exists = true;
+                        break;
+                    }
+                }
+                if (!exists && !FILE_CONFIG[key]) {
+                    FILE_CONFIG[key] = filePath;
+                    newFilesCount++;
+                    configUpdated = true;
+                    console.log(`📄 Добавлен новый файл в конфиг: ${filePath}`);
+                }
+            }
+            if (configUpdated) {
+                rebuildFileSections();
+            }
+            const uniqueHolidays = new Map();
+            currentData.holidays_widget.forEach(h => {
+                const key = h.date;
+                if (!uniqueHolidays.has(key)) {
+                    uniqueHolidays.set(key, h);
+                }
+            });
+            currentData.holidays_widget = Array.from(uniqueHolidays.values());
+            currentData.holidays_widget.sort((a, b) => a.date.localeCompare(b.date));
+            document.getElementById('fileInfo').textContent = 
+                `📊 Загружено: ${loadedCount} файлов, ${Object.keys(currentData.sections).length} разделов, ${currentData.holidays_widget.length} праздников`;
+            statusDiv.textContent = `✅ Загружено ${loadedCount} файлов${newFilesCount > 0 ? `, добавлено ${newFilesCount} новых` : ''}`;
+            statusDiv.className = 'github-status success';
+            expandedSections.clear();
+            expandedSubcats.clear();
+            renderSections();
+            renderFiles();
+            showToast(`✅ Загружено ${loadedCount} файлов с GitHub!${newFilesCount > 0 ? ` (${newFilesCount} новых)` : ''}`, 'success');
+        } catch (error) {
+            console.error('❌ Ошибка:', error);
+            showToast(`❌ Ошибка: ${error.message}`, 'error');
+            statusDiv.textContent = `❌ ${error.message}`;
+            statusDiv.className = 'github-status error';
+        }
+    }
+
+    // ============================================================
+    // ===== РЕНДЕР РАЗДЕЛОВ =====
+    // ============================================================
+    function renderSections() {
+        const container = document.getElementById('content');
+        let html = '<div class="fade-in">';
+        html += `
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
+                <button class="btn btn-primary" onclick="addSection()">➕ Добавить раздел</button>
+                <button class="btn btn-secondary" onclick="expandAll()">📂 Развернуть всё</button>
+                <button class="btn btn-secondary" onclick="collapseAll()">📁 Свернуть всё</button>
+                <button class="btn btn-info" onclick="syncFromMain()">🔄 Синхронизировать</button>
+                <button class="btn btn-info" onclick="scanDataFolder()">🔍 Сканировать папку</button>
+            </div>
+        `;
+        const sections = Object.entries(currentData.sections)
+            .sort((a, b) => (a[1].order || 999) - (b[1].order || 999));
+        if (sections.length === 0) {
+            html += '<div style="text-align:center;padding:40px;color:#999;">Нет разделов. Нажмите "Добавить раздел" или "Загрузить с GitHub"</div>';
+        }
+        for (const [sectionKey, section] of sections) {
+            const filePath = getFileForSection(sectionKey);
+            const isMain = filePath === MAIN_FILE;
+            const isExpanded = expandedSections.has(sectionKey);
+            html += `
+                <div class="section-card">
+                    <div class="section-header ${!isExpanded ? 'collapsed' : ''}" onclick="toggleSection('${sectionKey}')">
+                        <div class="section-title">
+                            <span class="toggle-icon">▼</span>
+                            <span>${section.emoji || '📁'}</span>
+                            <span>${escapeHtml(section.name_ba || sectionKey)}</span>
+                            <span style="font-size:12px;opacity:0.8;">(${escapeHtml(section.name_ru || '')})</span>
+                            <span class="section-file-badge">${isMain ? '📄 main' : '📄 ' + filePath.replace('data/', '')}</span>
+                        </div>
+                        <div class="section-actions" onclick="event.stopPropagation()">
+                            <button class="btn btn-sm btn-primary" onclick="editSection('${sectionKey}')">✏️</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteSection('${sectionKey}')">🗑️</button>
+                            <button class="btn btn-sm btn-secondary" onclick="addSubcategory('${sectionKey}')">➕ Подкат</button>
+                        </div>
+                    </div>
+                    <div class="section-body ${!isExpanded ? 'collapsed' : ''}">
+            `;
+            const subcategories = section.subcategories || {};
+            const sortedSubcats = Object.entries(subcategories)
+                .sort((a, b) => (a[1].order || 999) - (b[1].order || 999));
+            for (const [subcatKey, subcat] of sortedSubcats) {
+                const subcatId = `${sectionKey}|${subcatKey}`;
+                const isSubExpanded = expandedSubcats.has(subcatId);
+                const greetingCount = (subcat.greetings || []).length;
+                html += `
+                    <div class="subcategory">
+                        <div class="subcategory-header ${!isSubExpanded ? 'collapsed' : ''}" onclick="toggleSubcategory('${sectionKey}', '${subcatKey}')">
+                            <div>
+                                <span class="toggle-icon">▼</span>
+                                <strong>${subcat.emoji || '💬'} ${escapeHtml(subcat.name_ba || subcatKey)}</strong>
+                                <span style="font-size:12px;color:#666;">(${escapeHtml(subcat.name_ru || '')})</span>
+                                <span style="font-size:11px;background:#cbd5e0;padding:2px 6px;border-radius:10px;margin-left:8px;">${greetingCount}</span>
+                            </div>
+                            <div onclick="event.stopPropagation()" style="display:flex;gap:6px;flex-wrap:wrap;">
+                                <button class="btn btn-sm btn-primary" onclick="editSubcategory('${sectionKey}', '${subcatKey}')">✏️</button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteSubcategory('${sectionKey}', '${subcatKey}')">🗑️</button>
+                                <button class="btn btn-sm btn-success" onclick="addGreeting('${sectionKey}', '${subcatKey}')">➕ Поздравление</button>
+                            </div>
+                        </div>
+                        <div class="subcategory-body ${!isSubExpanded ? 'collapsed' : ''}">
+                `;
+                const greetings = subcat.greetings || [];
+                for (let i = 0; i < greetings.length; i++) {
+                    const g = greetings[i];
+                    html += `
+                        <div class="greeting-item">
+                            <div class="greeting-text">📖 ${escapeHtml(g.text_ba)}</div>
+                            <div class="translation-text">🇷🇺 ${escapeHtml(g.translation_ru || '')}</div>
+                            <div class="inline-actions">
+                                <button class="btn btn-sm btn-primary" onclick="editGreeting('${sectionKey}', '${subcatKey}', ${i})">✏️</button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteGreeting('${sectionKey}', '${subcatKey}', ${i})">🗑️</button>
+                            </div>
+                        </div>
+                    `;
+                }
+                if (greetings.length === 0) {
+                    html += '<div style="padding:20px;text-align:center;color:#999;">Нет поздравлений</div>';
+                }
+                html += `</div></div>`;
+            }
+            html += `</div></div>`;
+        }
+        html += '</div>';
+        container.innerHTML = html;
+    }
+
+    // ============================================================
+    // ===== РЕНДЕР ПРАЗДНИКОВ =====
+    // ============================================================
+    function renderHolidays() {
+        const container = document.getElementById('content');
+        let html = '<div class="fade-in">';
+        html += '<button class="btn btn-primary" onclick="addHoliday()" style="margin-bottom:20px;">➕ Добавить праздник</button>';
+        const holidays = currentData.holidays_widget || [];
+        if (holidays.length === 0) {
+            html += '<div style="text-align:center;padding:40px;color:#999;">Нет праздников</div>';
+        } else {
+            for (let i = 0; i < holidays.length; i++) {
+                const h = holidays[i];
+                html += `
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 15px;background:#f7fafc;margin-bottom:8px;border-radius:10px;flex-wrap:wrap;gap:8px;">
+                        <div>
+                            <strong>📅 ${escapeHtml(h.date)}</strong><br>
+                            <span>${escapeHtml(h.name_ba)}</span>
+                            <span style="color:#666;"> | ${escapeHtml(h.name_ru || '')}</span>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-primary" onclick="editHoliday(${i})">✏️</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteHoliday(${i})">🗑️</button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        html += '</div>';
+        container.innerHTML = html;
+    }
+
+    // ============================================================
+    // ===== РЕНДЕР ФАЙЛОВ =====
+    // ============================================================
+    function renderFiles() {
+        const container = document.getElementById('content');
+        const files = getAllFiles();
+        let html = '<div class="fade-in">';
+        html += `
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
+                <button class="btn btn-success" onclick="saveAllData()">💾 Сохранить все файлы</button>
+                <button class="btn btn-primary" onclick="createNewFile()">📄 Создать новый файл</button>
+                <button class="btn btn-warning" onclick="syncFromMain()">🔄 Синхронизировать</button>
+                <button class="btn btn-info" onclick="scanDataFolder()">🔍 Сканировать папку</button>
+            </div>
+            <div class="file-grid">
+        `;
+        for (const [filePath, data] of Object.entries(files)) {
+            const isMain = filePath === MAIN_FILE;
+            const sections = Object.keys(data.sections || {});
+            const hasHolidays = data.holidays_widget && data.holidays_widget.length > 0;
+            const size = JSON.stringify(data).length;
+            let isInConfig = false;
+            for (const [key, path] of Object.entries(FILE_CONFIG)) {
+                if (path === filePath) {
+                    isInConfig = true;
+                    break;
+                }
+            }
+            html += `
+                <div class="file-item ${isMain ? 'main-file' : ''}">
+                    <div>
+                        <div class="file-name">
+                            ${isMain ? '⭐' : '📄'} ${escapeHtml(filePath)}
+                            ${isMain ? '<span style="font-size:11px;background:#667eea;color:white;padding:1px 8px;border-radius:10px;margin-left:6px;">main</span>' : ''}
+                            ${!isInConfig && !isMain ? '<span class="file-badge-new">НОВЫЙ</span>' : ''}
+                        </div>
+                        <div class="file-meta">
+                            ${sections.length} разделов
+                            ${hasHolidays ? '🎉 + праздники' : ''}
+                            • ${(size/1024).toFixed(1)} КБ
+                        </div>
+                        <div style="font-size:11px;color:#999;margin-top:4px;">
+                            ${sections.join(', ') || 'пусто'}
+                        </div>
+                    </div>
+                    <div class="file-actions">
+                        ${!isMain ? `<button class="btn btn-sm btn-danger" onclick="deleteFile('${filePath}')">🗑️</button>` : ''}
+                        <button class="btn btn-sm btn-success" onclick="saveFileToGitHub('${filePath}')">🐙</button>
+                        ${!isInConfig && !isMain ? `<button class="btn btn-sm btn-primary" onclick="addFileToConfig('${filePath}')">➕ В конфиг</button>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+        html += `</div></div>`;
+        container.innerHTML = html;
+    }
+
+    // ============================================================
+    // ===== РЕНДЕР СТАТИСТИКИ =====
+    // ============================================================
+    function renderStats() {
+        const container = document.getElementById('content');
+        const sections = Object.keys(currentData.sections).length;
+        let subcats = 0;
+        let greetings = 0;
+        for (const section of Object.values(currentData.sections)) {
+            const subs = section.subcategories || {};
+            subcats += Object.keys(subs).length;
+            for (const sub of Object.values(subs)) {
+                greetings += (sub.greetings || []).length;
+            }
+        }
+        const holidays = (currentData.holidays_widget || []).length;
+        const files = Object.keys(getAllFiles()).length;
+        const html = `
+            <div class="fade-in">
+                <div class="stats">
+                    <div class="stat-card"><div class="stat-number">${sections}</div><div class="stat-label">Разделов</div></div>
+                    <div class="stat-card"><div class="stat-number">${subcats}</div><div class="stat-label">Подкатегорий</div></div>
+                    <div class="stat-card"><div class="stat-number">${greetings}</div><div class="stat-label">Поздравлений</div></div>
+                    <div class="stat-card"><div class="stat-number">${holidays}</div><div class="stat-label">Праздников</div></div>
+                    <div class="stat-card"><div class="stat-number">${files}</div><div class="stat-label">Файлов</div></div>
+                </div>
+                <div style="margin-top:20px;padding:15px;background:#f7fafc;border-radius:10px;">
+                    <h4>📄 Файлы в конфиге (${Object.keys(FILE_CONFIG).length})</h4>
+                    <div style="font-size:12px;color:#666;margin-top:8px;word-break:break-all;">
+                        ${Object.entries(FILE_CONFIG).map(([key, path]) => 
+                            `<span style="display:inline-block;background:white;padding:2px 8px;border-radius:4px;margin:2px;border:1px solid #e2e8f0;">${key} → ${path}</span>`
+                        ).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+        container.innerHTML = html;
+    }
+
+    // ============================================================
+    // ===== РЕНДЕР НАСТРОЕК GITHUB =====
+    // ============================================================
+    function renderSettings() {
+        const container = document.getElementById('content');
+        const html = `
+            <div class="fade-in">
+                <h3 style="margin-bottom:20px;">🐙 GitHub интеграция</h3>
+                <div class="stats" style="margin-bottom:20px;">
+                    <div class="stat-card" style="background:#2d3748;">
+                        <div class="stat-number">${githubConfig.token ? '✅' : '❌'}</div>
+                        <div class="stat-label">Токен</div>
+                    </div>
+                    <div class="stat-card" style="background:#2d3748;">
+                        <div class="stat-number">${githubConfig.repo ? '✅' : '❌'}</div>
+                        <div class="stat-label">Репозиторий</div>
+                    </div>
+                    <div class="stat-card" style="background:#2d3748;">
+                        <div class="stat-number">${Object.keys(FILE_CONFIG).length}</div>
+                        <div class="stat-label">Файлов в конфиге</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>GitHub Personal Access Token</label>
+                    <input type="password" id="githubToken" placeholder="ghp_xxxxxxxxxxxx" value="${escapeHtml(githubConfig.token)}">
+                    <div class="form-hint">Создайте токен в Settings → Developer settings → Personal access tokens → Tokens (classic). Нужны права repo.</div>
+                </div>
+                <div class="form-group">
+                    <label>Репозиторий (формат: username/repo)</label>
+                    <input type="text" id="githubRepo" placeholder="AlmazBaymurzin/AlmazBaymurzin.github.io" value="${escapeHtml(githubConfig.repo)}">
+                </div>
+                <div class="form-group">
+                    <label>Ветка</label>
+                    <input type="text" id="githubBranch" placeholder="main" value="${escapeHtml(githubConfig.branch)}">
+                </div>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                    <button class="btn btn-primary" onclick="saveGitHubSettings()">💾 Сохранить настройки</button>
+                    <button class="btn btn-success" onclick="saveToGitHub()">🚀 Сохранить на GitHub</button>
+                    <button class="btn btn-info" onclick="loadFromGitHub()">📥 Загрузить с GitHub</button>
+                    <button class="btn btn-info" onclick="scanDataFolder()">🔍 Сканировать папку</button>
+                </div>
+            </div>
+        `;
+        container.innerHTML = html;
+    }
+
+    // ============================================================
+    // ===== CRUD ОПЕРАЦИИ =====
+    // ============================================================
+    function toggleSection(sectionKey) {
+        if (expandedSections.has(sectionKey)) {
+            expandedSections.delete(sectionKey);
+        } else {
+            expandedSections.add(sectionKey);
+        }
+        renderSections();
+    }
+    function toggleSubcategory(sectionKey, subcatKey) {
+        const key = `${sectionKey}|${subcatKey}`;
+        if (expandedSubcats.has(key)) {
+            expandedSubcats.delete(key);
+        } else {
+            expandedSubcats.add(key);
+        }
+        renderSections();
+    }
+    function expandAll() {
+        for (const key of Object.keys(currentData.sections)) {
+            expandedSections.add(key);
+            const subs = currentData.sections[key]?.subcategories || {};
+            for (const subKey of Object.keys(subs)) {
+                expandedSubcats.add(`${key}|${subKey}`);
+            }
+        }
+        renderSections();
+    }
+    function collapseAll() {
+        expandedSections.clear();
+        expandedSubcats.clear();
+        renderSections();
+    }
+    function addFileToConfig(filePath) {
+        const key = filePath.replace('data/', '').replace('.json', '');
+        if (FILE_CONFIG[key]) {
+            showToast(`⚠️ Ключ "${key}" уже существует`, 'warning');
+            return;
+        }
+        FILE_CONFIG[key] = filePath;
+        rebuildFileSections();
+        renderFiles();
+        renderSections();
+        showToast(`✅ Файл ${filePath} добавлен в конфиг`, 'success');
+    }
+
+    // ============================================================
+    // ===== ДОБАВЛЕНИЕ РАЗДЕЛА =====
+    // ============================================================
+    function addSection() {
+        currentModalContext = { type: 'addSection' };
+        showModal('Добавить раздел', `
+            <div class="form-group">
+                <label>Ключ раздела (латиницей)</label>
+                <input type="text" id="key" placeholder="pritches" oninput="updateFileNamePreview(this.value)">
+                <div class="form-hint">Используйте только латинские буквы и цифры</div>
+            </div>
+            <div class="form-group">
+                <label>Название (баш)</label>
+                <input type="text" id="name_ba" placeholder="Притчи">
+            </div>
+            <div class="form-group">
+                <label>Название (рус)</label>
+                <input type="text" id="name_ru" placeholder="Притчи">
+            </div>
+            <div class="form-group">
+                <label>Emoji</label>
+                <input type="text" id="emoji" value="📖">
+            </div>
+            <div class="form-group">
+                <label>Порядок</label>
+                <input type="number" id="order" value="999">
+            </div>
+            <div class="form-group file-selector">
+                <label style="display:flex;align-items:center;gap:8px;">
+                    <input type="checkbox" id="createNewFile" checked>
+                    <span>📄 Создать отдельный файл: <strong id="fileNamePreview">data/new.json</strong></span>
+                </label>
+                <div class="form-hint">✅ Файл будет создан с правильным именем (без лишнего data_)</div>
+            </div>
+        `);
+    }
+
+    function updateFileNamePreview(value) {
+        const preview = document.getElementById('fileNamePreview');
+        if (preview) {
+            // ✅ ИСПРАВЛЕНО: правильное имя файла без data_
+            preview.textContent = `data/${value || 'new'}.json`;
+        }
+    }
+
+    function editSection(key) {
+        const section = currentData.sections[key];
+        currentModalContext = { type: 'editSection', key: key };
+        showModal('Редактировать раздел', `
+            <div class="form-group"><label>Название (баш)</label><input type="text" id="name_ba" value="${escapeHtml(section.name_ba || '')}"></div>
+            <div class="form-group"><label>Название (рус)</label><input type="text" id="name_ru" value="${escapeHtml(section.name_ru || '')}"></div>
+            <div class="form-group"><label>Emoji</label><input type="text" id="emoji" value="${escapeHtml(section.emoji || '')}"></div>
+            <div class="form-group"><label>Порядок</label><input type="number" id="order" value="${section.order || 999}"></div>
+            <div class="form-group">
+                <label>Файл</label>
+                <select id="fileSelect">
+                    <option value="main">📄 data/data.json (основной)</option>
+                    ${Object.entries(FILE_CONFIG).map(([sec, file]) => 
+                        `<option value="${file}" ${getFileForSection(key) === file ? 'selected' : ''}>📄 ${file}</option>`
+                    ).join('')}
+                    <option value="new">📄 Создать новый файл</option>
+                </select>
+            </div>
+        `);
+    }
+
+    function deleteSection(key) {
+        if (confirm(`Удалить раздел "${key}"?`)) {
+            delete currentData.sections[key];
+            renderSections();
+            showToast('Раздел удалён', 'success');
+        }
+    }
+
+    function addSubcategory(sectionKey) {
+        currentModalContext = { type: 'addSubcategory', sectionKey: sectionKey };
+        showModal('Добавить подкатегорию', `
+            <div class="form-group"><label>Ключ</label><input type="text" id="key" placeholder="border"></div>
+            <div class="form-group"><label>Название (баш)</label><input type="text" id="name_ba"></div>
+            <div class="form-group"><label>Название (рус)</label><input type="text" id="name_ru"></div>
+            <div class="form-group"><label>Emoji</label><input type="text" id="emoji" value="💬"></div>
+            <div class="form-group"><label>Порядок</label><input type="number" id="order" value="999"></div>
+        `);
+    }
+
+    function editSubcategory(sectionKey, subcatKey) {
+        const subcat = currentData.sections[sectionKey].subcategories[subcatKey];
+        currentModalContext = { type: 'editSubcategory', sectionKey: sectionKey, subcatKey: subcatKey };
+        showModal('Редактировать подкатегорию', `
+            <div class="form-group"><label>Название (баш)</label><input type="text" id="name_ba" value="${escapeHtml(subcat.name_ba || '')}"></div>
+            <div class="form-group"><label>Название (рус)</label><input type="text" id="name_ru" value="${escapeHtml(subcat.name_ru || '')}"></div>
+            <div class="form-group"><label>Emoji</label><input type="text" id="emoji" value="${escapeHtml(subcat.emoji || '')}"></div>
+            <div class="form-group"><label>Порядок</label><input type="number" id="order" value="${subcat.order || 999}"></div>
+        `);
+    }
+
+    function deleteSubcategory(sectionKey, subcatKey) {
+        if (confirm('Удалить подкатегорию?')) {
+            delete currentData.sections[sectionKey].subcategories[subcatKey];
+            renderSections();
+            showToast('Подкатегория удалена', 'success');
+        }
+    }
+
+    function addGreeting(sectionKey, subcatKey) {
+        currentModalContext = { type: 'addGreeting', sectionKey: sectionKey, subcatKey: subcatKey };
+        showModal('Добавить поздравление', `
+            <div class="form-group"><label>Текст (баш)</label><textarea id="text_ba" rows="4"></textarea></div>
+            <div class="form-group"><label>Перевод (рус)</label><textarea id="translation_ru" rows="3"></textarea></div>
+        `);
+    }
+
+    function editGreeting(sectionKey, subcatKey, index) {
+        const greeting = currentData.sections[sectionKey].subcategories[subcatKey].greetings[index];
+        currentModalContext = { type: 'editGreeting', sectionKey: sectionKey, subcatKey: subcatKey, index: index };
+        showModal('Редактировать поздравление', `
+            <div class="form-group"><label>Текст (баш)</label><textarea id="text_ba" rows="4">${escapeHtml(greeting.text_ba || '')}</textarea></div>
+            <div class="form-group"><label>Перевод (рус)</label><textarea id="translation_ru" rows="3">${escapeHtml(greeting.translation_ru || '')}</textarea></div>
+        `);
+    }
+
+    function deleteGreeting(sectionKey, subcatKey, index) {
+        if (confirm('Удалить поздравление?')) {
+            currentData.sections[sectionKey].subcategories[subcatKey].greetings.splice(index, 1);
+            renderSections();
+            showToast('Поздравление удалено', 'success');
+        }
+    }
+
+    // ============================================================
+    // ===== ПРАЗДНИКИ =====
+    // ============================================================
+    function addHoliday() {
+        currentModalContext = { type: 'addHoliday' };
+        showModal('Добавить праздник', `
+            <div class="form-group"><label>Дата (ММ-ДД)</label><input type="text" id="date" placeholder="01-01"></div>
+            <div class="form-group"><label>Название (баш)</label><input type="text" id="name_ba"></div>
+            <div class="form-group"><label>Название (рус)</label><input type="text" id="name_ru"></div>
+        `);
+    }
+
+    function editHoliday(index) {
+        const holiday = currentData.holidays_widget[index];
+        currentModalContext = { type: 'editHoliday', index: index };
+        showModal('Редактировать праздник', `
+            <div class="form-group"><label>Дата</label><input type="text" id="date" value="${escapeHtml(holiday.date || '')}"></div>
+            <div class="form-group"><label>Название (баш)</label><input type="text" id="name_ba" value="${escapeHtml(holiday.name_ba || '')}"></div>
+            <div class="form-group"><label>Название (рус)</label><input type="text" id="name_ru" value="${escapeHtml(holiday.name_ru || '')}"></div>
+        `);
+    }
+
+    function deleteHoliday(index) {
+        if (confirm('Удалить праздник?')) {
+            currentData.holidays_widget.splice(index, 1);
+            renderHolidays();
+            showToast('Праздник удалён', 'success');
+        }
+    }
+
+    // ============================================================
+    // ===== ФАЙЛЫ =====
+    // ============================================================
+    function createNewFile() {
+        currentModalContext = { type: 'createFile' };
+        showModal('Создать новый файл', `
+            <div class="form-group">
+                <label>Название файла</label>
+                <input type="text" id="fileName" placeholder="data/pritches.json">
+                <div class="form-hint">✅ Пишите сразу: data/ключ.json (БЕЗ data_)</div>
+            </div>
+            <div class="form-group">
+                <label>Ключ раздела</label>
+                <input type="text" id="sectionKey" placeholder="pritches">
+                <div class="form-hint">Ключ, по которому раздел будет доступен</div>
+            </div>
+            <div class="form-group">
+                <label>Название раздела (баш)</label>
+                <input type="text" id="name_ba" placeholder="Притчи">
+            </div>
+            <div class="form-group">
+                <label>Название раздела (рус)</label>
+                <input type="text" id="name_ru" placeholder="Притчи">
+            </div>
+            <div class="form-group">
+                <label>Emoji</label>
+                <input type="text" id="emoji" value="📖">
+            </div>
+        `);
+    }
+
+    function deleteFile(filePath) {
+        if (confirm(`Удалить файл "${filePath}"?`)) {
+            for (const [key, path] of Object.entries(FILE_CONFIG)) {
+                if (path === filePath) {
+                    delete allFilesData[key];
+                    for (const sectionKey of Object.keys(currentData.sections)) {
+                        if (getFileForSection(sectionKey) === filePath) {
+                            delete currentData.sections[sectionKey];
+                        }
+                    }
+                    renderFiles();
+                    renderSections();
+                    showToast(`Файл ${filePath} удалён`, 'success');
+                    return;
+                }
+            }
+            showToast('Файл не найден', 'error');
+        }
+    }
+
+    // ============================================================
+    // ===== СОХРАНЕНИЕ =====
+    // ============================================================
+    function saveAllData() {
+        const filesData = {};
+        const mainData = {
+            sections: {},
+            holidays_widget: currentData.holidays_widget || []
+        };
+        for (const [sectionKey, section] of Object.entries(currentData.sections)) {
+            const filePath = getFileForSection(sectionKey);
+            if (filePath === MAIN_FILE) {
+                mainData.sections[sectionKey] = section;
+            } else {
+                if (!filesData[filePath]) {
+                    filesData[filePath] = { sections: {}, holidays_widget: [] };
+                }
+                filesData[filePath].sections[sectionKey] = section;
+            }
+        }
+        if (Object.keys(mainData.sections).length > 0 || mainData.holidays_widget.length > 0) {
+            filesData[MAIN_FILE] = mainData;
+        }
+        for (const [filePath, data] of Object.entries(filesData)) {
+            let foundKey = null;
+            for (const [key, path] of Object.entries(FILE_CONFIG)) {
+                if (path === filePath) {
+                    foundKey = key;
+                    break;
+                }
+            }
+            if (foundKey) {
+                allFilesData[foundKey] = data;
+            } else if (filePath === MAIN_FILE) {
+                allFilesData['main'] = data;
+            } else {
+                const key = filePath.replace('data/', '').replace('.json', '');
+                allFilesData[key] = data;
+                if (!FILE_CONFIG[key]) {
+                    FILE_CONFIG[key] = filePath;
+                    rebuildFileSections();
+                }
+            }
+        }
+        showToast('✅ Данные собраны для сохранения!', 'success');
+        renderFiles();
+    }
+
+    // ============================================================
+    // ===== GITHUB ИНТЕГРАЦИЯ =====
+    // ============================================================
+    function saveGitHubSettings() {
+        githubConfig.token = document.getElementById('githubToken').value;
+        githubConfig.repo = document.getElementById('githubRepo').value;
+        githubConfig.branch = document.getElementById('githubBranch').value;
+        localStorage.setItem('github_token', githubConfig.token);
+        localStorage.setItem('github_repo', githubConfig.repo);
+        localStorage.setItem('github_branch', githubConfig.branch);
+        showToast('Настройки GitHub сохранены!', 'success');
+        renderSettings();
+    }
+
+    async function saveFileToGitHub(filePath) {
+        if (!githubConfig.token || !githubConfig.repo) {
+            showToast('❌ Сначала настройте GitHub!', 'error');
+            switchTab('settings');
+            return;
+        }
+        const files = getAllFiles();
+        let data = files[filePath];
+        if (!data) {
+            showToast(`❌ Файл ${filePath} не найден`, 'error');
+            return;
+        }
+        try {
+            const content = JSON.stringify(data, null, 2);
+            const encodedContent = btoa(unescape(encodeURIComponent(content)));
+            let sha = null;
+            const getUrl = `https://api.github.com/repos/${githubConfig.repo}/contents/${filePath}?ref=${githubConfig.branch}`;
+            const getResponse = await fetch(getUrl, {
+                headers: { 'Authorization': `token ${githubConfig.token}` }
+            });
+            if (getResponse.ok) {
+                const fileData = await getResponse.json();
+                sha = fileData.sha;
+            }
+            const putUrl = `https://api.github.com/repos/${githubConfig.repo}/contents/${filePath}`;
+            const putResponse = await fetch(putUrl, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `token ${githubConfig.token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: `Обновление ${filePath} через редактор`,
+                    content: encodedContent,
+                    sha: sha,
+                    branch: githubConfig.branch
+                })
+            });
+            if (putResponse.ok) {
+                showToast(`✅ Файл ${filePath} сохранён на GitHub!`, 'success');
+            } else {
+                const error = await putResponse.json();
+                showToast(`❌ Ошибка: ${error.message}`, 'error');
+            }
+        } catch (error) {
+            showToast(`❌ Ошибка: ${error.message}`, 'error');
+        }
+    }
+
+    async function saveToGitHub() {
+        saveAllData();
+        if (!githubConfig.token || !githubConfig.repo) {
+            showToast('❌ Сначала настройте GitHub!', 'error');
+            switchTab('settings');
+            return;
+        }
+        const files = getAllFiles();
+        let successCount = 0;
+        const totalFiles = Object.keys(files).length;
+        const statusDiv = document.getElementById('githubStatus');
+        statusDiv.textContent = `⏳ Сохранение ${totalFiles} файлов...`;
+        statusDiv.className = 'github-status loading';
+        for (const [filePath, data] of Object.entries(files)) {
+            try {
+                const content = JSON.stringify(data, null, 2);
+                const encodedContent = btoa(unescape(encodeURIComponent(content)));
+                let sha = null;
+                const getUrl = `https://api.github.com/repos/${githubConfig.repo}/contents/${filePath}?ref=${githubConfig.branch}`;
+                const getResponse = await fetch(getUrl, {
+                    headers: { 'Authorization': `token ${githubConfig.token}` }
+                });
+                if (getResponse.ok) {
+                    const fileData = await getResponse.json();
+                    sha = fileData.sha;
+                }
+                const putUrl = `https://api.github.com/repos/${githubConfig.repo}/contents/${filePath}`;
+                const putResponse = await fetch(putUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${githubConfig.token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: `Обновление ${filePath} через редактор`,
+                        content: encodedContent,
+                        sha: sha,
+                        branch: githubConfig.branch
+                    })
+                });
+                if (putResponse.ok) {
+                    successCount++;
+                    console.log(`✅ Сохранено: ${filePath}`);
+                } else {
+                    const error = await putResponse.json();
+                    console.error(`❌ Ошибка ${filePath}:`, error.message);
+                }
+            } catch (error) {
+                console.error(`❌ Ошибка ${filePath}:`, error);
+            }
+        }
+        statusDiv.textContent = `✅ Сохранено ${successCount}/${totalFiles} файлов`;
+        statusDiv.className = 'github-status success';
+        showToast(`✅ Сохранено ${successCount}/${totalFiles} файлов`, 'success');
+    }
+
+    // ============================================================
+    // ===== МОДАЛЬНОЕ ОКНО =====
+    // ============================================================
+    function showModal(title, formHtml) {
+        document.getElementById('modalTitle').textContent = title;
+        document.getElementById('modalForm').innerHTML = formHtml;
+        document.getElementById('modal').classList.add('active');
+    }
+
+    function closeModal() {
+        document.getElementById('modal').classList.remove('active');
+        currentModalContext = null;
+    }
+
+    // ============================================================
+    // ===== ГЛАВНАЯ ФУНКЦИЯ СОХРАНЕНИЯ (ИСПРАВЛЕНА!) =====
+    // ============================================================
+    function saveModal() {
+        const ctx = currentModalContext;
+        if (!ctx) return;
+
+        if (ctx.type === 'addSection') {
+            const key = document.getElementById('key').value.trim();
+            if (!key) { showToast('Введите ключ', 'error'); return; }
+            if (currentData.sections[key]) { showToast('Раздел существует', 'error'); return; }
+
+            const createNewFile = document.getElementById('createNewFile')?.checked || false;
+            const newSection = {
+                name_ba: document.getElementById('name_ba').value,
+                name_ru: document.getElementById('name_ru').value,
+                emoji: document.getElementById('emoji').value,
+                order: parseInt(document.getElementById('order').value) || 999,
+                subcategories: {}
+            };
+
+            currentData.sections[key] = newSection;
+
+            if (createNewFile) {
+                // ✅ ИСПРАВЛЕНО: правильное имя файла БЕЗ data_
+                const fileName = `data/${key}.json`;
+                FILE_CONFIG[key] = fileName;
+                rebuildFileSections();
+                allFilesData[key] = {
+                    sections: { [key]: newSection },
+                    holidays_widget: []
+                };
+                showToast(`✅ Раздел "${key}" создан в новом файле ${fileName}`, 'success');
+            } else {
+                showToast(`✅ Раздел "${key}" добавлен в основной файл`, 'success');
+            }
+
+            closeModal();
+            renderSections();
+            renderFiles();
+            return;
+        }
+
+        if (ctx.type === 'editSection') {
+            const section = currentData.sections[ctx.key];
+            section.name_ba = document.getElementById('name_ba').value;
+            section.name_ru = document.getElementById('name_ru').value;
+            section.emoji = document.getElementById('emoji').value;
+            section.order = parseInt(document.getElementById('order').value) || 999;
+
+            const newFile = document.getElementById('fileSelect').value;
+            if (newFile === 'new') {
+                const newKey = prompt('Введите ключ для нового файла:', ctx.key);
+                if (newKey && newKey !== ctx.key) {
+                    const fileName = `data/${newKey}.json`;
+                    FILE_CONFIG[newKey] = fileName;
+                    rebuildFileSections();
+                    allFilesData[newKey] = {
+                        sections: { [newKey]: section },
+                        holidays_widget: []
+                    };
+                    delete currentData.sections[ctx.key];
+                    currentData.sections[newKey] = section;
+                    showToast(`✅ Раздел перемещён в новый файл ${fileName}`, 'success');
+                }
+            } else if (newFile !== getFileForSection(ctx.key)) {
+                for (const [key, data] of Object.entries(allFilesData)) {
+                    if (data.sections && data.sections[ctx.key]) {
+                        delete data.sections[ctx.key];
+                    }
+                }
+                for (const [key, data] of Object.entries(allFilesData)) {
+                    const filePath = FILE_CONFIG[key] || `data/${key}.json`;
+                    if (filePath === newFile) {
+                        data.sections[ctx.key] = section;
+                        break;
+                    }
+                }
+                showToast(`✅ Раздел перемещён в ${newFile}`, 'success');
+            }
+
+            closeModal();
+            renderSections();
+            renderFiles();
+            return;
+        }
+
+        if (ctx.type === 'addSubcategory') {
+            const key = document.getElementById('key').value.trim();
+            if (!key) { showToast('Введите ключ', 'error'); return; }
+            if (currentData.sections[ctx.sectionKey].subcategories[key]) {
+                showToast('Подкатегория существует', 'error');
+                return;
+            }
+            currentData.sections[ctx.sectionKey].subcategories[key] = {
+                name_ba: document.getElementById('name_ba').value,
+                name_ru: document.getElementById('name_ru').value,
+                emoji: document.getElementById('emoji').value,
+                order: parseInt(document.getElementById('order').value) || 999,
+                greetings: []
+            };
+            closeModal();
+            renderSections();
+            return;
+        }
+
+        if (ctx.type === 'editSubcategory') {
+            const subcat = currentData.sections[ctx.sectionKey].subcategories[ctx.subcatKey];
+            subcat.name_ba = document.getElementById('name_ba').value;
+            subcat.name_ru = document.getElementById('name_ru').value;
+            subcat.emoji = document.getElementById('emoji').value;
+            subcat.order = parseInt(document.getElementById('order').value) || 999;
+            closeModal();
+            renderSections();
+            return;
+        }
+
+        if (ctx.type === 'addGreeting') {
+            const text_ba = document.getElementById('text_ba').value.trim();
+            if (!text_ba) { showToast('Введите текст', 'error'); return; }
+            currentData.sections[ctx.sectionKey].subcategories[ctx.subcatKey].greetings.push({
+                text_ba: text_ba,
+                translation_ru: document.getElementById('translation_ru').value
+            });
+            closeModal();
+            renderSections();
+            return;
+        }
+
+        if (ctx.type === 'editGreeting') {
+            const greeting = currentData.sections[ctx.sectionKey].subcategories[ctx.subcatKey].greetings[ctx.index];
+            greeting.text_ba = document.getElementById('text_ba').value;
+            greeting.translation_ru = document.getElementById('translation_ru').value;
+            closeModal();
+            renderSections();
+            return;
+        }
+
+        if (ctx.type === 'addHoliday') {
+            const date = document.getElementById('date').value.trim();
+            if (!date) { showToast('Введите дату', 'error'); return; }
+            currentData.holidays_widget.push({
+                date: date,
+                name_ba: document.getElementById('name_ba').value,
+                name_ru: document.getElementById('name_ru').value
+            });
+            closeModal();
+            renderHolidays();
+            return;
+        }
+
+        if (ctx.type === 'editHoliday') {
+            currentData.holidays_widget[ctx.index] = {
+                date: document.getElementById('date').value,
+                name_ba: document.getElementById('name_ba').value,
+                name_ru: document.getElementById('name_ru').value
+            };
+            closeModal();
+            renderHolidays();
+            return;
+        }
+
+        if (ctx.type === 'createFile') {
+            const fileName = document.getElementById('fileName').value.trim();
+            const sectionKey = document.getElementById('sectionKey').value.trim();
+            const name_ba = document.getElementById('name_ba').value;
+            const name_ru = document.getElementById('name_ru').value;
+            const emoji = document.getElementById('emoji').value;
+
+            if (!fileName || !sectionKey) {
+                showToast('Заполните все поля', 'error');
+                return;
+            }
+
+            if (!fileName.startsWith('data/')) {
+                showToast('Имя файла должно начинаться с data/', 'error');
+                return;
+            }
+
+            if (currentData.sections[sectionKey]) {
+                showToast('Раздел уже существует', 'error');
+                return;
+            }
+
+            // ✅ ИСПРАВЛЕНО: убираем лишний data_ если он есть
+            let cleanFileName = fileName;
+            if (cleanFileName.startsWith('data/data_')) {
+                cleanFileName = cleanFileName.replace('data/data_', 'data/');
+            }
+
+            FILE_CONFIG[sectionKey] = cleanFileName;
+            rebuildFileSections();
+            allFilesData[sectionKey] = {
+                sections: {
+                    [sectionKey]: {
+                        name_ba: name_ba,
+                        name_ru: name_ru,
+                        emoji: emoji,
+                        order: Object.keys(currentData.sections).length + 1,
+                        subcategories: {}
+                    }
+                },
+                holidays_widget: []
+            };
+
+            currentData.sections[sectionKey] = allFilesData[sectionKey].sections[sectionKey];
+
+            closeModal();
+            renderFiles();
+            renderSections();
+            showToast(`✅ Создан файл ${cleanFileName} с разделом ${sectionKey}`, 'success');
+            return;
+        }
+
+        closeModal();
+        renderCurrentTab();
+    }
+
+    // ============================================================
+    // ===== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ =====
+    // ============================================================
+    function switchTab(tab) {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        const tabs = document.querySelectorAll('.tab');
+        if (tab === 'sections') tabs[0].classList.add('active');
+        else if (tab === 'holidays') tabs[1].classList.add('active');
+        else if (tab === 'files') tabs[2].classList.add('active');
+        else if (tab === 'stats') tabs[3].classList.add('active');
+        else tabs[4].classList.add('active');
+        renderCurrentTab();
+    }
+
+    function renderCurrentTab() {
+        const activeTab = document.querySelector('.tab.active');
+        if (!activeTab) return;
+        const tabText = activeTab.textContent;
+        if (tabText.includes('Разделы')) renderSections();
+        else if (tabText.includes('Праздники')) renderHolidays();
+        else if (tabText.includes('Файлы')) renderFiles();
+        else if (tabText.includes('Статистика')) renderStats();
+        else if (tabText.includes('GitHub')) renderSettings();
+    }
+
+    function syncFromMain() {
+        const mainData = allFilesData['main'];
+        if (mainData && mainData.sections) {
+            for (const [key, section] of Object.entries(mainData.sections)) {
+                if (!currentData.sections[key]) {
+                    currentData.sections[key] = section;
+                }
+            }
+            renderSections();
+            showToast('✅ Синхронизация завершена', 'success');
+        }
+    }
+
+    function exportCSV() {
+        showToast('📥 Экспорт CSV в разработке', 'info');
+    }
+
+    function clearAll() {
+        if (confirm('Очистить все данные?')) {
+            currentData = { sections: {}, holidays_widget: [] };
+            allFilesData = {};
+            expandedSections.clear();
+            expandedSubcats.clear();
+            renderSections();
+            showToast('Все данные очищены', 'success');
+        }
+    }
+
+    function showToast(message, type = 'info') {
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    // ============================================================
+    // ===== ИНИЦИАЛИЗАЦИЯ =====
+    // ============================================================
+    loadAllData();
+    console.log('🎉 Многофайловый редактор загружен');
+    console.log('📄 Теперь файлы создаются с правильными именами: data/ключ.json');
+    </script>
+</body>
+</html>
