@@ -1,104 +1,39 @@
 <!DOCTYPE html>
 <html lang="ba">
 <head>
-    <!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109825367', 'ym');
-
-    ym(109825367, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/109825367" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    
     <title>Йылы һүҙҙәр — Поздравления на башкирском языке</title>
-
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
     <meta name="theme-color" content="#8b5a2b">
-    
-    <!-- ========== SEO МЕТА-ТЕГИ ========== -->
-    <meta name="description" content="Башҡортса ҡотлауҙар, теләктәр һәм хуплау һүҙҙәре. Поздравления, пожелания и слова поддержки на башкирском языке. Йылы һүҙҙәр проекты.">
-    <meta name="keywords" content="башкирские поздравления, башҡортса ҡотлау, йылы һүҙҙәр, башкирский язык, тёплые слова, поздравления на башкирском, башкирские пожелания">
+    <meta name="description" content="Башҡортса ҡотлауҙар, теләктәр һәм хуплау һүҙҙәре. Поздравления, пожелания и слова поддержки на башкирском языке.">
+    <meta name="keywords" content="башкирские поздравления, башҡортса ҡотлау, йылы һүҙҙәр, башкирский язык">
     <meta name="author" content="Алмаз Баймурзин, Project Yily Huzzar">
-    <meta name="language" content="ba, ru">
-    <meta name="copyright" content="Project Yily Huzzar">
     <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph -->
     <meta property="og:title" content="Йылы һүҙҙәр | Поздравления на башкирском">
     <meta property="og:description" content="Коллекция поздравлений, пожеланий и слов поддержки на башкирском языке с переводом на русский.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://almazbaymurzin.github.io">
-    <meta property="og:site_name" content="Йылы һүҙҙәр | Yily Huzzar">
-    <meta property="og:locale" content="ba_RU">
-    
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Йылы һүҙҙәр | Поздравления на башкирском">
-    <meta name="twitter:description" content="Поздравления на башкирском языке с переводом на русский.">
-    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
             background: linear-gradient(135deg, #fef9e8 0%, #f0e6d8 100%);
             color: #2c241a;
             padding: 20px;
             min-height: 100vh;
+            overscroll-behavior: contain;
+            -webkit-overflow-scrolling: touch;
         }
-
-        .container {
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        .main-layout {
-            display: flex;
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .content-area {
-            flex: 3;
-            min-width: 0;
-        }
-
-        .sidebar {
-            flex: 1.2;
-            min-width: 260px;
-        }
-
-        header {
-            text-align: center;
-            padding: 1.5rem 0 0.5rem 0;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: #8b5a2b;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.05);
-        }
-
-        .sub {
-            font-size: 1rem;
-            color: #a07649;
-            margin-top: 6px;
-        }
-
+        .container { max-width: 1600px; margin: 0 auto; }
+        .main-layout { display: flex; gap: 30px; margin-top: 20px; }
+        .content-area { flex: 3; min-width: 0; }
+        .sidebar { flex: 1.2; min-width: 260px; }
+        header { text-align: center; padding: 1.5rem 0 0.5rem 0; }
+        h1 { font-size: 2.5rem; color: #8b5a2b; text-shadow: 2px 2px 6px rgba(0,0,0,0.05); }
+        .sub { font-size: 1rem; color: #a07649; margin-top: 6px; }
         .current-date-box {
             background: rgba(139,90,43,0.08);
             display: inline-block;
@@ -108,7 +43,6 @@
             font-size: 0.9rem;
             color: #6b4925;
         }
-
         .card-of-day {
             background: linear-gradient(135deg, #fff5e6 0%, #ffe8d4 100%);
             border-radius: 24px;
@@ -117,7 +51,6 @@
             border: 2px solid #e8c9a8;
             box-shadow: 0 8px 20px rgba(0,0,0,0.08);
         }
-
         .card-of-day-title {
             display: flex;
             align-items: center;
@@ -127,7 +60,6 @@
             color: #8b5a2b;
             margin-bottom: 12px;
         }
-
         .card-of-day-content {
             font-size: 1rem;
             line-height: 1.4;
@@ -135,12 +67,7 @@
             color: #4a2c1a;
             margin-bottom: 10px;
         }
-
-        .card-of-day-trans {
-            font-size: 0.75rem;
-            color: #a08c78;
-        }
-
+        .card-of-day-trans { font-size: 0.75rem; color: #a08c78; }
         .motivation-block {
             background: linear-gradient(135deg, #e8dcc8 0%, #dacaa8 100%);
             border-radius: 24px;
@@ -149,7 +76,6 @@
             text-align: center;
             border: 1px solid rgba(139,90,43,0.2);
         }
-
         .motivation-quote {
             font-size: 1.1rem;
             font-style: italic;
@@ -157,37 +83,67 @@
             line-height: 1.4;
             font-family: 'Georgia', serif;
         }
-
-        .motivation-author {
-            margin-top: 10px;
-            font-size: 0.75rem;
-            color: #8b6946;
-        }
-
+        .motivation-author { margin-top: 10px; font-size: 0.75rem; color: #8b6946; }
         .back-button {
-            display: inline-block;
-            background: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 40px;
-            margin: 15px 0;
+            display: none;
+            align-items: center;
+            gap: 6px;
+            background: rgba(139,90,43,0.08);
+            border: 1px solid rgba(139,90,43,0.15);
+            padding: 8px 16px;
+            border-radius: 30px;
             cursor: pointer;
             font-size: 0.85rem;
-            color: #8b5a2b;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            color: #6b4925;
+            transition: all 0.2s;
+            margin: 10px 0;
         }
-
-        .back-button:hover {
-            background: #f4ebdd;
+        .back-button:hover { background: rgba(139,90,43,0.15); transform: translateX(-2px); }
+        #breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: rgba(139,90,43,0.06);
+            border-radius: 12px;
+            margin: 10px 0 16px 0;
+            font-size: 0.85rem;
+            color: #6b4925;
+            flex-wrap: wrap;
+            border: 1px solid rgba(139,90,43,0.08);
         }
-
+        #breadcrumbs .crumb { cursor: pointer; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
+        #breadcrumbs .crumb:hover { color: #8b5a2b; text-decoration: underline; }
+        #breadcrumbs .crumb.current { color: #8b5a2b; font-weight: 600; cursor: default; }
+        #breadcrumbs .crumb.current:hover { text-decoration: none; }
+        #breadcrumbs .separator { color: #c8b598; font-size: 0.7rem; }
+        #loadingIndicator {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, #8b5a2b, #d4a373);
+            z-index: 10000;
+            animation: loadingProgress 0.8s ease-in-out infinite;
+        }
+        #loadingIndicator.active { display: block; }
+        @keyframes loadingProgress {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .page-transition { animation: fadeSlideIn 0.3s ease-out; }
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         .sections-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 16px;
             margin: 20px 0;
         }
-
         .section-card, .subcat-card {
             background: white;
             border-radius: 20px;
@@ -197,39 +153,20 @@
             text-align: center;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
-
         .section-card:hover, .subcat-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             background: #fffbf5;
         }
-
-        .section-emoji, .subcat-emoji {
-            font-size: 2.4rem;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .section-name, .subcat-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #5c3e1e;
-        }
-
-        .section-desc, .subcat-desc {
-            font-size: 0.7rem;
-            color: #b8956a;
-            margin-top: 4px;
-        }
-
-        /* ========== ОПТИМИЗИРОВАННЫЕ КАРТОЧКИ ========== */
+        .section-emoji, .subcat-emoji { font-size: 2.4rem; display: block; margin-bottom: 8px; }
+        .section-name, .subcat-name { font-size: 1.1rem; font-weight: 600; color: #5c3e1e; }
+        .section-desc, .subcat-desc { font-size: 0.7rem; color: #b8956a; margin-top: 4px; }
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 16px;
             margin: 16px 0;
         }
-
         .card {
             background: white;
             border-radius: 20px;
@@ -239,12 +176,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             position: relative;
         }
-
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 14px rgba(0,0,0,0.08);
-        }
-
+        .card:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(0,0,0,0.08); }
         .card-badge {
             display: inline-block;
             background: #f4ebdd;
@@ -255,7 +187,6 @@
             color: #8b5a2b;
             margin-bottom: 10px;
         }
-
         .card-text {
             font-size: 0.95rem;
             line-height: 1.4;
@@ -263,7 +194,6 @@
             color: #2c241a;
             margin-bottom: 10px;
         }
-
         .card-translation {
             font-size: 0.7rem;
             color: #b8a690;
@@ -271,14 +201,12 @@
             padding-top: 8px;
             margin-bottom: 10px;
         }
-
         .button-group {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
             margin-top: 8px;
         }
-
         .share-btn, .copy-only-btn {
             border: none;
             padding: 6px 10px;
@@ -292,27 +220,10 @@
             flex: 1;
             justify-content: center;
         }
-
-        .share-btn {
-            background: #f0e2d2;
-            color: #8b5a2b;
-        }
-
-        .share-btn:hover {
-            background: #e8c9a8;
-            transform: translateY(-1px);
-        }
-
-        .copy-only-btn {
-            background: #e8dcc8;
-            color: #6b4925;
-        }
-
-        .copy-only-btn:hover {
-            background: #dacaa8;
-            transform: translateY(-1px);
-        }
-
+        .share-btn { background: #f0e2d2; color: #8b5a2b; }
+        .share-btn:hover { background: #e8c9a8; transform: translateY(-1px); }
+        .copy-only-btn { background: #e8dcc8; color: #6b4925; }
+        .copy-only-btn:hover { background: #dacaa8; transform: translateY(-1px); }
         .copy-stats {
             position: absolute;
             bottom: 8px;
@@ -323,7 +234,6 @@
             padding: 2px 6px;
             border-radius: 10px;
         }
-
         .toast-notification {
             position: fixed;
             bottom: 20px;
@@ -337,18 +247,10 @@
             z-index: 1000;
             animation: slideUp 0.3s ease-out;
         }
-
         @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
-
         .holidays-widget {
             background: white;
             border-radius: 20px;
@@ -357,7 +259,6 @@
             top: 20px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.04);
         }
-
         .widget-title {
             font-size: 1rem;
             font-weight: 700;
@@ -366,7 +267,6 @@
             padding-bottom: 10px;
             margin-bottom: 14px;
         }
-
         .holiday-item {
             padding: 8px 0;
             border-bottom: 1px solid #f0e2d2;
@@ -374,7 +274,6 @@
             align-items: center;
             gap: 10px;
         }
-
         .holiday-date {
             font-size: 0.65rem;
             background: #f4ebdd;
@@ -383,17 +282,8 @@
             min-width: 50px;
             text-align: center;
         }
-
-        .holiday-name {
-            font-size: 0.8rem;
-            color: #3a2a1a;
-        }
-
-        .holiday-name small {
-            font-size: 0.65rem;
-            color: #b8956a;
-        }
-
+        .holiday-name { font-size: 0.8rem; color: #3a2a1a; }
+        .holiday-name small { font-size: 0.65rem; color: #b8956a; }
         .stats-panel {
             background: white;
             border-radius: 20px;
@@ -402,7 +292,6 @@
             position: sticky;
             top: 20px;
         }
-
         .stats-title {
             font-size: 0.9rem;
             font-weight: 700;
@@ -412,12 +301,7 @@
             align-items: center;
             gap: 6px;
         }
-
-        .stats-title small {
-            font-size: 0.65rem;
-            font-weight: normal;
-        }
-
+        .stats-title small { font-size: 0.65rem; font-weight: normal; }
         .stats-item {
             display: flex;
             justify-content: space-between;
@@ -425,12 +309,7 @@
             font-size: 0.7rem;
             border-bottom: 1px solid #f0e2d2;
         }
-
-        .stats-reset {
-            margin-top: 10px;
-            text-align: center;
-        }
-
+        .stats-reset { margin-top: 10px; text-align: center; }
         .reset-stats-btn {
             background: none;
             border: none;
@@ -439,63 +318,6 @@
             cursor: pointer;
             text-decoration: underline;
         }
-
-        /* ========== БЛОК ПОЖЕРТВОВАНИЙ ========== */
-        .donation-block {
-            background: linear-gradient(135deg, #fff5e6 0%, #ffe8d4 100%);
-            border-radius: 20px;
-            padding: 20px;
-            margin-top: 20px;
-            text-align: center;
-            border: 1px solid rgba(139,90,43,0.2);
-        }
-
-        .donation-title {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #8b5a2b;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .donation-text {
-            font-size: 0.75rem;
-            color: #6b4925;
-            margin-bottom: 16px;
-            line-height: 1.4;
-        }
-
-        .donation-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #8b5a2b;
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.2s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .donation-btn:hover {
-            background: #6b4220;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(139,90,43,0.3);
-        }
-
-        .donation-note {
-            font-size: 0.6rem;
-            color: #b8956a;
-            margin-top: 12px;
-        }
-
         .footer {
             text-align: center;
             margin-top: 40px;
@@ -503,7 +325,6 @@
             background: rgba(139,90,43,0.05);
             border-radius: 40px;
         }
-
         .project-name {
             font-size: 1.5rem;
             font-weight: 400;
@@ -511,329 +332,554 @@
             color: #8b5a2b;
             font-family: 'Georgia', serif;
         }
-
-        /* ================================================================ */
-        /* ========== УЛУЧШЕННЫЙ ИНДИКАТОР ЗАГРУЗКИ ========== */
-        /* ================================================================ */
-        .loader-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 60px 20px;
-            min-height: 300px;
-        }
-
-        .loader-spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid rgba(139, 90, 43, 0.1);
-            border-top: 4px solid #8b5a2b;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin-bottom: 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .loader-text {
-            font-size: 1.1rem;
-            color: #8b5a2b;
-            margin-bottom: 8px;
-        }
-
-        .loader-sub {
-            font-size: 0.8rem;
-            color: #b8956a;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        .progress-container {
-            width: 100%;
-            max-width: 300px;
-            height: 6px;
-            background: rgba(139, 90, 43, 0.1);
-            border-radius: 10px;
-            margin-top: 16px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #8b5a2b, #c9a87c);
-            border-radius: 10px;
-            transition: width 0.3s ease;
-        }
-
-        /* ========== УЛУЧШЕННОЕ СООБЩЕНИЕ ОБ ОШИБКЕ ========== */
-        .error-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 60px 20px;
-            min-height: 300px;
-            background: rgba(201, 106, 42, 0.05);
-            border-radius: 24px;
-            border: 2px dashed #c96a2a;
-        }
-
-        .error-icon {
-            font-size: 4rem;
-            margin-bottom: 16px;
-        }
-
-        .error-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #8b5a2b;
-            margin-bottom: 8px;
-        }
-
-        .error-message {
-            font-size: 0.9rem;
-            color: #8b5a2b;
-            margin-bottom: 20px;
-            text-align: center;
-            max-width: 400px;
-        }
-
-        .error-btn {
-            background: #8b5a2b;
-            color: white;
-            border: none;
-            padding: 12px 32px;
-            border-radius: 40px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .error-btn:hover {
-            background: #6b4220;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(139, 90, 43, 0.3);
-        }
-
-        .error-details {
-            font-size: 0.65rem;
-            color: #b8956a;
-            margin-top: 12px;
-        }
-
-        /* ========== СКЕЛЕТОН (карточки-заглушки) ========== */
-        .skeleton-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 16px;
-            margin: 20px 0;
-        }
-
-        .skeleton-card {
-            background: white;
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            animation: shimmer 1.5s ease-in-out infinite;
-        }
-
-        .skeleton-emoji {
-            width: 40px;
-            height: 40px;
-            background: #f0e6d8;
-            border-radius: 50%;
-            margin: 0 auto 8px;
-        }
-
-        .skeleton-line {
-            height: 16px;
-            background: #f0e6d8;
-            border-radius: 8px;
-            margin: 6px auto;
-        }
-
-        .skeleton-line.short {
-            width: 60%;
-        }
-
-        .skeleton-line.long {
-            width: 80%;
-        }
-
-        @keyframes shimmer {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
-        /* Скелетон для карточек поздравлений */
-        .skeleton-greeting-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 16px;
-            margin: 16px 0;
-        }
-
-        .skeleton-greeting {
-            background: white;
-            border-radius: 20px;
-            padding: 16px;
-            border: 1px solid rgba(139,90,43,0.12);
-            animation: shimmer 1.5s ease-in-out infinite;
-        }
-
-        .skeleton-badge {
-            width: 100px;
-            height: 20px;
-            background: #f0e6d8;
-            border-radius: 20px;
-            margin-bottom: 10px;
-        }
-
-        .skeleton-text-line {
-            height: 18px;
-            background: #f0e6d8;
-            border-radius: 4px;
-            margin: 6px 0;
-        }
-
-        .skeleton-text-line.w70 { width: 70%; }
-        .skeleton-text-line.w60 { width: 60%; }
-        .skeleton-text-line.w90 { width: 90%; }
-        .skeleton-text-line.w80 { width: 80%; }
-
-        .skeleton-divider {
-            height: 1px;
-            background: #f0e6d8;
-            margin: 10px 0;
-        }
-
-        .skeleton-btn-group {
-            display: flex;
-            gap: 8px;
-        }
-
-        .skeleton-btn {
-            flex: 1;
-            height: 30px;
-            background: #f0e6d8;
-            border-radius: 16px;
-        }
-
         @media (max-width: 900px) {
             .main-layout { flex-direction: column; }
             .card-of-day-content { font-size: 0.9rem; }
             h1 { font-size: 1.6rem; }
             .button-group { flex-direction: column; }
             .cards-grid { grid-template-columns: 1fr; gap: 12px; }
+            #breadcrumbs {
+                font-size: 0.75rem;
+                padding: 8px 12px;
+                overflow-x: auto;
+                white-space: nowrap;
+                flex-wrap: nowrap;
+            }
+            #breadcrumbs::-webkit-scrollbar { display: none; }
+            .back-button { padding: 6px 12px; font-size: 0.75rem; }
+        }
+        @media (max-width: 480px) {
+            body { padding: 10px; }
+            .section-card, .subcat-card { padding: 14px; }
+            .sections-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <header>
-        <h1>🌾 ЙЫЛЫ һҮҘҘӘР 🌾</h1>
-        <div class="sub">Башҡортса ҡотлауҙар — һәр көн өсөн йылы теләктәр</div>
-        <div class="current-date-box" id="currentDateBox"></div>
-    </header>
-
-    <div id="navigation">
-        <button class="back-button" id="backBtn" style="display: none;">← Артҡа / Назад</button>
-    </div>
-
-    <div class="main-layout">
-        <div class="content-area">
-            <div id="cardOfDayContainer"></div>
-            <div id="motivationBlock" style="display: none;"></div>
-            <div id="contentContainer"></div>
+    <div id="loadingIndicator"></div>
+    <div class="container">
+        <header>
+            <h1>🌾 ЙЫЛЫ һҮҘҘӘР 🌾</h1>
+            <div class="sub">Башҡортса ҡотлауҙар — һәр көн өсөн йылы теләктәр</div>
+            <div class="current-date-box" id="currentDateBox"></div>
+        </header>
+        <div id="navigation">
+            <button class="back-button" id="backBtn">
+                <span id="backIcon">←</span>
+                <span id="backText">Артҡа / Назад</span>
+            </button>
         </div>
-
-        <div class="sidebar">
-            <div class="stats-panel" id="statsPanel">
-                <div class="stats-title">📊 Күсереп алыу статистикаһы<br><small>Статистика копирований</small></div>
-                <div id="statsContent"></div>
-                <div class="stats-reset">
-                    <button class="reset-stats-btn" onclick="resetAllStats()">Сбросить статистику</button>
+        <div id="breadcrumbs"></div>
+        <div class="main-layout">
+            <div class="content-area">
+                <div id="cardOfDayContainer"></div>
+                <div id="motivationBlock" style="display: none;"></div>
+                <div id="contentContainer">
+                    <div style="text-align:center; padding:60px;">📡 Мәғлүмәт тейәлә...</div>
                 </div>
             </div>
-            <div class="holidays-widget">
-                <div class="widget-title">📅 Яҡын киләсәк байрамдар</div>
-                <div id="holidaysContent"></div>
-            </div>
-            
-            <!-- ========== БЛОК ПОЖЕРТВОВАНИЙ ========== -->
-            <div class="donation-block">
-                <div class="donation-title">
-                    ☕ Проектҡа ярҙам / Помочь проекту
+            <div class="sidebar">
+                <div class="stats-panel" id="statsPanel">
+                    <div class="stats-title">📊 Күсереп алыу статистикаһы<br><small>Статистика копирований</small></div>
+                    <div id="statsContent"></div>
+                    <div class="stats-reset">
+                        <button class="reset-stats-btn" onclick="resetAllStats()">Сбросить статистику</button>
+                    </div>
                 </div>
-                <div class="donation-text">
-                    Һеҙҙең ярҙам — проектты үҫтереү өсөн иң яҡшы этәргес.<br>
-                    Ваша поддержка — лучший стимул для развития проекта.
-                </div>
-                <button class="donation-btn" id="donationBtn">
-                    🤝 Помочь / Ярҙам итеү
-                </button>
-                <div class="donation-note">
-                    ЮMoney · Банковская карта · СБП
+                <div class="holidays-widget">
+                    <div class="widget-title">📅 Яҡын киләсәк байрамдар</div>
+                    <div id="holidaysContent"></div>
                 </div>
             </div>
         </div>
+        <div class="footer">
+            <div class="project-name">ЙЫЛЫ һҮҘҘӘР<br><small>yily huzzar</small></div>
+            <div style="font-size:0.75rem; margin-top:10px;">❤️ Йөрәк йылыһы — туған телдә әйтелгән һүҙҙә</div>
+        </div>
     </div>
 
-    <div class="footer">
-        <div class="project-name">ЙЫЛЫ һҮҘҘӘР<br><small>yily huzzar</small></div>
-        <div style="font-size:0.75rem; margin-top:10px;">❤️ Йөрәк йылыһы — туған телдә әйтелгән һүҙҙә</div>
-    </div>
-</div>
+    <script>
+    // ============================================================
+    // ===== ПОЛНАЯ ВЕРСИЯ С ДИНАМИЧЕСКОЙ ЗАГРУЗКОЙ =====
+    // ============================================================
 
-<script>
-    // ========== ЗАГРУЗКА ДАННЫХ ==========
     let siteData = null;
     let currentSection = null;
     let currentSubcat = null;
-    let isSearchMode = false;
-    
     const STATS_KEY = 'greeting_copy_stats';
-    
     const contentContainer = document.getElementById('contentContainer');
     const backBtn = document.getElementById('backBtn');
     const motivationBlock = document.getElementById('motivationBlock');
     const cardOfDayContainer = document.getElementById('cardOfDayContainer');
     const holidaysContent = document.getElementById('holidaysContent');
     const statsContent = document.getElementById('statsContent');
-    
-    // ========== ДОНАТЫ ==========
-    const DONATION_URL = 'https://yoomoney.ru/to/4100119532722543';
-    
-    document.getElementById('donationBtn')?.addEventListener('click', () => {
-        window.open(DONATION_URL, '_blank');
+    const breadcrumbs = document.getElementById('breadcrumbs');
+    const loadingIndicator = document.getElementById('loadingIndicator');
+
+    // ============================================================
+    // ===== ДИНАМИЧЕСКАЯ ЗАГРУЗКА ВСЕХ JSON ФАЙЛОВ =====
+    // ============================================================
+
+    // 🔥 ГЛАВНОЕ: загружаем ВСЕ JSON файлы из папки data/
+    async function loadAllJsonFiles() {
+        const allData = {
+            sections: {},
+            holidays_widget: []
+        };
+
+        try {
+            // Пытаемся получить список файлов из data/
+            // Для GitHub Pages используем фиксированный список + автообнаружение
+            const baseFiles = [
+                'data/data.json',
+                'data/data_professional.json',
+                'data/data_holidays.json',
+                'data/data_birthday.json',
+                'data/data_military.json',
+                'data/data_wedding.json',
+                'data/data_live.json'
+            ];
+
+            // Пытаемся найти дополнительные файлы через fetch
+            let allFiles = [...baseFiles];
+            
+            // Проверяем наличие дополнительных файлов
+            const extraFiles = [
+                'data/pritches.json',
+                'data/medsister.json',
+                'data/medsister_new.json'
+            ];
+
+            for (const file of extraFiles) {
+                try {
+                    const response = await fetch(file, { method: 'HEAD' });
+                    if (response.ok) {
+                        allFiles.push(file);
+                        console.log(`📄 Найден дополнительный файл: ${file}`);
+                    }
+                } catch (e) {
+                    // файл не существует, пропускаем
+                }
+            }
+
+            console.log('📄 Загружаемые файлы:', allFiles);
+
+            // Загружаем все файлы параллельно
+            const promises = allFiles.map(async (file) => {
+                try {
+                    const response = await fetch(file + '?v=' + Date.now());
+                    if (!response.ok) return null;
+                    const data = await response.json();
+                    console.log(`✅ Загружено: ${file}`);
+                    return { file, data };
+                } catch (error) {
+                    console.warn(`⚠️ Ошибка ${file}:`, error.message);
+                    return null;
+                }
+            });
+
+            const results = await Promise.all(promises);
+
+            // Объединяем результаты
+            for (const result of results) {
+                if (!result) continue;
+                const { file, data } = result;
+
+                if (data.sections) {
+                    for (const [key, section] of Object.entries(data.sections)) {
+                        // Если раздел уже существует, объединяем подкатегории
+                        if (allData.sections[key]) {
+                            console.log(`🔄 Объединение раздела "${key}" из ${file}`);
+                            const existing = allData.sections[key];
+                            const newSubs = section.subcategories || {};
+                            for (const [subKey, subcat] of Object.entries(newSubs)) {
+                                if (!existing.subcategories[subKey]) {
+                                    existing.subcategories[subKey] = subcat;
+                                } else {
+                                    // Объединяем поздравления
+                                    const existingGreetings = existing.subcategories[subKey].greetings || [];
+                                    const newGreetings = subcat.greetings || [];
+                                    existing.subcategories[subKey].greetings = [...existingGreetings, ...newGreetings];
+                                }
+                            }
+                        } else {
+                            allData.sections[key] = section;
+                        }
+                    }
+                }
+
+                if (data.holidays_widget) {
+                    allData.holidays_widget = [...allData.holidays_widget, ...data.holidays_widget];
+                }
+            }
+
+            // Дедупликация праздников
+            const uniqueHolidays = new Map();
+            allData.holidays_widget.forEach(h => {
+                const key = h.date;
+                if (!uniqueHolidays.has(key)) {
+                    uniqueHolidays.set(key, h);
+                }
+            });
+            allData.holidays_widget = Array.from(uniqueHolidays.values());
+            allData.holidays_widget.sort((a, b) => a.date.localeCompare(b.date));
+
+            siteData = allData;
+            console.log(`📊 Всего разделов: ${Object.keys(siteData.sections).length}`);
+            console.log(`📊 Всего праздников: ${siteData.holidays_widget.length}`);
+
+            return true;
+
+        } catch (error) {
+            console.error('❌ Ошибка загрузки:', error);
+            contentContainer.innerHTML = `<div style="text-align:center;padding:60px;color:#c96a2a;">
+                ❌ Ошибка загрузки данных<br>
+                <small>${error.message}</small>
+            </div>`;
+            return false;
+        }
+    }
+
+    // ============================================================
+    // ===== SPA-НАВИГАЦИЯ =====
+    // ============================================================
+
+    const navState = {
+        currentSection: null,
+        currentSubcat: null,
+        isInitialized: false,
+        navigationHistory: []
+    };
+
+    function parseUrl() {
+        const hash = window.location.hash.replace('#', '');
+        if (!hash) return { section: null, subcat: null };
+        const parts = hash.split('/');
+        return {
+            section: parts[0] || null,
+            subcat: parts[1] || null
+        };
+    }
+
+    function navigateTo(section, subcat, options = {}) {
+        const { replace = false, animate = true } = options;
+        
+        navState.currentSection = section;
+        navState.currentSubcat = subcat;
+        
+        const url = new URL(window.location);
+        if (section) {
+            url.hash = subcat ? `${section}/${subcat}` : section;
+        } else {
+            url.hash = '';
+        }
+        
+        if (replace) {
+            history.replaceState({ section, subcat }, '', url.toString());
+        } else {
+            history.pushState({ section, subcat }, '', url.toString());
+            navState.navigationHistory.push({ section, subcat });
+        }
+        
+        updateContent(section, subcat, animate);
+        updateBreadcrumbs(section, subcat);
+        updateBackButton();
+        updateMeta(section, subcat);
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateContent(section, subcat, animate = true) {
+        showLoading(true);
+        
+        setTimeout(() => {
+            let html = '';
+            
+            if (!siteData) {
+                html = '<div style="text-align:center;padding:60px;">⚠️ Данные не загружены</div>';
+            } else if (section && subcat) {
+                html = renderGreetingsContent(section, subcat);
+            } else if (section) {
+                html = renderSubcategoriesContent(section);
+            } else {
+                html = renderSectionsContent();
+            }
+            
+            contentContainer.className = animate ? 'page-transition' : '';
+            contentContainer.innerHTML = html;
+            
+            bindEvents(section, subcat);
+            showLoading(false);
+            
+            if (!section && !subcat) {
+                renderStats();
+                renderHolidaysWidget();
+                renderCardOfDay();
+                showMotivationBlock(true);
+            } else {
+                showMotivationBlock(false);
+                cardOfDayContainer.innerHTML = '';
+            }
+        }, 50);
+    }
+
+    // ============================================================
+    // ===== РЕНДЕР РАЗДЕЛОВ (АВТОМАТИЧЕСКИ ВИДИТ ВСЕ НОВЫЕ) =====
+    // ============================================================
+
+    function renderSectionsContent() {
+        let html = `<div class="sections-grid">`;
+        
+        const sections = Object.entries(siteData.sections)
+            .sort((a, b) => (a[1].order || 999) - (b[1].order || 999));
+        
+        for (const [key, section] of sections) {
+            const hasContent = Object.values(section.subcategories || {})
+                .some(sub => (sub.greetings || []).length > 0);
+            
+            html += `
+                <div class="section-card" data-section="${key}" data-has-content="${hasContent}">
+                    <span class="section-emoji">${escapeHtml(section.emoji)}</span>
+                    <div class="section-name">${escapeHtml(section.name_ba)}</div>
+                    <div class="section-desc">${escapeHtml(section.name_ru)}</div>
+                    ${!hasContent ? '<div style="font-size:0.6rem;color:#999;margin-top:6px;">⏳ Скоро появится</div>' : ''}
+                </div>
+            `;
+        }
+        
+        html += `</div>`;
+        return html;
+    }
+
+    function renderSubcategoriesContent(sectionKey) {
+        const section = siteData.sections[sectionKey];
+        if (!section) return '<div style="text-align:center;padding:40px;">❌ Раздел не найден</div>';
+        
+        let html = `
+            <div style="margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+                <h2 style="color:#8b5a2b;display:flex;align-items:center;gap:10px;">
+                    <span>${escapeHtml(section.emoji)}</span>
+                    <span>${escapeHtml(section.name_ba)}</span>
+                    <span style="font-size:0.7rem;color:#b8956a;">${escapeHtml(section.name_ru)}</span>
+                </h2>
+                <span style="font-size:0.75rem;color:#b8956a;">
+                    ${Object.keys(section.subcategories).filter(k => (section.subcategories[k].greetings || []).length > 0).length} подкатегорий
+                </span>
+            </div>
+            <div class="sections-grid">
+        `;
+        
+        const subcats = Object.entries(section.subcategories)
+            .sort((a, b) => (a[1].order || 999) - (b[1].order || 999));
+        
+        for (const [key, subcat] of subcats) {
+            const hasGreetings = (subcat.greetings || []).length > 0;
+            html += `
+                <div class="subcat-card" data-subcat="${key}" ${!hasGreetings ? 'style="opacity:0.6;"' : ''}>
+                    <span class="subcat-emoji">${escapeHtml(subcat.emoji)}</span>
+                    <div class="subcat-name">${escapeHtml(subcat.name_ba)}</div>
+                    <div class="subcat-desc">${escapeHtml(subcat.name_ru)}</div>
+                    ${!hasGreetings ? '<div style="font-size:0.55rem;color:#999;margin-top:4px;">⏳ Поздравления в разработке</div>' : ''}
+                </div>
+            `;
+        }
+        
+        html += `</div>`;
+        return html;
+    }
+
+    function renderGreetingsContent(sectionKey, subcatKey) {
+        const section = siteData.sections[sectionKey];
+        if (!section) return '<div style="text-align:center;padding:40px;">❌ Раздел не найден</div>';
+        
+        const subcat = section.subcategories[subcatKey];
+        if (!subcat) return '<div style="text-align:center;padding:40px;">❌ Подкатегория не найдена</div>';
+        
+        const greetings = subcat.greetings || [];
+        if (greetings.length === 0) {
+            return `
+                <div style="text-align:center;padding:60px;color:#b8956a;">
+                    <div style="font-size:3rem;margin-bottom:16px;">${escapeHtml(subcat.emoji)}</div>
+                    <h3>${escapeHtml(subcat.name_ba)}</h3>
+                    <p style="margin-top:8px;">⏳ Поздравления скоро появятся</p>
+                </div>
+            `;
+        }
+        
+        let html = `
+            <div style="margin-bottom:16px;">
+                <h2 style="color:#8b5a2b;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                    <span>${escapeHtml(subcat.emoji)}</span>
+                    <span>${escapeHtml(subcat.name_ba)}</span>
+                    <span style="font-size:0.7rem;color:#b8956a;">${escapeHtml(subcat.name_ru)}</span>
+                    <span style="font-size:0.7rem;color:#b8956a;margin-left:auto;">${greetings.length} поздравлений</span>
+                </h2>
+            </div>
+            <div class="cards-grid">
+        `;
+        
+        greetings.forEach((g, index) => {
+            const greetingId = generateGreetingId(sectionKey, subcatKey, index, g.text_ba);
+            const stats = getStats();
+            const copyCount = stats[greetingId] ? (stats[greetingId].full + stats[greetingId].only_ba) : 0;
+            
+            html += `
+                <div class="card">
+                    <div class="card-badge">${escapeHtml(subcat.name_ba)}</div>
+                    <div class="card-text">${escapeHtml(g.text_ba)}</div>
+                    <div class="card-translation">💭 ${escapeHtml(g.translation_ru)}</div>
+                    <div class="button-group">
+                        <button class="share-btn" data-greeting-id="${greetingId}" data-ba='${escapeHtml(g.text_ba)}' data-ru='${escapeHtml(g.translation_ru)}'>
+                            📤 Поделиться
+                        </button>
+                        <button class="copy-only-btn" data-greeting-id="${greetingId}" data-ba='${escapeHtml(g.text_ba)}'>
+                            📋 Только башк.
+                        </button>
+                    </div>
+                    ${copyCount > 0 ? `<div class="copy-stats">📊 ${copyCount}</div>` : ''}
+                </div>
+            `;
+        });
+        
+        html += `</div>`;
+        return html;
+    }
+
+    // ============================================================
+    // ===== ОСТАЛЬНЫЕ ФУНКЦИИ (статистика, копирование и т.д.) =====
+    // ============================================================
+
+    function bindEvents(section, subcat) {
+        document.querySelectorAll('.section-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const sectionKey = this.getAttribute('data-section');
+                const hasContent = this.getAttribute('data-has-content') === 'true';
+                if (hasContent) {
+                    navigateTo(sectionKey);
+                } else {
+                    showToast('⏳ Этот раздел скоро появится');
+                }
+            });
+        });
+        
+        document.querySelectorAll('.subcat-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const subcatKey = this.getAttribute('data-subcat');
+                const hasGreetings = !this.style.opacity || this.style.opacity !== '0.6';
+                if (hasGreetings) {
+                    navigateTo(navState.currentSection, subcatKey);
+                } else {
+                    showToast('⏳ Поздравления в разработке');
+                }
+            });
+        });
+        
+        document.querySelectorAll('.share-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const baText = this.getAttribute('data-ba');
+                const ruText = this.getAttribute('data-ru');
+                const id = this.getAttribute('data-greeting-id');
+                copyToClipboard(ruText, baText, id);
+            });
+        });
+        
+        document.querySelectorAll('.copy-only-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const baText = this.getAttribute('data-ba');
+                const id = this.getAttribute('data-greeting-id');
+                copyOnlyBashkir(baText, id);
+            });
+        });
+    }
+
+    function updateBreadcrumbs(section, subcat) {
+        if (!breadcrumbs) return;
+        let html = '';
+        html += `<span class="crumb" onclick="navigateTo()">🏠 Главная</span>`;
+        if (section) {
+            const sectionName = siteData?.sections[section]?.name_ba || section;
+            html += `<span class="separator">›</span>`;
+            html += `<span class="crumb" onclick="navigateTo('${section}')">${escapeHtml(sectionName)}</span>`;
+        }
+        if (subcat) {
+            const subcatName = siteData?.sections[section]?.subcategories[subcat]?.name_ba || subcat;
+            html += `<span class="separator">›</span>`;
+            html += `<span class="crumb current">${escapeHtml(subcatName)}</span>`;
+        }
+        breadcrumbs.innerHTML = html;
+    }
+
+    function updateBackButton() {
+        if (!backBtn) return;
+        const show = navState.currentSection !== null || navState.navigationHistory.length > 0;
+        backBtn.style.display = show ? 'flex' : 'none';
+    }
+
+    backBtn.addEventListener('click', function() {
+        if (navState.navigationHistory.length > 1) {
+            history.back();
+        } else if (navState.currentSection) {
+            navigateTo(null);
+        } else {
+            showToast('🏠 Вы на главной странице');
+        }
     });
-    
-    // ========== СТАТИСТИКА ==========
+
+    function updateMeta(section, subcat) {
+        let title = 'Йылы һүҙҙәр — Поздравления на башкирском';
+        let description = 'Коллекция поздравлений, пожеланий и слов поддержки на башкирском языке с переводом на русский.';
+        
+        if (section && siteData?.sections[section]) {
+            const sectionData = siteData.sections[section];
+            title = `${sectionData.name_ba} — ${sectionData.name_ru} | Йылы һүҙҙәр`;
+            description = `${sectionData.name_ba} (${sectionData.name_ru}) — поздравления на башкирском языке с переводом.`;
+            
+            if (subcat && sectionData.subcategories[subcat]) {
+                const subcatData = sectionData.subcategories[subcat];
+                title = `${subcatData.name_ba} — ${subcatData.name_ru} | ${sectionData.name_ba}`;
+                description = `${subcatData.name_ba} (${subcatData.name_ru}) — поздравления на башкирском языке.`;
+            }
+        }
+        
+        document.title = title;
+        document.querySelector('meta[name="description"]')?.setAttribute('content', description);
+        document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
+        document.querySelector('meta[property="og:description"]')?.setAttribute('content', description);
+    }
+
+    function showLoading(active) {
+        if (loadingIndicator) {
+            loadingIndicator.className = active ? 'active' : '';
+        }
+    }
+
+    window.addEventListener('popstate', function(e) {
+        const { section, subcat } = e.state || { section: null, subcat: null };
+        navState.currentSection = section;
+        navState.currentSubcat = subcat;
+        updateContent(section, subcat, true);
+        updateBreadcrumbs(section, subcat);
+        updateBackButton();
+        updateMeta(section, subcat);
+        if (navState.navigationHistory.length > 0) {
+            navState.navigationHistory.pop();
+        }
+    });
+
+    // ============================================================
+    // ===== СТАТИСТИКА =====
+    // ============================================================
+
     function getStats() {
         const saved = localStorage.getItem(STATS_KEY);
-        if (saved) {
-            return JSON.parse(saved);
-        }
-        return {};
+        return saved ? JSON.parse(saved) : {};
     }
-    
+
     function saveStats(stats) {
         localStorage.setItem(STATS_KEY, JSON.stringify(stats));
         renderStats();
     }
-    
+
     function incrementStats(greetingId, type, baText, ruText) {
         const stats = getStats();
         if (!stats[greetingId]) {
@@ -846,22 +892,20 @@
         }
         saveStats(stats);
     }
-    
+
     function renderStats() {
+        if (!statsContent) return;
         const stats = getStats();
         const entries = Object.entries(stats);
-        
         if (entries.length === 0) {
-            statsContent.innerHTML = '<div style="text-align:center; color:#b8956a; padding:8px;">Пока нет копирований</div>';
+            statsContent.innerHTML = '<div style="text-align:center;color:#b8956a;padding:8px;">Пока нет копирований</div>';
             return;
         }
-        
         const sorted = entries.sort((a, b) => {
             const totalA = a[1].full + a[1].only_ba;
             const totalB = b[1].full + b[1].only_ba;
             return totalB - totalA;
         });
-        
         let html = '';
         sorted.slice(0, 8).forEach(([id, data]) => {
             const total = data.full + data.only_ba;
@@ -871,48 +915,42 @@
                     <span title="${escapeHtml(data.text_ba || '')}">📖 ${escapeHtml(baText)}</span>
                     <span>📊 ${total}</span>
                 </div>
-                <div class="stats-item" style="font-size:0.65rem; color:#c8b598; padding-left:12px;">
+                <div class="stats-item" style="font-size:0.65rem;color:#c8b598;padding-left:12px;">
                     <span>📤 Полный: ${data.full}</span>
                     <span>📋 Только баш.: ${data.only_ba}</span>
                 </div>
             `;
         });
-        
         statsContent.innerHTML = html;
     }
-    
+
     function resetAllStats() {
         if (confirm('Сбросить всю статистику копирований?')) {
             localStorage.removeItem(STATS_KEY);
             renderStats();
             showToast('Статистика сброшена');
-            if (currentSection && currentSubcat) {
-                renderGreetings();
+            if (navState.currentSection && navState.currentSubcat) {
+                updateContent(navState.currentSection, navState.currentSubcat, false);
             }
         }
     }
-    
-    // ========== КОПИРОВАНИЕ ==========
+
+    // ============================================================
+    // ===== КОПИРОВАНИЕ =====
+    // ============================================================
+
     async function copyToClipboard(ruText, baText, greetingId) {
         const shareText = `${baText}\n\n💭 ${ruText}`;
-        
         incrementStats(greetingId, 'full', baText, ruText);
-        
         if (navigator.share && window.innerWidth <= 768) {
             try {
-                await navigator.share({
-                    title: 'Поздравление на башкирском',
-                    text: shareText
-                });
+                await navigator.share({ title: 'Поздравление на башкирском', text: shareText });
                 showToast('Поделились!');
                 return;
             } catch (err) {
-                if (err.name !== 'AbortError') {
-                    console.log('Share failed:', err);
-                }
+                if (err.name !== 'AbortError') console.log('Share failed:', err);
             }
         }
-        
         try {
             await navigator.clipboard.writeText(shareText);
             showToast('✅ Поздравление скопировано!');
@@ -925,30 +963,22 @@
             document.body.removeChild(textarea);
             showToast('✅ Поздравление скопировано!');
         }
-        
-        if (currentSection && currentSubcat) {
-            renderGreetings();
+        if (navState.currentSection && navState.currentSubcat) {
+            updateContent(navState.currentSection, navState.currentSubcat, false);
         }
     }
-    
+
     async function copyOnlyBashkir(baText, greetingId) {
         incrementStats(greetingId, 'only_ba', baText, '');
-        
         if (navigator.share && window.innerWidth <= 768) {
             try {
-                await navigator.share({
-                    title: 'Поздравление на башкирском',
-                    text: baText
-                });
+                await navigator.share({ title: 'Поздравление на башкирском', text: baText });
                 showToast('Поделились!');
                 return;
             } catch (err) {
-                if (err.name !== 'AbortError') {
-                    console.log('Share failed:', err);
-                }
+                if (err.name !== 'AbortError') console.log('Share failed:', err);
             }
         }
-        
         try {
             await navigator.clipboard.writeText(baText);
             showToast('✅ Только башкирский текст скопирован!');
@@ -961,182 +991,19 @@
             document.body.removeChild(textarea);
             showToast('✅ Только башкирский текст скопирован!');
         }
-        
-        if (currentSection && currentSubcat) {
-            renderGreetings();
+        if (navState.currentSection && navState.currentSubcat) {
+            updateContent(navState.currentSection, navState.currentSubcat, false);
         }
     }
-    
-    function showToast(message) {
-        const toast = document.createElement('div');
-        toast.className = 'toast-notification';
-        toast.textContent = message;
-        document.body.appendChild(toast);
-        setTimeout(() => toast.remove(), 2000);
+
+    function generateGreetingId(sectionKey, subcatKey, index, text) {
+        return `${sectionKey}_${subcatKey}_${index}_${text.substring(0, 20)}`.replace(/[^a-zA-Z0-9_-]/g, '_');
     }
-    
-    // ================================================================
-    // ========== УЛУЧШЕННАЯ ЗАГРУЗКА С ИНДИКАТОРАМИ ==========
-    // ================================================================
-    
-    // ---------- ИНДИКАТОР ЗАГРУЗКИ (спиннер + прогресс) ----------
-    function showLoader() {
-        contentContainer.innerHTML = `
-            <div class="loader-container">
-                <div class="loader-spinner"></div>
-                <div class="loader-text">📡 Мәғлүмәт тейәлә...</div>
-                <div class="loader-sub">Загрузка поздравлений</div>
-                <div class="progress-container">
-                    <div class="progress-bar" id="progressBar"></div>
-                </div>
-            </div>
-        `;
-        
-        // Анимируем прогресс-бар (для красоты)
-        let progress = 0;
-        const interval = setInterval(() => {
-            progress += Math.random() * 10;
-            if (progress > 90) progress = 90;
-            const bar = document.getElementById('progressBar');
-            if (bar) bar.style.width = Math.min(progress, 90) + '%';
-        }, 300);
-        
-        window._loaderInterval = interval;
-    }
-    
-    // ---------- СКЕЛЕТОН (карточки-заглушки) ----------
-    function showSkeleton() {
-        // Скелетон для разделов
-        let html = `<div class="skeleton-grid">`;
-        for (let i = 0; i < 6; i++) {
-            html += `
-                <div class="skeleton-card">
-                    <div class="skeleton-emoji"></div>
-                    <div class="skeleton-line short"></div>
-                    <div class="skeleton-line long"></div>
-                </div>
-            `;
-        }
-        html += `</div>`;
-        contentContainer.innerHTML = html;
-    }
-    
-    function showSkeletonGreetings() {
-        // Скелетон для карточек поздравлений
-        let html = `<div class="skeleton-greeting-grid">`;
-        for (let i = 0; i < 4; i++) {
-            html += `
-                <div class="skeleton-greeting">
-                    <div class="skeleton-badge"></div>
-                    <div class="skeleton-text-line w90"></div>
-                    <div class="skeleton-text-line w70"></div>
-                    <div class="skeleton-text-line w80"></div>
-                    <div class="skeleton-divider"></div>
-                    <div class="skeleton-text-line w60"></div>
-                    <div class="skeleton-divider"></div>
-                    <div class="skeleton-btn-group">
-                        <div class="skeleton-btn"></div>
-                        <div class="skeleton-btn"></div>
-                    </div>
-                </div>
-            `;
-        }
-        html += `</div>`;
-        contentContainer.innerHTML = html;
-    }
-    
-    // ---------- СООБЩЕНИЕ ОБ ОШИБКЕ ----------
-    function showError(message, details = '') {
-        if (window._loaderInterval) {
-            clearInterval(window._loaderInterval);
-            window._loaderInterval = null;
-        }
-        
-        contentContainer.innerHTML = `
-            <div class="error-container">
-                <div class="error-icon">😔</div>
-                <div class="error-title">${escapeHtml(message)}</div>
-                <div class="error-message">
-                    ${escapeHtml(details || 'Попробуйте обновить страницу или повторить позже')}
-                </div>
-                <button class="error-btn" onclick="retryLoad()">
-                    🔄 Повторить / Ҡабатлау
-                </button>
-                <div class="error-details">
-                    Если проблема повторяется, проверьте файл <strong>data.json</strong>
-                </div>
-            </div>
-        `;
-    }
-    
-    // ---------- ПОВТОРНАЯ ЗАГРУЗКА ----------
-    async function retryLoad() {
-        showLoader();
-        await new Promise(resolve => setTimeout(resolve, 500));
-        try {
-            const response = await fetch('data.json?v=' + Date.now());
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            const data = await response.json();
-            siteData = data;
-            renderStats();
-            renderHolidaysWidget();
-            renderSections();
-            updateNavigation();
-        } catch (error) {
-            showError('Не удалось загрузить данные', error.message);
-        }
-    }
-    
-    // ---------- ОСНОВНАЯ ЗАГРУЗКА ДАННЫХ ----------
-    async function loadData() {
-        // Показываем индикатор с прогрессом
-        showLoader();
-        
-        try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 10000);
-            
-            const response = await fetch('data.json?v=' + Date.now(), {
-                signal: controller.signal
-            });
-            
-            clearTimeout(timeoutId);
-            
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-            }
-            
-            // Небольшая задержка для демонстрации анимации (можно убрать)
-            await new Promise(resolve => setTimeout(resolve, 500));
-            
-            const data = await response.json();
-            
-            if (!data.sections) {
-                throw new Error('Неверная структура data.json: нет секции "sections"');
-            }
-            
-            siteData = data;
-            return true;
-            
-        } catch (error) {
-            let userMessage = 'Не удалось загрузить поздравления';
-            let details = error.message;
-            
-            if (error.name === 'AbortError') {
-                userMessage = 'Загрузка заняла слишком много времени';
-                details = 'Проверьте подключение к интернету';
-            } else if (error.name === 'TypeError' && error.message.includes('fetch')) {
-                userMessage = 'Нет соединения с сервером';
-                details = 'Проверьте интернет-соединение';
-            }
-            
-            showError(userMessage, details);
-            return false;
-        }
-    }
-    
-    // ========== ОСТАЛЬНАЯ ЛОГИКА ==========
-    
+
+    // ============================================================
+    // ===== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ =====
+    // ============================================================
+
     function getAllGreetings() {
         if (!siteData) return [];
         const all = [];
@@ -1144,7 +1011,7 @@
             const section = siteData.sections[secKey];
             for (let subKey in section.subcategories) {
                 const subcat = section.subcategories[subKey];
-                subcat.greetings.forEach(g => {
+                (subcat.greetings || []).forEach(g => {
                     all.push({
                         text_ba: g.text_ba,
                         translation_ru: g.translation_ru,
@@ -1158,7 +1025,7 @@
         }
         return all;
     }
-    
+
     function getTodaysGreeting() {
         const all = getAllGreetings();
         if (!all.length) return null;
@@ -1173,8 +1040,9 @@
         localStorage.setItem('cardOfDay', JSON.stringify({ date: today, greeting: greeting }));
         return greeting;
     }
-    
+
     function renderCardOfDay() {
+        if (!cardOfDayContainer) return;
         const card = getTodaysGreeting();
         if (!card) return;
         cardOfDayContainer.innerHTML = `
@@ -1186,22 +1054,19 @@
             </div>
         `;
     }
-    
+
     function renderHolidaysWidget() {
-        if (!siteData || !siteData.holidays_widget) {
-            if (holidaysContent) holidaysContent.innerHTML = '<div class="holiday-item">Загрузка...</div>';
+        if (!holidaysContent || !siteData || !siteData.holidays_widget) {
+            holidaysContent.innerHTML = '<div class="holiday-item">Загрузка...</div>';
             return;
         }
-        
         const holidays = siteData.holidays_widget;
         if (!holidays.length) {
             holidaysContent.innerHTML = '<div class="holiday-item">Ближайших праздников нет</div>';
             return;
         }
-        
         const today = new Date();
         const currentYear = today.getFullYear();
-        
         const holidaysWithDates = holidays.map(h => {
             if (!h.date) return { ...h, timestamp: Infinity, displayDate: '???' };
             const parts = h.date.split('-');
@@ -1217,10 +1082,8 @@
                 timestamp: holidayDate.getTime()
             };
         });
-        
         holidaysWithDates.sort((a, b) => a.timestamp - b.timestamp);
         const upcoming = holidaysWithDates.slice(0, 8);
-        
         let html = '';
         upcoming.forEach(h => {
             const nameBa = h.name_ba || '???';
@@ -1232,11 +1095,11 @@
                 </div>
             `;
         });
-        
         holidaysContent.innerHTML = html;
     }
-    
+
     function showMotivationBlock(show) {
+        if (!motivationBlock) return;
         if (show) {
             motivationBlock.style.display = 'block';
             motivationBlock.innerHTML = `
@@ -1250,167 +1113,25 @@
             motivationBlock.style.display = 'none';
         }
     }
-    
-    function updateNavigation() {
-        if (currentSection === null && !isSearchMode) {
-            backBtn.style.display = 'none';
-            showMotivationBlock(true);
-            renderCardOfDay();
-        } else {
-            backBtn.style.display = 'inline-block';
-            showMotivationBlock(false);
-            cardOfDayContainer.innerHTML = '';
-        }
+
+    function showToast(message) {
+        const toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2000);
     }
-    
-    function generateGreetingId(sectionKey, subcatKey, index, text) {
-        return `${sectionKey}_${subcatKey}_${index}_${text.substring(0, 20)}`.replace(/[^a-zA-Z0-9_-]/g, '_');
-    }
-    
-    function renderGreetings() {
-        if (!siteData || !currentSection || !currentSubcat) return;
-        const subcat = siteData.sections[currentSection].subcategories[currentSubcat];
-        if (!subcat) return;
-        
-        let html = `<div class="cards-grid">`;
-        
-        subcat.greetings.forEach((g, index) => {
-            const greetingId = generateGreetingId(currentSection, currentSubcat, index, g.text_ba);
-            const stats = getStats();
-            const copyCount = stats[greetingId] ? (stats[greetingId].full + stats[greetingId].only_ba) : 0;
-            
-            const safeTextBa = escapeHtml(g.text_ba);
-            const safeTextRu = escapeHtml(g.translation_ru);
-            const safeSubcatNameBa = escapeHtml(subcat.name_ba);
-            const safeSubcatNameRu = escapeHtml(subcat.name_ru);
-            
-            html += `<div class="card">
-                        <div class="card-badge">${safeSubcatNameBa} | ${safeSubcatNameRu}</div>
-                        <div class="card-text">${safeTextBa}</div>
-                        <div class="card-translation">💭 ${safeTextRu}</div>
-                        <div class="button-group">
-                            <button class="share-btn" data-type="full" data-ba='${safeTextBa.replace(/'/g, "\\'")}' data-ru='${safeTextRu.replace(/'/g, "\\'")}' data-id="${greetingId}">
-                                📤 Поделиться
-                            </button>
-                            <button class="copy-only-btn" data-type="only_ba" data-ba='${safeTextBa.replace(/'/g, "\\'")}' data-id="${greetingId}">
-                                📋 Только башкирский
-                            </button>
-                        </div>
-                        ${copyCount > 0 ? `<div class="copy-stats">📊 ${copyCount}</div>` : ''}
-                    </div>`;
-        });
-        
-        html += `</div>`;
-        contentContainer.innerHTML = html;
-        
-        document.querySelectorAll('.share-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const baText = btn.getAttribute('data-ba');
-                const ruText = btn.getAttribute('data-ru');
-                const id = btn.getAttribute('data-id');
-                copyToClipboard(ruText, baText, id);
-            });
-        });
-        
-        document.querySelectorAll('.copy-only-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const baText = btn.getAttribute('data-ba');
-                const id = btn.getAttribute('data-id');
-                copyOnlyBashkir(baText, id);
-            });
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
         });
     }
-    
-    function renderSubcategories() {
-        if (!siteData || !currentSection) return;
-        const section = siteData.sections[currentSection];
-        if (!section) return;
-        
-        // Показываем скелетон, пока загружаются подкатегории
-        showSkeleton();
-        
-        // Небольшая задержка для плавности (можно убрать)
-        setTimeout(() => {
-            let html = `<div class="sections-grid">`;
-            for (let [key, subcat] of Object.entries(section.subcategories)) {
-                html += `<div class="subcat-card" data-subcat="${key}">
-                            <span class="subcat-emoji">${escapeHtml(subcat.emoji)}</span>
-                            <div class="subcat-name">${escapeHtml(subcat.name_ba)}</div>
-                            <div class="subcat-desc">${escapeHtml(subcat.name_ru)}</div>
-                        </div>`;
-            }
-            html += `</div>`;
-            contentContainer.innerHTML = html;
-            
-            document.querySelectorAll('.subcat-card').forEach(card => {
-                card.addEventListener('click', () => {
-                    currentSubcat = card.getAttribute('data-subcat');
-                    isSearchMode = false;
-                    updateNavigation();
-                    renderGreetings();
-                });
-            });
-        }, 300);
-    }
-    
-    function renderSections() {
-        if (!siteData) return;
-        
-        // Останавливаем анимацию прогресса
-        if (window._loaderInterval) {
-            clearInterval(window._loaderInterval);
-            window._loaderInterval = null;
-        }
-        
-        let html = `<div class="sections-grid">`;
-        for (let [key, section] of Object.entries(siteData.sections)) {
-            html += `<div class="section-card" data-section="${key}">
-                        <span class="section-emoji">${escapeHtml(section.emoji)}</span>
-                        <div class="section-name">${escapeHtml(section.name_ba)}</div>
-                        <div class="section-desc">${escapeHtml(section.name_ru)}</div>
-                    </div>`;
-        }
-        html += `</div>`;
-        contentContainer.innerHTML = html;
-        
-        document.querySelectorAll('.section-card').forEach(card => {
-            card.addEventListener('click', () => {
-                currentSection = card.getAttribute('data-section');
-                currentSubcat = null;
-                isSearchMode = false;
-                updateNavigation();
-                renderSubcategories();
-            });
-        });
-    }
-    
-    backBtn.addEventListener('click', () => {
-        if (isSearchMode) {
-            isSearchMode = false;
-            if (currentSection && currentSubcat) {
-                renderGreetings();
-            } else if (currentSection) {
-                renderSubcategories();
-            } else {
-                renderSections();
-            }
-            updateNavigation();
-            return;
-        }
-        if (currentSubcat !== null) {
-            currentSubcat = null;
-            updateNavigation();
-            renderSubcategories();
-            return;
-        }
-        if (currentSection !== null) {
-            currentSection = null;
-            updateNavigation();
-            renderSections();
-            return;
-        }
-    });
-    
+
     function renderCurrentDate() {
         const now = new Date();
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -1423,35 +1144,80 @@
         for (let [ru, ba] of Object.entries(baMap)) baDate = baDate.replace(ru, ba);
         document.getElementById('currentDateBox').innerHTML = `📅 ${baDate}`;
     }
-    
-    function escapeHtml(str) {
-        if (!str) return '';
-        return str.replace(/[&<>]/g, function(m) {
-            if (m === '&') return '&amp;';
-            if (m === '<') return '&lt;';
-            if (m === '>') return '&gt;';
-            return m;
-        });
-    }
-    
-    // ========== ИНИЦИАЛИЗАЦИЯ ==========
+
+    // ============================================================
+    // ===== ЗАЩИТА ОТ СВАЙПА =====
+    // ============================================================
+
+    (function() {
+        let touchStartX = 0;
+        let isSwiping = false;
+        const EDGE_WIDTH = 30;
+        document.addEventListener('touchstart', function(e) {
+            const touch = e.touches[0];
+            touchStartX = touch.clientX;
+            isSwiping = false;
+        }, { passive: true });
+        document.addEventListener('touchmove', function(e) {
+            const touch = e.touches[0];
+            const deltaX = touch.clientX - touchStartX;
+            if (touchStartX < EDGE_WIDTH && deltaX > 30) {
+                isSwiping = true;
+                e.preventDefault();
+            }
+        }, { passive: false });
+        document.addEventListener('touchend', function(e) {
+            if (isSwiping) {
+                const touch = e.changedTouches[0];
+                const deltaX = touch.clientX - touchStartX;
+                if (deltaX > 80 && touchStartX < EDGE_WIDTH) {
+                    if (navState.currentSection || navState.navigationHistory.length > 0) {
+                        history.back();
+                    } else {
+                        showToast('🏠 Вы на главной странице');
+                    }
+                }
+            }
+            isSwiping = false;
+        }, { passive: true });
+    })();
+
+    // ============================================================
+    // ===== ИНИЦИАЛИЗАЦИЯ =====
+    // ============================================================
+
+    renderCurrentDate();
+
     async function init() {
-        renderCurrentDate();
-        
-        // Показываем скелетон до загрузки данных
-        showSkeleton();
-        
-        const loaded = await loadData();
-        
+        const loaded = await loadAllJsonFiles();
         if (loaded) {
+            renderStats();
             renderHolidaysWidget();
-            renderSections();
-            updateNavigation();
+            
+            const { section, subcat } = parseUrl();
+            if (section) {
+                navState.currentSection = section;
+                navState.currentSubcat = subcat;
+                navState.navigationHistory.push({ section, subcat });
+                updateContent(section, subcat, false);
+                updateBreadcrumbs(section, subcat);
+                updateBackButton();
+                updateMeta(section, subcat);
+            } else {
+                updateContent(null, null, false);
+                updateBreadcrumbs(null, null);
+                updateBackButton();
+                updateMeta(null, null);
+                renderCardOfDay();
+                showMotivationBlock(true);
+            }
+            
+            showToast('✅ Данные загружены!');
         }
-        // Если не загрузилось, showError уже показан в loadData
     }
-    
+
     init();
-</script>
+    console.log('🚀 Сайт загружен с динамическим обнаружением файлов');
+    </script>
 </body>
 </html>
