@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "data_tosts": {
+      "name_ba": "Ҡотлау таҡмаҡтары",
+      "name_ru": "Тосты",
+      "emoji": "🥂",
+      "order": 7,
+      "subcategories": {}
+    }
+  },
+  "holidays_widget": []
+}
