@@ -1,21 +1,47 @@
 <!DOCTYPE html>
 <html lang="ba">
 <head>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109825367', 'ym');
+
+        ym(109825367, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/109825367" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    
     <title>Йылы һүҙҙәр — Поздравления на башкирском языке</title>
+
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
     <meta name="theme-color" content="#8b5a2b">
-    <meta name="description" content="Башҡортса ҡотлауҙар, теләктәр һәм хуплау һүҙҙәре. Поздравления, пожелания и слова поддержки на башкирском языке.">
-    <meta name="keywords" content="башкирские поздравления, башҡортса ҡотлау, йылы һүҙҙәр, башкирский язык">
+    
+    <meta name="description" content="Башҡортса ҡотлауҙар, теләктәр һәм хуплау һүҙҙәре. Поздравления, пожелания и слова поддержки на башкирском языке. Йылы һүҙҙәр проекты.">
+    <meta name="keywords" content="башкирские поздравления, башҡортса ҡотлау, йылы һүҙҙәр, башкирский язык, тёплые слова, поздравления на башкирском, башкирские пожелания">
     <meta name="author" content="Алмаз Баймурзин, Project Yily Huzzar">
+    <meta name="language" content="ba, ru">
+    <meta name="copyright" content="Project Yily Huzzar">
     <meta name="robots" content="index, follow">
+    
     <meta property="og:title" content="Йылы һүҙҙәр | Поздравления на башкирском">
     <meta property="og:description" content="Коллекция поздравлений, пожеланий и слов поддержки на башкирском языке с переводом на русский.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://almazbaymurzin.github.io">
+    <meta property="og:site_name" content="Йылы һүҙҙәр | Yily Huzzar">
+    <meta property="og:locale" content="ba_RU">
+    
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Йылы һүҙҙәр | Поздравления на башкирском">
+    <meta name="twitter:description" content="Поздравления на башкирском языке с переводом на русский.">
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -84,6 +110,8 @@
             font-family: 'Georgia', serif;
         }
         .motivation-author { margin-top: 10px; font-size: 0.75rem; color: #8b6946; }
+        
+        /* ===== НАВИГАЦИЯ ===== */
         .back-button {
             display: none;
             align-items: center;
@@ -99,6 +127,8 @@
             margin: 10px 0;
         }
         .back-button:hover { background: rgba(139,90,43,0.15); transform: translateX(-2px); }
+        
+        /* ===== ХЛЕБНЫЕ КРОШКИ ===== */
         #breadcrumbs {
             display: flex;
             align-items: center;
@@ -117,6 +147,8 @@
         #breadcrumbs .crumb.current { color: #8b5a2b; font-weight: 600; cursor: default; }
         #breadcrumbs .crumb.current:hover { text-decoration: none; }
         #breadcrumbs .separator { color: #c8b598; font-size: 0.7rem; }
+        
+        /* ===== ИНДИКАТОР ЗАГРУЗКИ ===== */
         #loadingIndicator {
             display: none;
             position: fixed;
@@ -133,11 +165,93 @@
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100%); }
         }
+        
         .page-transition { animation: fadeSlideIn 0.3s ease-out; }
         @keyframes fadeSlideIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
+        /* ===== СКЕЛЕТОН ===== */
+        .skeleton-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .skeleton-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            animation: shimmer 1.5s ease-in-out infinite;
+        }
+        .skeleton-emoji {
+            width: 40px;
+            height: 40px;
+            background: #f0e6d8;
+            border-radius: 50%;
+            margin: 0 auto 8px;
+        }
+        .skeleton-line {
+            height: 16px;
+            background: #f0e6d8;
+            border-radius: 8px;
+            margin: 6px auto;
+        }
+        .skeleton-line.short { width: 60%; }
+        .skeleton-line.long { width: 80%; }
+        @keyframes shimmer {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .skeleton-greeting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+            margin: 16px 0;
+        }
+        .skeleton-greeting {
+            background: white;
+            border-radius: 20px;
+            padding: 16px;
+            border: 1px solid rgba(139,90,43,0.12);
+            animation: shimmer 1.5s ease-in-out infinite;
+        }
+        .skeleton-badge {
+            width: 100px;
+            height: 20px;
+            background: #f0e6d8;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+        .skeleton-text-line {
+            height: 18px;
+            background: #f0e6d8;
+            border-radius: 4px;
+            margin: 6px 0;
+        }
+        .skeleton-text-line.w70 { width: 70%; }
+        .skeleton-text-line.w60 { width: 60%; }
+        .skeleton-text-line.w90 { width: 90%; }
+        .skeleton-text-line.w80 { width: 80%; }
+        .skeleton-divider {
+            height: 1px;
+            background: #f0e6d8;
+            margin: 10px 0;
+        }
+        .skeleton-btn-group { display: flex; gap: 8px; }
+        .skeleton-btn {
+            flex: 1;
+            height: 30px;
+            background: #f0e6d8;
+            border-radius: 16px;
+        }
+        
+        /* ===== ОСНОВНЫЕ КАРТОЧКИ ===== */
         .sections-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -161,6 +275,7 @@
         .section-emoji, .subcat-emoji { font-size: 2.4rem; display: block; margin-bottom: 8px; }
         .section-name, .subcat-name { font-size: 1.1rem; font-weight: 600; color: #5c3e1e; }
         .section-desc, .subcat-desc { font-size: 0.7rem; color: #b8956a; margin-top: 4px; }
+        
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -234,6 +349,7 @@
             padding: 2px 6px;
             border-radius: 10px;
         }
+        
         .toast-notification {
             position: fixed;
             bottom: 20px;
@@ -251,6 +367,8 @@
             from { opacity: 0; transform: translateX(-50%) translateY(20px); }
             to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
+        
+        /* ===== ВИДЖЕТЫ ===== */
         .holidays-widget {
             background: white;
             border-radius: 20px;
@@ -284,6 +402,7 @@
         }
         .holiday-name { font-size: 0.8rem; color: #3a2a1a; }
         .holiday-name small { font-size: 0.65rem; color: #b8956a; }
+        
         .stats-panel {
             background: white;
             border-radius: 20px;
@@ -318,6 +437,58 @@
             cursor: pointer;
             text-decoration: underline;
         }
+        
+        /* ===== ДОНАТЫ ===== */
+        .donation-block {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe8d4 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            border: 1px solid rgba(139,90,43,0.2);
+        }
+        .donation-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #8b5a2b;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .donation-text {
+            font-size: 0.75rem;
+            color: #6b4925;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+        .donation-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #8b5a2b;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .donation-btn:hover {
+            background: #6b4220;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139,90,43,0.3);
+        }
+        .donation-note {
+            font-size: 0.6rem;
+            color: #b8956a;
+            margin-top: 12px;
+        }
+        
         .footer {
             text-align: center;
             margin-top: 40px;
@@ -332,6 +503,80 @@
             color: #8b5a2b;
             font-family: 'Georgia', serif;
         }
+        
+        /* ===== ОШИБКА ===== */
+        .error-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            min-height: 300px;
+            background: rgba(201, 106, 42, 0.05);
+            border-radius: 24px;
+            border: 2px dashed #c96a2a;
+        }
+        .error-icon { font-size: 4rem; margin-bottom: 16px; }
+        .error-title { font-size: 1.3rem; font-weight: 700; color: #8b5a2b; margin-bottom: 8px; }
+        .error-message { font-size: 0.9rem; color: #8b5a2b; margin-bottom: 20px; text-align: center; max-width: 400px; }
+        .error-btn {
+            background: #8b5a2b;
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .error-btn:hover { background: #6b4220; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(139,90,43,0.3); }
+        .error-details { font-size: 0.65rem; color: #b8956a; margin-top: 12px; }
+        
+        .loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            min-height: 300px;
+        }
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(139, 90, 43, 0.1);
+            border-top: 4px solid #8b5a2b;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loader-text { font-size: 1.1rem; color: #8b5a2b; margin-bottom: 8px; }
+        .loader-sub { font-size: 0.8rem; color: #b8956a; animation: pulse 1.5s ease-in-out infinite; }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .progress-container {
+            width: 100%;
+            max-width: 300px;
+            height: 6px;
+            background: rgba(139, 90, 43, 0.1);
+            border-radius: 10px;
+            margin-top: 16px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #8b5a2b, #c9a87c);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+        
         @media (max-width: 900px) {
             .main-layout { flex-direction: column; }
             .card-of-day-content { font-size: 0.9rem; }
@@ -356,28 +601,32 @@
     </style>
 </head>
 <body>
+    <!-- Индикатор загрузки -->
     <div id="loadingIndicator"></div>
+
     <div class="container">
         <header>
             <h1>🌾 ЙЫЛЫ һҮҘҘӘР 🌾</h1>
             <div class="sub">Башҡортса ҡотлауҙар — һәр көн өсөн йылы теләктәр</div>
             <div class="current-date-box" id="currentDateBox"></div>
         </header>
+
         <div id="navigation">
             <button class="back-button" id="backBtn">
                 <span id="backIcon">←</span>
                 <span id="backText">Артҡа / Назад</span>
             </button>
         </div>
+
         <div id="breadcrumbs"></div>
+
         <div class="main-layout">
             <div class="content-area">
                 <div id="cardOfDayContainer"></div>
                 <div id="motivationBlock" style="display: none;"></div>
-                <div id="contentContainer">
-                    <div style="text-align:center; padding:60px;">📡 Мәғлүмәт тейәлә...</div>
-                </div>
+                <div id="contentContainer"></div>
             </div>
+
             <div class="sidebar">
                 <div class="stats-panel" id="statsPanel">
                     <div class="stats-title">📊 Күсереп алыу статистикаһы<br><small>Статистика копирований</small></div>
@@ -390,8 +639,19 @@
                     <div class="widget-title">📅 Яҡын киләсәк байрамдар</div>
                     <div id="holidaysContent"></div>
                 </div>
+                
+                <div class="donation-block">
+                    <div class="donation-title">☕ Проектҡа ярҙам / Помочь проекту</div>
+                    <div class="donation-text">
+                        Һеҙҙең ярҙам — проектты үҫтереү өсөн иң яҡшы этәргес.<br>
+                        Ваша поддержка — лучший стимул для развития проекта.
+                    </div>
+                    <button class="donation-btn" id="donationBtn">🤝 Помочь / Ярҙам итеү</button>
+                    <div class="donation-note">ЮMoney · Банковская карта · СБП</div>
+                </div>
             </div>
         </div>
+
         <div class="footer">
             <div class="project-name">ЙЫЛЫ һҮҘҘӘР<br><small>yily huzzar</small></div>
             <div style="font-size:0.75rem; margin-top:10px;">❤️ Йөрәк йылыһы — туған телдә әйтелгән һүҙҙә</div>
@@ -399,14 +659,15 @@
     </div>
 
     <script>
-    // ============================================================
-    // ===== ПОЛНАЯ ВЕРСИЯ С ДИНАМИЧЕСКОЙ ЗАГРУЗКОЙ =====
-    // ============================================================
+    // ================================================================
+    // ========== ПОЛНАЯ ВЕРСИЯ С ДИНАМИЧЕСКОЙ ЗАГРУЗКОЙ ==========
+    // ================================================================
 
     let siteData = null;
     let currentSection = null;
     let currentSubcat = null;
     const STATS_KEY = 'greeting_copy_stats';
+    
     const contentContainer = document.getElementById('contentContainer');
     const backBtn = document.getElementById('backBtn');
     const motivationBlock = document.getElementById('motivationBlock');
@@ -416,11 +677,13 @@
     const breadcrumbs = document.getElementById('breadcrumbs');
     const loadingIndicator = document.getElementById('loadingIndicator');
 
-    // ============================================================
-    // ===== ДИНАМИЧЕСКАЯ ЗАГРУЗКА ВСЕХ JSON ФАЙЛОВ =====
-    // ============================================================
+    // ===== ДОНАТЫ =====
+    const DONATION_URL = 'https://yoomoney.ru/to/4100119532722543';
+    document.getElementById('donationBtn')?.addEventListener('click', () => {
+        window.open(DONATION_URL, '_blank');
+    });
 
-    // 🔥 ГЛАВНОЕ: загружаем ВСЕ JSON файлы из папки data/
+    // ===== ДИНАМИЧЕСКАЯ ЗАГРУЗКА ВСЕХ JSON ФАЙЛОВ =====
     async function loadAllJsonFiles() {
         const allData = {
             sections: {},
@@ -428,8 +691,6 @@
         };
 
         try {
-            // Пытаемся получить список файлов из data/
-            // Для GitHub Pages используем фиксированный список + автообнаружение
             const baseFiles = [
                 'data/data.json',
                 'data/data_professional.json',
@@ -440,10 +701,8 @@
                 'data/data_live.json'
             ];
 
-            // Пытаемся найти дополнительные файлы через fetch
             let allFiles = [...baseFiles];
             
-            // Проверяем наличие дополнительных файлов
             const extraFiles = [
                 'data/pritches.json',
                 'data/medsister.json',
@@ -457,14 +716,11 @@
                         allFiles.push(file);
                         console.log(`📄 Найден дополнительный файл: ${file}`);
                     }
-                } catch (e) {
-                    // файл не существует, пропускаем
-                }
+                } catch (e) {}
             }
 
             console.log('📄 Загружаемые файлы:', allFiles);
 
-            // Загружаем все файлы параллельно
             const promises = allFiles.map(async (file) => {
                 try {
                     const response = await fetch(file + '?v=' + Date.now());
@@ -480,14 +736,12 @@
 
             const results = await Promise.all(promises);
 
-            // Объединяем результаты
             for (const result of results) {
                 if (!result) continue;
                 const { file, data } = result;
 
                 if (data.sections) {
                     for (const [key, section] of Object.entries(data.sections)) {
-                        // Если раздел уже существует, объединяем подкатегории
                         if (allData.sections[key]) {
                             console.log(`🔄 Объединение раздела "${key}" из ${file}`);
                             const existing = allData.sections[key];
@@ -496,7 +750,6 @@
                                 if (!existing.subcategories[subKey]) {
                                     existing.subcategories[subKey] = subcat;
                                 } else {
-                                    // Объединяем поздравления
                                     const existingGreetings = existing.subcategories[subKey].greetings || [];
                                     const newGreetings = subcat.greetings || [];
                                     existing.subcategories[subKey].greetings = [...existingGreetings, ...newGreetings];
@@ -513,7 +766,6 @@
                 }
             }
 
-            // Дедупликация праздников
             const uniqueHolidays = new Map();
             allData.holidays_widget.forEach(h => {
                 const key = h.date;
@@ -532,22 +784,80 @@
 
         } catch (error) {
             console.error('❌ Ошибка загрузки:', error);
-            contentContainer.innerHTML = `<div style="text-align:center;padding:60px;color:#c96a2a;">
-                ❌ Ошибка загрузки данных<br>
-                <small>${error.message}</small>
-            </div>`;
+            showError('Не удалось загрузить данные', error.message);
             return false;
         }
     }
 
-    // ============================================================
-    // ===== SPA-НАВИГАЦИЯ =====
-    // ============================================================
+    // ===== ПОКАЗАТЬ СКЕЛЕТОН =====
+    function showSkeleton() {
+        let html = `<div class="skeleton-grid">`;
+        for (let i = 0; i < 6; i++) {
+            html += `
+                <div class="skeleton-card">
+                    <div class="skeleton-emoji"></div>
+                    <div class="skeleton-line short"></div>
+                    <div class="skeleton-line long"></div>
+                </div>
+            `;
+        }
+        html += `</div>`;
+        contentContainer.innerHTML = html;
+    }
 
+    function showSkeletonGreetings() {
+        let html = `<div class="skeleton-greeting-grid">`;
+        for (let i = 0; i < 4; i++) {
+            html += `
+                <div class="skeleton-greeting">
+                    <div class="skeleton-badge"></div>
+                    <div class="skeleton-text-line w90"></div>
+                    <div class="skeleton-text-line w70"></div>
+                    <div class="skeleton-text-line w80"></div>
+                    <div class="skeleton-divider"></div>
+                    <div class="skeleton-text-line w60"></div>
+                    <div class="skeleton-divider"></div>
+                    <div class="skeleton-btn-group">
+                        <div class="skeleton-btn"></div>
+                        <div class="skeleton-btn"></div>
+                    </div>
+                </div>
+            `;
+        }
+        html += `</div>`;
+        contentContainer.innerHTML = html;
+    }
+
+    // ===== ПОКАЗАТЬ ОШИБКУ =====
+    function showError(message, details = '') {
+        contentContainer.innerHTML = `
+            <div class="error-container">
+                <div class="error-icon">😔</div>
+                <div class="error-title">${escapeHtml(message)}</div>
+                <div class="error-message">${escapeHtml(details || 'Попробуйте обновить страницу')}</div>
+                <button class="error-btn" onclick="retryLoad()">🔄 Повторить / Ҡабатлау</button>
+                <div class="error-details">Если проблема повторяется, проверьте файлы в папке <strong>data/</strong></div>
+            </div>
+        `;
+    }
+
+    async function retryLoad() {
+        showSkeleton();
+        await new Promise(resolve => setTimeout(resolve, 300));
+        const loaded = await loadAllJsonFiles();
+        if (loaded) {
+            renderStats();
+            renderHolidaysWidget();
+            renderSections();
+            updateNavigation();
+            showToast('✅ Данные загружены!');
+        }
+    }
+
+    // ===== SPA-НАВИГАЦИЯ =====
     const navState = {
         currentSection: null,
         currentSubcat: null,
-        isInitialized: false,
         navigationHistory: []
     };
 
@@ -623,10 +933,7 @@
         }, 50);
     }
 
-    // ============================================================
-    // ===== РЕНДЕР РАЗДЕЛОВ (АВТОМАТИЧЕСКИ ВИДИТ ВСЕ НОВЫЕ) =====
-    // ============================================================
-
+    // ===== РЕНДЕР РАЗДЕЛОВ =====
     function renderSectionsContent() {
         let html = `<div class="sections-grid">`;
         
@@ -745,10 +1052,7 @@
         return html;
     }
 
-    // ============================================================
-    // ===== ОСТАЛЬНЫЕ ФУНКЦИИ (статистика, копирование и т.д.) =====
-    // ============================================================
-
+    // ===== BIND EVENTS =====
     function bindEvents(section, subcat) {
         document.querySelectorAll('.section-card').forEach(card => {
             card.addEventListener('click', function() {
@@ -792,6 +1096,7 @@
         });
     }
 
+    // ===== ХЛЕБНЫЕ КРОШКИ =====
     function updateBreadcrumbs(section, subcat) {
         if (!breadcrumbs) return;
         let html = '';
@@ -809,6 +1114,7 @@
         breadcrumbs.innerHTML = html;
     }
 
+    // ===== КНОПКА НАЗАД =====
     function updateBackButton() {
         if (!backBtn) return;
         const show = navState.currentSection !== null || navState.navigationHistory.length > 0;
@@ -825,6 +1131,7 @@
         }
     });
 
+    // ===== META-ТЕГИ =====
     function updateMeta(section, subcat) {
         let title = 'Йылы һүҙҙәр — Поздравления на башкирском';
         let description = 'Коллекция поздравлений, пожеланий и слов поддержки на башкирском языке с переводом на русский.';
@@ -866,10 +1173,7 @@
         }
     });
 
-    // ============================================================
     // ===== СТАТИСТИКА =====
-    // ============================================================
-
     function getStats() {
         const saved = localStorage.getItem(STATS_KEY);
         return saved ? JSON.parse(saved) : {};
@@ -935,10 +1239,7 @@
         }
     }
 
-    // ============================================================
     // ===== КОПИРОВАНИЕ =====
-    // ============================================================
-
     async function copyToClipboard(ruText, baText, greetingId) {
         const shareText = `${baText}\n\n💭 ${ruText}`;
         incrementStats(greetingId, 'full', baText, ruText);
@@ -1000,10 +1301,7 @@
         return `${sectionKey}_${subcatKey}_${index}_${text.substring(0, 20)}`.replace(/[^a-zA-Z0-9_-]/g, '_');
     }
 
-    // ============================================================
     // ===== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ =====
-    // ============================================================
-
     function getAllGreetings() {
         if (!siteData) return [];
         const all = [];
@@ -1145,10 +1443,7 @@
         document.getElementById('currentDateBox').innerHTML = `📅 ${baDate}`;
     }
 
-    // ============================================================
     // ===== ЗАЩИТА ОТ СВАЙПА =====
-    // ============================================================
-
     (function() {
         let touchStartX = 0;
         let isSwiping = false;
@@ -1182,13 +1477,14 @@
         }, { passive: true });
     })();
 
-    // ============================================================
-    // ===== ИНИЦИАЛИЗАЦИЯ =====
-    // ============================================================
+    // ================================================================
+    // ========== ИНИЦИАЛИЗАЦИЯ ==========
+    // ================================================================
 
     renderCurrentDate();
 
     async function init() {
+        showSkeleton();
         const loaded = await loadAllJsonFiles();
         if (loaded) {
             renderStats();
