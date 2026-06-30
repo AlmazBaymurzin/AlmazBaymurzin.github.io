@@ -1,1 +1,101 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    
+    <!-- ===== ГЛАВНАЯ СТРАНИЦА ===== -->
+    <url>
+        <loc>https://almazbaymurzin.github.io/</loc>
+        <lastmod>2026-06-29</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- ===== РАЗДЕЛЫ (категории) ===== -->
+    <url>
+        <loc>https://almazbaymurzin.github.io/#professional</loc>
+        <lastmod>2026-06-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <url>
+        <loc>https://almazbaymurzin.github.io/#holidays</loc>
+        <lastmod>2026-06-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <url>
+        <loc>https://almazbaymurzin.github.io/#birthday</loc>
+        <lastmod>2026-06-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <url>
+        <loc>https://almazbaymurzin.github.io/#military</loc>
+        <lastmod>2026-06-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://almazbaymurzin.github.io/#wedding</loc>
+        <lastmod>2026-06-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://almazbaymurzin.github.io/#live</loc>
+        <lastmod>2026-06-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <!-- ===== ПОДКАТЕГОРИИ (самые важные) ===== -->
+    <url>
+        <loc>https://almazbaymurzin.github.io/#professional/medsister</loc>
+        <lastmod>2026-06-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://almazbaymurzin.github.io/#holidays/march8</loc>
+        <lastmod>2026-06-29</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <url>
+        <loc>https://almazbaymurzin.github.io/#holidays/newyear</loc>
+        <lastmod>2026-06-29</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <url>
+        <loc>https://almazbaymurzin.github.io/#birthday/mother</loc>
+        <lastmod>2026-06-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://almazbaymurzin.github.io/#birthday/father</loc>
+        <lastmod>2026-06-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- ===== НОВЫЕ РАЗДЕЛЫ (добавить, если есть) ===== -->
+    <!-- 
+    <url>
+        <loc>https://almazbaymurzin.github.io/#pritches</loc>
+        <lastmod>2026-06-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    -->
+    
+</urlset>
