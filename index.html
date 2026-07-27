@@ -43,39 +43,153 @@
     <meta name="twitter:description" content="Поздравления на башкирском языке с переводом на русский.">
     
     <style>
+        /* ===== CSS ПЕРЕМЕННЫЕ ДЛЯ ТЕМ ===== */
+        :root {
+            /* Светлая тема (по умолчанию) */
+            --bg-primary: #fef9e8;
+            --bg-secondary: #f0e6d8;
+            --bg-card: #ffffff;
+            --bg-header: #ffffff;
+            --bg-skeleton: #f0e6d8;
+            --bg-badge: #f4ebdd;
+            --bg-holiday: #f4ebdd;
+            --bg-stats: #ffffff;
+            --bg-donation: linear-gradient(135deg, #fff5e6 0%, #ffe8d4 100%);
+            --bg-motivation: linear-gradient(135deg, #e8dcc8 0%, #dacaa8 100%);
+            --bg-card-of-day: linear-gradient(135deg, #fff5e6 0%, #ffe8d4 100%);
+            --bg-error: rgba(201, 106, 42, 0.05);
+            
+            --text-primary: #2c241a;
+            --text-secondary: #8b5a2b;
+            --text-muted: #b8956a;
+            --text-light: #a08c78;
+            --text-dark: #4a2c1a;
+            --text-card: #2c241a;
+            --text-holiday: #3a2a1a;
+            --text-donation: #6b4925;
+            
+            --border-color: rgba(139, 90, 43, 0.12);
+            --border-light: rgba(139, 90, 43, 0.08);
+            --border-card: rgba(139, 90, 43, 0.12);
+            --border-donation: rgba(139, 90, 43, 0.2);
+            --border-error: #c96a2a;
+            
+            --shadow-card: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-hover: 0 8px 20px rgba(0,0,0,0.1);
+            --shadow-card-hover: 0 6px 14px rgba(0,0,0,0.08);
+            --shadow-card-of-day: 0 8px 20px rgba(0,0,0,0.08);
+            
+            --btn-share: #f0e2d2;
+            --btn-share-hover: #e8c9a8;
+            --btn-copy: #e8dcc8;
+            --btn-copy-hover: #dacaa8;
+            
+            --transition: 0.3s ease;
+        }
+
+        /* ===== ТЁМНАЯ ТЕМА ===== */
+        body.dark-mode {
+            --bg-primary: #1a1410;
+            --bg-secondary: #2a1f18;
+            --bg-card: #2d221c;
+            --bg-header: #1a1410;
+            --bg-skeleton: #3a2a1a;
+            --bg-badge: #3a2a1a;
+            --bg-holiday: #3a2a1a;
+            --bg-stats: #2d221c;
+            --bg-donation: linear-gradient(135deg, #2d221c 0%, #3a2a1a 100%);
+            --bg-motivation: linear-gradient(135deg, #2d221c 0%, #3a2a1a 100%);
+            --bg-card-of-day: linear-gradient(135deg, #2d221c 0%, #3a2a1a 100%);
+            --bg-error: rgba(201, 106, 42, 0.15);
+            
+            --text-primary: #f0e2d2;
+            --text-secondary: #d4a373;
+            --text-muted: #8b7a6a;
+            --text-light: #a08c78;
+            --text-dark: #f0e2d2;
+            --text-card: #f0e2d2;
+            --text-holiday: #f0e2d2;
+            --text-donation: #f0e2d2;
+            
+            --border-color: rgba(180, 140, 100, 0.15);
+            --border-light: rgba(180, 140, 100, 0.08);
+            --border-card: rgba(180, 140, 100, 0.15);
+            --border-donation: rgba(180, 140, 100, 0.2);
+            --border-error: #c96a2a;
+            
+            --shadow-card: 0 2px 8px rgba(0,0,0,0.3);
+            --shadow-hover: 0 8px 20px rgba(0,0,0,0.4);
+            --shadow-card-hover: 0 6px 14px rgba(0,0,0,0.3);
+            --shadow-card-of-day: 0 8px 20px rgba(0,0,0,0.4);
+            
+            --btn-share: #3a2a1a;
+            --btn-share-hover: #4a3a2a;
+            --btn-copy: #3a2a1a;
+            --btn-copy-hover: #4a3a2a;
+        }
+
+        /* ===== ОСНОВНЫЕ СТИЛИ С ПЕРЕМЕННЫМИ ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
-            background: linear-gradient(135deg, #fef9e8 0%, #f0e6d8 100%);
-            color: #2c241a;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             padding: 20px;
             min-height: 100vh;
             overscroll-behavior: contain;
             -webkit-overflow-scrolling: touch;
+            transition: background var(--transition), color var(--transition);
         }
         .container { max-width: 1600px; margin: 0 auto; }
         .main-layout { display: flex; gap: 30px; margin-top: 20px; }
         .content-area { flex: 3; min-width: 0; }
         .sidebar { flex: 1.2; min-width: 260px; }
         header { text-align: center; padding: 1.5rem 0 0.5rem 0; }
-        h1 { font-size: 2.5rem; color: #8b5a2b; text-shadow: 2px 2px 6px rgba(0,0,0,0.05); }
-        .sub { font-size: 1rem; color: #a07649; margin-top: 6px; }
+        h1 { font-size: 2.5rem; color: var(--text-secondary); text-shadow: 2px 2px 6px rgba(0,0,0,0.05); transition: color var(--transition); }
+        .sub { font-size: 1rem; color: var(--text-muted); margin-top: 6px; transition: color var(--transition); }
         .current-date-box {
-            background: rgba(139,90,43,0.08);
+            background: var(--border-color);
             display: inline-block;
             padding: 6px 20px;
             border-radius: 40px;
             margin-top: 12px;
             font-size: 0.9rem;
-            color: #6b4925;
+            color: var(--text-secondary);
+            transition: background var(--transition), color var(--transition);
         }
+        
+        /* Кнопка переключения темы */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-card);
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+        
         .card-of-day {
-            background: linear-gradient(135deg, #fff5e6 0%, #ffe8d4 100%);
+            background: var(--bg-card-of-day);
             border-radius: 24px;
             padding: 16px 20px;
             margin: 20px 0;
-            border: 2px solid #e8c9a8;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: 2px solid var(--border-color);
+            box-shadow: var(--shadow-card-of-day);
+            transition: background var(--transition), border-color var(--transition);
         }
         .card-of-day-title {
             display: flex;
@@ -83,50 +197,55 @@
             gap: 10px;
             font-size: 0.85rem;
             font-weight: 600;
-            color: #8b5a2b;
+            color: var(--text-secondary);
             margin-bottom: 12px;
+            transition: color var(--transition);
         }
         .card-of-day-content {
             font-size: 1rem;
             line-height: 1.4;
             font-family: 'Georgia', serif;
-            color: #4a2c1a;
+            color: var(--text-dark);
             margin-bottom: 10px;
+            transition: color var(--transition);
         }
-        .card-of-day-trans { font-size: 0.75rem; color: #a08c78; }
+        .card-of-day-trans { font-size: 0.75rem; color: var(--text-light); transition: color var(--transition); }
+        
         .motivation-block {
-            background: linear-gradient(135deg, #e8dcc8 0%, #dacaa8 100%);
+            background: var(--bg-motivation);
             border-radius: 24px;
             padding: 20px 24px;
             margin: 25px 0 20px 0;
             text-align: center;
-            border: 1px solid rgba(139,90,43,0.2);
+            border: 1px solid var(--border-color);
+            transition: background var(--transition), border-color var(--transition);
         }
         .motivation-quote {
             font-size: 1.1rem;
             font-style: italic;
-            color: #4a2c1a;
+            color: var(--text-dark);
             line-height: 1.4;
             font-family: 'Georgia', serif;
+            transition: color var(--transition);
         }
-        .motivation-author { margin-top: 10px; font-size: 0.75rem; color: #8b6946; }
+        .motivation-author { margin-top: 10px; font-size: 0.75rem; color: var(--text-muted); transition: color var(--transition); }
         
         /* ===== НАВИГАЦИЯ ===== */
         .back-button {
             display: none;
             align-items: center;
             gap: 6px;
-            background: rgba(139,90,43,0.08);
-            border: 1px solid rgba(139,90,43,0.15);
+            background: var(--border-color);
+            border: 1px solid var(--border-light);
             padding: 8px 16px;
             border-radius: 30px;
             cursor: pointer;
             font-size: 0.85rem;
-            color: #6b4925;
-            transition: all 0.2s;
+            color: var(--text-secondary);
+            transition: all var(--transition);
             margin: 10px 0;
         }
-        .back-button:hover { background: rgba(139,90,43,0.15); transform: translateX(-2px); }
+        .back-button:hover { background: var(--btn-share); transform: translateX(-2px); }
         
         /* ===== ХЛЕБНЫЕ КРОШКИ ===== */
         #breadcrumbs {
@@ -134,19 +253,20 @@
             align-items: center;
             gap: 8px;
             padding: 12px 16px;
-            background: rgba(139,90,43,0.06);
+            background: var(--border-light);
             border-radius: 12px;
             margin: 10px 0 16px 0;
             font-size: 0.85rem;
-            color: #6b4925;
+            color: var(--text-secondary);
             flex-wrap: wrap;
-            border: 1px solid rgba(139,90,43,0.08);
+            border: 1px solid var(--border-color);
+            transition: background var(--transition), color var(--transition), border-color var(--transition);
         }
-        #breadcrumbs .crumb { cursor: pointer; transition: color 0.2s; display: flex; align-items: center; gap: 4px; }
-        #breadcrumbs .crumb:hover { color: #8b5a2b; text-decoration: underline; }
-        #breadcrumbs .crumb.current { color: #8b5a2b; font-weight: 600; cursor: default; }
+        #breadcrumbs .crumb { cursor: pointer; transition: color var(--transition); display: flex; align-items: center; gap: 4px; }
+        #breadcrumbs .crumb:hover { color: var(--text-secondary); text-decoration: underline; }
+        #breadcrumbs .crumb.current { color: var(--text-secondary); font-weight: 600; cursor: default; }
         #breadcrumbs .crumb.current:hover { text-decoration: none; }
-        #breadcrumbs .separator { color: #c8b598; font-size: 0.7rem; }
+        #breadcrumbs .separator { color: var(--text-muted); font-size: 0.7rem; transition: color var(--transition); }
         
         /* ===== ИНДИКАТОР ЗАГРУЗКИ ===== */
         #loadingIndicator {
@@ -156,7 +276,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(to right, #8b5a2b, #d4a373);
+            background: linear-gradient(to right, var(--text-secondary), #d4a373);
             z-index: 10000;
             animation: loadingProgress 0.8s ease-in-out infinite;
         }
@@ -180,25 +300,28 @@
             margin: 20px 0;
         }
         .skeleton-card {
-            background: white;
+            background: var(--bg-card);
             border-radius: 20px;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            box-shadow: var(--shadow-card);
             animation: shimmer 1.5s ease-in-out infinite;
+            transition: background var(--transition);
         }
         .skeleton-emoji {
             width: 40px;
             height: 40px;
-            background: #f0e6d8;
+            background: var(--bg-skeleton);
             border-radius: 50%;
             margin: 0 auto 8px;
+            transition: background var(--transition);
         }
         .skeleton-line {
             height: 16px;
-            background: #f0e6d8;
+            background: var(--bg-skeleton);
             border-radius: 8px;
             margin: 6px auto;
+            transition: background var(--transition);
         }
         .skeleton-line.short { width: 60%; }
         .skeleton-line.long { width: 80%; }
@@ -215,24 +338,27 @@
             margin: 16px 0;
         }
         .skeleton-greeting {
-            background: white;
+            background: var(--bg-card);
             border-radius: 20px;
             padding: 16px;
-            border: 1px solid rgba(139,90,43,0.12);
+            border: 1px solid var(--border-card);
             animation: shimmer 1.5s ease-in-out infinite;
+            transition: background var(--transition), border-color var(--transition);
         }
         .skeleton-badge {
             width: 100px;
             height: 20px;
-            background: #f0e6d8;
+            background: var(--bg-skeleton);
             border-radius: 20px;
             margin-bottom: 10px;
+            transition: background var(--transition);
         }
         .skeleton-text-line {
             height: 18px;
-            background: #f0e6d8;
+            background: var(--bg-skeleton);
             border-radius: 4px;
             margin: 6px 0;
+            transition: background var(--transition);
         }
         .skeleton-text-line.w70 { width: 70%; }
         .skeleton-text-line.w60 { width: 60%; }
@@ -240,15 +366,17 @@
         .skeleton-text-line.w80 { width: 80%; }
         .skeleton-divider {
             height: 1px;
-            background: #f0e6d8;
+            background: var(--bg-skeleton);
             margin: 10px 0;
+            transition: background var(--transition);
         }
         .skeleton-btn-group { display: flex; gap: 8px; }
         .skeleton-btn {
             flex: 1;
             height: 30px;
-            background: #f0e6d8;
+            background: var(--bg-skeleton);
             border-radius: 16px;
+            transition: background var(--transition);
         }
         
         /* ===== ОСНОВНЫЕ КАРТОЧКИ ===== */
@@ -259,22 +387,22 @@
             margin: 20px 0;
         }
         .section-card, .subcat-card {
-            background: white;
+            background: var(--bg-card);
             border-radius: 20px;
             padding: 20px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all var(--transition);
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            box-shadow: var(--shadow-card);
         }
         .section-card:hover, .subcat-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            background: #fffbf5;
+            box-shadow: var(--shadow-hover);
+            background: var(--btn-share);
         }
         .section-emoji, .subcat-emoji { font-size: 2.4rem; display: block; margin-bottom: 8px; }
-        .section-name, .subcat-name { font-size: 1.1rem; font-weight: 600; color: #5c3e1e; }
-        .section-desc, .subcat-desc { font-size: 0.7rem; color: #b8956a; margin-top: 4px; }
+        .section-name, .subcat-name { font-size: 1.1rem; font-weight: 600; color: var(--text-secondary); transition: color var(--transition); }
+        .section-desc, .subcat-desc { font-size: 0.7rem; color: var(--text-muted); margin-top: 4px; transition: color var(--transition); }
         
         .cards-grid {
             display: grid;
@@ -283,38 +411,41 @@
             margin: 16px 0;
         }
         .card {
-            background: white;
+            background: var(--bg-card);
             border-radius: 20px;
             padding: 16px;
-            transition: transform 0.2s;
-            border: 1px solid rgba(139,90,43,0.12);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: all var(--transition);
+            border: 1px solid var(--border-card);
+            box-shadow: var(--shadow-card);
             position: relative;
         }
-        .card:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(0,0,0,0.08); }
+        .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-card-hover); }
         .card-badge {
             display: inline-block;
-            background: #f4ebdd;
+            background: var(--bg-badge);
             padding: 3px 10px;
             border-radius: 20px;
             font-size: 0.6rem;
             font-weight: 600;
-            color: #8b5a2b;
+            color: var(--text-secondary);
             margin-bottom: 10px;
+            transition: background var(--transition), color var(--transition);
         }
         .card-text {
             font-size: 0.95rem;
             line-height: 1.4;
             font-family: 'Georgia', serif;
-            color: #2c241a;
+            color: var(--text-card);
             margin-bottom: 10px;
+            transition: color var(--transition);
         }
         .card-translation {
             font-size: 0.7rem;
-            color: #b8a690;
-            border-top: 1px solid #f0e2d2;
+            color: var(--text-light);
+            border-top: 1px solid var(--border-color);
             padding-top: 8px;
             margin-bottom: 10px;
+            transition: color var(--transition), border-color var(--transition);
         }
         .button-group {
             display: flex;
@@ -328,26 +459,27 @@
             border-radius: 16px;
             cursor: pointer;
             font-size: 0.68rem;
-            transition: all 0.2s;
+            transition: all var(--transition);
             display: inline-flex;
             align-items: center;
             gap: 4px;
             flex: 1;
             justify-content: center;
         }
-        .share-btn { background: #f0e2d2; color: #8b5a2b; }
-        .share-btn:hover { background: #e8c9a8; transform: translateY(-1px); }
-        .copy-only-btn { background: #e8dcc8; color: #6b4925; }
-        .copy-only-btn:hover { background: #dacaa8; transform: translateY(-1px); }
+        .share-btn { background: var(--btn-share); color: var(--text-secondary); }
+        .share-btn:hover { background: var(--btn-share-hover); transform: translateY(-1px); }
+        .copy-only-btn { background: var(--btn-copy); color: var(--text-secondary); }
+        .copy-only-btn:hover { background: var(--btn-copy-hover); transform: translateY(-1px); }
         .copy-stats {
             position: absolute;
             bottom: 8px;
             right: 8px;
             font-size: 0.55rem;
-            color: #c8b598;
-            background: rgba(255,255,255,0.9);
+            color: var(--text-muted);
+            background: var(--bg-card);
             padding: 2px 6px;
             border-radius: 10px;
+            transition: color var(--transition), background var(--transition);
         }
         
         .toast-notification {
@@ -370,55 +502,62 @@
         
         /* ===== ВИДЖЕТЫ ===== */
         .holidays-widget {
-            background: white;
+            background: var(--bg-card);
             border-radius: 20px;
             padding: 18px;
             position: sticky;
             top: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            box-shadow: var(--shadow-card);
+            transition: background var(--transition), box-shadow var(--transition);
         }
         .widget-title {
             font-size: 1rem;
             font-weight: 700;
-            color: #8b5a2b;
-            border-bottom: 2px solid #f0e2d2;
+            color: var(--text-secondary);
+            border-bottom: 2px solid var(--border-color);
             padding-bottom: 10px;
             margin-bottom: 14px;
+            transition: color var(--transition), border-color var(--transition);
         }
         .holiday-item {
             padding: 8px 0;
-            border-bottom: 1px solid #f0e2d2;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: border-color var(--transition);
         }
         .holiday-date {
             font-size: 0.65rem;
-            background: #f4ebdd;
+            background: var(--bg-holiday);
             padding: 2px 8px;
             border-radius: 16px;
             min-width: 50px;
             text-align: center;
+            transition: background var(--transition);
         }
-        .holiday-name { font-size: 0.8rem; color: #3a2a1a; }
-        .holiday-name small { font-size: 0.65rem; color: #b8956a; }
+        .holiday-name { font-size: 0.8rem; color: var(--text-holiday); transition: color var(--transition); }
+        .holiday-name small { font-size: 0.65rem; color: var(--text-muted); transition: color var(--transition); }
         
         .stats-panel {
-            background: white;
+            background: var(--bg-card);
             border-radius: 20px;
             padding: 16px;
             margin-bottom: 20px;
             position: sticky;
             top: 20px;
+            box-shadow: var(--shadow-card);
+            transition: background var(--transition), box-shadow var(--transition);
         }
         .stats-title {
             font-size: 0.9rem;
             font-weight: 700;
-            color: #8b5a2b;
+            color: var(--text-secondary);
             margin-bottom: 10px;
             display: flex;
             align-items: center;
             gap: 6px;
+            transition: color var(--transition);
         }
         .stats-title small { font-size: 0.65rem; font-weight: normal; }
         .stats-item {
@@ -426,55 +565,61 @@
             justify-content: space-between;
             padding: 5px 0;
             font-size: 0.7rem;
-            border-bottom: 1px solid #f0e2d2;
+            border-bottom: 1px solid var(--border-color);
+            transition: border-color var(--transition);
         }
         .stats-reset { margin-top: 10px; text-align: center; }
         .reset-stats-btn {
             background: none;
             border: none;
-            color: #b8956a;
+            color: var(--text-muted);
             font-size: 0.65rem;
             cursor: pointer;
             text-decoration: underline;
+            transition: color var(--transition);
         }
+        .reset-stats-btn:hover { color: var(--text-secondary); }
         
         /* ===== ДОНАТЫ ===== */
         .donation-block {
-            background: linear-gradient(135deg, #fff5e6 0%, #ffe8d4 100%);
+            background: var(--bg-donation);
             border-radius: 20px;
             padding: 20px;
             margin-top: 20px;
             text-align: center;
-            border: 1px solid rgba(139,90,43,0.2);
+            border: 1px solid var(--border-donation);
+            transition: background var(--transition), border-color var(--transition);
         }
         .donation-title {
             font-size: 1rem;
             font-weight: 700;
-            color: #8b5a2b;
+            color: var(--text-secondary);
             margin-bottom: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+            transition: color var(--transition);
         }
         .donation-text {
             font-size: 0.75rem;
-            color: #6b4925;
+            color: var(--text-donation);
             margin-bottom: 16px;
             line-height: 1.4;
+            transition: color var(--transition);
         }
         .donation-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: #8b5a2b;
+            background: var(--text-secondary);
             color: white;
             text-decoration: none;
             padding: 10px 20px;
             border-radius: 40px;
             font-size: 0.85rem;
             font-weight: 600;
-            transition: all 0.2s;
+            transition: all var(--transition);
             border: none;
             cursor: pointer;
         }
@@ -483,25 +628,32 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(139,90,43,0.3);
         }
+        body.dark-mode .donation-btn:hover {
+            background: #d4a373;
+            color: #1a1410;
+        }
         .donation-note {
             font-size: 0.6rem;
-            color: #b8956a;
+            color: var(--text-muted);
             margin-top: 12px;
+            transition: color var(--transition);
         }
         
         .footer {
             text-align: center;
             margin-top: 40px;
             padding: 25px 20px;
-            background: rgba(139,90,43,0.05);
+            background: var(--border-color);
             border-radius: 40px;
+            transition: background var(--transition);
         }
         .project-name {
             font-size: 1.5rem;
             font-weight: 400;
             letter-spacing: 2px;
-            color: #8b5a2b;
+            color: var(--text-secondary);
             font-family: 'Georgia', serif;
+            transition: color var(--transition);
         }
         
         /* ===== ОШИБКА ===== */
@@ -512,15 +664,16 @@
             justify-content: center;
             padding: 60px 20px;
             min-height: 300px;
-            background: rgba(201, 106, 42, 0.05);
+            background: var(--bg-error);
             border-radius: 24px;
-            border: 2px dashed #c96a2a;
+            border: 2px dashed var(--border-error);
+            transition: background var(--transition);
         }
         .error-icon { font-size: 4rem; margin-bottom: 16px; }
-        .error-title { font-size: 1.3rem; font-weight: 700; color: #8b5a2b; margin-bottom: 8px; }
-        .error-message { font-size: 0.9rem; color: #8b5a2b; margin-bottom: 20px; text-align: center; max-width: 400px; }
+        .error-title { font-size: 1.3rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 8px; transition: color var(--transition); }
+        .error-message { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px; text-align: center; max-width: 400px; transition: color var(--transition); }
         .error-btn {
-            background: #8b5a2b;
+            background: var(--text-secondary);
             color: white;
             border: none;
             padding: 12px 32px;
@@ -528,10 +681,11 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all var(--transition);
         }
         .error-btn:hover { background: #6b4220; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(139,90,43,0.3); }
-        .error-details { font-size: 0.65rem; color: #b8956a; margin-top: 12px; }
+        body.dark-mode .error-btn:hover { background: #d4a373; color: #1a1410; }
+        .error-details { font-size: 0.65rem; color: var(--text-muted); margin-top: 12px; transition: color var(--transition); }
         
         .loader-container {
             display: flex;
@@ -544,18 +698,19 @@
         .loader-spinner {
             width: 60px;
             height: 60px;
-            border: 4px solid rgba(139, 90, 43, 0.1);
-            border-top: 4px solid #8b5a2b;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--text-secondary);
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
             margin-bottom: 20px;
+            transition: border-color var(--transition);
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .loader-text { font-size: 1.1rem; color: #8b5a2b; margin-bottom: 8px; }
-        .loader-sub { font-size: 0.8rem; color: #b8956a; animation: pulse 1.5s ease-in-out infinite; }
+        .loader-text { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 8px; transition: color var(--transition); }
+        .loader-sub { font-size: 0.8rem; color: var(--text-muted); animation: pulse 1.5s ease-in-out infinite; transition: color var(--transition); }
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.4; }
@@ -564,19 +719,21 @@
             width: 100%;
             max-width: 300px;
             height: 6px;
-            background: rgba(139, 90, 43, 0.1);
+            background: var(--border-color);
             border-radius: 10px;
             margin-top: 16px;
             overflow: hidden;
+            transition: background var(--transition);
         }
         .progress-bar {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #8b5a2b, #c9a87c);
+            background: linear-gradient(90deg, var(--text-secondary), #c9a87c);
             border-radius: 10px;
             transition: width 0.3s ease;
         }
         
+        /* ===== АДАПТИВ ===== */
         @media (max-width: 900px) {
             .main-layout { flex-direction: column; }
             .card-of-day-content { font-size: 0.9rem; }
@@ -592,17 +749,34 @@
             }
             #breadcrumbs::-webkit-scrollbar { display: none; }
             .back-button { padding: 6px 12px; font-size: 0.75rem; }
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                width: 38px;
+                height: 38px;
+                font-size: 1.1rem;
+            }
         }
         @media (max-width: 480px) {
             body { padding: 10px; }
             .section-card, .subcat-card { padding: 14px; }
             .sections-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .theme-toggle {
+                top: 8px;
+                right: 8px;
+                width: 34px;
+                height: 34px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Индикатор загрузки -->
     <div id="loadingIndicator"></div>
+
+    <!-- Кнопка переключения темы -->
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Переключить тему">🌙</button>
 
     <div class="container">
         <header>
@@ -667,6 +841,7 @@
     let currentSection = null;
     let currentSubcat = null;
     const STATS_KEY = 'greeting_copy_stats';
+    const THEME_KEY = 'site_theme';
     
     const contentContainer = document.getElementById('contentContainer');
     const backBtn = document.getElementById('backBtn');
@@ -676,6 +851,27 @@
     const statsContent = document.getElementById('statsContent');
     const breadcrumbs = document.getElementById('breadcrumbs');
     const loadingIndicator = document.getElementById('loadingIndicator');
+    const themeToggle = document.getElementById('themeToggle');
+
+    // ===== ПЕРЕКЛЮЧЕНИЕ ТЕМЫ =====
+    function toggleTheme() {
+        const body = document.body;
+        const isDark = body.classList.toggle('dark-mode');
+        themeToggle.textContent = isDark ? '☀️' : '🌙';
+        localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light');
+    }
+
+    function loadTheme() {
+        const saved = localStorage.getItem(THEME_KEY);
+        const isDark = saved === 'dark';
+        if (isDark) {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        } else {
+            document.body.classList.remove('dark-mode');
+            themeToggle.textContent = '🌙';
+        }
+    }
 
     // ===== ДОНАТЫ =====
     const DONATION_URL = 'https://yoomoney.ru/to/4100119532722543';
@@ -951,7 +1147,7 @@
                     <span class="section-emoji">${escapeHtml(section.emoji)}</span>
                     <div class="section-name">${escapeHtml(section.name_ba)}</div>
                     <div class="section-desc">${escapeHtml(section.name_ru)}</div>
-                    ${!hasContent ? '<div style="font-size:0.6rem;color:#999;margin-top:6px;">⏳ Скоро появится</div>' : ''}
+                    ${!hasContent ? '<div style="font-size:0.6rem;color:var(--text-muted);margin-top:6px;">⏳ Скоро появится</div>' : ''}
                 </div>
             `;
         }
@@ -966,12 +1162,12 @@
         
         let html = `
             <div style="margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
-                <h2 style="color:#8b5a2b;display:flex;align-items:center;gap:10px;">
+                <h2 style="color:var(--text-secondary);display:flex;align-items:center;gap:10px;">
                     <span>${escapeHtml(section.emoji)}</span>
                     <span>${escapeHtml(section.name_ba)}</span>
-                    <span style="font-size:0.7rem;color:#b8956a;">${escapeHtml(section.name_ru)}</span>
+                    <span style="font-size:0.7rem;color:var(--text-muted);">${escapeHtml(section.name_ru)}</span>
                 </h2>
-                <span style="font-size:0.75rem;color:#b8956a;">
+                <span style="font-size:0.75rem;color:var(--text-muted);">
                     ${Object.keys(section.subcategories).filter(k => (section.subcategories[k].greetings || []).length > 0).length} подкатегорий
                 </span>
             </div>
@@ -988,7 +1184,7 @@
                     <span class="subcat-emoji">${escapeHtml(subcat.emoji)}</span>
                     <div class="subcat-name">${escapeHtml(subcat.name_ba)}</div>
                     <div class="subcat-desc">${escapeHtml(subcat.name_ru)}</div>
-                    ${!hasGreetings ? '<div style="font-size:0.55rem;color:#999;margin-top:4px;">⏳ Поздравления в разработке</div>' : ''}
+                    ${!hasGreetings ? '<div style="font-size:0.55rem;color:var(--text-muted);margin-top:4px;">⏳ Поздравления в разработке</div>' : ''}
                 </div>
             `;
         }
@@ -1007,9 +1203,9 @@
         const greetings = subcat.greetings || [];
         if (greetings.length === 0) {
             return `
-                <div style="text-align:center;padding:60px;color:#b8956a;">
+                <div style="text-align:center;padding:60px;color:var(--text-muted);">
                     <div style="font-size:3rem;margin-bottom:16px;">${escapeHtml(subcat.emoji)}</div>
-                    <h3>${escapeHtml(subcat.name_ba)}</h3>
+                    <h3 style="color:var(--text-secondary);">${escapeHtml(subcat.name_ba)}</h3>
                     <p style="margin-top:8px;">⏳ Поздравления скоро появятся</p>
                 </div>
             `;
@@ -1017,11 +1213,11 @@
         
         let html = `
             <div style="margin-bottom:16px;">
-                <h2 style="color:#8b5a2b;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                <h2 style="color:var(--text-secondary);display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
                     <span>${escapeHtml(subcat.emoji)}</span>
                     <span>${escapeHtml(subcat.name_ba)}</span>
-                    <span style="font-size:0.7rem;color:#b8956a;">${escapeHtml(subcat.name_ru)}</span>
-                    <span style="font-size:0.7rem;color:#b8956a;margin-left:auto;">${greetings.length} поздравлений</span>
+                    <span style="font-size:0.7rem;color:var(--text-muted);">${escapeHtml(subcat.name_ru)}</span>
+                    <span style="font-size:0.7rem;color:var(--text-muted);margin-left:auto;">${greetings.length} поздравлений</span>
                 </h2>
             </div>
             <div class="cards-grid">
@@ -1204,7 +1400,7 @@
         const stats = getStats();
         const entries = Object.entries(stats);
         if (entries.length === 0) {
-            statsContent.innerHTML = '<div style="text-align:center;color:#b8956a;padding:8px;">Пока нет копирований</div>';
+            statsContent.innerHTML = '<div style="text-align:center;color:var(--text-muted);padding:8px;">Пока нет копирований</div>';
             return;
         }
         const sorted = entries.sort((a, b) => {
@@ -1221,7 +1417,7 @@
                     <span title="${escapeHtml(data.text_ba || '')}">📖 ${escapeHtml(baText)}</span>
                     <span>📊 ${total}</span>
                 </div>
-                <div class="stats-item" style="font-size:0.65rem;color:#c8b598;padding-left:12px;">
+                <div class="stats-item" style="font-size:0.65rem;color:var(--text-muted);padding-left:12px;">
                     <span>📤 Полный: ${data.full}</span>
                     <span>📋 Только баш.: ${data.only_ba}</span>
                 </div>
@@ -1350,7 +1546,7 @@
                 <div class="card-of-day-title"><span>⭐</span> Бөгөнгө йылы һүҙ / Тёплое слово дня</div>
                 <div class="card-of-day-content">${escapeHtml(card.text_ba)}</div>
                 <div class="card-of-day-trans">💭 ${escapeHtml(card.translation_ru)}</div>
-                <div style="font-size:0.65rem; margin-top:8px; color:#c8b598;">🏷️ ${card.category} | ${card.section}</div>
+                <div style="font-size:0.65rem; margin-top:8px; color:var(--text-muted);">🏷️ ${card.category} | ${card.section}</div>
             </div>
         `;
     }
@@ -1406,7 +1602,7 @@
                 <div class="motivation-block">
                     <div class="motivation-quote">«Туған телдә әйтелгән йылы һүҙ — йөрәккә шифа»</div>
                     <div class="motivation-author">— Башҡорт халыҡ мәҡәле</div>
-                    <div style="margin-top:12px; font-size:0.8rem;">🌾 Кешенең туған телендә ҡотлау — уның йөрәгенә иң ҡыҫҡа юл.</div>
+                    <div style="margin-top:12px; font-size:0.8rem; color:var(--text-muted);">🌾 Кешенең туған телендә ҡотлау — уның йөрәгенә иң ҡыҫҡа юл.</div>
                 </div>
             `;
         } else {
@@ -1484,6 +1680,7 @@
     // ================================================================
 
     renderCurrentDate();
+    loadTheme();
 
     async function init() {
         showSkeleton();
@@ -1515,7 +1712,7 @@
     }
 
     init();
-    console.log('🚀 Сайт загружен с динамическим обнаружением файлов');
+    console.log('🚀 Сайт загружен с динамическим обнаружением файлов и тёмной темой');
     </script>
 </body>
 </html>
