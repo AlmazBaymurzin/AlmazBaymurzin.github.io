@@ -24,23 +24,44 @@
     <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
     <meta name="theme-color" content="#8b5a2b">
     
-    <meta name="description" content="Башҡортса ҡотлауҙар, теләктәр һәм хуплау һүҙҙәре. Поздравления, пожелания и слова поддержки на башкирском языке. Йылы һүҙҙәр проекты.">
-    <meta name="keywords" content="башкирские поздравления, башҡортса ҡотлау, йылы һүҙҙәр, башкирский язык, тёплые слова, поздравления на башкирском, башкирские пожелания">
+    <!-- ===== УЛУЧШЕННЫЕ META-ТЕГИ ===== -->
+    <meta name="description" content="Башҡортса ҡотлауҙар, теләктәр, тостар, мәҫәлдәр һәм соболезнование. Поздравления, пожелания, тосты, притчи и соболезнования на башкирском языке с переводом. Йылы һүҙҙәр — самый полный сборник башкирских поздравлений.">
+    <meta name="keywords" content="башкирские поздравления, башҡортса ҡотлау, йылы һүҙҙәр, башкирский язык, тёплые слова, поздравления на башкирском, башкирские пожелания, башкирские тосты, башҡорт телендә ҡотлау, башҡортса теләктәр, соболезнования на башкирском, притчи на башкирском">
     <meta name="author" content="Алмаз Баймурзин, Project Yily Huzzar">
     <meta name="language" content="ba, ru">
     <meta name="copyright" content="Project Yily Huzzar">
     <meta name="robots" content="index, follow">
     
+    <!-- ===== OPEN GRAPH ===== -->
     <meta property="og:title" content="Йылы һүҙҙәр | Поздравления на башкирском">
-    <meta property="og:description" content="Коллекция поздравлений, пожеланий и слов поддержки на башкирском языке с переводом на русский.">
+    <meta property="og:description" content="Коллекция поздравлений, пожеланий, тостов, притч и соболезнований на башкирском языке с переводом на русский.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://almazbaymurzin.github.io">
     <meta property="og:site_name" content="Йылы һүҙҙәр | Yily Huzzar">
     <meta property="og:locale" content="ba_RU">
+    <meta property="og:image" content="https://almazbaymurzin.github.io/favicon.png">
     
-    <meta name="twitter:card" content="summary_large_image">
+    <!-- ===== TWITTER CARD ===== -->
+    <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Йылы һүҙҙәр | Поздравления на башкирском">
-    <meta name="twitter:description" content="Поздравления на башкирском языке с переводом на русский.">
+    <meta name="twitter:description" content="Поздравления, пожелания, тосты, притчи и соболезнования на башкирском языке с переводом на русский.">
+    
+    <!-- ===== СТРУКТУРИРОВАННЫЕ ДАННЫЕ (JSON-LD) ===== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Йылы һүҙҙәр | Yily Huzzar",
+        "url": "https://almazbaymurzin.github.io/",
+        "description": "Коллекция поздравлений, пожеланий, тостов, притч и соболезнований на башкирском языке с переводом на русский.",
+        "inLanguage": "ba, ru",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://almazbaymurzin.github.io/#search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
     
     <style>
         /* ===== CSS ПЕРЕМЕННЫЕ ДЛЯ ТЕМ ===== */
@@ -1330,27 +1351,120 @@
         }
     });
 
+    // ===== ГЕНЕРАЦИЯ BREADCRUMB LIST (JSON-LD) =====
+    function updateBreadcrumbSchema(section, subcat) {
+        const scriptId = 'breadcrumb-jsonld';
+        let oldScript = document.getElementById(scriptId);
+        if (oldScript) oldScript.remove();
+
+        let items = [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Главная / Баш бит",
+                "item": "https://almazbaymurzin.github.io/"
+            }
+        ];
+
+        let position = 2;
+        if (section && siteData?.sections[section]) {
+            const sectionData = siteData.sections[section];
+            items.push({
+                "@type": "ListItem",
+                "position": position++,
+                "name": sectionData.name_ba,
+                "item": `https://almazbaymurzin.github.io/#${section}`
+            });
+
+            if (subcat && sectionData.subcategories[subcat]) {
+                const subcatData = sectionData.subcategories[subcat];
+                items.push({
+                    "@type": "ListItem",
+                    "position": position++,
+                    "name": subcatData.name_ba,
+                    "item": `https://almazbaymurzin.github.io/#${section}/${subcat}`
+                });
+            }
+        }
+
+        const jsonld = {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": items
+        };
+
+        const script = document.createElement('script');
+        script.id = scriptId;
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(jsonld);
+        document.head.appendChild(script);
+    }
+
+    // ===== ГЕНЕРАЦИЯ ARTICLE (ДЛЯ БЛОГА) =====
+    function updateArticleSchema(section, subcat, greetingIndex) {
+        // Только для статей из блога
+        if (section === 'blog' && subcat) {
+            const subcatData = siteData?.sections[section]?.subcategories[subcat];
+            const greeting = subcatData?.greetings?.[greetingIndex];
+            if (greeting) {
+                const scriptId = 'article-jsonld';
+                let oldScript = document.getElementById(scriptId);
+                if (oldScript) oldScript.remove();
+
+                const jsonld = {
+                    "@context": "https://schema.org",
+                    "@type": "Article",
+                    "headline": subcatData.name_ba,
+                    "description": subcatData.name_ru,
+                    "inLanguage": "ba, ru",
+                    "author": {
+                        "@type": "Person",
+                        "name": "Йылы һүҙҙәр"
+                    },
+                    "datePublished": new Date().toISOString().split('T')[0],
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "Йылы һүҙҙәр | Yily Huzzar"
+                    }
+                };
+
+                const script = document.createElement('script');
+                script.id = scriptId;
+                script.type = 'application/ld+json';
+                script.textContent = JSON.stringify(jsonld);
+                document.head.appendChild(script);
+            }
+        }
+    }
+
     // ===== META-ТЕГИ =====
     function updateMeta(section, subcat) {
-        let title = 'Йылы һүҙҙәр — Поздравления на башкирском';
-        let description = 'Коллекция поздравлений, пожеланий и слов поддержки на башкирском языке с переводом на русский.';
+        let title = 'Йылы һүҙҙәр — Поздравления на башкирском языке';
+        let description = 'Башҡортса ҡотлауҙар, теләктәр, тостар, мәҫәлдәр һәм соболезнование. Поздравления, пожелания, тосты, притчи и соболезнования на башкирском языке с переводом.';
+        let keywords = 'башкирские поздравления, башҡортса ҡотлау, йылы һүҙҙәр, башкирский язык, тёплые слова, поздравления на башкирском, башкирские пожелания';
         
         if (section && siteData?.sections[section]) {
             const sectionData = siteData.sections[section];
             title = `${sectionData.name_ba} — ${sectionData.name_ru} | Йылы һүҙҙәр`;
             description = `${sectionData.name_ba} (${sectionData.name_ru}) — поздравления на башкирском языке с переводом.`;
+            keywords = sectionData.keywords || keywords;
             
             if (subcat && sectionData.subcategories[subcat]) {
                 const subcatData = sectionData.subcategories[subcat];
                 title = `${subcatData.name_ba} — ${subcatData.name_ru} | ${sectionData.name_ba}`;
                 description = `${subcatData.name_ba} (${subcatData.name_ru}) — поздравления на башкирском языке.`;
+                keywords = `${sectionData.keywords || ''}, ${subcatData.name_ba}, ${subcatData.name_ru}`;
             }
         }
         
         document.title = title;
         document.querySelector('meta[name="description"]')?.setAttribute('content', description);
+        document.querySelector('meta[name="keywords"]')?.setAttribute('content', keywords);
         document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
         document.querySelector('meta[property="og:description"]')?.setAttribute('content', description);
+        
+        // Обновить BreadcrumbList
+        updateBreadcrumbSchema(section, subcat);
     }
 
     function showLoading(active) {
@@ -1442,6 +1556,12 @@
     async function copyToClipboard(ruText, baText, greetingId) {
         const shareText = `${baText}\n\n💭 ${ruText}`;
         incrementStats(greetingId, 'full', baText, ruText);
+        
+        // Цель для Яндекс.Метрики
+        if (typeof ym !== 'undefined') {
+            ym(109825367, 'reachGoal', 'copy_greeting');
+        }
+        
         if (navigator.share && window.innerWidth <= 768) {
             try {
                 await navigator.share({ title: 'Поздравление на башкирском', text: shareText });
@@ -1470,6 +1590,12 @@
 
     async function copyOnlyBashkir(baText, greetingId) {
         incrementStats(greetingId, 'only_ba', baText, '');
+        
+        // Цель для Яндекс.Метрики
+        if (typeof ym !== 'undefined') {
+            ym(109825367, 'reachGoal', 'copy_only_ba');
+        }
+        
         if (navigator.share && window.innerWidth <= 768) {
             try {
                 await navigator.share({ title: 'Поздравление на башкирском', text: baText });
@@ -1713,7 +1839,7 @@
     }
 
     init();
-    console.log('🚀 Сайт загружен с динамическим обнаружением файлов и тёмной темой');
+    console.log('🚀 Сайт загружен с динамическим обнаружением файлов, тёмной темой и JSON-LD');
     </script>
 </body>
 </html>
