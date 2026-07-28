@@ -660,10 +660,11 @@
             transition: color var(--transition);
         }
         
+        /* ===== ФУТЕР С СОЦСЕТЯМИ ===== */
         .footer {
             text-align: center;
             margin-top: 40px;
-            padding: 25px 20px;
+            padding: 30px 20px 25px 20px;
             background: var(--border-color);
             border-radius: 40px;
             transition: background var(--transition);
@@ -674,6 +675,60 @@
             letter-spacing: 2px;
             color: var(--text-secondary);
             font-family: 'Georgia', serif;
+            transition: color var(--transition);
+        }
+        .footer-divider {
+            width: 60px;
+            height: 2px;
+            background: var(--text-muted);
+            margin: 12px auto;
+            border-radius: 2px;
+            opacity: 0.3;
+            transition: background var(--transition);
+        }
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin: 14px 0 10px 0;
+            flex-wrap: wrap;
+        }
+        .footer-social .social-btn {
+            width: 42px;
+            height: 42px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-card);
+        }
+        .footer-social .social-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+        .footer-social .social-btn.telegram:hover { background: #0088cc; color: white; border-color: #0088cc; }
+        .footer-social .social-btn.vk:hover { background: #0077ff; color: white; border-color: #0077ff; }
+        .footer-social .social-btn.whatsapp:hover { background: #25d366; color: white; border-color: #25d366; }
+        .footer-social .social-btn.ok:hover { background: #ee8208; color: white; border-color: #ee8208; }
+        .footer-social .social-btn.copy:hover { background: var(--text-secondary); color: white; border-color: var(--text-secondary); }
+        
+        .footer-social .social-label {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            transition: color var(--transition);
+        }
+        .footer-copy {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            margin-top: 12px;
             transition: color var(--transition);
         }
         
@@ -777,6 +832,11 @@
                 height: 38px;
                 font-size: 1.1rem;
             }
+            .footer-social .social-btn {
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
+            }
         }
         @media (max-width: 480px) {
             body { padding: 10px; }
@@ -789,6 +849,12 @@
                 height: 34px;
                 font-size: 1rem;
             }
+            .footer-social .social-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+            .footer-social { gap: 8px; }
         }
     </style>
 </head>
@@ -847,9 +913,32 @@
             </div>
         </div>
 
+        <!-- ===== ФУТЕР С СОЦСЕТЯМИ ===== -->
         <div class="footer">
             <div class="project-name">ЙЫЛЫ һҮҘҘӘР<br><small>yily huzzar</small></div>
-            <div style="font-size:0.75rem; margin-top:10px;">❤️ Йөрәк йылыһы — туған телдә әйтелгән һүҙҙә</div>
+            <div class="footer-divider"></div>
+            
+            <div class="footer-social">
+                <button class="social-btn telegram" onclick="shareTelegram()" title="Поделиться в Telegram">
+                    ✈️
+                </button>
+                <button class="social-btn vk" onclick="shareVK()" title="Поделиться ВКонтакте">
+                    📱
+                </button>
+                <button class="social-btn whatsapp" onclick="shareWhatsApp()" title="Поделиться в WhatsApp">
+                    💬
+                </button>
+                <button class="social-btn ok" onclick="shareOK()" title="Поделиться в Одноклассниках">
+                    👥
+                </button>
+                <button class="social-btn copy" onclick="copyLink()" title="Скопировать ссылку">
+                    🔗
+                </button>
+            </div>
+            
+            <div class="footer-copy">
+                ❤️ Йөрәк йылыһы — туған телдә әйтелгән һүҙҙә
+            </div>
         </div>
     </div>
 
@@ -891,6 +980,77 @@
         } else {
             document.body.classList.remove('dark-mode');
             themeToggle.textContent = '🌙';
+        }
+    }
+
+    // ===== ШАРИНГ В СОЦСЕТИ =====
+    function getShareUrl() {
+        return encodeURIComponent(window.location.href);
+    }
+
+    function getShareTitle() {
+        return encodeURIComponent('Йылы һүҙҙәр — Башҡортса ҡотлауҙар');
+    }
+
+    function shareTelegram() {
+        const url = `https://t.me/share/url?url=${getShareUrl()}&text=${getShareTitle()}`;
+        window.open(url, '_blank', 'width=600,height=400');
+        // Цель для Яндекс.Метрики
+        if (typeof ym !== 'undefined') {
+            ym(109825367, 'reachGoal', 'share_telegram');
+        }
+    }
+
+    function shareVK() {
+        const url = `https://vk.com/share.php?url=${getShareUrl()}&title=${getShareTitle()}`;
+        window.open(url, '_blank', 'width=600,height=400');
+        if (typeof ym !== 'undefined') {
+            ym(109825367, 'reachGoal', 'share_vk');
+        }
+    }
+
+    function shareWhatsApp() {
+        const url = `https://api.whatsapp.com/send?text=${getShareTitle()}%0A${getShareUrl()}`;
+        window.open(url, '_blank', 'width=600,height=400');
+        if (typeof ym !== 'undefined') {
+            ym(109825367, 'reachGoal', 'share_whatsapp');
+        }
+    }
+
+    function shareOK() {
+        const url = `https://connect.ok.ru/offer?url=${getShareUrl()}&title=${getShareTitle()}`;
+        window.open(url, '_blank', 'width=600,height=400');
+        if (typeof ym !== 'undefined') {
+            ym(109825367, 'reachGoal', 'share_ok');
+        }
+    }
+
+    function copyLink() {
+        const url = window.location.href;
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(url).then(() => {
+                showToast('🔗 Ссылка скопирована!');
+                if (typeof ym !== 'undefined') {
+                    ym(109825367, 'reachGoal', 'copy_link');
+                }
+            }).catch(() => {
+                fallbackCopy(url);
+            });
+        } else {
+            fallbackCopy(url);
+        }
+    }
+
+    function fallbackCopy(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showToast('🔗 Ссылка скопирована!');
+        if (typeof ym !== 'undefined') {
+            ym(109825367, 'reachGoal', 'copy_link');
         }
     }
 
@@ -1400,43 +1560,6 @@
         document.head.appendChild(script);
     }
 
-    // ===== ГЕНЕРАЦИЯ ARTICLE (ДЛЯ БЛОГА) =====
-    function updateArticleSchema(section, subcat, greetingIndex) {
-        // Только для статей из блога
-        if (section === 'blog' && subcat) {
-            const subcatData = siteData?.sections[section]?.subcategories[subcat];
-            const greeting = subcatData?.greetings?.[greetingIndex];
-            if (greeting) {
-                const scriptId = 'article-jsonld';
-                let oldScript = document.getElementById(scriptId);
-                if (oldScript) oldScript.remove();
-
-                const jsonld = {
-                    "@context": "https://schema.org",
-                    "@type": "Article",
-                    "headline": subcatData.name_ba,
-                    "description": subcatData.name_ru,
-                    "inLanguage": "ba, ru",
-                    "author": {
-                        "@type": "Person",
-                        "name": "Йылы һүҙҙәр"
-                    },
-                    "datePublished": new Date().toISOString().split('T')[0],
-                    "publisher": {
-                        "@type": "Organization",
-                        "name": "Йылы һүҙҙәр | Yily Huzzar"
-                    }
-                };
-
-                const script = document.createElement('script');
-                script.id = scriptId;
-                script.type = 'application/ld+json';
-                script.textContent = JSON.stringify(jsonld);
-                document.head.appendChild(script);
-            }
-        }
-    }
-
     // ===== META-ТЕГИ =====
     function updateMeta(section, subcat) {
         let title = 'Йылы һүҙҙәр — Поздравления на башкирском языке';
@@ -1839,7 +1962,7 @@
     }
 
     init();
-    console.log('🚀 Сайт загружен с динамическим обнаружением файлов, тёмной темой и JSON-LD');
+    console.log('🚀 Сайт загружен с динамическим обнаружением файлов, тёмной темой, JSON-LD и соцсетями в футере');
     </script>
 </body>
 </html>
