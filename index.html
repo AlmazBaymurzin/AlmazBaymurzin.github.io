@@ -571,47 +571,6 @@
         .holiday-name { font-size: 0.8rem; color: var(--text-holiday); transition: color var(--transition); }
         .holiday-name small { font-size: 0.65rem; color: var(--text-muted); transition: color var(--transition); }
         
-        .stats-panel {
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 16px;
-            margin-bottom: 20px;
-            position: sticky;
-            top: 20px;
-            box-shadow: var(--shadow-card);
-            transition: background var(--transition), box-shadow var(--transition);
-        }
-        .stats-title {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: color var(--transition);
-        }
-        .stats-title small { font-size: 0.65rem; font-weight: normal; }
-        .stats-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 5px 0;
-            font-size: 0.7rem;
-            border-bottom: 1px solid var(--border-color);
-            transition: border-color var(--transition);
-        }
-        .stats-reset { margin-top: 10px; text-align: center; }
-        .reset-stats-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 0.65rem;
-            cursor: pointer;
-            text-decoration: underline;
-            transition: color var(--transition);
-        }
-        .reset-stats-btn:hover { color: var(--text-secondary); }
-        
         /* ===== ДОНАТЫ ===== */
         .donation-block {
             background: var(--bg-donation);
@@ -671,7 +630,7 @@
             transition: color var(--transition);
         }
         
-        /* ===== ФУТЕР С СОЦСЕТЯМИ ===== */
+        /* ===== ФУТЕР С СОЦСЕТЯМИ И ССЫЛКАМИ ===== */
         .footer {
             text-align: center;
             margin-top: 40px;
@@ -697,6 +656,33 @@
             opacity: 0.3;
             transition: background var(--transition);
         }
+        
+        /* ===== ССЫЛКИ В ФУТЕРЕ ===== */
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 10px 0 14px 0;
+        }
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: color var(--transition);
+            cursor: pointer;
+        }
+        .footer-link:hover {
+            color: var(--text-primary);
+            text-decoration: underline;
+        }
+        .footer-link-separator {
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            opacity: 0.3;
+        }
+        
         .footer-social {
             display: flex;
             justify-content: center;
@@ -741,6 +727,62 @@
             color: var(--text-muted);
             margin-top: 12px;
             transition: color var(--transition);
+        }
+        
+        /* ===== СТРАНИЦЫ (О ПРОЕКТЕ, КОНТАКТЫ, ПОЛИТИКА) ===== */
+        .page-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .page-content h1 {
+            color: var(--text-secondary);
+            font-size: 1.6rem;
+        }
+        .page-content h2 {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .page-content p {
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        .page-content ul {
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-size: 0.95rem;
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+        .page-content a {
+            color: var(--text-secondary);
+            text-decoration: underline;
+        }
+        .page-content a:hover {
+            color: var(--text-primary);
+        }
+        .page-content .back-to-main {
+            margin-top: 30px;
+            padding: 10px 24px;
+            background: var(--text-secondary);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all var(--transition);
+        }
+        .page-content .back-to-main:hover {
+            background: #6b4220;
+            transform: translateY(-2px);
+        }
+        body.dark-mode .page-content .back-to-main:hover {
+            background: #d4a373;
+            color: #1a1410;
         }
         
         /* ===== ОШИБКА ===== */
@@ -848,6 +890,12 @@
                 height: 38px;
                 font-size: 1rem;
             }
+            .footer-links {
+                gap: 6px;
+            }
+            .footer-link {
+                font-size: 0.7rem;
+            }
         }
         @media (max-width: 480px) {
             body { padding: 10px; }
@@ -866,6 +914,29 @@
                 font-size: 0.9rem;
             }
             .footer-social { gap: 8px; }
+            .footer-links {
+                gap: 4px;
+                flex-wrap: wrap;
+            }
+            .footer-link {
+                font-size: 0.65rem;
+            }
+            .footer-link-separator {
+                display: none;
+            }
+            .footer-links .footer-link::after {
+                content: " · ";
+                color: var(--text-muted);
+            }
+            .footer-links .footer-link:last-child::after {
+                content: "";
+            }
+            .page-content {
+                padding: 10px;
+            }
+            .page-content h1 {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
@@ -917,10 +988,19 @@
             </div>
         </div>
 
-        <!-- ===== ФУТЕР С СОЦСЕТЯМИ ===== -->
+        <!-- ===== ФУТЕР С СОЦСЕТЯМИ И ССЫЛКАМИ ===== -->
         <div class="footer">
             <div class="project-name">ЙЫЛЫ һҮҘҘӘР<br><small>yily huzzar</small></div>
             <div class="footer-divider"></div>
+            
+            <!-- ===== ССЫЛКИ НА СТРАНИЦЫ ===== -->
+            <div class="footer-links">
+                <a href="#" onclick="openPage('about'); return false;" class="footer-link">ℹ️ О проекте</a>
+                <span class="footer-link-separator">|</span>
+                <a href="#" onclick="openPage('contacts'); return false;" class="footer-link">📧 Контакты</a>
+                <span class="footer-link-separator">|</span>
+                <a href="#" onclick="openPage('privacy'); return false;" class="footer-link">🔒 Политика конфиденциальности</a>
+            </div>
             
             <div class="footer-social">
                 <button class="social-btn telegram" onclick="shareTelegram()" title="Поделиться в Telegram">
@@ -954,6 +1034,7 @@
     let siteData = null;
     let currentSection = null;
     let currentSubcat = null;
+    let pagesData = null;
     const STATS_KEY = 'greeting_copy_stats';
     const THEME_KEY = 'site_theme';
     
@@ -962,7 +1043,6 @@
     const motivationBlock = document.getElementById('motivationBlock');
     const cardOfDayContainer = document.getElementById('cardOfDayContainer');
     const holidaysContent = document.getElementById('holidaysContent');
-    const statsContent = document.getElementById('statsContent');
     const breadcrumbs = document.getElementById('breadcrumbs');
     const loadingIndicator = document.getElementById('loadingIndicator');
     const themeToggle = document.getElementById('themeToggle');
@@ -1080,7 +1160,8 @@
                 'data/data_wedding.json',
                 'data/data_live.json',
                 'data/data_tosts.json',
-                'data/blog.json'
+                'data/blog.json',
+                'data/pages.json'
             ];
 
             let allFiles = [...baseFiles];
@@ -1122,6 +1203,12 @@
             for (const result of results) {
                 if (!result) continue;
                 const { file, data } = result;
+
+                // Сохраняем pages.json отдельно
+                if (file === 'data/pages.json') {
+                    pagesData = data.pages || {};
+                    continue;
+                }
 
                 if (data.sections) {
                     for (const [key, section] of Object.entries(data.sections)) {
@@ -1170,6 +1257,88 @@
             showError('Не удалось загрузить данные', error.message);
             return false;
         }
+    }
+
+    // ===== ОТКРЫТИЕ СТРАНИЦ (О ПРОЕКТЕ, КОНТАКТЫ, ПОЛИТИКА) =====
+    function openPage(pageKey) {
+        if (!pagesData) {
+            fetch('data/pages.json?v=' + Date.now())
+                .then(response => response.json())
+                .then(data => {
+                    pagesData = data.pages || {};
+                    renderPage(pageKey);
+                })
+                .catch(() => {
+                    showToast('⚠️ Страница не найдена');
+                });
+            return;
+        }
+        renderPage(pageKey);
+    }
+
+    function renderPage(pageKey) {
+        const page = pagesData[pageKey];
+        if (!page) {
+            showToast('⚠️ Страница не найдена');
+            return;
+        }
+
+        document.title = `${page.name_ba} | Йылы һүҙҙәр`;
+        document.querySelector('meta[name="description"]')?.setAttribute('content', page.name_ru);
+
+        const container = document.getElementById('contentContainer');
+        container.innerHTML = `
+            <div class="page-content fade-in">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px; border-bottom:2px solid var(--border-color); padding-bottom:15px;">
+                    <span style="font-size:2rem;">${page.emoji}</span>
+                    <h1 style="color:var(--text-secondary); font-size:1.6rem;">${page.name_ba}</h1>
+                </div>
+                <div style="color:var(--text-primary); line-height:1.8; font-size:0.95rem;">
+                    ${page.content_ba}
+                </div>
+                <hr style="border:1px solid var(--border-color); margin:30px 0;">
+                <div style="color:var(--text-muted); font-size:0.85rem;">
+                    ${page.content_ru}
+                </div>
+                <button onclick="navigateTo(null)" class="back-to-main">
+                    ← Баш биткә / На главную
+                </button>
+            </div>
+        `;
+
+        document.getElementById('cardOfDayContainer').innerHTML = '';
+        document.getElementById('motivationBlock').style.display = 'none';
+        document.getElementById('breadcrumbs').innerHTML = '';
+        document.getElementById('backBtn').style.display = 'none';
+
+        const backBtnEl = document.getElementById('backBtn');
+        backBtnEl.style.display = 'flex';
+        backBtnEl.onclick = function() {
+            navigateTo(null);
+        };
+
+        history.pushState({ page: pageKey }, '', `#${pageKey}`);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function checkPageHash() {
+        const hash = window.location.hash.replace('#', '');
+        if (['about', 'contacts', 'privacy'].includes(hash) && pagesData) {
+            renderPage(hash);
+            return true;
+        } else if (['about', 'contacts', 'privacy'].includes(hash) && !pagesData) {
+            fetch('data/pages.json?v=' + Date.now())
+                .then(response => response.json())
+                .then(data => {
+                    pagesData = data.pages || {};
+                    renderPage(hash);
+                })
+                .catch(() => {
+                    window.location.hash = '';
+                });
+            return true;
+        }
+        return false;
     }
 
     // ===== ПОКАЗАТЬ СКЕЛЕТОН =====
@@ -1229,10 +1398,8 @@
         await new Promise(resolve => setTimeout(resolve, 300));
         const loaded = await loadAllJsonFiles();
         if (loaded) {
-            renderStats();
             renderHolidaysWidget();
             renderSections();
-            showToast('✅ Данные загружены!');
         }
     }
 
@@ -1304,7 +1471,6 @@
             showLoading(false);
             
             if (!section && !subcat) {
-                renderStats();
                 renderHolidaysWidget();
                 renderCardOfDay();
                 showMotivationBlock(true);
@@ -1409,8 +1575,6 @@
         
         greetings.forEach((g, index) => {
             const greetingId = generateGreetingId(sectionKey, subcatKey, index, g.text_ba);
-            const stats = getStats();
-            const copyCount = stats[greetingId] ? (stats[greetingId].full + stats[greetingId].only_ba) : 0;
             
             html += `
                 <div class="card">
@@ -1425,7 +1589,6 @@
                             📋 Только башк.
                         </button>
                     </div>
-                    ${copyCount > 0 ? `<div class="copy-stats">📊 ${copyCount}</div>` : ''}
                 </div>
             `;
         });
@@ -1524,7 +1687,7 @@
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Главная / Баш бит",
-                "item": "https://almazbaymurzin.github.io/"
+                "item": "https://yilyhuzzar.ru/"
             }
         ];
 
@@ -1535,7 +1698,7 @@
                 "@type": "ListItem",
                 "position": position++,
                 "name": sectionData.name_ba,
-                "item": `https://almazbaymurzin.github.io/#${section}`
+                "item": `https://yilyhuzzar.ru/#${section}`
             });
 
             if (subcat && sectionData.subcategories[subcat]) {
@@ -1544,7 +1707,7 @@
                     "@type": "ListItem",
                     "position": position++,
                     "name": subcatData.name_ba,
-                    "item": `https://almazbaymurzin.github.io/#${section}/${subcat}`
+                    "item": `https://yilyhuzzar.ru/#${section}/${subcat}`
                 });
             }
         }
@@ -1599,6 +1762,10 @@
 
     window.addEventListener('popstate', function(e) {
         const { section, subcat } = e.state || { section: null, subcat: null };
+        if (e.state?.page) {
+            renderPage(e.state.page);
+            return;
+        }
         navState.currentSection = section;
         navState.currentSubcat = subcat;
         updateContent(section, subcat, true);
@@ -1610,76 +1777,9 @@
         }
     });
 
-    // ===== СТАТИСТИКА =====
-    function getStats() {
-        const saved = localStorage.getItem(STATS_KEY);
-        return saved ? JSON.parse(saved) : {};
-    }
-
-    function saveStats(stats) {
-        localStorage.setItem(STATS_KEY, JSON.stringify(stats));
-        renderStats();
-    }
-
-    function incrementStats(greetingId, type, baText, ruText) {
-        const stats = getStats();
-        if (!stats[greetingId]) {
-            stats[greetingId] = { full: 0, only_ba: 0, text_ba: baText, text_ru: ruText };
-        }
-        if (type === 'full') {
-            stats[greetingId].full++;
-        } else if (type === 'only_ba') {
-            stats[greetingId].only_ba++;
-        }
-        saveStats(stats);
-    }
-
-    function renderStats() {
-        if (!statsContent) return;
-        const stats = getStats();
-        const entries = Object.entries(stats);
-        if (entries.length === 0) {
-            statsContent.innerHTML = '<div style="text-align:center;color:var(--text-muted);padding:8px;">Пока нет копирований</div>';
-            return;
-        }
-        const sorted = entries.sort((a, b) => {
-            const totalA = a[1].full + a[1].only_ba;
-            const totalB = b[1].full + b[1].only_ba;
-            return totalB - totalA;
-        });
-        let html = '';
-        sorted.slice(0, 8).forEach(([id, data]) => {
-            const total = data.full + data.only_ba;
-            const baText = (data.text_ba || '').substring(0, 35) + ((data.text_ba || '').length > 35 ? '...' : '');
-            html += `
-                <div class="stats-item">
-                    <span title="${escapeHtml(data.text_ba || '')}">📖 ${escapeHtml(baText)}</span>
-                    <span>📊 ${total}</span>
-                </div>
-                <div class="stats-item" style="font-size:0.65rem;color:var(--text-muted);padding-left:12px;">
-                    <span>📤 Полный: ${data.full}</span>
-                    <span>📋 Только баш.: ${data.only_ba}</span>
-                </div>
-            `;
-        });
-        statsContent.innerHTML = html;
-    }
-
-    function resetAllStats() {
-        if (confirm('Сбросить всю статистику копирований?')) {
-            localStorage.removeItem(STATS_KEY);
-            renderStats();
-            showToast('Статистика сброшена');
-            if (navState.currentSection && navState.currentSubcat) {
-                updateContent(navState.currentSection, navState.currentSubcat, false);
-            }
-        }
-    }
-
     // ===== КОПИРОВАНИЕ =====
     async function copyToClipboard(ruText, baText, greetingId) {
         const shareText = `${baText}\n\n💭 ${ruText}`;
-        incrementStats(greetingId, 'full', baText, ruText);
         
         if (typeof ym !== 'undefined') {
             ym(109825367, 'reachGoal', 'copy_greeting');
@@ -1712,8 +1812,6 @@
     }
 
     async function copyOnlyBashkir(baText, greetingId) {
-        incrementStats(greetingId, 'only_ba', baText, '');
-        
         if (typeof ym !== 'undefined') {
             ym(109825367, 'reachGoal', 'copy_only_ba');
         }
@@ -1935,33 +2033,32 @@
         showSkeleton();
         const loaded = await loadAllJsonFiles();
         if (loaded) {
-            renderStats();
             renderHolidaysWidget();
             
-            const { section, subcat } = parseUrl();
-            if (section) {
-                navState.currentSection = section;
-                navState.currentSubcat = subcat;
-                navState.navigationHistory.push({ section, subcat });
-                updateContent(section, subcat, false);
-                updateBreadcrumbs(section, subcat);
-                updateBackButton();
-                updateMeta(section, subcat);
-            } else {
-                updateContent(null, null, false);
-                updateBreadcrumbs(null, null);
-                updateBackButton();
-                updateMeta(null, null);
-                renderCardOfDay();
-                showMotivationBlock(true);
+            if (!checkPageHash()) {
+                const { section, subcat } = parseUrl();
+                if (section) {
+                    navState.currentSection = section;
+                    navState.currentSubcat = subcat;
+                    navState.navigationHistory.push({ section, subcat });
+                    await updateContent(section, subcat, false);
+                    updateBreadcrumbs(section, subcat);
+                    updateBackButton();
+                    updateMeta(section, subcat);
+                } else {
+                    await updateContent(null, null, false);
+                    updateBreadcrumbs(null, null);
+                    updateBackButton();
+                    updateMeta(null, null);
+                    renderCardOfDay();
+                    showMotivationBlock(true);
+                }
             }
-            
-            // showToast('✅ Данные загружены!');
         }
     }
 
     init();
-    console.log('🚀 Сайт загружен с динамическим обнаружением файлов, тёмной темой, JSON-LD и соцсетями в футере');
+    console.log('🚀 Сайт загружен с динамическим обнаружением файлов, тёмной темой, JSON-LD, соцсетями и страницами О проекте/Контакты/Политика');
     </script>
     <!-- Yandex.RTB R-A-19681414-1 -->
 <script>
