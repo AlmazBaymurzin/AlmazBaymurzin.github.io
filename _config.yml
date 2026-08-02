@@ -1,0 +1,10 @@
+# Кеширование статических файлов
+defaults:
+  - scope:
+      path: "data"
+    values:
+      cache_control: "public, max-age=3600"
+  - scope:
+      path: "*.html"
+    values:
+      cache_control: "public, max-age=300"
