@@ -948,25 +948,21 @@
 
     <script>
     // ================================================================
-    // ========== ПОЛНАЯ ВЕРСИЯ С ЛЕНИВОЙ ЗАГРУЗКОЙ ==========
+    // ========== ПОЛНАЯ ВЕРСИЯ С ДИНАМИЧЕСКОЙ ЗАГРУЗКОЙ ==========
     // ================================================================
 
     let siteData = null;
     let currentSection = null;
     let currentSubcat = null;
-    let allFilesData = {};
-    let pagesData = null;
-    let isDataLoaded = false;
     const STATS_KEY = 'greeting_copy_stats';
     const THEME_KEY = 'site_theme';
-    const CACHE_KEY = 'site_data_cache';
-    const CACHE_TIME = 3600000; // 1 час
     
     const contentContainer = document.getElementById('contentContainer');
     const backBtn = document.getElementById('backBtn');
     const motivationBlock = document.getElementById('motivationBlock');
     const cardOfDayContainer = document.getElementById('cardOfDayContainer');
     const holidaysContent = document.getElementById('holidaysContent');
+    const statsContent = document.getElementById('statsContent');
     const breadcrumbs = document.getElementById('breadcrumbs');
     const loadingIndicator = document.getElementById('loadingIndicator');
     const themeToggle = document.getElementById('themeToggle');
@@ -1067,100 +1063,70 @@
         window.open(DONATION_URL, '_blank');
     });
 
-    // ===== КЕШИРОВАНИЕ =====
-    function getCachedData() {
-        try {
-            const cached = localStorage.getItem(CACHE_KEY);
-            if (!cached) return null;
-            const data = JSON.parse(cached);
-            if (Date.now() - data.timestamp > CACHE_TIME) {
-                localStorage.removeItem(CACHE_KEY);
-                return null;
-            }
-            return data.value;
-        } catch {
-            return null;
-        }
-    }
-
-    function setCachedData(data) {
-        try {
-            localStorage.setItem(CACHE_KEY, JSON.stringify({
-                timestamp: Date.now(),
-                value: data
-            }));
-        } catch {}
-    }
-
-    // ===== ЛЕНИВАЯ ЗАГРУЗКА JSON =====
-    const fileLoaders = {
-        'data/data.json': null,
-        'data/data_professional.json': null,
-        'data/data_holidays.json': null,
-        'data/data_birthday.json': null,
-        'data/data_military.json': null,
-        'data/data_wedding.json': null,
-        'data/data_live.json': null,
-        'data/data_tosts.json': null,
-        'data/blog.json': null,
-        'data/pages.json': null,
-        'data/pritches.json': null,
-        'data/data_beloved_woman.json': null
-    };
-
-    async function loadFile(file) {
-        if (fileLoaders[file]) {
-            return fileLoaders[file];
-        }
-        
-        const promise = fetch(file + '?v=' + Date.now())
-            .then(response => {
-                if (!response.ok) throw new Error('File not found');
-                return response.json();
-            })
-            .catch(error => {
-                console.warn(`⚠️ Ошибка загрузки ${file}:`, error);
-                return null;
-            });
-        
-        fileLoaders[file] = promise;
-        return promise;
-    }
-
-    async function loadMainData() {
-        // Проверяем кеш
-        const cached = getCachedData();
-        if (cached) {
-            console.log('📦 Данные из кеша');
-            siteData = cached;
-            isDataLoaded = true;
-            return true;
-        }
+    // ===== ДИНАМИЧЕСКАЯ ЗАГРУЗКА ВСЕХ JSON ФАЙЛОВ =====
+    async function loadAllJsonFiles() {
+        const allData = {
+            sections: {},
+            holidays_widget: []
+        };
 
         try {
-            // Загружаем только основные файлы
-            const mainFiles = [
+            const baseFiles = [
                 'data/data.json',
-                'data/data_tosts.json',
+                'data/data_professional.json',
+                'data/data_holidays.json',
+                'data/data_birthday.json',
+                'data/data_military.json',
+                'data/data_wedding.json',
                 'data/data_live.json',
-                'data/pages.json'
+                'data/data_tosts.json',
+                'data/blog.json'
             ];
 
-            const promises = mainFiles.map(file => loadFile(file));
+            let allFiles = [...baseFiles];
+            
+            const extraFiles = [
+                'data/pritches.json',
+                'data/medsister.json',
+                'data/medsister_new.json',
+                'data/data_beloved_woman.json'
+            ];
+
+            for (const file of extraFiles) {
+                try {
+                    const response = await fetch(file, { method: 'HEAD' });
+                    if (response.ok) {
+                        allFiles.push(file);
+                        console.log(`📄 Найден дополнительный файл: ${file}`);
+                    }
+                } catch (e) {}
+            }
+
+            console.log('📄 Загружаемые файлы:', allFiles);
+
+            const promises = allFiles.map(async (file) => {
+                try {
+                    const response = await fetch(file + '?v=' + Date.now());
+                    if (!response.ok) return null;
+                    const data = await response.json();
+                    console.log(`✅ Загружено: ${file}`);
+                    return { file, data };
+                } catch (error) {
+                    console.warn(`⚠️ Ошибка ${file}:`, error.message);
+                    return null;
+                }
+            });
+
             const results = await Promise.all(promises);
 
-            const allData = {
-                sections: {},
-                holidays_widget: []
-            };
+            for (const result of results) {
+                if (!result) continue;
+                const { file, data } = result;
 
-            for (const data of results) {
-                if (!data) continue;
                 if (data.sections) {
                     for (const [key, section] of Object.entries(data.sections)) {
-                        if (!allData.sections[key]) {
-                            allData.sections[key] = section;
-                        } else {
+                        if (allData.sections[key]) {
+                            console.log(`🔄 Объединение раздела "${key}" из ${file}`);
                             const existing = allData.sections[key];
                             const newSubs = section.subcategories || {};
                             for (const [subKey, subcat] of Object.entries(newSubs)) {
@@ -1172,18 +1138,17 @@
                                     existing.subcategories[subKey].greetings = [...existingGreetings, ...newGreetings];
                                 }
                             }
+                        } else {
+                            allData.sections[key] = section;
                         }
                     }
                 }
+
                 if (data.holidays_widget) {
                     allData.holidays_widget = [...allData.holidays_widget, ...data.holidays_widget];
                 }
-                if (data.pages) {
-                    pagesData = data.pages;
-                }
             }
 
-            // Уникальные праздники
             const uniqueHolidays = new Map();
             allData.holidays_widget.forEach(h => {
                 const key = h.date;
@@ -1195,12 +1160,9 @@
             allData.holidays_widget.sort((a, b) => a.date.localeCompare(b.date));
 
             siteData = allData;
-            isDataLoaded = true;
+            console.log(`📊 Всего разделов: ${Object.keys(siteData.sections).length}`);
+            console.log(`📊 Всего праздников: ${siteData.holidays_widget.length}`);
 
-            // Сохраняем в кеш
-            setCachedData(allData);
-
-            console.log(`📊 Загружено основных разделов: ${Object.keys(siteData.sections).length}`);
             return true;
 
         } catch (error) {
@@ -1208,34 +1170,6 @@
             showError('Не удалось загрузить данные', error.message);
             return false;
         }
-    }
-
-    // ===== ДОГРУЗКА ОТДЕЛЬНЫХ РАЗДЕЛОВ =====
-    const fileMap = {
-        'professional': 'data/data_professional.json',
-        'holidays': 'data/data_holidays.json',
-        'birthday': 'data/data_birthday.json',
-        'military': 'data/data_military.json',
-        'wedding': 'data/data_wedding.json',
-        'blog': 'data/blog.json',
-        'pritches': 'data/pritches.json',
-        'beloved_woman': 'data/data_beloved_woman.json'
-    };
-
-    async function ensureSectionLoaded(sectionKey) {
-        if (!fileMap[sectionKey]) return true;
-        if (siteData.sections[sectionKey]) return true;
-
-        console.log(`📄 Загрузка раздела: ${sectionKey}`);
-        const file = fileMap[sectionKey];
-        const data = await loadFile(file);
-        if (data && data.sections && data.sections[sectionKey]) {
-            siteData.sections[sectionKey] = data.sections[sectionKey];
-            // Обновляем кеш
-            setCachedData(siteData);
-            return true;
-        }
-        return false;
     }
 
     // ===== ПОКАЗАТЬ СКЕЛЕТОН =====
@@ -1293,8 +1227,9 @@
     async function retryLoad() {
         showSkeleton();
         await new Promise(resolve => setTimeout(resolve, 300));
-        const loaded = await loadMainData();
+        const loaded = await loadAllJsonFiles();
         if (loaded) {
+            renderStats();
             renderHolidaysWidget();
             renderSections();
             showToast('✅ Данные загружены!');
@@ -1318,7 +1253,7 @@
         };
     }
 
-    async function navigateTo(section, subcat, options = {}) {
+    function navigateTo(section, subcat, options = {}) {
         const { replace = false, animate = true } = options;
         
         navState.currentSection = section;
@@ -1338,7 +1273,7 @@
             navState.navigationHistory.push({ section, subcat });
         }
         
-        await updateContent(section, subcat, animate);
+        updateContent(section, subcat, animate);
         updateBreadcrumbs(section, subcat);
         updateBackButton();
         updateMeta(section, subcat);
@@ -1346,13 +1281,8 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    async function updateContent(section, subcat, animate = true) {
+    function updateContent(section, subcat, animate = true) {
         showLoading(true);
-        
-        // Если раздел не загружен — загружаем
-        if (section && !siteData.sections[section]) {
-            await ensureSectionLoaded(section);
-        }
         
         setTimeout(() => {
             let html = '';
@@ -1374,6 +1304,7 @@
             showLoading(false);
             
             if (!section && !subcat) {
+                renderStats();
                 renderHolidaysWidget();
                 renderCardOfDay();
                 showMotivationBlock(true);
@@ -1478,6 +1409,8 @@
         
         greetings.forEach((g, index) => {
             const greetingId = generateGreetingId(sectionKey, subcatKey, index, g.text_ba);
+            const stats = getStats();
+            const copyCount = stats[greetingId] ? (stats[greetingId].full + stats[greetingId].only_ba) : 0;
             
             html += `
                 <div class="card">
@@ -1492,6 +1425,7 @@
                             📋 Только башк.
                         </button>
                     </div>
+                    ${copyCount > 0 ? `<div class="copy-stats">📊 ${copyCount}</div>` : ''}
                 </div>
             `;
         });
@@ -1590,7 +1524,7 @@
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Главная / Баш бит",
-                "item": "https://yilyhuzzar.ru/"
+                "item": "https://almazbaymurzin.github.io/"
             }
         ];
 
@@ -1601,7 +1535,7 @@
                 "@type": "ListItem",
                 "position": position++,
                 "name": sectionData.name_ba,
-                "item": `https://yilyhuzzar.ru/#${section}`
+                "item": `https://almazbaymurzin.github.io/#${section}`
             });
 
             if (subcat && sectionData.subcategories[subcat]) {
@@ -1610,7 +1544,7 @@
                     "@type": "ListItem",
                     "position": position++,
                     "name": subcatData.name_ba,
-                    "item": `https://yilyhuzzar.ru/#${section}/${subcat}`
+                    "item": `https://almazbaymurzin.github.io/#${section}/${subcat}`
                 });
             }
         }
@@ -1676,9 +1610,76 @@
         }
     });
 
+    // ===== СТАТИСТИКА =====
+    function getStats() {
+        const saved = localStorage.getItem(STATS_KEY);
+        return saved ? JSON.parse(saved) : {};
+    }
+
+    function saveStats(stats) {
+        localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+        renderStats();
+    }
+
+    function incrementStats(greetingId, type, baText, ruText) {
+        const stats = getStats();
+        if (!stats[greetingId]) {
+            stats[greetingId] = { full: 0, only_ba: 0, text_ba: baText, text_ru: ruText };
+        }
+        if (type === 'full') {
+            stats[greetingId].full++;
+        } else if (type === 'only_ba') {
+            stats[greetingId].only_ba++;
+        }
+        saveStats(stats);
+    }
+
+    function renderStats() {
+        if (!statsContent) return;
+        const stats = getStats();
+        const entries = Object.entries(stats);
+        if (entries.length === 0) {
+            statsContent.innerHTML = '<div style="text-align:center;color:var(--text-muted);padding:8px;">Пока нет копирований</div>';
+            return;
+        }
+        const sorted = entries.sort((a, b) => {
+            const totalA = a[1].full + a[1].only_ba;
+            const totalB = b[1].full + b[1].only_ba;
+            return totalB - totalA;
+        });
+        let html = '';
+        sorted.slice(0, 8).forEach(([id, data]) => {
+            const total = data.full + data.only_ba;
+            const baText = (data.text_ba || '').substring(0, 35) + ((data.text_ba || '').length > 35 ? '...' : '');
+            html += `
+                <div class="stats-item">
+                    <span title="${escapeHtml(data.text_ba || '')}">📖 ${escapeHtml(baText)}</span>
+                    <span>📊 ${total}</span>
+                </div>
+                <div class="stats-item" style="font-size:0.65rem;color:var(--text-muted);padding-left:12px;">
+                    <span>📤 Полный: ${data.full}</span>
+                    <span>📋 Только баш.: ${data.only_ba}</span>
+                </div>
+            `;
+        });
+        statsContent.innerHTML = html;
+    }
+
+    function resetAllStats() {
+        if (confirm('Сбросить всю статистику копирований?')) {
+            localStorage.removeItem(STATS_KEY);
+            renderStats();
+            showToast('Статистика сброшена');
+            if (navState.currentSection && navState.currentSubcat) {
+                updateContent(navState.currentSection, navState.currentSubcat, false);
+            }
+        }
+    }
+
     // ===== КОПИРОВАНИЕ =====
     async function copyToClipboard(ruText, baText, greetingId) {
         const shareText = `${baText}\n\n💭 ${ruText}`;
+        incrementStats(greetingId, 'full', baText, ruText);
         
         if (typeof ym !== 'undefined') {
             ym(109825367, 'reachGoal', 'copy_greeting');
@@ -1711,6 +1712,8 @@
     }
 
     async function copyOnlyBashkir(baText, greetingId) {
+        incrementStats(greetingId, 'only_ba', baText, '');
+        
         if (typeof ym !== 'undefined') {
             ym(109825367, 'reachGoal', 'copy_only_ba');
         }
@@ -1930,8 +1933,9 @@
 
     async function init() {
         showSkeleton();
-        const loaded = await loadMainData();
+        const loaded = await loadAllJsonFiles();
         if (loaded) {
+            renderStats();
             renderHolidaysWidget();
             
             const { section, subcat } = parseUrl();
@@ -1939,23 +1943,25 @@
                 navState.currentSection = section;
                 navState.currentSubcat = subcat;
                 navState.navigationHistory.push({ section, subcat });
-                await updateContent(section, subcat, false);
+                updateContent(section, subcat, false);
                 updateBreadcrumbs(section, subcat);
                 updateBackButton();
                 updateMeta(section, subcat);
             } else {
-                await updateContent(null, null, false);
+                updateContent(null, null, false);
                 updateBreadcrumbs(null, null);
                 updateBackButton();
                 updateMeta(null, null);
                 renderCardOfDay();
                 showMotivationBlock(true);
             }
+            
+            // showToast('✅ Данные загружены!');
         }
     }
 
     init();
-    console.log('🚀 Сайт загружен с ленивой загрузкой JSON, кешированием и фиксом CLS');
+    console.log('🚀 Сайт загружен с динамическим обнаружением файлов, тёмной темой, JSON-LD и соцсетями в футере');
     </script>
     <!-- Yandex.RTB R-A-19681414-1 -->
 <script>
