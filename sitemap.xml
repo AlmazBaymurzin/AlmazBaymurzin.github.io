@@ -361,4 +361,23 @@
         <priority>0.6</priority>
     </url>
 
+    <url>
+    <loc>https://yilyhuzzar.ru/about.html</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+</url>
+<url>
+    <loc>https://yilyhuzzar.ru/contacts.html</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+</url>
+<url>
+    <loc>https://yilyhuzzar.ru/privacy.html</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+</url>
+
 </urlset>
