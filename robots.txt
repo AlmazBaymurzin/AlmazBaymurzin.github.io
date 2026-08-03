@@ -13,7 +13,7 @@ Allow: /
 Disallow: /editor.html
 
 # Запрещаем индексацию data файлов (они не для пользователей)
-Disallow: /data/
+# Disallow: /data/
 
 # Указываем где лежит карта сайта
 Sitemap: https://almazbaymurzin.github.io/sitemap.xml
