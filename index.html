@@ -42,10 +42,10 @@
     <meta property="og:title" content="Йылы һүҙҙәр | Поздравления на башкирском">
     <meta property="og:description" content="Коллекция поздравлений, пожеланий, тостов, притч и соболезнований на башкирском языке с переводом на русский.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://almazbaymurzin.github.io">
+    <meta property="og:url" content="https://yilyhuzzar.ru">
     <meta property="og:site_name" content="Йылы һүҙҙәр | Yily Huzzar">
     <meta property="og:locale" content="ba_RU">
-    <meta property="og:image" content="https://almazbaymurzin.github.io/favicon.png">
+    <meta property="og:image" content="https://yilyhuzzar.ru/favicon.png">
     
     <!-- ===== TWITTER CARD ===== -->
     <meta name="twitter:card" content="summary">
@@ -58,12 +58,12 @@
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "Йылы һүҙҙәр | Yily Huzzar",
-        "url": "https://almazbaymurzin.github.io/",
+        "url": "https://yilyhuzzar.ru/",
         "description": "Коллекция поздравлений, пожеланий, тостов, притч и соболезнований на башкирском языке с переводом на русский.",
         "inLanguage": "ba, ru",
         "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://almazbaymurzin.github.io/#search?q={search_term_string}",
+            "target": "https://yilyhuzzar.ru/#search?q={search_term_string}",
             "query-input": "required name=search_term_string"
         }
     }
@@ -197,6 +197,20 @@
             border: 2px solid var(--border-color);
             box-shadow: var(--shadow-card-of-day);
             transition: background var(--transition), border-color var(--transition);
+        }
+        
+        /* ===== ФИКС ПРОВАЛА ===== */
+        #contentContainer {
+            min-height: 300px;
+        }
+        #breadcrumbs {
+            margin-bottom: 12px;
+        }
+        .sections-grid {
+            min-height: 200px;
+        }
+        .cards-grid {
+            min-height: 200px;
         }
         
         /* Кнопка переключения темы */
@@ -937,6 +951,9 @@
             .page-content h1 {
                 font-size: 1.3rem;
             }
+            #contentContainer {
+                min-height: 200px;
+            }
         }
     </style>
 </head>
@@ -1306,8 +1323,11 @@
             </div>
         `;
 
-        document.getElementById('cardOfDayContainer').innerHTML = '';
-        document.getElementById('motivationBlock').style.display = 'none';
+        // Скрываем карточку дня и мотивационный блок
+        cardOfDayContainer.style.display = 'none';
+        cardOfDayContainer.innerHTML = '';
+        motivationBlock.style.display = 'none';
+        motivationBlock.innerHTML = '';
         document.getElementById('breadcrumbs').innerHTML = '';
         document.getElementById('backBtn').style.display = 'none';
 
@@ -1448,6 +1468,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // ===== ОСНОВНАЯ ФУНКЦИЯ ОБНОВЛЕНИЯ КОНТЕНТА =====
     function updateContent(section, subcat, animate = true) {
         showLoading(true);
         
@@ -1470,13 +1491,21 @@
             bindEvents(section, subcat);
             showLoading(false);
             
+            // ════════════════════════════════════════════════
+            // ✅ Управление карточкой дня и мотивационным блоком
+            // ════════════════════════════════════════════════
             if (!section && !subcat) {
-                renderHolidaysWidget();
+                // 📌 Главная страница — показываем
+                cardOfDayContainer.style.display = 'block';
+                motivationBlock.style.display = 'block';
                 renderCardOfDay();
                 showMotivationBlock(true);
             } else {
-                showMotivationBlock(false);
+                // 📌 Другие страницы — скрываем полностью
+                cardOfDayContainer.style.display = 'none';
+                motivationBlock.style.display = 'none';
                 cardOfDayContainer.innerHTML = '';
+                motivationBlock.innerHTML = '';
             }
         }, 50);
     }
@@ -1510,6 +1539,20 @@
         const section = siteData.sections[sectionKey];
         if (!section) return '<div style="text-align:center;padding:40px;">❌ Раздел не найден</div>';
         
+        // Проверяем, есть ли подкатегории с контентом
+        const subcatsWithContent = Object.entries(section.subcategories)
+            .filter(([key, subcat]) => (subcat.greetings || []).length > 0);
+        
+        if (subcatsWithContent.length === 0) {
+            return `
+                <div style="text-align:center;padding:60px;color:var(--text-muted);">
+                    <div style="font-size:3rem;margin-bottom:16px;">${escapeHtml(section.emoji)}</div>
+                    <h3 style="color:var(--text-secondary);">${escapeHtml(section.name_ba)}</h3>
+                    <p style="margin-top:8px;">⏳ Поздравления скоро появятся</p>
+                </div>
+            `;
+        }
+        
         let html = `
             <div style="margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
                 <h2 style="color:var(--text-secondary);display:flex;align-items:center;gap:10px;">
@@ -1518,7 +1561,7 @@
                     <span style="font-size:0.7rem;color:var(--text-muted);">${escapeHtml(section.name_ru)}</span>
                 </h2>
                 <span style="font-size:0.75rem;color:var(--text-muted);">
-                    ${Object.keys(section.subcategories).filter(k => (section.subcategories[k].greetings || []).length > 0).length} подкатегорий
+                    ${subcatsWithContent.length} подкатегорий
                 </span>
             </div>
             <div class="sections-grid">
@@ -1954,6 +1997,7 @@
             `;
         } else {
             motivationBlock.style.display = 'none';
+            motivationBlock.innerHTML = '';
         }
     }
 
