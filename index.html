@@ -27,7 +27,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
     <meta name="theme-color" content="#8b5a2b">
     
-    <!-- ===== УЛУЧШЕННЫЕ META-ТЕГИ ===== -->
+    <!-- ===== META-ТЕГИ ===== -->
     <meta name="description" content="Ҡотлауҙар башҡортса: туй, тыуған көн, 8 Март, яңы йыл, юбилей, хәрбиҙәргә. Поздравление на башкирском языке мужчине, женщине, маме, папе, бабушке, дедушке. Поздравление на свадьбу на башкирском, пожелания на юбилей мужчине 50 на башкирском языке. 1000+ башҡортса ҡотлауҙар, теләктәр, тостар, мәҫәлдәр һәм соболезнование. Поздравления, пожелания, тосты, притчи и соболезнования на башкирском языке с переводом. Йылы һүҙҙәр — самый полный сборник башкирских поздравлений.">
     <meta name="keywords" content="ҡотлауҙар, башҡортса ҡотлауҙар, котлаузар, башкирские поздравления, башҡортса ҡотлау, йылы һүҙҙәр, башкирский язык, тёплые слова, поздравления на башкирском, башкирские пожелания, башкирские тосты, башҡорт телендә ҡотлау, башҡортса теләктәр, соболезнования на башкирском, притчи на башкирском, поздравление на башкирском языке, поздравление на башкирском языке мужчине, поздравление на свадьбу на башкирском, пожелания на юбилей мужчине 50 на башкирском языке, поздравление с днём свадьбы на башкирском языке, башҡортса ҡотлау һүҙҙәре">
     <meta name="author" content="Алмаз Баймурзин, Project Yily Huzzar">
@@ -69,7 +69,6 @@
     <style>
         /* ===== CSS ПЕРЕМЕННЫЕ ДЛЯ ТЕМ ===== */
         :root {
-            /* Светлая тема (по умолчанию) */
             --bg-primary: #fef9e8;
             --bg-secondary: #f0e6d8;
             --bg-card: #ffffff;
@@ -152,7 +151,7 @@
             --btn-copy-hover: #4a3a2a;
         }
 
-        /* ===== ОСНОВНЫЕ СТИЛИ С ПЕРЕМЕННЫМИ ===== */
+        /* ===== ОСНОВНЫЕ СТИЛИ ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
@@ -182,10 +181,8 @@
             transition: background var(--transition), color var(--transition);
         }
         
-        /* ===== ФИКС CLS ===== */
-        #cardOfDayContainer {
-            min-height: 200px;
-        }
+        /* ===== КАРТОЧКА ДНЯ ===== */
+        #cardOfDayContainer { min-height: 200px; }
         .card-of-day {
             background: var(--bg-card-of-day);
             border-radius: 24px;
@@ -196,21 +193,13 @@
             transition: background var(--transition), border-color var(--transition);
         }
         
-        /* ===== ФИКС ПРОВАЛА ===== */
-        #contentContainer {
-            min-height: 300px;
-        }
-        #breadcrumbs {
-            margin-bottom: 12px;
-        }
-        .sections-grid {
-            min-height: 200px;
-        }
-        .cards-grid {
-            min-height: 200px;
-        }
+        /* ===== КОНТЕЙНЕРЫ ===== */
+        #contentContainer { min-height: 300px; }
+        #breadcrumbs { margin-bottom: 12px; }
+        .sections-grid { min-height: 200px; }
+        .cards-grid { min-height: 200px; }
         
-        /* Кнопка переключения темы */
+        /* ===== КНОПКА ТЕМЫ ===== */
         .theme-toggle {
             position: fixed;
             top: 20px;
@@ -229,11 +218,9 @@
             align-items: center;
             justify-content: center;
         }
-        .theme-toggle:hover {
-            transform: scale(1.05);
-            box-shadow: var(--shadow-hover);
-        }
+        .theme-toggle:hover { transform: scale(1.05); box-shadow: var(--shadow-hover); }
         
+        /* ===== КАРТОЧКА ДНЯ ===== */
         .card-of-day-title {
             display: flex;
             align-items: center;
@@ -254,6 +241,7 @@
         }
         .card-of-day-trans { font-size: 0.75rem; color: var(--text-light); transition: color var(--transition); }
         
+        /* ===== МОТИВАЦИЯ ===== */
         .motivation-block {
             background: var(--bg-motivation);
             border-radius: 24px;
@@ -447,6 +435,25 @@
         .section-name, .subcat-name { font-size: 1.1rem; font-weight: 600; color: var(--text-secondary); transition: color var(--transition); }
         .section-desc, .subcat-desc { font-size: 0.7rem; color: var(--text-muted); margin-top: 4px; transition: color var(--transition); }
         
+        /* ===== КАРТОЧКИ ДЛЯ РАЗДЕЛА "СВЕТЛАЯ ПАМЯТЬ" ===== */
+        .section-live .section-card,
+        .section-live .subcat-card {
+            border: 1px solid var(--border-color);
+            opacity: 0.85;
+        }
+        .section-live .section-card:hover,
+        .section-live .subcat-card:hover {
+            opacity: 1;
+            background: var(--bg-card);
+            transform: translateY(-2px);
+        }
+        
+        /* ===== СЧЁТЧИКИ (СКРЫВАЕМ В "СВЕТЛОЙ ПАМЯТИ") ===== */
+        .section-live .badge-count {
+            display: none !important;
+        }
+        
+        /* ===== КАРТОЧКИ ПОДКАТЕГОРИЙ ===== */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -463,6 +470,22 @@
             position: relative;
         }
         .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-card-hover); }
+        
+        /* ===== КАРТОЧКИ ДЛЯ РАЗДЕЛА "СВЕТЛАЯ ПАМЯТЬ" ===== */
+        .section-live .card {
+            border-color: rgba(139, 90, 43, 0.2);
+            background: var(--bg-card);
+        }
+        .section-live .card .card-badge {
+            background: var(--bg-badge);
+            color: var(--text-secondary);
+        }
+        .section-live .card .card-text {
+            font-family: 'Georgia', serif;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
         .card-badge {
             display: inline-block;
             background: var(--bg-badge);
@@ -525,6 +548,7 @@
             transition: color var(--transition), background var(--transition);
         }
         
+        /* ===== TOAST ===== */
         .toast-notification {
             position: fixed;
             bottom: 20px;
@@ -641,7 +665,7 @@
             transition: color var(--transition);
         }
         
-        /* ===== ФУТЕР С СОЦСЕТЯМИ И ССЫЛКАМИ ===== */
+        /* ===== ФУТЕР ===== */
         .footer {
             text-align: center;
             margin-top: 40px;
@@ -668,7 +692,6 @@
             transition: background var(--transition);
         }
         
-        /* ===== ССЫЛКИ В ФУТЕРЕ ===== */
         .footer-links {
             display: flex;
             justify-content: center;
@@ -728,11 +751,6 @@
         .footer-social .social-btn.ok:hover { background: #ee8208; color: white; border-color: #ee8208; }
         .footer-social .social-btn.copy:hover { background: var(--text-secondary); color: white; border-color: var(--text-secondary); }
         
-        .footer-social .social-label {
-            font-size: 0.6rem;
-            color: var(--text-muted);
-            transition: color var(--transition);
-        }
         .footer-copy {
             font-size: 0.65rem;
             color: var(--text-muted);
@@ -740,7 +758,7 @@
             transition: color var(--transition);
         }
         
-        /* ===== СТРАНИЦЫ (О ПРОЕКТЕ, КОНТАКТЫ, ПОЛИТИКА) ===== */
+        /* ===== СТРАНИЦЫ ===== */
         .page-content {
             max-width: 800px;
             margin: 0 auto;
@@ -1002,12 +1020,11 @@
             </div>
         </div>
 
-        <!-- ===== ФУТЕР С СОЦСЕТЯМИ И ССЫЛКАМИ ===== -->
+        <!-- ===== ФУТЕР ===== -->
         <div class="footer">
             <div class="project-name">ЙЫЛЫ һҮҘҘӘР<br><small>yily huzzar</small></div>
             <div class="footer-divider"></div>
             
-            <!-- ===== ССЫЛКИ НА СТРАНИЦЫ ===== -->
             <div class="footer-links">
                 <a href="about.html" class="footer-link">ℹ️ О проекте</a>
                 <span class="footer-link-separator">|</span>
@@ -1081,7 +1098,7 @@
         }
     }
 
-    // ===== ШАРИНГ В СОЦСЕТИ =====
+    // ===== ШАРИНГ =====
     function getShareUrl() {
         return encodeURIComponent(window.location.href);
     }
@@ -1157,7 +1174,7 @@
         window.open(DONATION_URL, '_blank');
     });
 
-    // ===== ДИНАМИЧЕСКАЯ ЗАГРУЗКА ВСЕХ JSON ФАЙЛОВ =====
+    // ===== ДИНАМИЧЕСКАЯ ЗАГРУЗКА =====
     async function loadAllJsonFiles() {
         const allData = {
             sections: {},
@@ -1218,7 +1235,6 @@
                 if (!result) continue;
                 const { file, data } = result;
 
-                // Сохраняем pages.json отдельно
                 if (file === 'data/pages.json') {
                     pagesData = data.pages || {};
                     continue;
@@ -1273,7 +1289,7 @@
         }
     }
 
-    // ===== ОТКРЫТИЕ СТРАНИЦ (О ПРОЕКТЕ, КОНТАКТЫ, ПОЛИТИКА) =====
+    // ===== ОТКРЫТИЕ СТРАНИЦ =====
     function openPage(pageKey) {
         if (!pagesData) {
             fetch('data/pages.json?v=' + Date.now())
@@ -1320,7 +1336,6 @@
             </div>
         `;
 
-        // Скрываем карточку дня и мотивационный блок
         cardOfDayContainer.style.display = 'none';
         cardOfDayContainer.innerHTML = '';
         motivationBlock.style.display = 'none';
@@ -1358,7 +1373,7 @@
         return false;
     }
 
-    // ===== ПОКАЗАТЬ СКЕЛЕТОН =====
+    // ===== СКЕЛЕТОН =====
     function showSkeleton() {
         let html = `<div class="skeleton-grid">`;
         for (let i = 0; i < 6; i++) {
@@ -1397,7 +1412,7 @@
         contentContainer.innerHTML = html;
     }
 
-    // ===== ПОКАЗАТЬ ОШИБКУ =====
+    // ===== ОШИБКА =====
     function showError(message, details = '') {
         contentContainer.innerHTML = `
             <div class="error-container">
@@ -1488,17 +1503,13 @@
             bindEvents(section, subcat);
             showLoading(false);
             
-            // ════════════════════════════════════════════════
-            // ✅ Управление карточкой дня и мотивационным блоком
-            // ════════════════════════════════════════════════
+            // === Управление карточкой дня и мотивационным блоком ===
             if (!section && !subcat) {
-                // 📌 Главная страница — показываем
                 cardOfDayContainer.style.display = 'block';
                 motivationBlock.style.display = 'block';
                 renderCardOfDay();
                 showMotivationBlock(true);
             } else {
-                // 📌 Другие страницы — скрываем полностью
                 cardOfDayContainer.style.display = 'none';
                 motivationBlock.style.display = 'none';
                 cardOfDayContainer.innerHTML = '';
@@ -1514,12 +1525,18 @@
         const sections = Object.entries(siteData.sections)
             .sort((a, b) => (a[1].order || 999) - (b[1].order || 999));
         
+        // Проверяем, есть ли раздел live
+        const isLiveSection = (key) => key === 'live';
+        
         for (const [key, section] of sections) {
             const hasContent = Object.values(section.subcategories || {})
                 .some(sub => (sub.greetings || []).length > 0);
             
+            // Для раздела "Светлая память" добавляем специальный класс
+            const liveClass = isLiveSection(key) ? 'section-live' : '';
+            
             html += `
-                <div class="section-card" data-section="${key}" data-has-content="${hasContent}">
+                <div class="section-card ${liveClass}" data-section="${key}" data-has-content="${hasContent}">
                     <span class="section-emoji">${escapeHtml(section.emoji)}</span>
                     <div class="section-name">${escapeHtml(section.name_ba)}</div>
                     <div class="section-desc">${escapeHtml(section.name_ru)}</div>
@@ -1536,7 +1553,9 @@
         const section = siteData.sections[sectionKey];
         if (!section) return '<div style="text-align:center;padding:40px;">❌ Раздел не найден</div>';
         
-        // Проверяем, есть ли подкатегории с контентом
+        // === ДЛЯ РАЗДЕЛА "СВЕТЛАЯ ПАМЯТЬ" — убираем счётчики ===
+        const isLiveSection = sectionKey === 'live';
+        
         const subcatsWithContent = Object.entries(section.subcategories)
             .filter(([key, subcat]) => (subcat.greetings || []).length > 0);
         
@@ -1557,11 +1576,9 @@
                     <span>${escapeHtml(section.name_ba)}</span>
                     <span style="font-size:0.7rem;color:var(--text-muted);">${escapeHtml(section.name_ru)}</span>
                 </h2>
-                <span style="font-size:0.75rem;color:var(--text-muted);">
-                    ${subcatsWithContent.length} подкатегорий
-                </span>
+                ${!isLiveSection ? `<span style="font-size:0.75rem;color:var(--text-muted);">${subcatsWithContent.length} подкатегорий</span>` : ''}
             </div>
-            <div class="sections-grid">
+            <div class="sections-grid ${isLiveSection ? 'section-live' : ''}">
         `;
         
         const subcats = Object.entries(section.subcategories)
@@ -1569,12 +1586,16 @@
         
         for (const [key, subcat] of subcats) {
             const hasGreetings = (subcat.greetings || []).length > 0;
+            const greetingCount = hasGreetings ? subcat.greetings.length : 0;
+            
             html += `
                 <div class="subcat-card" data-subcat="${key}" ${!hasGreetings ? 'style="opacity:0.6;"' : ''}>
                     <span class="subcat-emoji">${escapeHtml(subcat.emoji)}</span>
                     <div class="subcat-name">${escapeHtml(subcat.name_ba)}</div>
                     <div class="subcat-desc">${escapeHtml(subcat.name_ru)}</div>
-                    ${!hasGreetings ? '<div style="font-size:0.55rem;color:var(--text-muted);margin-top:4px;">⏳ Поздравления в разработке</div>' : ''}
+                    ${!hasGreetings ? '<div style="font-size:0.55rem;color:var(--text-muted);margin-top:4px;">⏳ В разработке</div>' : ''}
+                    ${hasGreetings && !isLiveSection ? `<div style="font-size:0.55rem;color:var(--text-muted);margin-top:4px;">${greetingCount} текстов</div>` : ''}
+                    ${hasGreetings && isLiveSection ? `<div style="font-size:0.55rem;color:var(--text-muted);margin-top:4px;">🕊️</div>` : ''}
                 </div>
             `;
         }
@@ -1601,20 +1622,28 @@
             `;
         }
         
+        // === ДЛЯ РАЗДЕЛА "СВЕТЛАЯ ПАМЯТЬ" — меняем заголовок ===
+        const isLiveSection = sectionKey === 'live';
+        const countLabel = isLiveSection ? 'иҫтәлек' : 'поздравлений';
+        
         let html = `
             <div style="margin-bottom:16px;">
                 <h2 style="color:var(--text-secondary);display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
                     <span>${escapeHtml(subcat.emoji)}</span>
                     <span>${escapeHtml(subcat.name_ba)}</span>
                     <span style="font-size:0.7rem;color:var(--text-muted);">${escapeHtml(subcat.name_ru)}</span>
-                    <span style="font-size:0.7rem;color:var(--text-muted);margin-left:auto;">${greetings.length} поздравлений</span>
+                    <span style="font-size:0.7rem;color:var(--text-muted);margin-left:auto;">${greetings.length} ${countLabel}</span>
                 </h2>
             </div>
-            <div class="cards-grid">
+            <div class="cards-grid ${isLiveSection ? 'section-live' : ''}">
         `;
         
         greetings.forEach((g, index) => {
             const greetingId = generateGreetingId(sectionKey, subcatKey, index, g.text_ba);
+            
+            // Для "Светлой памяти" — другая иконка
+            const shareIcon = isLiveSection ? '🕊️' : '📤';
+            const copyIcon = isLiveSection ? '📋' : '📋';
             
             html += `
                 <div class="card">
@@ -1623,10 +1652,10 @@
                     <div class="card-translation">💭 ${escapeHtml(g.translation_ru)}</div>
                     <div class="button-group">
                         <button class="share-btn" data-greeting-id="${greetingId}" data-ba='${escapeHtml(g.text_ba)}' data-ru='${escapeHtml(g.translation_ru)}'>
-                            📤 Поделиться
+                            ${shareIcon} Поделиться
                         </button>
                         <button class="copy-only-btn" data-greeting-id="${greetingId}" data-ba='${escapeHtml(g.text_ba)}'>
-                            📋 Только башк.
+                            ${copyIcon} Копировать
                         </button>
                     </div>
                 </div>
@@ -1716,7 +1745,7 @@
         }
     });
 
-    // ===== ГЕНЕРАЦИЯ BREADCRUMB LIST (JSON-LD) =====
+    // ===== BREADCRUMB SCHEMA =====
     function updateBreadcrumbSchema(section, subcat) {
         const scriptId = 'breadcrumb-jsonld';
         let oldScript = document.getElementById(scriptId);
@@ -2100,6 +2129,7 @@
 
     init();
     console.log('🚀 Сайт загружен с динамическим обнаружением файлов, тёмной темой, JSON-LD, соцсетями и страницами О проекте/Контакты/Политика');
+    console.log('🕊️ Раздел "Светлая память" обработан корректно — счётчики убраны, заменены на иконки');
     </script>
     <!-- Yandex Autoplacement 19695489 -->
     <script src="https://yandex.ru/ads/system/context.js" async></script>
