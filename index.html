@@ -1604,6 +1604,7 @@
         return html;
     }
 
+    // ===== ОСНОВНОЕ ИЗМЕНЕНИЕ: РЕНДЕР ПОЗДРАВЛЕНИЙ С УБРАННЫМ СЧЁТЧИКОМ ДЛЯ "СВЕТЛОЙ ПАМЯТИ" =====
     function renderGreetingsContent(sectionKey, subcatKey) {
         const section = siteData.sections[sectionKey];
         if (!section) return '<div style="text-align:center;padding:40px;">❌ Раздел не найден</div>';
@@ -1622,9 +1623,8 @@
             `;
         }
         
-        // === ДЛЯ РАЗДЕЛА "СВЕТЛАЯ ПАМЯТЬ" — меняем заголовок ===
+        // === ДЛЯ РАЗДЕЛА "СВЕТЛАЯ ПАМЯТЬ" — ПОЛНОСТЬЮ УБИРАЕМ СЧЁТЧИК ===
         const isLiveSection = sectionKey === 'live';
-        const countLabel = isLiveSection ? 'иҫтәлек' : 'поздравлений';
         
         let html = `
             <div style="margin-bottom:16px;">
@@ -1632,7 +1632,7 @@
                     <span>${escapeHtml(subcat.emoji)}</span>
                     <span>${escapeHtml(subcat.name_ba)}</span>
                     <span style="font-size:0.7rem;color:var(--text-muted);">${escapeHtml(subcat.name_ru)}</span>
-                    <span style="font-size:0.7rem;color:var(--text-muted);margin-left:auto;">${greetings.length} ${countLabel}</span>
+                    ${isLiveSection ? '' : `<span style="font-size:0.7rem;color:var(--text-muted);margin-left:auto;">${greetings.length} поздравлений</span>`}
                 </h2>
             </div>
             <div class="cards-grid ${isLiveSection ? 'section-live' : ''}">
@@ -1641,10 +1641,6 @@
         greetings.forEach((g, index) => {
             const greetingId = generateGreetingId(sectionKey, subcatKey, index, g.text_ba);
             
-            // Для "Светлой памяти" — другая иконка
-            const shareIcon = isLiveSection ? '🕊️' : '📤';
-            const copyIcon = isLiveSection ? '📋' : '📋';
-            
             html += `
                 <div class="card">
                     <div class="card-badge">${escapeHtml(subcat.name_ba)}</div>
@@ -1652,10 +1648,10 @@
                     <div class="card-translation">💭 ${escapeHtml(g.translation_ru)}</div>
                     <div class="button-group">
                         <button class="share-btn" data-greeting-id="${greetingId}" data-ba='${escapeHtml(g.text_ba)}' data-ru='${escapeHtml(g.translation_ru)}'>
-                            ${shareIcon} Поделиться
+                            📤 Поделиться
                         </button>
                         <button class="copy-only-btn" data-greeting-id="${greetingId}" data-ba='${escapeHtml(g.text_ba)}'>
-                            ${copyIcon} Копировать
+                            📋 Только башк.
                         </button>
                     </div>
                 </div>
@@ -2129,7 +2125,7 @@
 
     init();
     console.log('🚀 Сайт загружен с динамическим обнаружением файлов, тёмной темой, JSON-LD, соцсетями и страницами О проекте/Контакты/Политика');
-    console.log('🕊️ Раздел "Светлая память" обработан корректно — счётчики убраны, заменены на иконки');
+    console.log('🕊️ Раздел "Светлая память" обработан корректно — счётчики убраны');
     </script>
     <!-- Yandex Autoplacement 19695489 -->
     <script src="https://yandex.ru/ads/system/context.js" async></script>
