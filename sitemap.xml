@@ -4,7 +4,7 @@
     <!-- ===== ГЛАВНАЯ СТРАНИЦА ===== -->
     <url>
         <loc>https://yilyhuzzar.ru/</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -12,369 +12,402 @@
     <!-- ===== СТАТИЧЕСКИЕ СТРАНИЦЫ ===== -->
     <url>
         <loc>https://yilyhuzzar.ru/about.html</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/contacts.html</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/privacy.html</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
+    <!-- ============================================================ -->
     <!-- ===== РАЗДЕЛ 1: Һөнәри байрамдар / Профессиональные праздники ===== -->
+    <!-- ============================================================ -->
     <url>
         <loc>https://yilyhuzzar.ru/#professional</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#professional/military</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#professional/doctor</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#professional/teacher</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#professional/medsister</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#professional/builder</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#professional/oilman</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
+    <!-- ============================================================ -->
     <!-- ===== РАЗДЕЛ 2: Байрамдар / Праздники ===== -->
+    <!-- ============================================================ -->
     <url>
         <loc>https://yilyhuzzar.ru/#holidays</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#holidays/march8</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#holidays/feb23</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#holidays/newyear</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#holidays/victory</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#holidays/family_day</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#holidays/knowledge_day</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
     </url>
 
+    <!-- ============================================================ -->
     <!-- ===== РАЗДЕЛ 3: Тыуған көн / День рождения ===== -->
+    <!-- ============================================================ -->
     <url>
         <loc>https://yilyhuzzar.ru/#birthday</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#birthday/mother</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#birthday/father</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#birthday/elder_brother</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#birthday/brother</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#birthday/sister</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#birthday/grandma</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#birthday/grandpa</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#birthday/bestfriend</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#birthday/bestgirlfriend</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#birthday/man</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#birthday/jubilee</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#birthday/jubilee_man</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#birthday/stelder_sister</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
+    <!-- ============================================================ -->
     <!-- ===== РАЗДЕЛ 4: Хәрбиҙәргә / Военным ===== -->
+    <!-- ============================================================ -->
     <url>
         <loc>https://yilyhuzzar.ru/#military</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#military/pogran</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#military/vdv</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
-    <!-- ===== РАЗДЕЛ 5: Туй / Свадьба ===== -->
+    <!-- ============================================================ -->
+    <!-- ===== РАЗДЕЛ 5: Туй / Свадьба (ОСНОВНОЙ РАЗДЕЛ) ===== -->
+    <!-- ============================================================ -->
     <url>
         <loc>https://yilyhuzzar.ru/#wedding</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://yilyhuzzar.ru/#wedding/wedding_parents</loc>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://yilyhuzzar.ru/#wedding/wedding_parents</loc>
-        <lastmod>2026-08-13</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
         <loc>https://yilyhuzzar.ru/#wedding/wedding_important</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
+        <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#wedding/wedding_friends</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
+        <priority>0.8</priority>
+    </url>
+    <!-- ===== НОВЫЕ ПОДКАТЕГОРИИ ===== -->
+    <url>
+        <loc>https://yilyhuzzar.ru/#wedding/wedding_toasts</loc>
+        <lastmod>2026-08-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://yilyhuzzar.ru/#wedding/wedding_sister</loc>
+        <lastmod>2026-08-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
     </url>
 
+    <!-- ============================================================ -->
     <!-- ===== РАЗДЕЛ 6: Мәҫәлдәр / Притчи ===== -->
+    <!-- ============================================================ -->
     <url>
         <loc>https://yilyhuzzar.ru/#pritches</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#pritches/data_loves_pritches</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#pritches/data_brain_pritches</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
 
+    <!-- ============================================================ -->
     <!-- ===== РАЗДЕЛ 7: Яҡты иҫтәлек / Светлая память (СОБОЛЕЗНОВАНИЯ) ===== -->
+    <!-- ============================================================ -->
     <url>
         <loc>https://yilyhuzzar.ru/#live</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#live/data_pamyat</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#live/data_utrata</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#live/data_sabolez</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#live/data_svo_memory</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
+    <!-- ============================================================ -->
     <!-- ===== РАЗДЕЛ 8: Ҡотлау таҡмаҡтары / Тосты ===== -->
+    <!-- ============================================================ -->
     <url>
         <loc>https://yilyhuzzar.ru/#data_tosts</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#data_tosts/family_toasts</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#data_tosts/love_toasts</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#data_tosts/friends_toasts</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
 
+    <!-- ============================================================ -->
     <!-- ===== РАЗДЕЛ 9: Мәҡәләләр / Блог ===== -->
+    <!-- ============================================================ -->
     <url>
         <loc>https://yilyhuzzar.ru/#blog</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#blog/mother_tips</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#blog/march8_tips</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#blog/wedding_tips</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
 
+    <!-- ============================================================ -->
     <!-- ===== РАЗДЕЛ 10: Яратҡаныма / Любимой ===== -->
+    <!-- ============================================================ -->
     <url>
         <loc>https://yilyhuzzar.ru/#beloved_woman</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#beloved_woman/woman</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#beloved_woman/beloved_wife</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/#beloved_woman/beloved_girl</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
