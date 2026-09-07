@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 Редактор поздравлений | Тыуған көн ҡотлауҙары</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #8b5a2b 0%, #d4a373 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .header {
+            background: white;
+            border-radius: 20px;
+            padding: 20px 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #8b5a2b;
+            font-size: 28px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .toolbar {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary { background: #8b5a2b; color: white; }
+        .btn-primary:hover { background: #6b4220; transform: translateY(-2px); }
+        .btn-success { background: #48bb78; color: white; }
+        .btn-success:hover { background: #38a169; }
+        .btn-danger { background: #f56565; color: white; }
+        .btn-danger:hover { background: #e53e3e; }
+        .btn-secondary { background: #a0aec0; color: white; }
+        .btn-secondary:hover { background: #718096; }
+        .btn-warning { background: #ecc94b; color: #744210; }
+        .btn-warning:hover { background: #d69e2e; }
+        .btn-info { background: #4299e1; color: white; }
+        .btn-info:hover { background: #3182ce; }
+        .btn-sm { padding: 5px 12px; font-size: 12px; }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 15px;
+            flex-wrap: wrap;
+        }
+        .tab {
+            padding: 10px 25px;
+            border: none;
+            background: #edf2f7;
+            cursor: pointer;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .tab.active { background: #8b5a2b; color: white; }
+        .content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            min-height: 400px;
+        }
+        .file-info {
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: #f7fafc;
+            border-radius: 8px;
+        }
+        .section-card {
+            background: #f7fafc;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        .section-header {
+            background: #8b5a2b;
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .section-header:hover { background: #6b4220; }
+        .section-header .toggle-icon {
+            font-size: 18px;
+            transition: transform 0.2s;
+        }
+        .section-header.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+        .section-body {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .section-body.collapsed {
+            display: none;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .section-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .section-file-badge {
+            font-size: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 2px 10px;
+            border-radius: 12px;
+            margin-left: 10px;
+            white-space: nowrap;
+        }
+        .subcategory {
+            background: white;
+            margin: 15px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+        .subcategory-header {
+            background: #edf2f7;
+            padding: 12px 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .subcategory-header:hover { background: #e2e8f0; }
+        .subcategory-header .toggle-icon {
+            font-size: 14px;
+            transition: transform 0.2s;
+        }
+        .subcategory-header.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+        .subcategory-body {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .subcategory-body.collapsed {
+            display: none;
+        }
+        .greeting-item {
+            padding: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+        .greeting-text {
+            background: #fef5e7;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .translation-text {
+            background: #e6f7ff;
+            padding: 10px;
+            border-radius: 8px;
+            color: #666;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .inline-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            width: 500px;
+            max-width: 90%;
+            max-height: 80%;
+            overflow-y: auto;
+        }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 500; color: #4a5568; }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        textarea { resize: vertical; min-height: 80px; }
+        .form-hint {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #8b5a2b 0%, #d4a373 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .stat-number { font-size: 36px; font-weight: bold; }
+        .stat-label { font-size: 14px; opacity: 0.9; margin-top: 5px; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in { animation: fadeIn 0.3s ease-out; }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            border-radius: 12px;
+            color: white;
+            font-weight: 500;
+            z-index: 2000;
+            animation: slideUp 0.3s ease-out;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            max-width: 90%;
+        }
+        .toast.success { background: #48bb78; }
+        .toast.error { background: #f56565; }
+        .toast.info { background: #4299e1; }
+        .toast.warning { background: #ecc94b; color: #744210; }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .github-status {
+            font-size: 12px;
+            margin-left: 10px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background: #edf2f7;
+        }
+        .github-status.success { background: #c6f6d5; color: #22543d; }
+        .github-status.error { background: #fed7d7; color: #742a2a; }
+        .github-status.loading { background: #fefcbf; color: #744210; }
+        @media (max-width: 768px) {
+            .toolbar { flex-direction: column; }
+            .btn { justify-content: center; }
+            .modal-content { width: 95%; padding: 20px; }
+            .section-header { flex-direction: column; align-items: stretch; gap: 10px; }
+            .section-actions { justify-content: flex-start; }
+            .stats { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><span>🎂</span> Редактор поздравлений с днём рождения</h1>
+            <div class="subtitle">Тыуған көн ҡотлауҙары башҡортса — редактирование данных</div>
+            <div class="toolbar">
+                <button class="btn btn-primary" onclick="loadData()">📂 Загрузить данные</button>
+                <button class="btn btn-success" onclick="saveToGitHub()">💾 Сохранить на GitHub</button>
+                <button class="btn btn-info" onclick="loadFromGitHub()">📥 Загрузить с GitHub</button>
+                <button class="btn btn-warning" onclick="exportJSON()">📤 Экспорт JSON</button>
+                <button class="btn btn-danger" onclick="clearAll()">🗑️ Очистить всё</button>
+            </div>
+            <div id="fileInfo" class="file-info">📊 Загружено: 0 подкатегорий, 0 поздравлений</div>
+            <div id="githubStatus" class="github-status" style="margin-top: 10px;"></div>
+        </div>
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('sections')">📁 Категории</button>
+            <button class="tab" onclick="switchTab('stats')">📊 Статистика</button>
+            <button class="tab" onclick="switchTab('settings')">⚙️ GitHub</button>
+        </div>
+        <div class="content" id="content"></div>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Редактировать</h3>
+            <div id="modalForm"></div>
+            <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap;">
+                <button class="btn btn-secondary" onclick="closeModal()">Отмена</button>
+                <button class="btn btn-primary" onclick="saveModal()">Сохранить</button>
+            </div>
+        </div>
+    </div>
+    <script>
+    // ============================================================
+    // ===== КОНФИГУРАЦИЯ =====
+    // ============================================================
+    const DATA_FILE = 'data/data_birthday.json';
+    let currentData = { sections: { birthday: { name_ba: 'Тыуған көн', name_ru: 'День рождения', emoji: '🎂', order: 1, subcategories: {} } }, holidays_widget: [] };
+    let currentModalContext = null;
+    let expandedSections = new Set();
+    let expandedSubcats = new Set();
+    let githubConfig = {
+        token: localStorage.getItem('github_token') || '',
+        repo: localStorage.getItem('github_repo') || '',
+        branch: localStorage.getItem('github_branch') || 'main'
+    };
+
+    // ============================================================
+    // ===== ЗАГРУЗКА ДАННЫХ =====
+    // ============================================================
+    async function loadData() {
+        showToast('⏳ Загрузка данных...', 'info');
+        try {
+            const response = await fetch(DATA_FILE + '?v=' + Date.now());
+            if (response.ok) {
+                const data = await response.json();
+                if (data.sections && data.sections.birthday) {
+                    currentData = data;
+                    document.getElementById('fileInfo').textContent = 
+                        `📊 Загружено: ${Object.keys(currentData.sections.birthday.subcategories).length} подкатегорий, ${getTotalGreetings()} поздравлений`;
+                    expandedSections.clear();
+                    expandedSubcats.clear();
+                    renderSections();
+                    showToast(`✅ Загружено ${getTotalGreetings()} поздравлений`, 'success');
+                } else {
+                    showToast('❌ Раздел "birthday" не найден в файле', 'error');
+                }
+            } else {
+                showToast('❌ Не удалось загрузить данные', 'error');
+            }
+        } catch (e) {
+            console.error('❌ Ошибка:', e);
+            showToast('❌ Ошибка загрузки', 'error');
+        }
+    }
+
+    function getTotalGreetings() {
+        let count = 0;
+        const subs = currentData.sections.birthday?.subcategories || {};
+        for (const sub of Object.values(subs)) {
+            count += (sub.greetings || []).length;
+        }
+        return count;
+    }
+
+    // ============================================================
+    // ===== ЗАГРУЗКА С GITHUB =====
+    // ============================================================
+    async function loadFromGitHub() {
+        if (!githubConfig.token || !githubConfig.repo) {
+            showToast('❌ Сначала настройте GitHub в вкладке ⚙️!', 'error');
+            switchTab('settings');
+            return;
+        }
+        const statusDiv = document.getElementById('githubStatus');
+        statusDiv.textContent = '⏳ Загрузка с GitHub...';
+        statusDiv.className = 'github-status loading';
+        showToast('⏳ Загрузка с GitHub...', 'info');
+        try {
+            const url = `https://api.github.com/repos/${githubConfig.repo}/contents/${DATA_FILE}?ref=${githubConfig.branch}`;
+            const response = await fetch(url, {
+                headers: { 'Authorization': `token ${githubConfig.token}` }
+            });
+            if (response.ok) {
+                const fileData = await response.json();
+                const content = decodeURIComponent(escape(atob(fileData.content)));
+                const parsed = JSON.parse(content);
+                if (parsed.sections && parsed.sections.birthday) {
+                    currentData = parsed;
+                    document.getElementById('fileInfo').textContent = 
+                        `📊 Загружено: ${Object.keys(currentData.sections.birthday.subcategories).length} подкатегорий, ${getTotalGreetings()} поздравлений`;
+                    expandedSections.clear();
+                    expandedSubcats.clear();
+                    renderSections();
+                    statusDiv.textContent = '✅ Загружено с GitHub';
+                    statusDiv.className = 'github-status success';
+                    showToast(`✅ Загружено ${getTotalGreetings()} поздравлений`, 'success');
+                } else {
+                    showToast('❌ Раздел "birthday" не найден', 'error');
+                    statusDiv.textContent = '❌ Раздел "birthday" не найден';
+                    statusDiv.className = 'github-status error';
+                }
+            } else {
+                const error = await response.json();
+                showToast(`❌ Ошибка: ${error.message}`, 'error');
+                statusDiv.textContent = `❌ ${error.message}`;
+                statusDiv.className = 'github-status error';
+            }
+        } catch (error) {
+            console.error('❌ Ошибка:', error);
+            showToast(`❌ Ошибка: ${error.message}`, 'error');
+            statusDiv.textContent = `❌ ${error.message}`;
+            statusDiv.className = 'github-status error';
+        }
+    }
+
+    // ============================================================
+    // ===== СОХРАНЕНИЕ НА GITHUB =====
+    // ============================================================
+    async function saveToGitHub() {
+        if (!githubConfig.token || !githubConfig.repo) {
+            showToast('❌ Сначала настройте GitHub в вкладке ⚙️!', 'error');
+            switchTab('settings');
+            return;
+        }
+        const statusDiv = document.getElementById('githubStatus');
+        statusDiv.textContent = '⏳ Сохранение...';
+        statusDiv.className = 'github-status loading';
+        showToast('⏳ Сохранение на GitHub...', 'info');
+        try {
+            const content = JSON.stringify(currentData, null, 2);
+            const encodedContent = btoa(unescape(encodeURIComponent(content)));
+            let sha = null;
+            const getUrl = `https://api.github.com/repos/${githubConfig.repo}/contents/${DATA_FILE}?ref=${githubConfig.branch}`;
+            const getResponse = await fetch(getUrl, {
+                headers: { 'Authorization': `token ${githubConfig.token}` }
+            });
+            if (getResponse.ok) {
+                const fileData = await getResponse.json();
+                sha = fileData.sha;
+            }
+            const putUrl = `https://api.github.com/repos/${githubConfig.repo}/contents/${DATA_FILE}`;
+            const putResponse = await fetch(putUrl, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `token ${githubConfig.token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: 'Обновление поздравлений с днём рождения',
+                    content: encodedContent,
+                    sha: sha,
+                    branch: githubConfig.branch
+                })
+            });
+            if (putResponse.ok) {
+                statusDiv.textContent = '✅ Сохранено на GitHub';
+                statusDiv.className = 'github-status success';
+                showToast('✅ Сохранено на GitHub!', 'success');
+            } else {
+                const error = await putResponse.json();
+                showToast(`❌ Ошибка: ${error.message}`, 'error');
+                statusDiv.textContent = `❌ ${error.message}`;
+                statusDiv.className = 'github-status error';
+            }
+        } catch (error) {
+            console.error('❌ Ошибка:', error);
+            showToast(`❌ Ошибка: ${error.message}`, 'error');
+            statusDiv.textContent = `❌ ${error.message}`;
+            statusDiv.className = 'github-status error';
+        }
+    }
+
+    // ============================================================
+    // ===== РЕНДЕР РАЗДЕЛОВ =====
+    // ============================================================
+    function renderSections() {
+        const container = document.getElementById('content');
+        const section = currentData.sections.birthday;
+        if (!section) {
+            container.innerHTML = '<div style="text-align:center;padding:40px;color:#999;">❌ Раздел "birthday" не найден</div>';
+            return;
+        }
+
+        let html = '<div class="fade-in">';
+        html += `
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
+                <button class="btn btn-primary" onclick="addSubcategory()">➕ Добавить категорию</button>
+                <button class="btn btn-secondary" onclick="expandAll()">📂 Развернуть всё</button>
+                <button class="btn btn-secondary" onclick="collapseAll()">📁 Свернуть всё</button>
+                <span style="font-size:14px;color:#666;display:flex;align-items:center;margin-left:10px;">
+                    Всего: ${Object.keys(section.subcategories).length} категорий, ${getTotalGreetings()} поздравлений
+                </span>
+            </div>
+        `;
+
+        const isExpanded = expandedSections.has('birthday');
+        html += `
+            <div class="section-card">
+                <div class="section-header ${!isExpanded ? 'collapsed' : ''}" onclick="toggleSection()">
+                    <div class="section-title">
+                        <span class="toggle-icon">▼</span>
+                        <span>${section.emoji || '🎂'}</span>
+                        <span>${escapeHtml(section.name_ba || 'Тыуған көн')}</span>
+                        <span style="font-size:12px;opacity:0.8;">(${escapeHtml(section.name_ru || 'День рождения')})</span>
+                        <span class="section-file-badge">📄 data_birthday.json</span>
+                    </div>
+                    <div class="section-actions" onclick="event.stopPropagation()">
+                        <button class="btn btn-sm btn-primary" onclick="editSection()">✏️ Редактировать</button>
+                    </div>
+                </div>
+                <div class="section-body ${!isExpanded ? 'collapsed' : ''}">
+        `;
+
+        const subcategories = section.subcategories || {};
+        const sortedSubcats = Object.entries(subcategories)
+            .sort((a, b) => (a[1].order || 999) - (b[1].order || 999));
+
+        for (const [subcatKey, subcat] of sortedSubcats) {
+            const isSubExpanded = expandedSubcats.has(subcatKey);
+            const greetingCount = (subcat.greetings || []).length;
+            html += `
+                <div class="subcategory">
+                    <div class="subcategory-header ${!isSubExpanded ? 'collapsed' : ''}" onclick="toggleSubcategory('${subcatKey}')">
+                        <div>
+                            <span class="toggle-icon">▼</span>
+                            <strong>${subcat.emoji || '💬'} ${escapeHtml(subcat.name_ba || subcatKey)}</strong>
+                            <span style="font-size:12px;color:#666;">(${escapeHtml(subcat.name_ru || '')})</span>
+                            <span style="font-size:11px;background:#cbd5e0;padding:2px 6px;border-radius:10px;margin-left:8px;">${greetingCount}</span>
+                        </div>
+                        <div onclick="event.stopPropagation()" style="display:flex;gap:6px;flex-wrap:wrap;">
+                            <button class="btn btn-sm btn-primary" onclick="editSubcategory('${subcatKey}')">✏️</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteSubcategory('${subcatKey}')">🗑️</button>
+                            <button class="btn btn-sm btn-success" onclick="addGreeting('${subcatKey}')">➕ Поздравление</button>
+                        </div>
+                    </div>
+                    <div class="subcategory-body ${!isSubExpanded ? 'collapsed' : ''}">
+            `;
+            const greetings = subcat.greetings || [];
+            for (let i = 0; i < greetings.length; i++) {
+                const g = greetings[i];
+                html += `
+                    <div class="greeting-item">
+                        <div class="greeting-text">📖 ${escapeHtml(g.text_ba)}</div>
+                        <div class="translation-text">🇷🇺 ${escapeHtml(g.translation_ru || '')}</div>
+                        <div class="inline-actions">
+                            <button class="btn btn-sm btn-primary" onclick="editGreeting('${subcatKey}', ${i})">✏️</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteGreeting('${subcatKey}', ${i})">🗑️</button>
+                        </div>
+                    </div>
+                `;
+            }
+            if (greetings.length === 0) {
+                html += '<div style="padding:20px;text-align:center;color:#999;">Нет поздравлений</div>';
+            }
+            html += `</div></div>`;
+        }
+
+        html += `</div></div></div>`;
+        container.innerHTML = html;
+    }
+
+    // ============================================================
+    // ===== РЕНДЕР СТАТИСТИКИ =====
+    // ============================================================
+    function renderStats() {
+        const container = document.getElementById('content');
+        const section = currentData.sections.birthday;
+        const subcats = section ? Object.keys(section.subcategories).length : 0;
+        const greetings = getTotalGreetings();
+        const html = `
+            <div class="fade-in">
+                <div class="stats">
+                    <div class="stat-card"><div class="stat-number">${subcats}</div><div class="stat-label">Категорий</div></div>
+                    <div class="stat-card"><div class="stat-number">${greetings}</div><div class="stat-label">Поздравлений</div></div>
+                    <div class="stat-card"><div class="stat-number">${subcats > 0 ? Math.round(greetings / subcats) : 0}</div><div class="stat-label">В среднем на категорию</div></div>
+                </div>
+                <div style="margin-top:20px;padding:15px;background:#f7fafc;border-radius:10px;">
+                    <h4>📋 Список категорий</h4>
+                    <ul style="margin-top:10px;list-style:none;padding:0;">
+                        ${section ? Object.entries(section.subcategories).map(([key, sub]) => 
+                            `<li style="padding:4px 0;border-bottom:1px solid #eee;">${sub.emoji || '💬'} ${escapeHtml(sub.name_ba)} — ${(sub.greetings || []).length} поздравлений</li>`
+                        ).join('') : '<li>Нет категорий</li>'}
+                    </ul>
+                </div>
+            </div>
+        `;
+        container.innerHTML = html;
+    }
+
+    // ============================================================
+    // ===== РЕНДЕР НАСТРОЕК GITHUB =====
+    // ============================================================
+    function renderSettings() {
+        const container = document.getElementById('content');
+        const html = `
+            <div class="fade-in">
+                <h3 style="margin-bottom:20px;">🐙 GitHub интеграция</h3>
+                <div class="stats" style="margin-bottom:20px;">
+                    <div class="stat-card" style="background:#2d3748;">
+                        <div class="stat-number">${githubConfig.token ? '✅' : '❌'}</div>
+                        <div class="stat-label">Токен</div>
+                    </div>
+                    <div class="stat-card" style="background:#2d3748;">
+                        <div class="stat-number">${githubConfig.repo ? '✅' : '❌'}</div>
+                        <div class="stat-label">Репозиторий</div>
+                    </div>
+                    <div class="stat-card" style="background:#2d3748;">
+                        <div class="stat-number">${githubConfig.branch}</div>
+                        <div class="stat-label">Ветка</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>GitHub Personal Access Token</label>
+                    <input type="password" id="githubToken" placeholder="ghp_xxxxxxxxxxxx" value="${escapeHtml(githubConfig.token)}">
+                    <div class="form-hint">Создайте токен в Settings → Developer settings → Personal access tokens → Tokens (classic). Нужны права repo.</div>
+                </div>
+                <div class="form-group">
+                    <label>Репозиторий (формат: username/repo)</label>
+                    <input type="text" id="githubRepo" placeholder="AlmazBaymurzin/AlmazBaymurzin.github.io" value="${escapeHtml(githubConfig.repo)}">
+                </div>
+                <div class="form-group">
+                    <label>Ветка</label>
+                    <input type="text" id="githubBranch" placeholder="main" value="${escapeHtml(githubConfig.branch)}">
+                </div>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                    <button class="btn btn-primary" onclick="saveGitHubSettings()">💾 Сохранить настройки</button>
+                    <button class="btn btn-success" onclick="saveToGitHub()">🚀 Сохранить на GitHub</button>
+                    <button class="btn btn-info" onclick="loadFromGitHub()">📥 Загрузить с GitHub</button>
+                </div>
+            </div>
+        `;
+        container.innerHTML = html;
+    }
+
+    // ============================================================
+    // ===== CRUD ОПЕРАЦИИ =====
+    // ============================================================
+    function toggleSection() {
+        if (expandedSections.has('birthday')) {
+            expandedSections.delete('birthday');
+        } else {
+            expandedSections.add('birthday');
+        }
+        renderSections();
+    }
+
+    function toggleSubcategory(subcatKey) {
+        if (expandedSubcats.has(subcatKey)) {
+            expandedSubcats.delete(subcatKey);
+        } else {
+            expandedSubcats.add(subcatKey);
+        }
+        renderSections();
+    }
+
+    function expandAll() {
+        expandedSections.add('birthday');
+        const subs = currentData.sections.birthday?.subcategories || {};
+        for (const key of Object.keys(subs)) {
+            expandedSubcats.add(key);
+        }
+        renderSections();
+    }
+
+    function collapseAll() {
+        expandedSections.clear();
+        expandedSubcats.clear();
+        renderSections();
+    }
+
+    // ===== ДОБАВЛЕНИЕ КАТЕГОРИИ =====
+    function addSubcategory() {
+        currentModalContext = { type: 'addSubcategory' };
+        showModal('Добавить категорию', `
+            <div class="form-group"><label>Ключ (латиницей)</label><input type="text" id="key" placeholder="mother"></div>
+            <div class="form-group"><label>Название (баш)</label><input type="text" id="name_ba" placeholder="Әсәйгә"></div>
+            <div class="form-group"><label>Название (рус)</label><input type="text" id="name_ru" placeholder="Маме"></div>
+            <div class="form-group"><label>Emoji</label><input type="text" id="emoji" value="👩"></div>
+            <div class="form-group"><label>Порядок</label><input type="number" id="order" value="999"></div>
+        `);
+    }
+
+    function editSection() {
+        const section = currentData.sections.birthday;
+        currentModalContext = { type: 'editSection' };
+        showModal('Редактировать раздел', `
+            <div class="form-group"><label>Название (баш)</label><input type="text" id="name_ba" value="${escapeHtml(section.name_ba || '')}"></div>
+            <div class="form-group"><label>Название (рус)</label><input type="text" id="name_ru" value="${escapeHtml(section.name_ru || '')}"></div>
+            <div class="form-group"><label>Emoji</label><input type="text" id="emoji" value="${escapeHtml(section.emoji || '')}"></div>
+        `);
+    }
+
+    function editSubcategory(subcatKey) {
+        const subcat = currentData.sections.birthday.subcategories[subcatKey];
+        currentModalContext = { type: 'editSubcategory', subcatKey: subcatKey };
+        showModal('Редактировать категорию', `
+            <div class="form-group"><label>Название (баш)</label><input type="text" id="name_ba" value="${escapeHtml(subcat.name_ba || '')}"></div>
+            <div class="form-group"><label>Название (рус)</label><input type="text" id="name_ru" value="${escapeHtml(subcat.name_ru || '')}"></div>
+            <div class="form-group"><label>Emoji</label><input type="text" id="emoji" value="${escapeHtml(subcat.emoji || '')}"></div>
+            <div class="form-group"><label>Порядок</label><input type="number" id="order" value="${subcat.order || 999}"></div>
+        `);
+    }
+
+    function deleteSubcategory(subcatKey) {
+        if (confirm(`Удалить категорию "${subcatKey}"?`)) {
+            delete currentData.sections.birthday.subcategories[subcatKey];
+            renderSections();
+            showToast('Категория удалена', 'success');
+        }
+    }
+
+    function addGreeting(subcatKey) {
+        currentModalContext = { type: 'addGreeting', subcatKey: subcatKey };
+        showModal('Добавить поздравление', `
+            <div class="form-group"><label>Текст (баш)</label><textarea id="text_ba" rows="4"></textarea></div>
+            <div class="form-group"><label>Перевод (рус)</label><textarea id="translation_ru" rows="3"></textarea></div>
+        `);
+    }
+
+    function editGreeting(subcatKey, index) {
+        const greeting = currentData.sections.birthday.subcategories[subcatKey].greetings[index];
+        currentModalContext = { type: 'editGreeting', subcatKey: subcatKey, index: index };
+        showModal('Редактировать поздравление', `
+            <div class="form-group"><label>Текст (баш)</label><textarea id="text_ba" rows="4">${escapeHtml(greeting.text_ba || '')}</textarea></div>
+            <div class="form-group"><label>Перевод (рус)</label><textarea id="translation_ru" rows="3">${escapeHtml(greeting.translation_ru || '')}</textarea></div>
+        `);
+    }
+
+    function deleteGreeting(subcatKey, index) {
+        if (confirm('Удалить поздравление?')) {
+            currentData.sections.birthday.subcategories[subcatKey].greetings.splice(index, 1);
+            renderSections();
+            showToast('Поздравление удалено', 'success');
+        }
+    }
+
+    // ============================================================
+    // ===== МОДАЛЬНОЕ ОКНО =====
+    // ============================================================
+    function showModal(title, formHtml) {
+        document.getElementById('modalTitle').textContent = title;
+        document.getElementById('modalForm').innerHTML = formHtml;
+        document.getElementById('modal').classList.add('active');
+    }
+
+    function closeModal() {
+        document.getElementById('modal').classList.remove('active');
+        currentModalContext = null;
+    }
+
+    // ============================================================
+    // ===== СОХРАНЕНИЕ МОДАЛЬНЫХ ДАННЫХ =====
+    // ============================================================
+    function saveModal() {
+        const ctx = currentModalContext;
+        if (!ctx) return;
+
+        const section = currentData.sections.birthday;
+
+        if (ctx.type === 'editSection') {
+            section.name_ba = document.getElementById('name_ba').value;
+            section.name_ru = document.getElementById('name_ru').value;
+            section.emoji = document.getElementById('emoji').value;
+            closeModal();
+            renderSections();
+            showToast('✅ Раздел обновлён', 'success');
+            return;
+        }
+
+        if (ctx.type === 'addSubcategory') {
+            const key = document.getElementById('key').value.trim();
+            if (!key) { showToast('Введите ключ', 'error'); return; }
+            if (section.subcategories[key]) { showToast('Категория существует', 'error'); return; }
+            section.subcategories[key] = {
+                name_ba: document.getElementById('name_ba').value,
+                name_ru: document.getElementById('name_ru').value,
+                emoji: document.getElementById('emoji').value,
+                order: parseInt(document.getElementById('order').value) || 999,
+                greetings: []
+            };
+            closeModal();
+            renderSections();
+            showToast(`✅ Категория "${key}" добавлена`, 'success');
+            return;
+        }
+
+        if (ctx.type === 'editSubcategory') {
+            const subcat = section.subcategories[ctx.subcatKey];
+            subcat.name_ba = document.getElementById('name_ba').value;
+            subcat.name_ru = document.getElementById('name_ru').value;
+            subcat.emoji = document.getElementById('emoji').value;
+            subcat.order = parseInt(document.getElementById('order').value) || 999;
+            closeModal();
+            renderSections();
+            showToast('✅ Категория обновлена', 'success');
+            return;
+        }
+
+        if (ctx.type === 'addGreeting') {
+            const text_ba = document.getElementById('text_ba').value.trim();
+            if (!text_ba) { showToast('Введите текст', 'error'); return; }
+            section.subcategories[ctx.subcatKey].greetings.push({
+                text_ba: text_ba,
+                translation_ru: document.getElementById('translation_ru').value
+            });
+            closeModal();
+            renderSections();
+            updateFileInfo();
+            showToast('✅ Поздравление добавлено', 'success');
+            return;
+        }
+
+        if (ctx.type === 'editGreeting') {
+            const greeting = section.subcategories[ctx.subcatKey].greetings[ctx.index];
+            greeting.text_ba = document.getElementById('text_ba').value;
+            greeting.translation_ru = document.getElementById('translation_ru').value;
+            closeModal();
+            renderSections();
+            showToast('✅ Поздравление обновлено', 'success');
+            return;
+        }
+
+        closeModal();
+        renderCurrentTab();
+    }
+
+    // ============================================================
+    // ===== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ =====
+    // ============================================================
+    function updateFileInfo() {
+        document.getElementById('fileInfo').textContent = 
+            `📊 Загружено: ${Object.keys(currentData.sections.birthday.subcategories).length} подкатегорий, ${getTotalGreetings()} поздравлений`;
+    }
+
+    function switchTab(tab) {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        const tabs = document.querySelectorAll('.tab');
+        if (tab === 'sections') tabs[0].classList.add('active');
+        else if (tab === 'stats') tabs[1].classList.add('active');
+        else tabs[2].classList.add('active');
+        renderCurrentTab();
+    }
+
+    function renderCurrentTab() {
+        const activeTab = document.querySelector('.tab.active');
+        if (!activeTab) return;
+        const tabText = activeTab.textContent;
+        if (tabText.includes('Категории')) renderSections();
+        else if (tabText.includes('Статистика')) renderStats();
+        else if (tabText.includes('GitHub')) renderSettings();
+    }
+
+    function saveGitHubSettings() {
+        githubConfig.token = document.getElementById('githubToken').value;
+        githubConfig.repo = document.getElementById('githubRepo').value;
+        githubConfig.branch = document.getElementById('githubBranch').value;
+        localStorage.setItem('github_token', githubConfig.token);
+        localStorage.setItem('github_repo', githubConfig.repo);
+        localStorage.setItem('github_branch', githubConfig.branch);
+        showToast('Настройки GitHub сохранены!', 'success');
+        renderSettings();
+    }
+
+    function exportJSON() {
+        const blob = new Blob([JSON.stringify(currentData, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'data_birthday.json';
+        a.click();
+        URL.revokeObjectURL(url);
+        showToast('📤 JSON экспортирован!', 'success');
+    }
+
+    function clearAll() {
+        if (confirm('Очистить все данные? (необратимо)')) {
+            currentData = { sections: { birthday: { name_ba: 'Тыуған көн', name_ru: 'День рождения', emoji: '🎂', order: 1, subcategories: {} } }, holidays_widget: [] };
+            expandedSections.clear();
+            expandedSubcats.clear();
+            renderSections();
+            updateFileInfo();
+            showToast('Все данные очищены', 'success');
+        }
+    }
+
+    function showToast(message, type = 'info') {
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    // ============================================================
+    // ===== ИНИЦИАЛИЗАЦИЯ =====
+    // ============================================================
+    loadData();
+    console.log('🎂 Редактор поздравлений с днём рождения загружен');
+    console.log('📄 Работает с файлом: data/data_birthday.json');
+    </script>
+</body>
+</html>
