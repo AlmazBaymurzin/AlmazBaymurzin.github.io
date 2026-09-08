@@ -1,192 +1,215 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
+    <!-- ============================================================ -->
     <!-- ===== ГЛАВНАЯ СТРАНИЦА ===== -->
+    <!-- ============================================================ -->
     <url>
         <loc>https://yilyhuzzar.ru/</loc>
-        <lastmod>2026-09-07</lastmod>
+        <lastmod>2026-09-08</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
 
+    <!-- ============================================================ -->
     <!-- ===== СТАТИЧЕСКИЕ СТРАНИЦЫ ===== -->
+    <!-- ============================================================ -->
     <url>
         <loc>https://yilyhuzzar.ru/about.html</loc>
-        <lastmod>2026-09-07</lastmod>
+        <lastmod>2026-09-08</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
+        <priority>0.6</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/contacts.html</loc>
-        <lastmod>2026-09-07</lastmod>
+        <lastmod>2026-09-08</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
+        <priority>0.6</priority>
     </url>
     <url>
         <loc>https://yilyhuzzar.ru/privacy.html</loc>
-        <lastmod>2026-09-07</lastmod>
+        <lastmod>2026-09-08</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
+        <priority>0.6</priority>
     </url>
 
     <!-- ============================================================ -->
     <!-- ===== РАЗДЕЛ: ТЫУҒАН КӨН (ДЕНЬ РОЖДЕНИЯ) ===== -->
     <!-- ============================================================ -->
     
-    <!-- Главная страница раздела -->
     <url>
         <loc>https://yilyhuzzar.ru/#birthday</loc>
-        <lastmod>2026-09-07</lastmod>
+        <lastmod>2026-09-08</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
 
-    <!-- ===== ПОДКАТЕГОРИИ ===== -->
-    
-    <!-- Маме -->
+    <!-- ===== 1. Әсәйемә (Маме) ===== -->
     <url>
         <loc>https://yilyhuzzar.ru/#birthday/mother</loc>
-        <lastmod>2026-09-07</lastmod>
+        <lastmod>2026-09-08</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
-    
-    <!-- Папе -->
+
+    <!-- ===== 2. Атайыма (Папе) ===== -->
     <url>
         <loc>https://yilyhuzzar.ru/#birthday/father</loc>
-        <lastmod>2026-09-07</lastmod>
+        <lastmod>2026-09-08</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
-    
-    <!-- Бабушке -->
-    <url>
-        <loc>https://yilyhuzzar.ru/#birthday/grandma</loc>
-        <lastmod>2026-09-07</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- Дедушке -->
-    <url>
-        <loc>https://yilyhuzzar.ru/#birthday/grandpa</loc>
-        <lastmod>2026-09-07</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- Брату -->
+
+    <!-- ===== 3. Ҡустыма (Брату) ===== -->
     <url>
         <loc>https://yilyhuzzar.ru/#birthday/brother</loc>
-        <lastmod>2026-09-07</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- Сестре -->
-    <url>
-        <loc>https://yilyhuzzar.ru/#birthday/sister</loc>
-        <lastmod>2026-09-07</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- Старшему брату -->
-    <url>
-        <loc>https://yilyhuzzar.ru/#birthday/elder_brother</loc>
-        <lastmod>2026-09-07</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- Старшей сестре -->
-    <url>
-        <loc>https://yilyhuzzar.ru/#birthday/stelder_sister</loc>
-        <lastmod>2026-09-07</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- Лучшему другу -->
-    <url>
-        <loc>https://yilyhuzzar.ru/#birthday/bestfriend</loc>
-        <lastmod>2026-09-07</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- Лучшей подруге -->
-    <url>
-        <loc>https://yilyhuzzar.ru/#birthday/bestgirlfriend</loc>
-        <lastmod>2026-09-07</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- Женщине -->
-    <url>
-        <loc>https://yilyhuzzar.ru/#birthday/woman</loc>
-        <lastmod>2026-09-07</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    
-    <!-- Мужчине -->
-    <url>
-        <loc>https://yilyhuzzar.ru/#birthday/man</loc>
-        <lastmod>2026-09-07</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    
-    <!-- Юбилей -->
-    <url>
-        <loc>https://yilyhuzzar.ru/#birthday/jubilee</loc>
-        <lastmod>2026-09-07</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    
-    <!-- Тёще -->
-    <url>
-        <loc>https://yilyhuzzar.ru/#birthday/mother_in_law</loc>
-        <lastmod>2026-09-07</lastmod>
+        <lastmod>2026-09-08</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
 
-    <!-- ===== НОВЫЕ ПОДКАТЕГОРИИ (ДОБАВЬ ПО МЕРЕ РАЗВИТИЯ) ===== -->
-    
-    <!-- Дочке -->
+    <!-- ===== 4. Һеңлемә (Сестре) ===== -->
+    <url>
+        <loc>https://yilyhuzzar.ru/#birthday/sister</loc>
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- ===== 5. Апайыма (Старшей сестре) ===== -->
+    <url>
+        <loc>https://yilyhuzzar.ru/#birthday/stelder_sister</loc>
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- ===== 6. Ағайыма (Старшему брату) ===== -->
+    <url>
+        <loc>https://yilyhuzzar.ru/#birthday/elder_brother</loc>
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- ===== 7. Өләсәйемә (Бабушке) ===== -->
+    <url>
+        <loc>https://yilyhuzzar.ru/#birthday/grandma</loc>
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- ===== 8. Олатайыма (Дедушке) ===== -->
+    <url>
+        <loc>https://yilyhuzzar.ru/#birthday/grandpa</loc>
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- ===== 9. Иң яҡшы дуҫыма (Лучшему другу) ===== -->
+    <url>
+        <loc>https://yilyhuzzar.ru/#birthday/bestfriend</loc>
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- ===== 10. Иң яҡшы әхирәтемә (Лучшей подруге) ===== -->
+    <url>
+        <loc>https://yilyhuzzar.ru/#birthday/bestgirlfriend</loc>
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- ===== 11. Ҡыҙыма (Дочке) ===== -->
     <url>
         <loc>https://yilyhuzzar.ru/#birthday/daughter</loc>
-        <lastmod>2026-09-07</lastmod>
+        <lastmod>2026-09-08</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-    
-    <!-- Сыну -->
+
+    <!-- ===== 12. Улыма (Сыну) ===== -->
     <url>
         <loc>https://yilyhuzzar.ru/#birthday/son</loc>
-        <lastmod>2026-09-07</lastmod>
+        <lastmod>2026-09-08</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-    
-    <!-- Свекрови -->
+
+    <!-- ===== 13. Ҡатыныма (Жене) ===== -->
+    <url>
+        <loc>https://yilyhuzzar.ru/#birthday/beloved_wife</loc>
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- ===== 14. Ҡыҙыма (Девушке) ===== -->
+    <url>
+        <loc>https://yilyhuzzar.ru/#birthday/beloved_girl</loc>
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- ===== 15. Яратҡан ҡатыныма (Любимой женщине) ===== -->
+    <url>
+        <loc>https://yilyhuzzar.ru/#birthday/woman</loc>
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- ===== 16. Ир-егеткә (Мужчине) ===== -->
+    <url>
+        <loc>https://yilyhuzzar.ru/#birthday/man</loc>
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- ===== 17. Ҡәйнәмә (Тёще) ===== -->
+    <url>
+        <loc>https://yilyhuzzar.ru/#birthday/mother_in_law</loc>
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- ===== 18. Ҡәйнәгә (Свекрови) ===== -->
     <url>
         <loc>https://yilyhuzzar.ru/#birthday/mother_in_law_husband</loc>
-        <lastmod>2026-09-07</lastmod>
+        <lastmod>2026-09-08</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
+        <priority>0.8</priority>
     </url>
-    
-    <!-- Свекру -->
+
+    <!-- ===== 19. Ҡайныға (Свекру) ===== -->
     <url>
         <loc>https://yilyhuzzar.ru/#birthday/father_in_law</loc>
-        <lastmod>2026-09-07</lastmod>
+        <lastmod>2026-09-08</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- ===== 20. Еңгәйгә (Жене брата) ===== -->
+    <url>
+        <loc>https://yilyhuzzar.ru/#birthday/sister_in_law</loc>
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- ===== 21. Юбилей ===== -->
+    <url>
+        <loc>https://yilyhuzzar.ru/#birthday/jubilee</loc>
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
     </url>
 
 </urlset>
