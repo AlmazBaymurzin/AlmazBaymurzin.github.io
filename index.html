@@ -918,7 +918,6 @@
                 <!-- ===== ПАРТНЁРСКИЙ ТОВАР: Набор инструментов Тундра ===== -->
                 <div class="affiliate-product" style="margin-top: 20px;">
                     <div style="background: var(--bg-card); border-radius: 20px; padding: 16px; border: 1px solid var(--border-color); box-shadow: var(--shadow-card); transition: all var(--transition);">
-                        <!-- Картинка товара -->
                         <div style="border-radius: 14px; overflow: hidden; margin-bottom: 12px; background: #f5f0eb; position: relative; aspect-ratio: 900/1200; max-height: 240px; display: flex; align-items: center; justify-content: center;">
                             <img 
                                 src="/creative_images/creative.png" 
@@ -930,28 +929,23 @@
                             <div style="display: none; align-items: center; justify-content: center; width: 100%; height: 100%; background: #f5f0eb; color: #b8956a; font-size: 4rem;">🧰</div>
                         </div>
 
-                        <!-- Бейдж "Подарок" -->
                         <div style="display: inline-block; background: var(--bg-badge); padding: 2px 12px; border-radius: 20px; font-size: 0.6rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; transition: background var(--transition), color var(--transition);">
                             🎁 Подарок
                         </div>
 
-                        <!-- Название -->
                         <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.3; margin-bottom: 4px; transition: color var(--transition);">
                             Набор инструментов Тундра «Банка»
                         </div>
 
-                        <!-- Описание -->
                         <div style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px; transition: color var(--transition);">
                             13 предметов — компактный и практичный подарок для дома и авто
                         </div>
 
-                        <!-- Состав -->
                         <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 12px; line-height: 1.5; transition: color var(--transition);">
                             ✅ Отвертка, биты, плоскогубцы — качественная сталь<br>
                             ✅ Удобное хранение в компактном кейсе
                         </div>
 
-                        <!-- Цена и кнопка -->
                         <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
                             <div style="font-weight: 700; font-size: 1.2rem; color: var(--text-secondary); transition: color var(--transition);">
                                 750 ₽
@@ -966,7 +960,6 @@
                             </a>
                         </div>
 
-                        <!-- Маркировка рекламы -->
                         <div style="font-size: 0.5rem; color: var(--text-muted); margin-top: 10px; line-height: 1.3; border-top: 1px solid var(--border-color); padding-top: 8px; transition: color var(--transition), border-color var(--transition);">
                             Реклама. ООО «УК «Сима-ленд» ИНН 6679151160 erid Y1jgkD6uB6jK1phqkTLTbNJUGEMW
                         </div>
@@ -1014,7 +1007,7 @@
 
     <script>
     // ================================================================
-    // ========== ПОЛНАЯ ВЕРСИЯ — ТОЛЬКО ДЕНЬ РОЖДЕНИЯ ==========
+    // ========== ПОЛНАЯ ВЕРСИЯ — ТОЛЬКО ДЕНЬ РОЖДЕНИЯ + РОТАЦИЯ ==========
     // ================================================================
 
     let siteData = null;
@@ -1023,6 +1016,7 @@
     let pagesData = null;
     const STATS_KEY = 'greeting_copy_stats';
     const THEME_KEY = 'site_theme';
+    const ROTATION_HOURS = 8; // Менять порядок каждые 8 часов (3 раза в день)
     
     const contentContainer = document.getElementById('contentContainer');
     const backBtn = document.getElementById('backBtn');
@@ -1030,6 +1024,70 @@
     const breadcrumbs = document.getElementById('breadcrumbs');
     const loadingIndicator = document.getElementById('loadingIndicator');
     const themeToggle = document.getElementById('themeToggle');
+
+    // ================================================================
+    // ===== ФУНКЦИИ РОТАЦИИ (НОВОЕ) =====
+    // ================================================================
+    
+    /**
+     * Генерация seed для ротации на основе текущего времени
+     * Меняется каждые ROTATION_HOURS часов
+     */
+    function getRotationSeed() {
+        // Слот времени — целое число, меняется каждые N часов
+        const timeSlot = Math.floor(Date.now() / (1000 * 60 * 60 * ROTATION_HOURS));
+        return String(timeSlot);
+    }
+    
+    /**
+     * Детерминированное перемешивание массива
+     * Один и тот же seed = один и тот же порядок
+     * Работает без сервера, только на клиенте
+     */
+    function seededShuffle(array, seed) {
+        if (!array || array.length === 0) return array;
+        if (array.length === 1) return array;
+        
+        // Хеш-функция для строки (превращает seed в число)
+        function hashCode(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash; // 32-bit integer
+            }
+            return Math.abs(hash);
+        }
+        
+        // Копия массива (не мутируем исходный!)
+        const arr = [...array];
+        let currentSeed = hashCode(seed);
+        
+        // Простой линейный конгруэнтный генератор
+        function random() {
+            currentSeed = (currentSeed * 9301 + 49297) % 233280;
+            return currentSeed / 233280;
+        }
+        
+        // Алгоритм Фишера-Йетса
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        
+        return arr;
+    }
+    
+    /**
+     * Перемешивает поздравления в подкатегории
+     * Использует seed = время + ключ подкатегории
+     * Каждая подкатегория перемешивается независимо
+     */
+    function shuffleGreetings(greetings, subcatKey) {
+        if (!greetings || greetings.length === 0) return greetings;
+        const seed = getRotationSeed() + '_' + subcatKey;
+        return seededShuffle(greetings, seed);
+    }
 
     // ===== ПЕРЕКЛЮЧЕНИЕ ТЕМЫ =====
     function toggleTheme() {
@@ -1135,10 +1193,9 @@
         };
 
         try {
-            // Загружаем только файлы с ДР
             const files = [
                 'data/data_birthday.json',
-                'data/data.json'  // на всякий случай, если там есть ДР
+                'data/data.json'
             ];
 
             console.log('📄 Загружаемые файлы (только ДР):', files);
@@ -1163,20 +1220,14 @@
                 const { file, data } = result;
 
                 if (data.sections) {
-                    // Берём только раздел birthday
                     if (data.sections.birthday) {
                         allData.sections.birthday = data.sections.birthday;
                         console.log('✅ Найден раздел birthday');
                     }
-                    // Если есть другие разделы в data.json — игнорируем
                 }
-
-                // Праздники не нужны
             }
 
-            // Если birthday не найден — загружаем из data_birthday.json как есть
             if (!allData.sections.birthday) {
-                // Пробуем загрузить напрямую data_birthday.json
                 try {
                     const response = await fetch('data/data_birthday.json?v=' + Date.now());
                     if (response.ok) {
@@ -1194,6 +1245,7 @@
             siteData = allData;
             console.log(`📊 Разделов: ${Object.keys(siteData.sections).length}`);
             console.log(`📊 В разделе birthday подкатегорий: ${Object.keys(siteData.sections.birthday?.subcategories || {}).length}`);
+            console.log(`🔄 Ротация: каждые ${ROTATION_HOURS} часов (seed = ${getRotationSeed()})`);
 
             return true;
 
@@ -1333,7 +1385,6 @@
             bindEvents(section, subcat);
             showLoading(false);
             
-            // Карточка дня — только на главной
             if (!section && !subcat) {
                 cardOfDayContainer.style.display = 'block';
                 renderCardOfDay();
@@ -1344,7 +1395,7 @@
         }, 50);
     }
 
-    // ===== РЕНДЕР РАЗДЕЛОВ (только birthday) =====
+    // ===== РЕНДЕР РАЗДЕЛОВ =====
     function renderSectionsContent() {
         const section = siteData.sections.birthday;
         if (!section) return '<div style="text-align:center;padding:40px;">❌ Раздел не найден</div>';
@@ -1399,11 +1450,10 @@
             `;
         }
         
-        // На самом деле мы всегда показываем все подкатегории, это не нужно
         return renderSectionsContent();
     }
 
-    // ===== РЕНДЕР ПОЗДРАВЛЕНИЙ =====
+    // ===== РЕНДЕР ПОЗДРАВЛЕНИЙ (С РОТАЦИЕЙ!) =====
     function renderGreetingsContent(sectionKey, subcatKey) {
         const section = siteData.sections.birthday;
         if (!section) return '<div style="text-align:center;padding:40px;">❌ Раздел не найден</div>';
@@ -1411,7 +1461,10 @@
         const subcat = section.subcategories[subcatKey];
         if (!subcat) return '<div style="text-align:center;padding:40px;">❌ Подкатегория не найдена</div>';
         
-        const greetings = subcat.greetings || [];
+        // ===== РОТАЦИЯ: перемешиваем поздравления =====
+        const originalGreetings = subcat.greetings || [];
+        const greetings = shuffleGreetings(originalGreetings, subcatKey);
+        
         if (greetings.length === 0) {
             return `
                 <div style="text-align:center;padding:60px;color:var(--text-muted);">
@@ -1760,6 +1813,7 @@
     console.log('🚀 Сайт переориентирован на поздравления с днём рождения на башкирском языке');
     console.log('📊 Загружены только разделы "Тыуған көн"');
     console.log('🎯 Главная страница — только категории для ДР');
+    console.log(`🔄 Ротация поздравлений: каждые ${ROTATION_HOURS} часов`);
     </script>
     <!-- Yandex Autoplacement 19695489 -->
     <script src="https://yandex.ru/ads/system/context.js" async></script>
