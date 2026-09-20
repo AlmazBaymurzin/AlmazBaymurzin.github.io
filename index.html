@@ -175,6 +175,40 @@
             transition: background var(--transition), color var(--transition);
         }
         
+        /* ===== НАВИГАЦИЯ ПО ПОЛУЧАТЕЛЯМ (SEO) ===== */
+        .recipients-nav {
+            margin-top: 14px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px 14px;
+            background: var(--border-light);
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            transition: background var(--transition), border-color var(--transition);
+        }
+        .recipients-label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            font-size: 0.75rem;
+            transition: color var(--transition);
+        }
+        .recipients-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color var(--transition);
+            white-space: nowrap;
+        }
+        .recipients-nav a:hover {
+            color: var(--text-primary);
+            text-decoration: underline;
+        }
+        
         /* ===== КАРТОЧКА ДНЯ ===== */
         #cardOfDayContainer { min-height: 200px; }
         .card-of-day {
@@ -827,6 +861,14 @@
             .footer-link {
                 font-size: 0.7rem;
             }
+            .recipients-nav {
+                font-size: 0.7rem;
+                padding: 8px 10px;
+                line-height: 1.6;
+            }
+            .recipients-label {
+                font-size: 0.7rem;
+            }
         }
         @media (max-width: 480px) {
             body { padding: 10px; }
@@ -871,6 +913,15 @@
             #contentContainer {
                 min-height: 200px;
             }
+            .recipients-nav {
+                font-size: 0.68rem;
+                padding: 8px 10px;
+                line-height: 1.55;
+            }
+            .recipients-label {
+                font-size: 0.68rem;
+                margin-bottom: 4px;
+            }
         }
     </style>
 </head>
@@ -885,6 +936,33 @@
         <header>
             <h1>🎂 Тыуған көн менән ҡотлауҙар башҡортса</h1>
             <div class="sub">1000+ матур теләктәр, шиғырҙар, тостар — туған телдә иң йылы һүҙҙәр</div>
+
+            <!-- ===== НАВИГАЦИЯ ПО ПОЛУЧАТЕЛЯМ (SEO + UX) ===== -->
+            <nav class="recipients-nav">
+                <span class="recipients-label">🎁 Ҡотлауҙар / Поздравления:</span>
+                <a href="#birthday/mother" onclick="event.preventDefault(); navigateTo('birthday', 'mother');">әсәйгә (маме)</a>,
+                <a href="#birthday/father" onclick="event.preventDefault(); navigateTo('birthday', 'father');">атайға (папе)</a>,
+                <a href="#birthday/grandma" onclick="event.preventDefault(); navigateTo('birthday', 'grandma');">өләсәйгә (бабушке)</a>,
+                <a href="#birthday/grandpa" onclick="event.preventDefault(); navigateTo('birthday', 'grandpa');">олатайға (дедушке)</a>,
+                <a href="#birthday/brother" onclick="event.preventDefault(); navigateTo('birthday', 'brother');">ҡустыға (брату)</a>,
+                <a href="#birthday/sister" onclick="event.preventDefault(); navigateTo('birthday', 'sister');">һеңлегә (сестре)</a>,
+                <a href="#birthday/stelder_sister" onclick="event.preventDefault(); navigateTo('birthday', 'stelder_sister');">апайға (старшей сестре)</a>,
+                <a href="#birthday/elder_brother" onclick="event.preventDefault(); navigateTo('birthday', 'elder_brother');">ағайға (старшему брату)</a>,
+                <a href="#birthday/bestfriend" onclick="event.preventDefault(); navigateTo('birthday', 'bestfriend');">дуҫҡа (другу)</a>,
+                <a href="#birthday/bestgirlfriend" onclick="event.preventDefault(); navigateTo('birthday', 'bestgirlfriend');">әхирәткә (подруге)</a>,
+                <a href="#birthday/daughter" onclick="event.preventDefault(); navigateTo('birthday', 'daughter');">ҡыҙға (дочке)</a>,
+                <a href="#birthday/son" onclick="event.preventDefault(); navigateTo('birthday', 'son');">улыға (сыну)</a>,
+                <a href="#birthday/beloved_wife" onclick="event.preventDefault(); navigateTo('birthday', 'beloved_wife');">ҡатынға (жене)</a>,
+                <a href="#birthday/beloved_girl" onclick="event.preventDefault(); navigateTo('birthday', 'beloved_girl');">ҡыҙға (девушке)</a>,
+                <a href="#birthday/woman" onclick="event.preventDefault(); navigateTo('birthday', 'woman');">яратҡан ҡатынға (любимой женщине)</a>,
+                <a href="#birthday/man" onclick="event.preventDefault(); navigateTo('birthday', 'man');">ир-егеткә (мужчине)</a>,
+                <a href="#birthday/mother_in_law" onclick="event.preventDefault(); navigateTo('birthday', 'mother_in_law');">ҡәйнәгә (тёще)</a>,
+                <a href="#birthday/sister_in_law" onclick="event.preventDefault(); navigateTo('birthday', 'sister_in_law');">еңгәйгә (жене брата)</a>,
+                <a href="#birthday/aunt" onclick="event.preventDefault(); navigateTo('birthday', 'aunt');">инәйгә (тёте)</a>,
+                <a href="#birthday/uncle" onclick="event.preventDefault(); navigateTo('birthday', 'uncle');">бабайға (дяде)</a>,
+                <a href="#birthday/jubilee" onclick="event.preventDefault(); navigateTo('birthday', 'jubilee');">юбилейға</a>
+            </nav>
+
             <div class="current-date-box" id="currentDateBox"></div>
         </header>
 
@@ -1665,6 +1743,14 @@
                 title: 'Еңгәйгә (жене брата) тыуған көн менән ҡотлау башҡортса — 10+ теләктәр',
                 description: 'Еңгәйегеҙҙе (жена брата) тыуған көнө менән башҡортса матур итеп ҡотлау. 10+ теләктәр, шиғырҙар, тостар. С переводом на русский. Йылы һүҙҙәр — туған телдә иң матур теләктәр.'
             },
+            'aunt': {
+                title: 'Инәйгә (тёте) тыуған көн менән ҡотлау башҡортса — 5+ теләктәр',
+                description: 'Инәйегеҙҙе (тётю) тыуған көнө менән башҡортса матур итеп ҡотлау. 5+ теләктәр, шиғырҙар, тостар. С переводом на русский. Йылы һүҙҙәр — туған телдә иң матур теләктәр.'
+            },
+            'uncle': {
+                title: 'Бабайға (дяде) тыуған көн менән ҡотлау башҡортса — 5+ теләктәр',
+                description: 'Бабайығыҙҙы (дядю) тыуған көнө менән башҡортса матур итеп ҡотлау. 5+ теләктәр, шиғырҙар, тостар. С переводом на русский. Йылы һүҙҙәр — туған телдә иң матур теләктәр.'
+            },
             'jubilee': {
                 title: 'Юбилейға ҡотлауҙар башҡортса — 50, 55, 60, 70 йәш',
                 description: 'Юбилейға ҡотлауҙар башҡортса. 50, 55, 60, 70 йәшлек юбилейҙар өсөн матур теләктәр, шиғырҙар, тостар. С переводом на русский. Йылы һүҙҙәр — туған телдә иң матур теләктәр.'
@@ -1908,6 +1994,7 @@
     console.log('🎯 Главная страница — только категории для ДР');
     console.log(`🔄 Ротация поздравлений: каждые ${ROTATION_HOURS} часов`);
     console.log('📝 Мета-теги оптимизированы по данным Google Search Console');
+    console.log('🔗 Добавлена навигация по получателям (SEO + UX)');
     </script>
     <!-- Yandex Autoplacement 19695489 -->
     <script src="https://yandex.ru/ads/system/context.js" async></script>
