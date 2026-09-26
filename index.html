@@ -79,6 +79,8 @@
             --bg-donation: linear-gradient(135deg, #fff5e6 0%, #ffe8d4 100%);
             --bg-card-of-day: linear-gradient(135deg, #fff5e6 0%, #ffe8d4 100%);
             --bg-error: rgba(201, 106, 42, 0.05);
+            --bg-calendar: linear-gradient(135deg, #fff9f0 0%, #fef3e0 100%);
+            --bg-calendar-today: linear-gradient(135deg, #8b5a2b 0%, #a67c52 100%);
             
             --text-primary: #2c241a;
             --text-secondary: #8b5a2b;
@@ -87,6 +89,7 @@
             --text-dark: #4a2c1a;
             --text-card: #2c241a;
             --text-donation: #6b4925;
+            --text-weekend: #c96a2a;
             
             --border-color: rgba(139, 90, 43, 0.12);
             --border-light: rgba(139, 90, 43, 0.08);
@@ -119,6 +122,8 @@
             --bg-donation: linear-gradient(135deg, #2d221c 0%, #3a2a1a 100%);
             --bg-card-of-day: linear-gradient(135deg, #2d221c 0%, #3a2a1a 100%);
             --bg-error: rgba(201, 106, 42, 0.15);
+            --bg-calendar: linear-gradient(135deg, #2d221c 0%, #3a2a1a 100%);
+            --bg-calendar-today: linear-gradient(135deg, #d4a373 0%, #c9944d 100%);
             
             --text-primary: #f0e2d2;
             --text-secondary: #d4a373;
@@ -127,6 +132,7 @@
             --text-dark: #f0e2d2;
             --text-card: #f0e2d2;
             --text-donation: #f0e2d2;
+            --text-weekend: #e8a87c;
             
             --border-color: rgba(180, 140, 100, 0.15);
             --border-light: rgba(180, 140, 100, 0.08);
@@ -268,6 +274,113 @@
             transition: color var(--transition);
         }
         .card-of-day-trans { font-size: 0.75rem; color: var(--text-light); transition: color var(--transition); }
+        
+        /* ===== КАЛЕНДАРЬ ===== */
+        .calendar-block {
+            background: var(--bg-calendar);
+            border-radius: 20px;
+            padding: 16px;
+            margin-top: 20px;
+            border: 1px solid var(--border-donation);
+            box-shadow: var(--shadow-card);
+            transition: background var(--transition), border-color var(--transition);
+        }
+        .calendar-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: color var(--transition);
+        }
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 0 4px;
+        }
+        .calendar-month {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: color var(--transition);
+        }
+        .calendar-nav {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .calendar-nav:hover {
+            background: var(--btn-share);
+            border-color: var(--text-secondary);
+        }
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 3px;
+            margin-bottom: 6px;
+        }
+        .calendar-weekday {
+            text-align: center;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            padding: 4px 0;
+            transition: color var(--transition);
+        }
+        .calendar-weekday.weekend {
+            color: var(--text-weekend);
+        }
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 3px;
+        }
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            border-radius: 8px;
+            color: var(--text-primary);
+            transition: all var(--transition);
+            cursor: default;
+        }
+        .calendar-day.empty {
+            color: transparent;
+        }
+        .calendar-day.today {
+            background: var(--bg-calendar-today);
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 2px 6px rgba(139, 90, 43, 0.3);
+        }
+        body.dark-mode .calendar-day.today {
+            color: #1a1410;
+        }
+        .calendar-day.weekend {
+            color: var(--text-weekend);
+        }
+        .calendar-day.weekend.today {
+            color: white;
+        }
+        body.dark-mode .calendar-day.weekend.today {
+            color: #1a1410;
+        }
         
         /* ===== НАВИГАЦИЯ ===== */
         .back-button {
@@ -922,6 +1035,12 @@
                 font-size: 0.68rem;
                 margin-bottom: 4px;
             }
+            .calendar-day {
+                font-size: 0.7rem;
+            }
+            .calendar-block {
+                padding: 12px;
+            }
         }
     </style>
 </head>
@@ -993,55 +1112,24 @@
                     <div class="donation-note">ЮMoney · Банковская карта · СБП</div>
                 </div>
 
-                <!-- ===== ПАРТНЁРСКИЙ ТОВАР: Набор инструментов Тундра ===== -->
-                <div class="affiliate-product" style="margin-top: 20px;">
-                    <div style="background: var(--bg-card); border-radius: 20px; padding: 16px; border: 1px solid var(--border-color); box-shadow: var(--shadow-card); transition: all var(--transition);">
-                        <div style="border-radius: 14px; overflow: hidden; margin-bottom: 12px; background: #f5f0eb; position: relative; aspect-ratio: 900/1200; max-height: 240px; display: flex; align-items: center; justify-content: center;">
-                            <img 
-                                src="/creative_images/creative.png" 
-                                alt="Набор инструментов Тундра, подарочный кейс Банка, 13 предметов" 
-                                style="width: 100%; height: 100%; object-fit: contain; display: block;"
-                                loading="lazy"
-                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                            >
-                            <div style="display: none; align-items: center; justify-content: center; width: 100%; height: 100%; background: #f5f0eb; color: #b8956a; font-size: 4rem;">🧰</div>
-                        </div>
-
-                        <div style="display: inline-block; background: var(--bg-badge); padding: 2px 12px; border-radius: 20px; font-size: 0.6rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; transition: background var(--transition), color var(--transition);">
-                            🎁 Подарок
-                        </div>
-
-                        <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.3; margin-bottom: 4px; transition: color var(--transition);">
-                            Набор инструментов Тундра «Банка»
-                        </div>
-
-                        <div style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px; transition: color var(--transition);">
-                            13 предметов — компактный и практичный подарок для дома и авто
-                        </div>
-
-                        <div style="font-size: 0.7rem; color: var(--text-light); margin-bottom: 12px; line-height: 1.5; transition: color var(--transition);">
-                            ✅ Отвертка, биты, плоскогубцы — качественная сталь<br>
-                            ✅ Удобное хранение в компактном кейсе
-                        </div>
-
-                        <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
-                            <div style="font-weight: 700; font-size: 1.2rem; color: var(--text-secondary); transition: color var(--transition);">
-                                750 ₽
-                            </div>
-                            <a href="https://tkprm.ru/5vhHsc?erid=Y1jgkD6uB6jK1phqkTLTbNJUGEMW" 
-                               target="_blank" 
-                               rel="sponsored nofollow" 
-                               style="display: inline-flex; align-items: center; gap: 6px; background: #005bff; color: white; padding: 8px 16px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 0.8rem; transition: all 0.2s ease; border: none; cursor: pointer; white-space: nowrap;"
-                               onmouseover="this.style.background='#0046cc'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,91,255,0.3)';"
-                               onmouseout="this.style.background='#005bff'; this.style.transform='translateY(0)'; this.style.boxShadow='none';">
-                                🛒 Купить на Ozon
-                            </a>
-                        </div>
-
-                        <div style="font-size: 0.5rem; color: var(--text-muted); margin-top: 10px; line-height: 1.3; border-top: 1px solid var(--border-color); padding-top: 8px; transition: color var(--transition), border-color var(--transition);">
-                            Реклама. ООО «УК «Сима-ленд» ИНН 6679151160 erid Y1jgkD6uB6jK1phqkTLTbNJUGEMW
-                        </div>
+                <!-- ===== КАЛЕНДАРЬ ===== -->
+                <div class="calendar-block">
+                    <div class="calendar-title">📅 Календарь</div>
+                    <div class="calendar-header">
+                        <button class="calendar-nav" onclick="changeMonth(-1)" aria-label="Предыдущий месяц">‹</button>
+                        <div class="calendar-month" id="calendarMonth">Сентябрь 2026</div>
+                        <button class="calendar-nav" onclick="changeMonth(1)" aria-label="Следующий месяц">›</button>
                     </div>
+                    <div class="calendar-weekdays">
+                        <div class="calendar-weekday">Пн</div>
+                        <div class="calendar-weekday">Вт</div>
+                        <div class="calendar-weekday">Ср</div>
+                        <div class="calendar-weekday">Чт</div>
+                        <div class="calendar-weekday">Пт</div>
+                        <div class="calendar-weekday weekend">Сб</div>
+                        <div class="calendar-weekday weekend">Вс</div>
+                    </div>
+                    <div class="calendar-days" id="calendarDays"></div>
                 </div>
             </div>
         </div>
@@ -1104,50 +1192,95 @@
     const themeToggle = document.getElementById('themeToggle');
 
     // ================================================================
-    // ===== ФУНКЦИИ РОТАЦИИ (НОВОЕ) =====
+    // ===== КАЛЕНДАРЬ =====
     // ================================================================
     
-    /**
-     * Генерация seed для ротации на основе текущего времени
-     * Меняется каждые ROTATION_HOURS часов
-     */
+    const MONTHS_RU = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+                       'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+    const MONTHS_BA = ['Ғинуар', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+                       'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+    let calendarDate = new Date();
+    
+    function renderCalendar() {
+        const year = calendarDate.getFullYear();
+        const month = calendarDate.getMonth();
+        
+        // Заголовок: "Сентябрь 2026 (Сентябрь)"
+        const monthNameRu = MONTHS_RU[month];
+        const monthNameBa = MONTHS_BA[month];
+        document.getElementById('calendarMonth').textContent = `${monthNameRu} ${year}`;
+        
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+        
+        // Понедельник = 0, Воскресенье = 6 (для русской недели)
+        let startDay = firstDay.getDay() - 1;
+        if (startDay < 0) startDay = 6;
+        
+        const daysInMonth = lastDay.getDate();
+        const today = new Date();
+        const isCurrentMonth = (today.getFullYear() === year && today.getMonth() === month);
+        const todayDate = today.getDate();
+        
+        let html = '';
+        
+        // Пустые ячейки до первого дня
+        for (let i = 0; i < startDay; i++) {
+            html += `<div class="calendar-day empty"></div>`;
+        }
+        
+        // Дни месяца
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dayOfWeek = (startDay + day - 1) % 7;
+            const isWeekend = (dayOfWeek === 5 || dayOfWeek === 6);
+            const isToday = isCurrentMonth && day === todayDate;
+            
+            let classes = 'calendar-day';
+            if (isWeekend) classes += ' weekend';
+            if (isToday) classes += ' today';
+            
+            html += `<div class="${classes}">${day}</div>`;
+        }
+        
+        document.getElementById('calendarDays').innerHTML = html;
+    }
+    
+    function changeMonth(delta) {
+        calendarDate.setMonth(calendarDate.getMonth() + delta);
+        renderCalendar();
+    }
+
+    // ================================================================
+    // ===== ФУНКЦИИ РОТАЦИИ =====
+    // ================================================================
+    
     function getRotationSeed() {
-        // Слот времени — целое число, меняется каждые N часов
         const timeSlot = Math.floor(Date.now() / (1000 * 60 * 60 * ROTATION_HOURS));
         return String(timeSlot);
     }
     
-    /**
-     * Детерминированное перемешивание массива
-     * Один и тот же seed = один и тот же порядок
-     * Работает без сервера, только на клиенте
-     */
     function seededShuffle(array, seed) {
         if (!array || array.length === 0) return array;
         if (array.length === 1) return array;
         
-        // Хеш-функция для строки (превращает seed в число)
         function hashCode(str) {
             let hash = 0;
             for (let i = 0; i < str.length; i++) {
                 const char = str.charCodeAt(i);
                 hash = ((hash << 5) - hash) + char;
-                hash = hash & hash; // 32-bit integer
+                hash = hash & hash;
             }
             return Math.abs(hash);
         }
         
-        // Копия массива (не мутируем исходный!)
         const arr = [...array];
         let currentSeed = hashCode(seed);
         
-        // Простой линейный конгруэнтный генератор
         function random() {
             currentSeed = (currentSeed * 9301 + 49297) % 233280;
             return currentSeed / 233280;
         }
         
-        // Алгоритм Фишера-Йетса
         for (let i = arr.length - 1; i > 0; i--) {
             const j = Math.floor(random() * (i + 1));
             [arr[i], arr[j]] = [arr[j], arr[i]];
@@ -1156,11 +1289,6 @@
         return arr;
     }
     
-    /**
-     * Перемешивает поздравления в подкатегории
-     * Использует seed = время + ключ подкатегории
-     * Каждая подкатегория перемешивается независимо
-     */
     function shuffleGreetings(greetings, subcatKey) {
         if (!greetings || greetings.length === 0) return greetings;
         const seed = getRotationSeed() + '_' + subcatKey;
@@ -1482,7 +1610,7 @@
             <div style="margin-bottom:16px;">
                 <h2 style="color:var(--text-secondary);display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
                     <span>🎂</span>
-                    <span>Кемгә ҡотларға?</span>
+                    <span>Кемде ҡотларға?</span>
                     <span style="font-size:0.7rem;color:var(--text-muted);">Выберите получателя</span>
                 </h2>
             </div>
@@ -1763,7 +1891,6 @@
             description = subcatMeta[subcat].description;
             keywords = `${subcat}, ${subcatMeta[subcat].title}, тыуған көн менән ҡотлау башҡортса, поздравление на башкирском языке с днём рождения`;
         } else if (subcat && siteData?.sections.birthday?.subcategories[subcat]) {
-            // Fallback для подкатегорий без явного title (например, свекровь/свекор, когда добавишь)
             const subcatData = siteData.sections.birthday.subcategories[subcat];
             const targetBa = subcatData.name_ba;
             const targetRu = subcatData.name_ru || '';
@@ -1963,6 +2090,7 @@
     // ================================================================
 
     renderCurrentDate();
+    renderCalendar();
     loadTheme();
 
     async function init() {
@@ -1993,8 +2121,9 @@
     console.log('📊 Загружены только разделы "Тыуған көн"');
     console.log('🎯 Главная страница — только категории для ДР');
     console.log(`🔄 Ротация поздравлений: каждые ${ROTATION_HOURS} часов`);
-    console.log('📝 Мета-теги оптимизированы по данным Google Search Console');
-    console.log('🔗 Добавлена навигация по получателям (SEO + UX)');
+    console.log('📅 Добавлен календарь в правую колонку');
+    console.log('✅ Исправлен падеж: "Кемде ҡотларға?"');
+    console.log('❌ Реклама Ozon удалена');
     </script>
     <!-- Yandex Autoplacement 19695489 -->
     <script src="https://yandex.ru/ads/system/context.js" async></script>
