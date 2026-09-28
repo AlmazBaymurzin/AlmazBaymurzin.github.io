@@ -9,7 +9,7 @@
         "mother": {
           "name_ba": "Әсәйемә",
           "name_ru": "Маме",
-          "emoji": "👩‍👧",
+          "emoji": "👩",
           "order": 1,
           "greetings": [
             {
@@ -177,7 +177,7 @@
         "father": {
           "name_ba": "Атайыма",
           "name_ru": "Папе",
-          "emoji": "👨‍👧‍👦",
+          "emoji": "👨",
           "order": 2,
           "greetings": [
             {
@@ -709,7 +709,7 @@
         "elder_brother": {
           "name_ba": "Ағайыма",
           "name_ru": "Старшему брату",
-          "emoji": "👨‍👦",
+          "emoji": "🧑",
           "order": 4,
           "greetings": [
             {
