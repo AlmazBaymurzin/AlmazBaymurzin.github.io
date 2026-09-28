@@ -84,11 +84,7 @@
             --bg-skeleton: #f0e6d8;
             --bg-badge: #f4ebdd;
             --bg-stats: #ffffff;
-            --bg-donation: linear-gradient(135deg, #fff5e6 0%, #ffe8d4 100%);
-            --bg-card-of-day: linear-gradient(135deg, #fff5e6 0%, #ffe8d4 100%);
             --bg-error: rgba(201, 106, 42, 0.05);
-            --bg-calendar: linear-gradient(135deg, #fff9f0 0%, #fef3e0 100%);
-            --bg-calendar-today: linear-gradient(135deg, #8b5a2b 0%, #a67c52 100%);
             --bg-nav-btn: #ffffff;
             --bg-nav-btn-hover: #f0e2d2;
             
@@ -98,13 +94,10 @@
             --text-light: #a08c78;
             --text-dark: #4a2c1a;
             --text-card: #2c241a;
-            --text-donation: #6b4925;
-            --text-weekend: #c96a2a;
             
             --border-color: rgba(139, 90, 43, 0.12);
             --border-light: rgba(139, 90, 43, 0.08);
             --border-card: rgba(139, 90, 43, 0.12);
-            --border-donation: rgba(139, 90, 43, 0.2);
             --border-error: #c96a2a;
             
             --shadow-card: 0 2px 8px rgba(0,0,0,0.04);
@@ -116,6 +109,7 @@
             --btn-share-hover: #e8c9a8;
             --btn-copy: #e8dcc8;
             --btn-copy-hover: #dacaa8;
+            --bg-card-of-day: linear-gradient(135deg, #fff5e6 0%, #ffe8d4 100%);
             
             --transition: 0.3s ease;
         }
@@ -129,11 +123,7 @@
             --bg-skeleton: #3a2a1a;
             --bg-badge: #3a2a1a;
             --bg-stats: #2d221c;
-            --bg-donation: linear-gradient(135deg, #2d221c 0%, #3a2a1a 100%);
-            --bg-card-of-day: linear-gradient(135deg, #2d221c 0%, #3a2a1a 100%);
             --bg-error: rgba(201, 106, 42, 0.15);
-            --bg-calendar: linear-gradient(135deg, #2d221c 0%, #3a2a1a 100%);
-            --bg-calendar-today: linear-gradient(135deg, #d4a373 0%, #c9944d 100%);
             --bg-nav-btn: #2d221c;
             --bg-nav-btn-hover: #3a2a1a;
             
@@ -143,13 +133,10 @@
             --text-light: #a08c78;
             --text-dark: #f0e2d2;
             --text-card: #f0e2d2;
-            --text-donation: #f0e2d2;
-            --text-weekend: #e8a87c;
             
             --border-color: rgba(180, 140, 100, 0.15);
             --border-light: rgba(180, 140, 100, 0.08);
             --border-card: rgba(180, 140, 100, 0.15);
-            --border-donation: rgba(180, 140, 100, 0.2);
             --border-error: #c96a2a;
             
             --shadow-card: 0 2px 8px rgba(0,0,0,0.3);
@@ -161,6 +148,7 @@
             --btn-share-hover: #4a3a2a;
             --btn-copy: #3a2a1a;
             --btn-copy-hover: #4a3a2a;
+            --bg-card-of-day: linear-gradient(135deg, #2d221c 0%, #3a2a1a 100%);
         }
 
         /* ===== ОСНОВНЫЕ СТИЛИ ===== */
@@ -175,10 +163,7 @@
             -webkit-overflow-scrolling: touch;
             transition: background var(--transition), color var(--transition);
         }
-        .container { max-width: 1600px; margin: 0 auto; }
-        .main-layout { display: flex; gap: 30px; margin-top: 20px; }
-        .content-area { flex: 3; min-width: 0; }
-        .sidebar { flex: 1.2; min-width: 260px; }
+        .container { max-width: 1200px; margin: 0 auto; }
         header { text-align: center; padding: 1.5rem 0 0.5rem 0; }
         h1 { font-size: 2.5rem; color: var(--text-secondary); text-shadow: 2px 2px 6px rgba(0,0,0,0.05); transition: color var(--transition); }
         .sub { font-size: 1rem; color: var(--text-muted); margin-top: 6px; transition: color var(--transition); }
@@ -355,113 +340,6 @@
         }
         .card-of-day-trans { font-size: 0.75rem; color: var(--text-light); transition: color var(--transition); }
         
-        /* ===== КАЛЕНДАРЬ ===== */
-        .calendar-block {
-            background: var(--bg-calendar);
-            border-radius: 20px;
-            padding: 16px;
-            margin-top: 20px;
-            border: 1px solid var(--border-donation);
-            box-shadow: var(--shadow-card);
-            transition: background var(--transition), border-color var(--transition);
-        }
-        .calendar-title {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--text-secondary);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: color var(--transition);
-        }
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            padding: 0 4px;
-        }
-        .calendar-month {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            transition: color var(--transition);
-        }
-        .calendar-nav {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: all var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .calendar-nav:hover {
-            background: var(--btn-share);
-            border-color: var(--text-secondary);
-        }
-        .calendar-weekdays {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 3px;
-            margin-bottom: 6px;
-        }
-        .calendar-weekday {
-            text-align: center;
-            font-size: 0.65rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            padding: 4px 0;
-            transition: color var(--transition);
-        }
-        .calendar-weekday.weekend {
-            color: var(--text-weekend);
-        }
-        .calendar-days {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 3px;
-        }
-        .calendar-day {
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            border-radius: 8px;
-            color: var(--text-primary);
-            transition: all var(--transition);
-            cursor: default;
-        }
-        .calendar-day.empty {
-            color: transparent;
-        }
-        .calendar-day.today {
-            background: var(--bg-calendar-today);
-            color: white;
-            font-weight: 700;
-            box-shadow: 0 2px 6px rgba(139, 90, 43, 0.3);
-        }
-        body.dark-mode .calendar-day.today {
-            color: #1a1410;
-        }
-        .calendar-day.weekend {
-            color: var(--text-weekend);
-        }
-        .calendar-day.weekend.today {
-            color: white;
-        }
-        body.dark-mode .calendar-day.weekend.today {
-            color: #1a1410;
-        }
-        
         /* ===== НАВИГАЦИЯ ===== */
         .back-button {
             display: none;
@@ -563,54 +441,6 @@
             100% { opacity: 1; }
         }
         
-        .skeleton-greeting-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 16px;
-            margin: 16px 0;
-        }
-        .skeleton-greeting {
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 16px;
-            border: 1px solid var(--border-card);
-            animation: shimmer 1.5s ease-in-out infinite;
-            transition: background var(--transition), border-color var(--transition);
-        }
-        .skeleton-badge {
-            width: 100px;
-            height: 20px;
-            background: var(--bg-skeleton);
-            border-radius: 20px;
-            margin-bottom: 10px;
-            transition: background var(--transition);
-        }
-        .skeleton-text-line {
-            height: 18px;
-            background: var(--bg-skeleton);
-            border-radius: 4px;
-            margin: 6px 0;
-            transition: background var(--transition);
-        }
-        .skeleton-text-line.w70 { width: 70%; }
-        .skeleton-text-line.w60 { width: 60%; }
-        .skeleton-text-line.w90 { width: 90%; }
-        .skeleton-text-line.w80 { width: 80%; }
-        .skeleton-divider {
-            height: 1px;
-            background: var(--bg-skeleton);
-            margin: 10px 0;
-            transition: background var(--transition);
-        }
-        .skeleton-btn-group { display: flex; gap: 8px; }
-        .skeleton-btn {
-            flex: 1;
-            height: 30px;
-            background: var(--bg-skeleton);
-            border-radius: 16px;
-            transition: background var(--transition);
-        }
-        
         /* ===== ОСНОВНЫЕ КАРТОЧКИ ===== */
         .sections-grid {
             display: grid;
@@ -704,17 +534,6 @@
         .share-btn:hover { background: var(--btn-share-hover); transform: translateY(-1px); }
         .copy-only-btn { background: var(--btn-copy); color: var(--text-secondary); }
         .copy-only-btn:hover { background: var(--btn-copy-hover); transform: translateY(-1px); }
-        .copy-stats {
-            position: absolute;
-            bottom: 8px;
-            right: 8px;
-            font-size: 0.55rem;
-            color: var(--text-muted);
-            background: var(--bg-card);
-            padding: 2px 6px;
-            border-radius: 10px;
-            transition: color var(--transition), background var(--transition);
-        }
         
         /* ===== TOAST ===== */
         .toast-notification {
@@ -733,65 +552,6 @@
         @keyframes slideUp {
             from { opacity: 0; transform: translateX(-50%) translateY(20px); }
             to { opacity: 1; transform: translateX(-50%) translateY(0); }
-        }
-        
-        /* ===== ДОНАТЫ ===== */
-        .donation-block {
-            background: var(--bg-donation);
-            border-radius: 20px;
-            padding: 20px;
-            margin-top: 20px;
-            text-align: center;
-            border: 1px solid var(--border-donation);
-            transition: background var(--transition), border-color var(--transition);
-        }
-        .donation-title {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: color var(--transition);
-        }
-        .donation-text {
-            font-size: 0.75rem;
-            color: var(--text-donation);
-            margin-bottom: 16px;
-            line-height: 1.4;
-            transition: color var(--transition);
-        }
-        .donation-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--text-secondary);
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-        .donation-btn:hover {
-            background: #6b4220;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(139,90,43,0.3);
-        }
-        body.dark-mode .donation-btn:hover {
-            background: #d4a373;
-            color: #1a1410;
-        }
-        .donation-note {
-            font-size: 0.6rem;
-            color: var(--text-muted);
-            margin-top: 12px;
-            transition: color var(--transition);
         }
         
         /* ===== ФУТЕР ===== */
@@ -887,62 +647,6 @@
             transition: color var(--transition);
         }
         
-        /* ===== СТРАНИЦЫ ===== */
-        .page-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .page-content h1 {
-            color: var(--text-secondary);
-            font-size: 1.6rem;
-        }
-        .page-content h2 {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-        .page-content p {
-            color: var(--text-primary);
-            line-height: 1.8;
-            font-size: 0.95rem;
-            margin-bottom: 12px;
-        }
-        .page-content ul {
-            color: var(--text-primary);
-            line-height: 1.8;
-            font-size: 0.95rem;
-            padding-left: 20px;
-            margin-bottom: 12px;
-        }
-        .page-content a {
-            color: var(--text-secondary);
-            text-decoration: underline;
-        }
-        .page-content a:hover {
-            color: var(--text-primary);
-        }
-        .page-content .back-to-main {
-            margin-top: 30px;
-            padding: 10px 24px;
-            background: var(--text-secondary);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all var(--transition);
-        }
-        .page-content .back-to-main:hover {
-            background: #6b4220;
-            transform: translateY(-2px);
-        }
-        body.dark-mode .page-content .back-to-main:hover {
-            background: #d4a373;
-            color: #1a1410;
-        }
-        
         /* ===== ОШИБКА ===== */
         .error-container {
             display: flex;
@@ -974,55 +678,8 @@
         body.dark-mode .error-btn:hover { background: #d4a373; color: #1a1410; }
         .error-details { font-size: 0.65rem; color: var(--text-muted); margin-top: 12px; transition: color var(--transition); }
         
-        .loader-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 60px 20px;
-            min-height: 300px;
-        }
-        .loader-spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid var(--border-color);
-            border-top: 4px solid var(--text-secondary);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin-bottom: 20px;
-            transition: border-color var(--transition);
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .loader-text { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 8px; transition: color var(--transition); }
-        .loader-sub { font-size: 0.8rem; color: var(--text-muted); animation: pulse 1.5s ease-in-out infinite; transition: color var(--transition); }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-        .progress-container {
-            width: 100%;
-            max-width: 300px;
-            height: 6px;
-            background: var(--border-color);
-            border-radius: 10px;
-            margin-top: 16px;
-            overflow: hidden;
-            transition: background var(--transition);
-        }
-        .progress-bar {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--text-secondary), #c9a87c);
-            border-radius: 10px;
-            transition: width 0.3s ease;
-        }
-        
         /* ===== АДАПТИВ ===== */
         @media (max-width: 900px) {
-            .main-layout { flex-direction: column; }
             .card-of-day-content { font-size: 0.9rem; }
             h1 { font-size: 1.6rem; }
             .button-group { flex-direction: column; }
@@ -1095,20 +752,8 @@
             .footer-links .footer-link:last-child::after {
                 content: "";
             }
-            .page-content {
-                padding: 10px;
-            }
-            .page-content h1 {
-                font-size: 1.3rem;
-            }
             #contentContainer {
                 min-height: 200px;
-            }
-            .calendar-day {
-                font-size: 0.7rem;
-            }
-            .calendar-block {
-                padding: 12px;
             }
         }
     </style>
@@ -1151,44 +796,9 @@
 
         <div id="breadcrumbs"></div>
 
-        <div class="main-layout">
-            <div class="content-area">
-                <div id="cardOfDayContainer"></div>
-                <div id="contentContainer"></div>
-            </div>
-
-            <div class="sidebar">
-                <!-- ===== БЛОК ДОНАТОВ ===== -->
-                <div class="donation-block">
-                    <div class="donation-title">☕ Проектҡа ярҙам / Помочь проекту</div>
-                    <div class="donation-text">
-                        Һеҙҙең ярҙам — проектты үҫтереү өсөн иң яҡшы этәргес.<br>
-                        Ваша поддержка — лучший стимул для развития проекта.
-                    </div>
-                    <button class="donation-btn" id="donationBtn">🤝 Помочь / Ярҙам итеү</button>
-                    <div class="donation-note">ЮMoney · Банковская карта · СБП</div>
-                </div>
-
-                <!-- ===== КАЛЕНДАРЬ ===== -->
-                <div class="calendar-block">
-                    <div class="calendar-title">📅 Календарь</div>
-                    <div class="calendar-header">
-                        <button class="calendar-nav" onclick="changeMonth(-1)" aria-label="Предыдущий месяц">‹</button>
-                        <div class="calendar-month" id="calendarMonth">Сентябрь 2026</div>
-                        <button class="calendar-nav" onclick="changeMonth(1)" aria-label="Следующий месяц">›</button>
-                    </div>
-                    <div class="calendar-weekdays">
-                        <div class="calendar-weekday">Пн</div>
-                        <div class="calendar-weekday">Вт</div>
-                        <div class="calendar-weekday">Ср</div>
-                        <div class="calendar-weekday">Чт</div>
-                        <div class="calendar-weekday">Пт</div>
-                        <div class="calendar-weekday weekend">Сб</div>
-                        <div class="calendar-weekday weekend">Вс</div>
-                    </div>
-                    <div class="calendar-days" id="calendarDays"></div>
-                </div>
-            </div>
+        <div>
+            <div id="cardOfDayContainer"></div>
+            <div id="contentContainer"></div>
         </div>
 
         <!-- ===== ФУТЕР ===== -->
@@ -1383,7 +993,7 @@
             clearInterval(carouselState.autoScrollTimer);
         }
         
-        // 4.5 секунды — комфортно для чтения
+        // 4 секунды — комфортно для чтения
         carouselState.autoScrollTimer = setInterval(() => {
             if (carouselState.isPaused || carouselState.maxOffset === 0) return;
             
@@ -1399,66 +1009,14 @@
             if (track) {
                 track.style.transform = `translateX(-${carouselState.offset}px)`;
             }
-        }, 4500);
+        }, 4000);
     }
 
-    function pauseAutoScroll(duration = 4500) {
+    function pauseAutoScroll(duration = 4000) {
         carouselState.isPaused = true;
         setTimeout(() => {
             carouselState.isPaused = false;
         }, duration);
-    }
-
-    // ================================================================
-    // ===== КАЛЕНДАРЬ =====
-    // ================================================================
-    
-    const MONTHS_RU = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
-                       'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
-    let calendarDate = new Date();
-    
-    function renderCalendar() {
-        const year = calendarDate.getFullYear();
-        const month = calendarDate.getMonth();
-        
-        const monthNameRu = MONTHS_RU[month];
-        document.getElementById('calendarMonth').textContent = `${monthNameRu} ${year}`;
-        
-        const firstDay = new Date(year, month, 1);
-        const lastDay = new Date(year, month + 1, 0);
-        
-        let startDay = firstDay.getDay() - 1;
-        if (startDay < 0) startDay = 6;
-        
-        const daysInMonth = lastDay.getDate();
-        const today = new Date();
-        const isCurrentMonth = (today.getFullYear() === year && today.getMonth() === month);
-        const todayDate = today.getDate();
-        
-        let html = '';
-        
-        for (let i = 0; i < startDay; i++) {
-            html += `<div class="calendar-day empty"></div>`;
-        }
-        
-        for (let day = 1; day <= daysInMonth; day++) {
-            const dayOfWeek = (startDay + day - 1) % 7;
-            const isWeekend = (dayOfWeek === 5 || dayOfWeek === 6);
-            const isToday = isCurrentMonth && day === todayDate;
-            
-            let classes = 'calendar-day';
-            if (isWeekend) classes += ' weekend';
-            if (isToday) classes += ' today';
-            
-            html += `<div class="${classes}">${day}</div>`;
-        }
-        
-        document.getElementById('calendarDays').innerHTML = html;
-    }
-    
-    function changeMonth(delta) {
-        calendarDate.setMonth(calendarDate.getMonth() + delta);
-        renderCalendar();
     }
 
     // ================================================================
@@ -1581,12 +1139,6 @@
         showToast('🔗 Ссылка скопирована!');
         if (typeof ym !== 'undefined') ym(109825367, 'reachGoal', 'copy_link');
     }
-
-    // ===== ДОНАТЫ =====
-    const DONATION_URL = 'https://yoomoney.ru/to/4100119532722543';
-    document.getElementById('donationBtn')?.addEventListener('click', () => {
-        window.open(DONATION_URL, '_blank');
-    });
 
     // ================================================================
     // ===== ОПТИМИЗИРОВАННАЯ ЗАГРУЗКА (только data_birthday.json) =====
@@ -2148,7 +1700,6 @@
     // ================================================================
 
     renderCurrentDate();
-    renderCalendar();
     loadTheme();
 
     async function init() {
@@ -2181,9 +1732,9 @@
     console.log('🚀 Сайт переориентирован на поздравления с днём рождения');
     console.log('📊 H1: Тыуған көн менән башҡортса ҡотлауҙар');
     console.log('📊 Подзаголовок: 1000+ поздравлений на башкирском языке с переводом');
-    console.log('🎁 Навигация по получателям — карусель с автопрокруткой');
-    console.log('📅 Календарь в правой колонке');
+    console.log('🎁 Навигация по получателям — карусель с автопрокруткой (4 сек)');
     console.log('⚡ Оптимизированная загрузка: только data/data_birthday.json');
+    console.log('🎨 Сайдбар (донаты и календарь) убран');
     </script>
     <!-- Yandex Autoplacement 19695489 -->
     <script src="https://yandex.ru/ads/system/context.js" async></script>
