@@ -28,6 +28,14 @@
     <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
     <meta name="theme-color" content="#8b5a2b">
     
+    <!-- ===== HREFLANG ===== -->
+    <link rel="alternate" hreflang="ba" href="https://yilyhuzzar.ru/">
+    <link rel="alternate" hreflang="ru" href="https://yilyhuzzar.ru/">
+    <link rel="alternate" hreflang="x-default" href="https://yilyhuzzar.ru/">
+    
+    <!-- ===== PRELOAD DATA (ускоряет загрузку JSON) ===== -->
+    <link rel="preload" href="data/data_birthday.json" as="fetch" type="application/json" crossorigin>
+    
     <!-- ===== META-ТЕГИ (ОПТИМИЗИРОВАНЫ ПОД ДЕНЬ РОЖДЕНИЯ) ===== -->
     <meta name="description" content="Тыуған көн менән башҡортса ҡотлауҙар. 1000+ матур теләктәр, шиғырҙар, тостар. Маме, папе, бабушке, дедушке, брату, сестре, другу, подруге — на башкирском языке с переводом. Башҡортса ҡотлау тыуған көнгә — йөрәктән килгән йылы һүҙҙәр.">
     <meta name="keywords" content="тыуған көн менән ҡотлау башҡортса, поздравление с днем рождения на башкирском языке, башҡортса ҡотлау тыуған көн, с днём рождения на башкирском, башкирские поздравления с днём рождения, тыуған көн менән, котлаузар башкортса, йылы һүҙҙәр, башҡорт телендә ҡотлау">
@@ -185,7 +193,7 @@
             transition: background var(--transition), color var(--transition);
         }
         
-        /* ===== НАВИГАЦИЯ ПО ПОЛУЧАТЕЛЯМ — КНОПКИ (SEO + UX) ===== */
+        /* ===== НАВИГАЦИЯ ПО ПОЛУЧАТЕЛЯМ — КАРУСЕЛЬ ===== */
         .recipients-nav-block {
             margin-top: 18px;
             max-width: 900px;
@@ -206,17 +214,32 @@
             text-align: center;
             transition: color var(--transition);
         }
-        .recipients-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        .recipients-carousel-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .recipients-carousel {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+            mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+        }
+        .recipients-track {
+            display: flex;
             gap: 8px;
+            will-change: transform;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 4px 0;
         }
         .recipient-btn {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
-            padding: 10px 12px;
+            padding: 10px 14px;
             background: var(--bg-nav-btn);
             border: 1px solid var(--border-color);
             border-radius: 14px;
@@ -229,6 +252,8 @@
             text-align: center;
             line-height: 1.2;
             box-shadow: var(--shadow-card);
+            flex-shrink: 0;
+            white-space: nowrap;
         }
         .recipient-btn:hover {
             background: var(--bg-nav-btn-hover);
@@ -241,10 +266,33 @@
             font-size: 1.1rem;
             flex-shrink: 0;
         }
-        .recipient-btn .label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            font-weight: 400;
+        .carousel-arrow {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-card);
+            line-height: 1;
+            padding-bottom: 2px;
+        }
+        .carousel-arrow:hover {
+            background: var(--bg-nav-btn-hover);
+            color: var(--text-primary);
+            transform: scale(1.08);
+            border-color: var(--text-secondary);
+        }
+        .carousel-arrow:active {
+            transform: scale(0.95);
         }
         
         /* ===== КАРТОЧКА ДНЯ ===== */
@@ -1006,20 +1054,12 @@
             .footer-link {
                 font-size: 0.7rem;
             }
-            .recipients-grid {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-                gap: 6px;
-            }
-            .recipient-btn {
-                padding: 8px 10px;
-                font-size: 0.75rem;
-            }
-            .recipient-btn .emoji {
-                font-size: 1rem;
-            }
-            .recipient-btn .label {
-                font-size: 0.68rem;
-            }
+        }
+        @media (max-width: 600px) {
+            .recipients-nav-block { padding: 10px 12px; }
+            .recipient-btn { padding: 8px 12px; font-size: 0.75rem; }
+            .carousel-arrow { width: 28px; height: 28px; font-size: 1rem; }
+            .recipients-track { gap: 6px; }
         }
         @media (max-width: 480px) {
             body { padding: 10px; }
@@ -1064,24 +1104,6 @@
             #contentContainer {
                 min-height: 200px;
             }
-            .recipients-nav-block {
-                padding: 10px 12px;
-            }
-            .recipients-grid {
-                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-                gap: 5px;
-            }
-            .recipient-btn {
-                padding: 7px 8px;
-                font-size: 0.7rem;
-                border-radius: 12px;
-            }
-            .recipient-btn .emoji {
-                font-size: 0.95rem;
-            }
-            .recipient-btn .label {
-                font-size: 0.62rem;
-            }
             .calendar-day {
                 font-size: 0.7rem;
             }
@@ -1103,11 +1125,17 @@
             <h1>🎂 Тыуған көн менән башҡортса ҡотлауҙар</h1>
             <div class="sub">1000+ поздравлений на башкирском языке с переводом на русский</div>
 
-            <!-- ===== НАВИГАЦИЯ ПО ПОЛУЧАТЕЛЯМ (генерируется из data_birthday.json) ===== -->
+            <!-- ===== НАВИГАЦИЯ ПО ПОЛУЧАТЕЛЯМ — КАРУСЕЛЬ ===== -->
             <div class="recipients-nav-block" id="recipientsNavBlock">
                 <span class="recipients-label">🎁 Кемде ҡотларға? / Кого поздравить?</span>
-                <div class="recipients-grid" id="recipientsGrid">
-                    <!-- Будет заполнено через JS -->
+                <div class="recipients-carousel-wrapper">
+                    <button class="carousel-arrow carousel-arrow-left" id="carouselPrev" aria-label="Назад">‹</button>
+                    <div class="recipients-carousel" id="recipientsCarousel">
+                        <div class="recipients-track" id="recipientsTrack">
+                            <!-- Заполняется через JS -->
+                        </div>
+                    </div>
+                    <button class="carousel-arrow carousel-arrow-right" id="carouselNext" aria-label="Вперёд">›</button>
                 </div>
             </div>
 
@@ -1221,38 +1249,40 @@
     const themeToggle = document.getElementById('themeToggle');
 
     // ================================================================
-    // ===== НАВИГАЦИЯ ПО ПОЛУЧАТЕЛЯМ (генерация из данных) =====
+    // ===== НАВИГАЦИЯ ПО ПОЛУЧАТЕЛЯМ — КАРУСЕЛЬ =====
     // ================================================================
     
-    /**
-     * Строит кнопки-получатели на основе данных из data_birthday.json
-     * Если категория есть в данных — она появится автоматически
-     * Если нет — не появится
-     */
+    let carouselState = {
+        offset: 0,
+        autoScrollTimer: null,
+        isPaused: false,
+        trackWidth: 0,
+        containerWidth: 0,
+        maxOffset: 0
+    };
+
     function renderRecipientsNav() {
-        const grid = document.getElementById('recipientsGrid');
-        if (!grid) return;
+        const track = document.getElementById('recipientsTrack');
+        if (!track) return;
         
         if (!siteData || !siteData.sections.birthday) {
-            grid.innerHTML = '';
+            track.innerHTML = '';
             return;
         }
         
         const subcats = Object.entries(siteData.sections.birthday.subcategories)
+            .filter(([key, subcat]) => (subcat.greetings || []).length > 0)
             .sort((a, b) => (a[1].order || 999) - (b[1].order || 999));
         
         let html = '';
         for (const [key, subcat] of subcats) {
-            const hasGreetings = (subcat.greetings || []).length > 0;
-            // Показываем только те категории, где есть поздравления
-            if (!hasGreetings) continue;
-            
             const emoji = subcat.emoji || '🎁';
             const nameRu = subcat.name_ru || key;
             
             html += `
                 <a href="#birthday/${key}" 
                    class="recipient-btn" 
+                   data-key="${key}"
                    onclick="event.preventDefault(); navigateTo('birthday', '${key}');"
                    title="${escapeHtml(nameRu)}">
                     <span class="emoji">${escapeHtml(emoji)}</span>
@@ -1261,7 +1291,122 @@
             `;
         }
         
-        grid.innerHTML = html;
+        track.innerHTML = html;
+        
+        // Инициализация карусели после рендера
+        requestAnimationFrame(() => {
+            initCarousel();
+        });
+    }
+
+    function initCarousel() {
+        const track = document.getElementById('recipientsTrack');
+        const carousel = document.getElementById('recipientsCarousel');
+        if (!track || !carousel) return;
+        
+        // Сброс
+        carouselState.offset = 0;
+        track.style.transform = 'translateX(0)';
+        
+        // Замеры
+        const measure = () => {
+            carouselState.trackWidth = track.scrollWidth;
+            carouselState.containerWidth = carousel.clientWidth;
+            carouselState.maxOffset = Math.max(0, carouselState.trackWidth - carouselState.containerWidth);
+        };
+        
+        measure();
+        
+        // Пересчёт при resize (debounced)
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(measure, 200);
+        });
+        
+        // Кнопки навигации
+        const prevBtn = document.getElementById('carouselPrev');
+        const nextBtn = document.getElementById('carouselNext');
+        
+        if (prevBtn) {
+            prevBtn.onclick = () => {
+                pauseAutoScroll(5000);
+                moveCarousel(-1);
+            };
+        }
+        if (nextBtn) {
+            nextBtn.onclick = () => {
+                pauseAutoScroll(5000);
+                moveCarousel(1);
+            };
+        }
+        
+        // Пауза при наведении / касании
+        carousel.addEventListener('mouseenter', () => {
+            carouselState.isPaused = true;
+        });
+        carousel.addEventListener('mouseleave', () => {
+            carouselState.isPaused = false;
+        });
+        carousel.addEventListener('touchstart', () => {
+            carouselState.isPaused = true;
+        }, { passive: true });
+        carousel.addEventListener('touchend', () => {
+            setTimeout(() => { carouselState.isPaused = false; }, 3000);
+        });
+        
+        // Запуск автопрокрутки
+        startAutoScroll();
+    }
+
+    function moveCarousel(direction) {
+        const track = document.getElementById('recipientsTrack');
+        if (!track) return;
+        
+        const step = 160; // ширина одной кнопки + gap
+        const newOffset = carouselState.offset + (direction * step);
+        
+        // Зацикливание
+        if (newOffset > carouselState.maxOffset) {
+            carouselState.offset = 0;
+        } else if (newOffset < 0) {
+            carouselState.offset = carouselState.maxOffset;
+        } else {
+            carouselState.offset = newOffset;
+        }
+        
+        track.style.transform = `translateX(-${carouselState.offset}px)`;
+    }
+
+    function startAutoScroll() {
+        if (carouselState.autoScrollTimer) {
+            clearInterval(carouselState.autoScrollTimer);
+        }
+        
+        // 4.5 секунды — комфортно для чтения
+        carouselState.autoScrollTimer = setInterval(() => {
+            if (carouselState.isPaused || carouselState.maxOffset === 0) return;
+            
+            const step = 160;
+            let newOffset = carouselState.offset + step;
+            
+            if (newOffset > carouselState.maxOffset) {
+                newOffset = 0; // Возврат к началу
+            }
+            
+            carouselState.offset = newOffset;
+            const track = document.getElementById('recipientsTrack');
+            if (track) {
+                track.style.transform = `translateX(-${carouselState.offset}px)`;
+            }
+        }, 4500);
+    }
+
+    function pauseAutoScroll(duration = 4500) {
+        carouselState.isPaused = true;
+        setTimeout(() => {
+            carouselState.isPaused = false;
+        }, duration);
     }
 
     // ================================================================
@@ -1443,74 +1588,51 @@
         window.open(DONATION_URL, '_blank');
     });
 
-    // ===== ДИНАМИЧЕСКАЯ ЗАГРУЗКА =====
+    // ================================================================
+    // ===== ОПТИМИЗИРОВАННАЯ ЗАГРУЗКА (только data_birthday.json) =====
+    // ================================================================
     async function loadAllJsonFiles() {
-        const allData = {
-            sections: {},
-            holidays_widget: []
-        };
-
         try {
-            const files = [
-                'data/data_birthday.json',
-                'data/data.json'
-            ];
-
-            console.log('📄 Загружаемые файлы (только ДР):', files);
-
-            const promises = files.map(async (file) => {
-                try {
-                    const response = await fetch(file + '?v=' + Date.now());
-                    if (!response.ok) return null;
-                    const data = await response.json();
-                    console.log(`✅ Загружено: ${file}`);
-                    return { file, data };
-                } catch (error) {
-                    console.warn(`⚠️ Ошибка ${file}:`, error.message);
-                    return null;
-                }
-            });
-
-            const results = await Promise.all(promises);
-
-            for (const result of results) {
-                if (!result) continue;
-                const { file, data } = result;
-
-                if (data.sections) {
-                    if (data.sections.birthday) {
-                        allData.sections.birthday = data.sections.birthday;
-                        console.log('✅ Найден раздел birthday');
-                    }
-                }
+            const response = await fetch('data/data_birthday.json?v=' + Date.now());
+            
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             }
-
-            if (!allData.sections.birthday) {
-                try {
-                    const response = await fetch('data/data_birthday.json?v=' + Date.now());
-                    if (response.ok) {
-                        const data = await response.json();
-                        if (data.sections && data.sections.birthday) {
-                            allData.sections.birthday = data.sections.birthday;
-                            console.log('✅ Загружен birthday из data_birthday.json');
-                        }
-                    }
-                } catch (e) {
-                    console.warn('⚠️ Не удалось загрузить data_birthday.json');
-                }
+            
+            const data = await response.json();
+            
+            if (!data.sections || !data.sections.birthday) {
+                throw new Error('Раздел "birthday" не найден в data_birthday.json');
             }
-
-            siteData = allData;
-            console.log(`📊 Разделов: ${Object.keys(siteData.sections).length}`);
-            console.log(`📊 В разделе birthday подкатегорий: ${Object.keys(siteData.sections.birthday?.subcategories || {}).length}`);
-
+            
+            siteData = {
+                sections: {
+                    birthday: data.sections.birthday
+                },
+                holidays_widget: data.holidays_widget || []
+            };
+            
+            console.log('✅ Загружено: data/data_birthday.json');
+            console.log(`📊 Подкатегорий: ${Object.keys(siteData.sections.birthday.subcategories).length}`);
+            console.log(`📊 Всего поздравлений: ${getTotalGreetingsCount()}`);
+            
             return true;
-
+            
         } catch (error) {
             console.error('❌ Ошибка загрузки:', error);
             showError('Не удалось загрузить данные', error.message);
             return false;
         }
+    }
+
+    // Вспомогательная функция для подсчёта
+    function getTotalGreetingsCount() {
+        if (!siteData?.sections?.birthday) return 0;
+        let count = 0;
+        for (const sub of Object.values(siteData.sections.birthday.subcategories)) {
+            count += (sub.greetings || []).length;
+        }
+        return count;
     }
 
     // ===== СКЕЛЕТОН =====
@@ -1547,8 +1669,8 @@
         await new Promise(resolve => setTimeout(resolve, 300));
         const loaded = await loadAllJsonFiles();
         if (loaded) {
-            renderSections();
             renderRecipientsNav();
+            renderSections();
         }
     }
 
@@ -2000,12 +2122,12 @@
 
     function escapeHtml(str) {
         if (!str) return '';
-        return str.replace(/[&<>]/g, function(m) {
-            if (m === '&') return '&amp;';
-            if (m === '<') return '&lt;';
-            if (m === '>') return '&gt;';
-            return m;
-        });
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
     }
 
     function renderCurrentDate() {
@@ -2059,8 +2181,9 @@
     console.log('🚀 Сайт переориентирован на поздравления с днём рождения');
     console.log('📊 H1: Тыуған көн менән башҡортса ҡотлауҙар');
     console.log('📊 Подзаголовок: 1000+ поздравлений на башкирском языке с переводом');
-    console.log('🎁 Навигация по получателям генерируется из данных');
+    console.log('🎁 Навигация по получателям — карусель с автопрокруткой');
     console.log('📅 Календарь в правой колонке');
+    console.log('⚡ Оптимизированная загрузка: только data/data_birthday.json');
     </script>
     <!-- Yandex Autoplacement 19695489 -->
     <script src="https://yandex.ru/ads/system/context.js" async></script>
