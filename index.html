@@ -33,10 +33,10 @@
     <link rel="alternate" hreflang="ru" href="https://yilyhuzzar.ru/">
     <link rel="alternate" hreflang="x-default" href="https://yilyhuzzar.ru/">
     
-    <!-- ===== PRELOAD DATA (ускоряет загрузку JSON) ===== -->
+    <!-- ===== PRELOAD DATA ===== -->
     <link rel="preload" href="data/data_birthday.json" as="fetch" type="application/json" crossorigin>
     
-    <!-- ===== META-ТЕГИ (ОПТИМИЗИРОВАНЫ ПОД ДЕНЬ РОЖДЕНИЯ) ===== -->
+    <!-- ===== META-ТЕГИ ===== -->
     <meta name="description" content="Тыуған көн менән башҡортса ҡотлауҙар. 1000+ матур теләктәр, шиғырҙар, тостар. Маме, папе, бабушке, дедушке, брату, сестре, другу, подруге — на башкирском языке с переводом. Башҡортса ҡотлау тыуған көнгә — йөрәктән килгән йылы һүҙҙәр.">
     <meta name="keywords" content="тыуған көн менән ҡотлау башҡортса, поздравление с днем рождения на башкирском языке, башҡортса ҡотлау тыуған көн, с днём рождения на башкирском, башкирские поздравления с днём рождения, тыуған көн менән, котлаузар башкортса, йылы һүҙҙәр, башҡорт телендә ҡотлау">
     <meta name="author" content="Алмаз Баймурзин, Project Yily Huzzar">
@@ -57,7 +57,7 @@
     <meta name="twitter:title" content="Тыуған көн менән башҡортса ҡотлауҙар — 1000+ теләктәр">
     <meta name="twitter:description" content="Тыуған көн менән башҡортса ҡотлауҙар. 1000+ матур теләктәр, шиғырҙар, тостар.">
     
-    <!-- ===== СТРУКТУРИРОВАННЫЕ ДАННЫЕ (JSON-LD) ===== -->
+    <!-- ===== JSON-LD ===== -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -65,12 +65,7 @@
         "name": "Йылы һүҙҙәр | Yily Huzzar — Тыуған көн менән башҡортса ҡотлауҙар",
         "url": "https://yilyhuzzar.ru/",
         "description": "1000+ поздравлений с днём рождения на башкирском языке. Тыуған көн менән башҡортса ҡотлауҙар — матур теләктәр, шиғырҙар, тостар.",
-        "inLanguage": "ba, ru",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://yilyhuzzar.ru/#search?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-        }
+        "inLanguage": "ba, ru"
     }
     </script>
     
@@ -82,11 +77,15 @@
             --bg-card: #ffffff;
             --bg-header: #ffffff;
             --bg-skeleton: #f0e6d8;
+            --bg-skeleton-accent: #e8dcc8;
             --bg-badge: #f4ebdd;
-            --bg-stats: #ffffff;
             --bg-error: rgba(201, 106, 42, 0.05);
             --bg-nav-btn: #ffffff;
             --bg-nav-btn-hover: #f0e2d2;
+            --bg-random-btn: linear-gradient(135deg, #d4a373 0%, #8b5a2b 100%);
+            --bg-random-btn-hover: linear-gradient(135deg, #e0b088 0%, #a06b35 100%);
+            --bg-modal-overlay: rgba(0, 0, 0, 0.6);
+            --bg-modal: #ffffff;
             
             --text-primary: #2c241a;
             --text-secondary: #8b5a2b;
@@ -104,12 +103,15 @@
             --shadow-hover: 0 8px 20px rgba(0,0,0,0.1);
             --shadow-card-hover: 0 6px 14px rgba(0,0,0,0.08);
             --shadow-card-of-day: 0 8px 20px rgba(0,0,0,0.08);
+            --shadow-modal: 0 20px 60px rgba(0,0,0,0.3);
             
             --btn-share: #f0e2d2;
             --btn-share-hover: #e8c9a8;
             --btn-copy: #e8dcc8;
             --btn-copy-hover: #dacaa8;
             --bg-card-of-day: linear-gradient(135deg, #fff5e6 0%, #ffe8d4 100%);
+            
+            --progress-bar: linear-gradient(to right, #8b5a2b, #d4a373);
             
             --transition: 0.3s ease;
         }
@@ -121,11 +123,15 @@
             --bg-card: #2d221c;
             --bg-header: #1a1410;
             --bg-skeleton: #3a2a1a;
+            --bg-skeleton-accent: #4a3a2a;
             --bg-badge: #3a2a1a;
-            --bg-stats: #2d221c;
             --bg-error: rgba(201, 106, 42, 0.15);
             --bg-nav-btn: #2d221c;
             --bg-nav-btn-hover: #3a2a1a;
+            --bg-random-btn: linear-gradient(135deg, #c9944d 0%, #d4a373 100%);
+            --bg-random-btn-hover: linear-gradient(135deg, #d4a373 0%, #e0b088 100%);
+            --bg-modal-overlay: rgba(0, 0, 0, 0.8);
+            --bg-modal: #2d221c;
             
             --text-primary: #f0e2d2;
             --text-secondary: #d4a373;
@@ -143,12 +149,15 @@
             --shadow-hover: 0 8px 20px rgba(0,0,0,0.4);
             --shadow-card-hover: 0 6px 14px rgba(0,0,0,0.3);
             --shadow-card-of-day: 0 8px 20px rgba(0,0,0,0.4);
+            --shadow-modal: 0 20px 60px rgba(0,0,0,0.6);
             
             --btn-share: #3a2a1a;
             --btn-share-hover: #4a3a2a;
             --btn-copy: #3a2a1a;
             --btn-copy-hover: #4a3a2a;
             --bg-card-of-day: linear-gradient(135deg, #2d221c 0%, #3a2a1a 100%);
+            
+            --progress-bar: linear-gradient(to right, #d4a373, #c9944d);
         }
 
         /* ===== ОСНОВНЫЕ СТИЛИ ===== */
@@ -176,6 +185,19 @@
             font-size: 0.9rem;
             color: var(--text-secondary);
             transition: background var(--transition), color var(--transition);
+        }
+        
+        /* ===== ИНДИКАТОР ПРОГРЕССА ЧТЕНИЯ ===== */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: var(--progress-bar);
+            z-index: 10001;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 6px rgba(139, 90, 43, 0.4);
         }
         
         /* ===== НАВИГАЦИЯ ПО ПОЛУЧАТЕЛЯМ — КАРУСЕЛЬ ===== */
@@ -247,10 +269,7 @@
             box-shadow: var(--shadow-hover);
             border-color: var(--text-secondary);
         }
-        .recipient-btn .emoji {
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
+        .recipient-btn .emoji { font-size: 1.1rem; flex-shrink: 0; }
         .carousel-arrow {
             flex-shrink: 0;
             width: 32px;
@@ -276,8 +295,46 @@
             transform: scale(1.08);
             border-color: var(--text-secondary);
         }
-        .carousel-arrow:active {
-            transform: scale(0.95);
+        .carousel-arrow:active { transform: scale(0.95); }
+        
+        /* ===== КНОПКА СЛУЧАЙНОГО ПОЗДРАВЛЕНИЯ ===== */
+        .random-btn-wrapper {
+            margin-top: 16px;
+            text-align: center;
+        }
+        .random-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: var(--bg-random-btn);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(139, 90, 43, 0.3);
+            transition: all var(--transition);
+            letter-spacing: 0.3px;
+        }
+        .random-btn:hover {
+            background: var(--bg-random-btn-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 90, 43, 0.4);
+        }
+        .random-btn:active { transform: translateY(0) scale(0.98); }
+        .random-btn .dice {
+            font-size: 1.1rem;
+            display: inline-block;
+        }
+        .random-btn:hover .dice {
+            animation: diceSpin 0.6s ease-in-out;
+        }
+        @keyframes diceSpin {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+            100% { transform: rotate(360deg); }
         }
         
         /* ===== КАРТОЧКА ДНЯ ===== */
@@ -291,6 +348,25 @@
             box-shadow: var(--shadow-card-of-day);
             transition: background var(--transition), border-color var(--transition);
         }
+        .card-of-day-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            transition: color var(--transition);
+        }
+        .card-of-day-content {
+            font-size: 1rem;
+            line-height: 1.4;
+            font-family: 'Georgia', serif;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            transition: color var(--transition);
+        }
+        .card-of-day-trans { font-size: 0.75rem; color: var(--text-light); transition: color var(--transition); }
         
         /* ===== КОНТЕЙНЕРЫ ===== */
         #contentContainer { min-height: 300px; }
@@ -319,26 +395,44 @@
         }
         .theme-toggle:hover { transform: scale(1.05); box-shadow: var(--shadow-hover); }
         
-        /* ===== КАРТОЧКА ДНЯ ===== */
-        .card-of-day-title {
+        /* ===== КНОПКА НАВЕРХ ===== */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--text-secondary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.4rem;
+            font-weight: 700;
+            box-shadow: var(--shadow-hover);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 9998;
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-bottom: 12px;
-            transition: color var(--transition);
+            justify-content: center;
+            line-height: 1;
+            padding-bottom: 2px;
         }
-        .card-of-day-content {
-            font-size: 1rem;
-            line-height: 1.4;
-            font-family: 'Georgia', serif;
-            color: var(--text-dark);
-            margin-bottom: 10px;
-            transition: color var(--transition);
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
-        .card-of-day-trans { font-size: 0.75rem; color: var(--text-light); transition: color var(--transition); }
+        .scroll-top:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(139, 90, 43, 0.4);
+        }
+        body.dark-mode .scroll-top {
+            color: #1a1410;
+        }
         
         /* ===== НАВИГАЦИЯ ===== */
         .back-button {
@@ -361,7 +455,7 @@
         #breadcrumbs {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             padding: 12px 16px;
             background: var(--border-light);
             border-radius: 12px;
@@ -372,20 +466,54 @@
             border: 1px solid var(--border-color);
             transition: background var(--transition), color var(--transition), border-color var(--transition);
         }
-        #breadcrumbs .crumb { cursor: pointer; transition: color var(--transition); display: flex; align-items: center; gap: 4px; }
-        #breadcrumbs .crumb:hover { color: var(--text-secondary); text-decoration: underline; }
-        #breadcrumbs .crumb.current { color: var(--text-secondary); font-weight: 600; cursor: default; }
-        #breadcrumbs .crumb.current:hover { text-decoration: none; }
-        #breadcrumbs .separator { color: var(--text-muted); font-size: 0.7rem; transition: color var(--transition); }
+        #breadcrumbs .crumb {
+            cursor: pointer;
+            transition: all var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        #breadcrumbs .crumb:hover {
+            color: var(--text-primary);
+            background: var(--bg-nav-btn-hover);
+            text-decoration: none;
+        }
+        #breadcrumbs .crumb.current {
+            color: var(--text-secondary);
+            font-weight: 700;
+            cursor: default;
+            background: var(--bg-badge);
+        }
+        #breadcrumbs .crumb.current:hover {
+            background: var(--bg-badge);
+        }
+        #breadcrumbs .crumb .crumb-count {
+            font-size: 0.65rem;
+            background: var(--bg-card);
+            color: var(--text-muted);
+            padding: 1px 6px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-left: 2px;
+        }
+        #breadcrumbs .separator {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            opacity: 0.5;
+            user-select: none;
+        }
         
-        /* ===== ИНДИКАТОР ЗАГРУЗКИ ===== */
+        /* ===== ИНДИКАТОР ЗАГРУЗКИ (тонкая полоска) ===== */
         #loadingIndicator {
             display: none;
             position: fixed;
-            top: 0;
+            top: 3px;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 2px;
             background: linear-gradient(to right, var(--text-secondary), #d4a373);
             z-index: 10000;
             animation: loadingProgress 0.8s ease-in-out infinite;
@@ -402,12 +530,43 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
+        /* ===== АНИМАЦИЯ ПОЯВЛЕНИЯ КАРТОЧЕК ===== */
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .subcat-card, .card {
+            animation: cardAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+        }
+        /* Задержки для эффекта волны */
+        .subcat-card:nth-child(1), .card:nth-child(1) { animation-delay: 0.03s; }
+        .subcat-card:nth-child(2), .card:nth-child(2) { animation-delay: 0.06s; }
+        .subcat-card:nth-child(3), .card:nth-child(3) { animation-delay: 0.09s; }
+        .subcat-card:nth-child(4), .card:nth-child(4) { animation-delay: 0.12s; }
+        .subcat-card:nth-child(5), .card:nth-child(5) { animation-delay: 0.15s; }
+        .subcat-card:nth-child(6), .card:nth-child(6) { animation-delay: 0.18s; }
+        .subcat-card:nth-child(7), .card:nth-child(7) { animation-delay: 0.21s; }
+        .subcat-card:nth-child(8), .card:nth-child(8) { animation-delay: 0.24s; }
+        .subcat-card:nth-child(9), .card:nth-child(9) { animation-delay: 0.27s; }
+        .subcat-card:nth-child(10), .card:nth-child(10) { animation-delay: 0.3s; }
+        .subcat-card:nth-child(n+11), .card:nth-child(n+11) { animation-delay: 0.33s; }
+        
+        .card-of-day {
+            animation: cardAppear 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+        }
+        
         /* ===== СКЕЛЕТОН ===== */
         .skeleton-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 16px;
             margin: 20px 0;
+        }
+        .skeleton-grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+            margin: 16px 0;
         }
         .skeleton-card {
             background: var(--bg-card);
@@ -418,26 +577,81 @@
             animation: shimmer 1.5s ease-in-out infinite;
             transition: background var(--transition);
         }
+        .skeleton-card-greeting {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 16px;
+            border: 1px solid var(--border-card);
+            animation: shimmer 1.5s ease-in-out infinite;
+            transition: background var(--transition);
+        }
         .skeleton-emoji {
-            width: 40px;
-            height: 40px;
-            background: var(--bg-skeleton);
+            width: 44px;
+            height: 44px;
+            background: var(--bg-skeleton-accent);
             border-radius: 50%;
-            margin: 0 auto 8px;
+            margin: 0 auto 10px;
             transition: background var(--transition);
         }
         .skeleton-line {
             height: 16px;
-            background: var(--bg-skeleton);
+            background: var(--bg-skeleton-accent);
             border-radius: 8px;
             margin: 6px auto;
             transition: background var(--transition);
         }
         .skeleton-line.short { width: 60%; }
-        .skeleton-line.long { width: 80%; }
+        .skeleton-line.medium { width: 75%; }
+        .skeleton-line.long { width: 85%; }
+        .skeleton-badge {
+            width: 100px;
+            height: 20px;
+            background: var(--bg-skeleton-accent);
+            border-radius: 20px;
+            margin-bottom: 12px;
+            transition: background var(--transition);
+        }
+        .skeleton-text-line {
+            height: 14px;
+            background: var(--bg-skeleton-accent);
+            border-radius: 4px;
+            margin: 8px 0;
+            transition: background var(--transition);
+        }
+        .skeleton-text-line.w70 { width: 70%; }
+        .skeleton-text-line.w60 { width: 60%; }
+        .skeleton-text-line.w90 { width: 90%; }
+        .skeleton-text-line.w80 { width: 80%; }
+        .skeleton-text-line.w50 { width: 50%; }
+        .skeleton-divider {
+            height: 1px;
+            background: var(--bg-skeleton);
+            margin: 12px 0;
+            transition: background var(--transition);
+        }
+        .skeleton-btn-group {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .skeleton-btn {
+            flex: 1;
+            height: 30px;
+            background: var(--bg-skeleton-accent);
+            border-radius: 16px;
+            transition: background var(--transition);
+        }
+        .skeleton-header {
+            height: 24px;
+            background: var(--bg-skeleton-accent);
+            border-radius: 8px;
+            width: 50%;
+            margin-bottom: 20px;
+            transition: background var(--transition);
+        }
         @keyframes shimmer {
             0% { opacity: 1; }
-            50% { opacity: 0.5; }
+            50% { opacity: 0.55; }
             100% { opacity: 1; }
         }
         
@@ -466,7 +680,7 @@
         .section-name, .subcat-name { font-size: 1.1rem; font-weight: 600; color: var(--text-secondary); transition: color var(--transition); }
         .section-desc, .subcat-desc { font-size: 0.7rem; color: var(--text-muted); margin-top: 4px; transition: color var(--transition); }
         
-        /* ===== КАРТОЧКИ ПОДКАТЕГОРИЙ ===== */
+        /* ===== КАРТОЧКИ ПОЗДРАВЛЕНИЙ ===== */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -546,13 +760,129 @@
             padding: 10px 20px;
             border-radius: 40px;
             font-size: 0.85rem;
-            z-index: 1000;
+            z-index: 10002;
             animation: slideUp 0.3s ease-out;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            max-width: 90%;
         }
         @keyframes slideUp {
             from { opacity: 0; transform: translateX(-50%) translateY(20px); }
             to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
+        
+        /* ===== МОДАЛКА СЛУЧАЙНОГО ПОЗДРАВЛЕНИЯ ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-modal-overlay);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            animation: fadeIn 0.25s ease-out;
+        }
+        .modal-overlay.active { display: flex; }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal-card {
+            background: var(--bg-modal);
+            border-radius: 24px;
+            padding: 28px 32px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-modal);
+            position: relative;
+            animation: modalPop 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border-color);
+        }
+        @keyframes modalPop {
+            from { opacity: 0; transform: scale(0.92) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: var(--border-color);
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+            line-height: 1;
+        }
+        .modal-close:hover {
+            background: var(--btn-share-hover);
+            transform: rotate(90deg);
+        }
+        .modal-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-badge);
+            color: var(--text-secondary);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+        .modal-text {
+            font-size: 1.05rem;
+            line-height: 1.55;
+            font-family: 'Georgia', serif;
+            color: var(--text-dark);
+            margin-bottom: 18px;
+        }
+        .modal-translation {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--text-light);
+            padding-top: 14px;
+            border-top: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .modal-actions button {
+            flex: 1;
+            min-width: 130px;
+            padding: 11px 16px;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .modal-btn-primary { background: var(--text-secondary); color: white; }
+        .modal-btn-primary:hover { background: #6b4220; transform: translateY(-2px); }
+        body.dark-mode .modal-btn-primary:hover { background: #d4a373; color: #1a1410; }
+        .modal-btn-secondary { background: var(--btn-share); color: var(--text-secondary); }
+        .modal-btn-secondary:hover { background: var(--btn-share-hover); transform: translateY(-2px); }
         
         /* ===== ФУТЕР ===== */
         .footer {
@@ -580,7 +910,6 @@
             opacity: 0.3;
             transition: background var(--transition);
         }
-        
         .footer-links {
             display: flex;
             justify-content: center;
@@ -605,7 +934,6 @@
             font-size: 0.7rem;
             opacity: 0.3;
         }
-        
         .footer-social {
             display: flex;
             justify-content: center;
@@ -639,7 +967,6 @@
         .footer-social .social-btn.whatsapp:hover { background: #25d366; color: white; border-color: #25d366; }
         .footer-social .social-btn.ok:hover { background: #ee8208; color: white; border-color: #ee8208; }
         .footer-social .social-btn.copy:hover { background: var(--text-secondary); color: white; border-color: var(--text-secondary); }
-        
         .footer-copy {
             font-size: 0.65rem;
             color: var(--text-muted);
@@ -685,13 +1012,12 @@
             .button-group { flex-direction: column; }
             .cards-grid { grid-template-columns: 1fr; gap: 12px; }
             #breadcrumbs {
-                font-size: 0.75rem;
-                padding: 8px 12px;
-                overflow-x: auto;
-                white-space: nowrap;
-                flex-wrap: nowrap;
+                font-size: 0.78rem;
+                padding: 10px 12px;
             }
-            #breadcrumbs::-webkit-scrollbar { display: none; }
+            #breadcrumbs .crumb {
+                padding: 3px 8px;
+            }
             .back-button { padding: 6px 12px; font-size: 0.75rem; }
             .theme-toggle {
                 top: 10px;
@@ -700,23 +1026,29 @@
                 height: 38px;
                 font-size: 1.1rem;
             }
+            .scroll-top {
+                bottom: 20px;
+                right: 20px;
+                width: 42px;
+                height: 42px;
+                font-size: 1.2rem;
+            }
             .footer-social .social-btn {
                 width: 38px;
                 height: 38px;
                 font-size: 1rem;
             }
-            .footer-links {
-                gap: 6px;
-            }
-            .footer-link {
-                font-size: 0.7rem;
-            }
+            .footer-links { gap: 6px; }
+            .footer-link { font-size: 0.7rem; }
+            .modal-card { padding: 24px 20px; }
+            .modal-text { font-size: 0.95rem; }
         }
         @media (max-width: 600px) {
             .recipients-nav-block { padding: 10px 12px; }
             .recipient-btn { padding: 8px 12px; font-size: 0.75rem; }
             .carousel-arrow { width: 28px; height: 28px; font-size: 1rem; }
             .recipients-track { gap: 6px; }
+            .random-btn { padding: 10px 22px; font-size: 0.82rem; }
         }
         @media (max-width: 480px) {
             body { padding: 10px; }
@@ -729,6 +1061,13 @@
                 height: 34px;
                 font-size: 1rem;
             }
+            .scroll-top {
+                bottom: 15px;
+                right: 15px;
+                width: 38px;
+                height: 38px;
+                font-size: 1.1rem;
+            }
             .footer-social .social-btn {
                 width: 36px;
                 height: 36px;
@@ -739,31 +1078,41 @@
                 gap: 4px;
                 flex-wrap: wrap;
             }
-            .footer-link {
-                font-size: 0.65rem;
-            }
-            .footer-link-separator {
-                display: none;
-            }
+            .footer-link { font-size: 0.65rem; }
+            .footer-link-separator { display: none; }
             .footer-links .footer-link::after {
                 content: " · ";
                 color: var(--text-muted);
             }
-            .footer-links .footer-link:last-child::after {
-                content: "";
-            }
-            #contentContainer {
-                min-height: 200px;
+            .footer-links .footer-link:last-child::after { content: ""; }
+            #contentContainer { min-height: 200px; }
+            .modal-card { padding: 20px 16px; border-radius: 20px; }
+            .modal-text { font-size: 0.9rem; }
+            .modal-actions button { min-width: 100%; }
+        }
+        
+        /* ===== УМЕНЬШЕНИЕ АНИМАЦИЙ ДЛЯ ПРЕДПОЧТЕНИЙ ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Индикатор прогресса чтения -->
+    <div class="reading-progress" id="readingProgress"></div>
+    
     <!-- Индикатор загрузки -->
     <div id="loadingIndicator"></div>
 
     <!-- Кнопка переключения темы -->
     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Переключить тему">🌙</button>
+
+    <!-- Кнопка наверх -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()" aria-label="Наверх">↑</button>
 
     <div class="container">
         <header>
@@ -782,6 +1131,14 @@
                     </div>
                     <button class="carousel-arrow carousel-arrow-right" id="carouselNext" aria-label="Вперёд">›</button>
                 </div>
+            </div>
+
+            <!-- ===== КНОПКА СЛУЧАЙНОГО ПОЗДРАВЛЕНИЯ ===== -->
+            <div class="random-btn-wrapper">
+                <button class="random-btn" onclick="showRandomGreeting()">
+                    <span class="dice">🎲</span>
+                    <span>Случайное поздравление</span>
+                </button>
             </div>
 
             <div class="current-date-box" id="currentDateBox"></div>
@@ -815,25 +1172,25 @@
             </div>
                         
             <div class="footer-social">
-                <button class="social-btn telegram" onclick="shareTelegram()" title="Поделиться в Telegram">
-                    ✈️
-                </button>
-                <button class="social-btn vk" onclick="shareVK()" title="Поделиться ВКонтакте">
-                    📱
-                </button>
-                <button class="social-btn whatsapp" onclick="shareWhatsApp()" title="Поделиться в WhatsApp">
-                    💬
-                </button>
-                <button class="social-btn ok" onclick="shareOK()" title="Поделиться в Одноклассниках">
-                    👥
-                </button>
-                <button class="social-btn copy" onclick="copyLink()" title="Скопировать ссылку">
-                    🔗
-                </button>
+                <button class="social-btn telegram" onclick="shareTelegram()" title="Поделиться в Telegram">✈️</button>
+                <button class="social-btn vk" onclick="shareVK()" title="Поделиться ВКонтакте">📱</button>
+                <button class="social-btn whatsapp" onclick="shareWhatsApp()" title="Поделиться в WhatsApp">💬</button>
+                <button class="social-btn ok" onclick="shareOK()" title="Поделиться в Одноклассниках">👥</button>
+                <button class="social-btn copy" onclick="copyLink()" title="Скопировать ссылку">🔗</button>
             </div>
             
             <div class="footer-copy">
                 ❤️ Тыуған көнөгөҙ менән! Туған телдә әйтелгән һүҙ — йөрәккә иң ҡыҫҡа юл.
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== МОДАЛКА СЛУЧАЙНОГО ПОЗДРАВЛЕНИЯ ===== -->
+    <div class="modal-overlay" id="randomModal" onclick="if(event.target === this) closeRandomModal()">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeRandomModal()" aria-label="Закрыть">✕</button>
+            <div id="randomModalContent">
+                <!-- Заполняется через JS -->
             </div>
         </div>
     </div>
@@ -846,8 +1203,6 @@
     let siteData = null;
     let currentSection = null;
     let currentSubcat = null;
-    let pagesData = null;
-    const STATS_KEY = 'greeting_copy_stats';
     const THEME_KEY = 'site_theme';
     const ROTATION_HOURS = 8;
     
@@ -857,6 +1212,37 @@
     const breadcrumbs = document.getElementById('breadcrumbs');
     const loadingIndicator = document.getElementById('loadingIndicator');
     const themeToggle = document.getElementById('themeToggle');
+    const scrollTopBtn = document.getElementById('scrollTop');
+    const readingProgress = document.getElementById('readingProgress');
+
+    // ================================================================
+    // ===== ПРОГРЕСС ЧТЕНИЯ + КНОПКА НАВЕРХ =====
+    // ================================================================
+    
+    let scrollThrottle = false;
+    window.addEventListener('scroll', () => {
+        if (scrollThrottle) return;
+        scrollThrottle = true;
+        requestAnimationFrame(() => {
+            // Прогресс чтения
+            const h = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = h > 0 ? (window.scrollY / h) * 100 : 0;
+            readingProgress.style.width = Math.min(100, Math.max(0, progress)) + '%';
+            
+            // Кнопка наверх
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+            
+            scrollThrottle = false;
+        });
+    }, { passive: true });
+    
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
     // ================================================================
     // ===== НАВИГАЦИЯ ПО ПОЛУЧАТЕЛЯМ — КАРУСЕЛЬ =====
@@ -903,7 +1289,6 @@
         
         track.innerHTML = html;
         
-        // Инициализация карусели после рендера
         requestAnimationFrame(() => {
             initCarousel();
         });
@@ -914,11 +1299,9 @@
         const carousel = document.getElementById('recipientsCarousel');
         if (!track || !carousel) return;
         
-        // Сброс
         carouselState.offset = 0;
         track.style.transform = 'translateX(0)';
         
-        // Замеры
         const measure = () => {
             carouselState.trackWidth = track.scrollWidth;
             carouselState.containerWidth = carousel.clientWidth;
@@ -927,14 +1310,12 @@
         
         measure();
         
-        // Пересчёт при resize (debounced)
         let resizeTimer;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(measure, 200);
         });
         
-        // Кнопки навигации
         const prevBtn = document.getElementById('carouselPrev');
         const nextBtn = document.getElementById('carouselNext');
         
@@ -951,7 +1332,6 @@
             };
         }
         
-        // Пауза при наведении / касании
         carousel.addEventListener('mouseenter', () => {
             carouselState.isPaused = true;
         });
@@ -965,7 +1345,6 @@
             setTimeout(() => { carouselState.isPaused = false; }, 3000);
         });
         
-        // Запуск автопрокрутки
         startAutoScroll();
     }
 
@@ -973,10 +1352,9 @@
         const track = document.getElementById('recipientsTrack');
         if (!track) return;
         
-        const step = 160; // ширина одной кнопки + gap
+        const step = 160;
         const newOffset = carouselState.offset + (direction * step);
         
-        // Зацикливание
         if (newOffset > carouselState.maxOffset) {
             carouselState.offset = 0;
         } else if (newOffset < 0) {
@@ -993,7 +1371,6 @@
             clearInterval(carouselState.autoScrollTimer);
         }
         
-        // 4 секунды — комфортно для чтения
         carouselState.autoScrollTimer = setInterval(() => {
             if (carouselState.isPaused || carouselState.maxOffset === 0) return;
             
@@ -1001,7 +1378,7 @@
             let newOffset = carouselState.offset + step;
             
             if (newOffset > carouselState.maxOffset) {
-                newOffset = 0; // Возврат к началу
+                newOffset = 0;
             }
             
             carouselState.offset = newOffset;
@@ -1141,7 +1518,7 @@
     }
 
     // ================================================================
-    // ===== ОПТИМИЗИРОВАННАЯ ЗАГРУЗКА (только data_birthday.json) =====
+    // ===== ОПТИМИЗИРОВАННАЯ ЗАГРУЗКА =====
     // ================================================================
     async function loadAllJsonFiles() {
         try {
@@ -1177,7 +1554,6 @@
         }
     }
 
-    // Вспомогательная функция для подсчёта
     function getTotalGreetingsCount() {
         if (!siteData?.sections?.birthday) return 0;
         let count = 0;
@@ -1187,20 +1563,78 @@
         return count;
     }
 
-    // ===== СКЕЛЕТОН =====
-    function showSkeleton() {
-        let html = `<div class="skeleton-grid">`;
-        for (let i = 0; i < 6; i++) {
-            html += `
-                <div class="skeleton-card">
-                    <div class="skeleton-emoji"></div>
-                    <div class="skeleton-line short"></div>
-                    <div class="skeleton-line long"></div>
+    // ================================================================
+    // ===== УЛУЧШЕННЫЙ СКЕЛЕТОН =====
+    // ================================================================
+    
+    function showSkeleton(type = 'sections') {
+        let html = '';
+        
+        if (type === 'sections') {
+            // Скелетон для главной — карточки категорий
+            html = `
+                <div class="skeleton-header"></div>
+                <div class="skeleton-grid">
+            `;
+            for (let i = 0; i < 8; i++) {
+                html += `
+                    <div class="skeleton-card">
+                        <div class="skeleton-emoji"></div>
+                        <div class="skeleton-line short"></div>
+                        <div class="skeleton-line medium"></div>
+                    </div>
+                `;
+            }
+            html += `</div>`;
+        } else if (type === 'greetings') {
+            // Скелетон для категории — карточки поздравлений
+            html = `
+                <div class="skeleton-header"></div>
+                <div class="skeleton-grid-cards">
+            `;
+            for (let i = 0; i < 6; i++) {
+                html += `
+                    <div class="skeleton-card-greeting">
+                        <div class="skeleton-badge"></div>
+                        <div class="skeleton-text-line w90"></div>
+                        <div class="skeleton-text-line w80"></div>
+                        <div class="skeleton-text-line w70"></div>
+                        <div class="skeleton-text-line w60"></div>
+                        <div class="skeleton-divider"></div>
+                        <div class="skeleton-text-line w70"></div>
+                        <div class="skeleton-text-line w50"></div>
+                        <div class="skeleton-btn-group">
+                            <div class="skeleton-btn"></div>
+                            <div class="skeleton-btn"></div>
+                        </div>
+                    </div>
+                `;
+            }
+            html += `</div>`;
+        } else if (type === 'cardOfDay') {
+            html = `
+                <div class="skeleton-card-greeting" style="margin-bottom:20px;">
+                    <div class="skeleton-badge" style="width:180px;"></div>
+                    <div class="skeleton-text-line w90"></div>
+                    <div class="skeleton-text-line w80"></div>
+                    <div class="skeleton-text-line w60"></div>
                 </div>
             `;
         }
-        html += `</div>`;
+        
         contentContainer.innerHTML = html;
+    }
+    
+    // Скелетон для карточки дня (отдельный)
+    function showCardOfDaySkeleton() {
+        cardOfDayContainer.innerHTML = `
+            <div class="skeleton-card-greeting" style="margin-bottom:0;">
+                <div class="skeleton-badge" style="width:200px;"></div>
+                <div class="skeleton-text-line w90"></div>
+                <div class="skeleton-text-line w80"></div>
+                <div class="skeleton-text-line w60"></div>
+            </div>
+        `;
     }
 
     // ===== ОШИБКА =====
@@ -1217,7 +1651,7 @@
     }
 
     async function retryLoad() {
-        showSkeleton();
+        showSkeleton('sections');
         await new Promise(resolve => setTimeout(resolve, 300));
         const loaded = await loadAllJsonFiles();
         if (loaded) {
@@ -1275,6 +1709,13 @@
     function updateContent(section, subcat, animate = true) {
         showLoading(true);
         
+        // Показываем правильный скелетон
+        if (section && subcat) {
+            showSkeleton('greetings');
+        } else {
+            showSkeleton('sections');
+        }
+        
         setTimeout(() => {
             let html = '';
             
@@ -1301,7 +1742,7 @@
                 cardOfDayContainer.style.display = 'none';
                 cardOfDayContainer.innerHTML = '';
             }
-        }, 50);
+        }, 100);
     }
 
     // ===== РЕНДЕР РАЗДЕЛОВ =====
@@ -1435,20 +1876,47 @@
         });
     }
 
-    // ===== ХЛЕБНЫЕ КРОШКИ =====
+    // ================================================================
+    // ===== ХЛЕБНЫЕ КРОШКИ (улучшенные) =====
+    // ================================================================
+    
     function updateBreadcrumbs(section, subcat) {
         if (!breadcrumbs) return;
+        
+        const totalCount = getTotalGreetingsCount();
         let html = '';
-        html += `<span class="crumb" onclick="navigateTo()">🏠 Главная</span>`;
+        
+        // Главная
+        html += `<span class="crumb" onclick="navigateTo()">
+            <span>🏠</span>
+            <span>Главная</span>
+        </span>`;
+        
         if (section) {
             html += `<span class="separator">›</span>`;
-            html += `<span class="crumb" onclick="navigateTo('birthday')">Тыуған көн</span>`;
+            
+            // Раздел "Тыуған көн"
+            const birthdayData = siteData?.sections?.birthday;
+            const catCount = birthdayData ? Object.keys(birthdayData.subcategories).length : 0;
+            html += `<span class="crumb" onclick="navigateTo('birthday')">
+                <span>🎂</span>
+                <span>Тыуған көн</span>
+                ${catCount > 0 ? `<span class="crumb-count">${catCount}</span>` : ''}
+            </span>`;
         }
-        if (subcat) {
-            const subcatName = siteData?.sections.birthday?.subcategories[subcat]?.name_ba || subcat;
+        
+        if (subcat && siteData?.sections.birthday?.subcategories[subcat]) {
+            const subcatData = siteData.sections.birthday.subcategories[subcat];
+            const greetingsCount = (subcatData.greetings || []).length;
+            
             html += `<span class="separator">›</span>`;
-            html += `<span class="crumb current">${escapeHtml(subcatName)}</span>`;
+            html += `<span class="crumb current">
+                <span>${escapeHtml(subcatData.emoji || '💬')}</span>
+                <span>${escapeHtml(subcatData.name_ba || subcat)}</span>
+                ${greetingsCount > 0 ? `<span class="crumb-count">${greetingsCount}</span>` : ''}
+            </span>`;
         }
+        
         breadcrumbs.innerHTML = html;
     }
 
@@ -1466,6 +1934,120 @@
             navigateTo(null);
         } else {
             showToast('🏠 Вы на главной странице');
+        }
+    });
+
+    // ================================================================
+    // ===== СЛУЧАЙНОЕ ПОЗДРАВЛЕНИЕ =====
+    // ================================================================
+    
+    function showRandomGreeting() {
+        if (!siteData?.sections?.birthday) {
+            showToast('⏳ Данные ещё загружаются...');
+            return;
+        }
+        
+        // Собираем все поздравления
+        const allGreetings = [];
+        for (const [subcatKey, subcat] of Object.entries(siteData.sections.birthday.subcategories)) {
+            (subcat.greetings || []).forEach(g => {
+                allGreetings.push({ subcat, subcatKey, greeting: g });
+            });
+        }
+        
+        if (allGreetings.length === 0) {
+            showToast('⏳ Поздравления ещё не добавлены');
+            return;
+        }
+        
+        const random = allGreetings[Math.floor(Math.random() * allGreetings.length)];
+        const { subcat, greeting } = random;
+        
+        // Заполняем модалку
+        const modalContent = document.getElementById('randomModalContent');
+        modalContent.innerHTML = `
+            <div class="modal-category">
+                <span>${escapeHtml(subcat.emoji || '💬')}</span>
+                <span>${escapeHtml(subcat.name_ba)}</span>
+                <span style="opacity:0.6;">·</span>
+                <span>${escapeHtml(subcat.name_ru)}</span>
+            </div>
+            <div class="modal-text">${escapeHtml(greeting.text_ba)}</div>
+            <div class="modal-translation">💭 ${escapeHtml(greeting.translation_ru)}</div>
+            <div class="modal-actions">
+                <button class="modal-btn-primary" onclick="copyRandomGreeting()">
+                    📋 Скопировать
+                </button>
+                <button class="modal-btn-secondary" onclick="showRandomGreeting()">
+                    🎲 Ещё одно
+                </button>
+                <button class="modal-btn-secondary" onclick="shareRandomGreeting()">
+                    📤 Поделиться
+                </button>
+            </div>
+        `;
+        
+        // Сохраняем текущее поздравление
+        window.__currentRandomGreeting = greeting;
+        
+        // Показываем модалку
+        document.getElementById('randomModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Метрика
+        if (typeof ym !== 'undefined') ym(109825367, 'reachGoal', 'random_greeting');
+    }
+    
+    function closeRandomModal() {
+        document.getElementById('randomModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    async function copyRandomGreeting() {
+        const g = window.__currentRandomGreeting;
+        if (!g) return;
+        
+        const text = `${g.text_ba}\n\n💭 ${g.translation_ru}`;
+        
+        try {
+            await navigator.clipboard.writeText(text);
+            showToast('✅ Скопировано!');
+        } catch (e) {
+            fallbackCopy(text);
+        }
+        
+        if (typeof ym !== 'undefined') ym(109825367, 'reachGoal', 'random_greeting_copy');
+    }
+    
+    async function shareRandomGreeting() {
+        const g = window.__currentRandomGreeting;
+        if (!g) return;
+        
+        const text = `${g.text_ba}\n\n💭 ${g.translation_ru}\n\n🔗 https://yilyhuzzar.ru`;
+        
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: 'Поздравление с днём рождения на башкирском',
+                    text: text
+                });
+                showToast('Поделились!');
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    fallbackCopy(text);
+                }
+            }
+        } else {
+            fallbackCopy(text);
+        }
+        
+        if (typeof ym !== 'undefined') ym(109825367, 'reachGoal', 'random_greeting_share');
+    }
+    
+    // Закрытие модалки по Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeRandomModal();
         }
     });
 
@@ -1653,13 +2235,16 @@
     function renderCardOfDay() {
         if (!cardOfDayContainer) return;
         const card = getTodaysGreeting();
-        if (!card) return;
+        if (!card) {
+            cardOfDayContainer.innerHTML = '';
+            return;
+        }
         cardOfDayContainer.innerHTML = `
             <div class="card-of-day">
                 <div class="card-of-day-title"><span>⭐</span> Бөгөнгө йылы һүҙ / Тёплое слово дня</div>
                 <div class="card-of-day-content">${escapeHtml(card.text_ba)}</div>
                 <div class="card-of-day-trans">💭 ${escapeHtml(card.translation_ru)}</div>
-                <div style="font-size:0.65rem; margin-top:8px; color:var(--text-muted);">🏷️ ${card.category} — тыуған көн</div>
+                <div style="font-size:0.65rem; margin-top:8px; color:var(--text-muted);">🏷️ ${escapeHtml(card.category)} — тыуған көн</div>
             </div>
         `;
     }
@@ -1669,7 +2254,7 @@
         toast.className = 'toast-notification';
         toast.textContent = message;
         document.body.appendChild(toast);
-        setTimeout(() => toast.remove(), 2000);
+        setTimeout(() => toast.remove(), 2500);
     }
 
     function escapeHtml(str) {
@@ -1703,10 +2288,12 @@
     loadTheme();
 
     async function init() {
-        showSkeleton();
+        // Скелетон для главной
+        showSkeleton('sections');
+        showCardOfDaySkeleton();
+        
         const loaded = await loadAllJsonFiles();
         if (loaded && siteData && siteData.sections.birthday) {
-            // Генерируем навигацию по получателям из данных
             renderRecipientsNav();
             
             const { section, subcat } = parseUrl();
@@ -1730,11 +2317,10 @@
 
     init();
     console.log('🚀 Сайт переориентирован на поздравления с днём рождения');
-    console.log('📊 H1: Тыуған көн менән башҡортса ҡотлауҙар');
-    console.log('📊 Подзаголовок: 1000+ поздравлений на башкирском языке с переводом');
-    console.log('🎁 Навигация по получателям — карусель с автопрокруткой (4 сек)');
-    console.log('⚡ Оптимизированная загрузка: только data/data_birthday.json');
-    console.log('🎨 Сайдбар (донаты и календарь) убран');
+    console.log('🎨 Анимация карточек, кнопка наверх, прогресс чтения');
+    console.log('🎲 Случайное поздравление в шапке');
+    console.log('🍞 Хлебные крошки с иконками и счётчиками');
+    console.log('💀 Улучшенный скелетон для всех типов контента');
     </script>
     <!-- Yandex Autoplacement 19695489 -->
     <script src="https://yandex.ru/ads/system/context.js" async></script>
