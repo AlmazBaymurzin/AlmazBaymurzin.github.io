@@ -5,21 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎂 Редактор поздравлений | Тыуған көн ҡотлауҙары</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
             background: linear-gradient(135deg, #8b5a2b 0%, #d4a373 100%);
             min-height: 100vh;
             padding: 20px;
         }
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+        .container { max-width: 1400px; margin: 0 auto; }
         .header {
             background: white;
             border-radius: 20px;
@@ -129,16 +122,9 @@
             font-size: 18px;
             transition: transform 0.2s;
         }
-        .section-header.collapsed .toggle-icon {
-            transform: rotate(-90deg);
-        }
-        .section-body {
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-        .section-body.collapsed {
-            display: none;
-        }
+        .section-header.collapsed .toggle-icon { transform: rotate(-90deg); }
+        .section-body { transition: all 0.3s ease; overflow: hidden; }
+        .section-body.collapsed { display: none; }
         .section-title {
             font-size: 18px;
             font-weight: bold;
@@ -147,11 +133,7 @@
             gap: 10px;
             flex-wrap: wrap;
         }
-        .section-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+        .section-actions { display: flex; gap: 10px; flex-wrap: wrap; }
         .section-file-badge {
             font-size: 10px;
             background: rgba(255,255,255,0.2);
@@ -183,19 +165,17 @@
             font-size: 14px;
             transition: transform 0.2s;
         }
-        .subcategory-header.collapsed .toggle-icon {
-            transform: rotate(-90deg);
-        }
-        .subcategory-body {
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-        .subcategory-body.collapsed {
-            display: none;
-        }
+        .subcategory-header.collapsed .toggle-icon { transform: rotate(-90deg); }
+        .subcategory-body { transition: all 0.3s ease; overflow: hidden; }
+        .subcategory-body.collapsed { display: none; }
         .greeting-item {
             padding: 15px;
             border-top: 1px solid #e2e8f0;
+            position: relative;
+        }
+        .greeting-item.has-warning {
+            background: #fffaf0;
+            border-left: 3px solid #ecc94b;
         }
         .greeting-text {
             background: #fef5e7;
@@ -213,6 +193,12 @@
             color: #666;
             white-space: pre-wrap;
             word-break: break-word;
+        }
+        .translation-text.empty {
+            background: #fff5f5;
+            color: #c53030;
+            font-style: italic;
+            border: 1px dashed #fc8181;
         }
         .inline-actions {
             display: flex;
@@ -252,11 +238,25 @@
             font-size: 14px;
             font-family: inherit;
         }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #8b5a2b;
+            box-shadow: 0 0 0 3px rgba(139, 90, 43, 0.1);
+        }
         textarea { resize: vertical; min-height: 80px; }
         .form-hint {
             font-size: 12px;
             color: #666;
             margin-top: 4px;
+        }
+        .form-warning {
+            font-size: 12px;
+            color: #c53030;
+            margin-top: 4px;
+            padding: 6px 10px;
+            background: #fff5f5;
+            border-radius: 6px;
+            border-left: 3px solid #fc8181;
         }
         .stats {
             display: grid;
@@ -270,6 +270,13 @@
             padding: 20px;
             border-radius: 15px;
             text-align: center;
+        }
+        .stat-card.warning {
+            background: linear-gradient(135deg, #ecc94b 0%, #d69e2e 100%);
+            color: #744210;
+        }
+        .stat-card.danger {
+            background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
         }
         .stat-number { font-size: 36px; font-weight: bold; }
         .stat-label { font-size: 14px; opacity: 0.9; margin-top: 5px; }
@@ -309,6 +316,66 @@
         .github-status.success { background: #c6f6d5; color: #22543d; }
         .github-status.error { background: #fed7d7; color: #742a2a; }
         .github-status.loading { background: #fefcbf; color: #744210; }
+        
+        /* ===== ИНДИКАТОР СОХРАНЕНИЯ ===== */
+        .save-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: 10px;
+            transition: all 0.3s;
+        }
+        .save-indicator.saved { background: #c6f6d5; color: #22543d; }
+        .save-indicator.unsaved { background: #fed7d7; color: #742a2a; }
+        .save-indicator.saving { background: #fefcbf; color: #744210; }
+        
+        /* ===== ДИАЛОГ ВАЛИДАЦИИ ===== */
+        .validation-modal .modal-content {
+            max-width: 700px;
+            width: 90%;
+        }
+        .validation-list {
+            max-height: 400px;
+            overflow-y: auto;
+            margin: 15px 0;
+            padding: 10px;
+            background: #f7fafc;
+            border-radius: 10px;
+        }
+        .validation-item {
+            padding: 10px 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .validation-item.error {
+            background: #fff5f5;
+            border-left: 3px solid #fc8181;
+        }
+        .validation-item.warning {
+            background: #fffaf0;
+            border-left: 3px solid #ecc94b;
+        }
+        .validation-item.info {
+            background: #ebf8ff;
+            border-left: 3px solid #63b3ed;
+        }
+        .validation-item .icon { flex-shrink: 0; font-size: 16px; }
+        .validation-item .text { flex: 1; }
+        .validation-item .path {
+            font-family: monospace;
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+        
         @media (max-width: 768px) {
             .toolbar { flex-direction: column; }
             .btn { justify-content: center; }
@@ -330,6 +397,9 @@
                 <button class="btn btn-info" onclick="loadFromGitHub()">📥 Загрузить с GitHub</button>
                 <button class="btn btn-warning" onclick="exportJSON()">📤 Экспорт JSON</button>
                 <button class="btn btn-danger" onclick="clearAll()">🗑️ Очистить всё</button>
+                <button class="btn btn-secondary" onclick="validateData()">✅ Проверить валидность</button>
+                <button class="btn btn-secondary" onclick="restoreDraft()">↩️ Восстановить черновик</button>
+                <span id="saveIndicator" class="save-indicator saved">💾 Сохранено</span>
             </div>
             <div id="fileInfo" class="file-info">📊 Загружено: 0 подкатегорий, 0 поздравлений</div>
             <div id="githubStatus" class="github-status" style="margin-top: 10px;"></div>
@@ -351,15 +421,44 @@
             </div>
         </div>
     </div>
+    
+    <!-- Модалка валидации -->
+    <div id="validationModal" class="modal validation-modal">
+        <div class="modal-content">
+            <h3>🔍 Результаты проверки</h3>
+            <div id="validationContent"></div>
+            <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: flex-end;">
+                <button class="btn btn-secondary" onclick="closeValidationModal()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+    
     <script>
     // ============================================================
     // ===== КОНФИГУРАЦИЯ =====
     // ============================================================
     const DATA_FILE = 'data/data_birthday.json';
-    let currentData = { sections: { birthday: { name_ba: 'Тыуған көн', name_ru: 'День рождения', emoji: '🎂', order: 1, subcategories: {} } }, holidays_widget: [] };
+    const DRAFT_KEY = 'yily_huzzar_draft';
+    const DRAFT_TIMESTAMP_KEY = 'yily_huzzar_draft_timestamp';
+    const AUTOSAVE_INTERVAL = 30000; // 30 секунд
+    
+    let currentData = { 
+        sections: { 
+            birthday: { 
+                name_ba: 'Тыуған көн', 
+                name_ru: 'День рождения', 
+                emoji: '🎂', 
+                order: 1, 
+                subcategories: {} 
+            } 
+        }, 
+        holidays_widget: [] 
+    };
     let currentModalContext = null;
     let expandedSections = new Set();
     let expandedSubcats = new Set();
+    let hasUnsavedChanges = false;
+    let autosaveTimer = null;
     let githubConfig = {
         token: localStorage.getItem('github_token') || '',
         repo: localStorage.getItem('github_repo') || '',
@@ -367,9 +466,230 @@
     };
 
     // ============================================================
+    // ===== АВТОСОХРАНЕНИЕ ЧЕРНОВИКА =====
+    // ============================================================
+    
+    function markUnsaved() {
+        hasUnsavedChanges = true;
+        updateSaveIndicator('unsaved');
+        scheduleAutosave();
+    }
+    
+    function markSaved() {
+        hasUnsavedChanges = false;
+        updateSaveIndicator('saved');
+        clearDraft();
+    }
+    
+    function updateSaveIndicator(state) {
+        const el = document.getElementById('saveIndicator');
+        if (!el) return;
+        el.className = 'save-indicator ' + state;
+        if (state === 'saved') el.textContent = '💾 Сохранено';
+        else if (state === 'unsaved') el.textContent = '⚠️ Есть изменения';
+        else if (state === 'saving') el.textContent = '⏳ Сохранение...';
+    }
+    
+    function scheduleAutosave() {
+        if (autosaveTimer) clearTimeout(autosaveTimer);
+        autosaveTimer = setTimeout(() => {
+            saveDraft();
+        }, 2000); // сохраняем через 2 сек после последнего изменения
+    }
+    
+    function saveDraft() {
+        try {
+            updateSaveIndicator('saving');
+            localStorage.setItem(DRAFT_KEY, JSON.stringify(currentData));
+            localStorage.setItem(DRAFT_TIMESTAMP_KEY, Date.now().toString());
+            setTimeout(() => {
+                if (hasUnsavedChanges) updateSaveIndicator('unsaved');
+            }, 300);
+        } catch (e) {
+            console.error('Ошибка автосохранения:', e);
+        }
+    }
+    
+    function clearDraft() {
+        localStorage.removeItem(DRAFT_KEY);
+        localStorage.removeItem(DRAFT_TIMESTAMP_KEY);
+    }
+    
+    function hasDraft() {
+        return !!localStorage.getItem(DRAFT_KEY);
+    }
+    
+    function restoreDraft() {
+        if (!hasDraft()) {
+            showToast('Черновик не найден', 'info');
+            return;
+        }
+        const timestamp = localStorage.getItem(DRAFT_TIMESTAMP_KEY);
+        const date = new Date(parseInt(timestamp));
+        const dateStr = date.toLocaleString('ru-RU');
+        
+        if (!confirm(`Восстановить черновик от ${dateStr}?\n\nТекущие несохранённые изменения будут потеряны.`)) {
+            return;
+        }
+        
+        try {
+            const draft = JSON.parse(localStorage.getItem(DRAFT_KEY));
+            currentData = draft;
+            hasUnsavedChanges = true;
+            updateFileInfo();
+            renderSections();
+            updateSaveIndicator('unsaved');
+            showToast(`✅ Черновик от ${dateStr} восстановлен`, 'success');
+        } catch (e) {
+            showToast('❌ Ошибка восстановления черновика', 'error');
+        }
+    }
+    
+    // ============================================================
+    // ===== ВАЛИДАЦИЯ =====
+    // ============================================================
+    
+    function validateData(silent = false) {
+        const issues = [];
+        const section = currentData.sections?.birthday;
+        
+        if (!section) {
+            issues.push({ type: 'error', text: 'Раздел "birthday" отсутствует', path: 'sections.birthday' });
+            showValidationResults(issues);
+            return issues;
+        }
+        
+        // Проверка обязательных полей раздела
+        if (!section.name_ba) issues.push({ type: 'warning', text: 'Не указано название раздела (баш)', path: 'birthday.name_ba' });
+        if (!section.name_ru) issues.push({ type: 'warning', text: 'Не указано название раздела (рус)', path: 'birthday.name_ru' });
+        if (!section.emoji) issues.push({ type: 'warning', text: 'Не указан эмодзи раздела', path: 'birthday.emoji' });
+        
+        const subcats = section.subcategories || {};
+        
+        // Проверка уникальности order
+        const orderMap = {};
+        for (const [key, subcat] of Object.entries(subcats)) {
+            const order = subcat.order;
+            if (order !== undefined) {
+                if (!orderMap[order]) orderMap[order] = [];
+                orderMap[order].push(key);
+            }
+        }
+        for (const [order, keys] of Object.entries(orderMap)) {
+            if (keys.length > 1) {
+                issues.push({
+                    type: 'warning',
+                    text: `Дубликат order=${order}: ${keys.join(', ')}. Сортировка будет непредсказуемой.`,
+                    path: 'birthday.subcategories'
+                });
+            }
+        }
+        
+        // Проверка каждой подкатегории
+        for (const [key, subcat] of Object.entries(subcats)) {
+            if (!subcat.name_ba) issues.push({ type: 'warning', text: `Не указано название (баш)`, path: `birthday.subcategories.${key}.name_ba` });
+            if (!subcat.name_ru) issues.push({ type: 'warning', text: `Не указано название (рус)`, path: `birthday.subcategories.${key}.name_ru` });
+            if (!subcat.emoji) issues.push({ type: 'warning', text: `Не указан эмодзи`, path: `birthday.subcategories.${key}.emoji` });
+            if (!subcat.order && subcat.order !== 0) issues.push({ type: 'warning', text: `Не указан order`, path: `birthday.subcategories.${key}.order` });
+            
+            const greetings = subcat.greetings || [];
+            if (greetings.length === 0) {
+                issues.push({ type: 'info', text: `Нет поздравлений`, path: `birthday.subcategories.${key}.greetings` });
+            }
+            
+            greetings.forEach((g, i) => {
+                if (!g.text_ba || !g.text_ba.trim()) {
+                    issues.push({ type: 'error', text: `Пустой текст (баш)`, path: `birthday.subcategories.${key}.greetings[${i}].text_ba` });
+                }
+                if (!g.translation_ru || !g.translation_ru.trim()) {
+                    issues.push({ type: 'warning', text: `Пустой перевод (рус)`, path: `birthday.subcategories.${key}.greetings[${i}].translation_ru` });
+                }
+                // Проверка длины
+                if (g.text_ba && g.text_ba.length > 1500) {
+                    issues.push({ type: 'info', text: `Очень длинный текст (${g.text_ba.length} символов)`, path: `birthday.subcategories.${key}.greetings[${i}].text_ba` });
+                }
+            });
+        }
+        
+        if (!silent) {
+            showValidationResults(issues);
+        }
+        
+        return issues;
+    }
+    
+    function showValidationResults(issues) {
+        const content = document.getElementById('validationContent');
+        
+        if (issues.length === 0) {
+            content.innerHTML = `
+                <div class="validation-item info">
+                    <span class="icon">✅</span>
+                    <span class="text">Все проверки пройдены! Данные валидны.</span>
+                </div>
+            `;
+        } else {
+            const errors = issues.filter(i => i.type === 'error').length;
+            const warnings = issues.filter(i => i.type === 'warning').length;
+            const infos = issues.filter(i => i.type === 'info').length;
+            
+            let html = `
+                <div style="display:flex;gap:15px;margin-bottom:15px;flex-wrap:wrap;">
+                    <div style="padding:8px 15px;background:#fff5f5;border-radius:8px;color:#c53030;font-weight:600;">
+                        ❌ Ошибок: ${errors}
+                    </div>
+                    <div style="padding:8px 15px;background:#fffaf0;border-radius:8px;color:#744210;font-weight:600;">
+                        ⚠️ Предупреждений: ${warnings}
+                    </div>
+                    <div style="padding:8px 15px;background:#ebf8ff;border-radius:8px;color:#2c5282;font-weight:600;">
+                        ℹ️ Информация: ${infos}
+                    </div>
+                </div>
+                <div class="validation-list">
+            `;
+            
+            for (const issue of issues) {
+                const icon = issue.type === 'error' ? '❌' : issue.type === 'warning' ? '⚠️' : 'ℹ️';
+                html += `
+                    <div class="validation-item ${issue.type}">
+                        <span class="icon">${icon}</span>
+                        <div class="text">
+                            ${escapeHtml(issue.text)}
+                            <div class="path">${escapeHtml(issue.path)}</div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            html += `</div>`;
+            content.innerHTML = html;
+        }
+        
+        document.getElementById('validationModal').classList.add('active');
+    }
+    
+    function closeValidationModal() {
+        document.getElementById('validationModal').classList.remove('active');
+    }
+
+    // ============================================================
     // ===== ЗАГРУЗКА ДАННЫХ =====
     // ============================================================
     async function loadData() {
+        // Проверка черновика
+        if (hasDraft()) {
+            const timestamp = localStorage.getItem(DRAFT_TIMESTAMP_KEY);
+            const date = new Date(parseInt(timestamp));
+            const dateStr = date.toLocaleString('ru-RU');
+            
+            if (confirm(`Найден черновик от ${dateStr}.\n\nВосстановить его? (Отмена — загрузить свежие данные с сервера)`)) {
+                restoreDraft();
+                return;
+            } else {
+                clearDraft();
+            }
+        }
+        
         showToast('⏳ Загрузка данных...', 'info');
         try {
             const response = await fetch(DATA_FILE + '?v=' + Date.now());
@@ -377,12 +697,25 @@
                 const data = await response.json();
                 if (data.sections && data.sections.birthday) {
                     currentData = data;
-                    document.getElementById('fileInfo').textContent = 
-                        `📊 Загружено: ${Object.keys(currentData.sections.birthday.subcategories).length} подкатегорий, ${getTotalGreetings()} поздравлений`;
+                    hasUnsavedChanges = false;
+                    updateSaveIndicator('saved');
+                    updateFileInfo();
                     expandedSections.clear();
                     expandedSubcats.clear();
                     renderSections();
-                    showToast(`✅ Загружено ${getTotalGreetings()} поздравлений`, 'success');
+                    
+                    // Автопроверка после загрузки
+                    const issues = validateData(true);
+                    const errors = issues.filter(i => i.type === 'error').length;
+                    const warnings = issues.filter(i => i.type === 'warning').length;
+                    
+                    if (errors > 0) {
+                        showToast(`⚠️ Загружено, но есть ${errors} ошибок и ${warnings} предупреждений`, 'warning');
+                    } else if (warnings > 0) {
+                        showToast(`✅ Загружено ${getTotalGreetings()} поздравлений (${warnings} предупр.)`, 'success');
+                    } else {
+                        showToast(`✅ Загружено ${getTotalGreetings()} поздравлений`, 'success');
+                    }
                 } else {
                     showToast('❌ Раздел "birthday" не найден в файле', 'error');
                 }
@@ -402,6 +735,12 @@
             count += (sub.greetings || []).length;
         }
         return count;
+    }
+
+    function updateFileInfo() {
+        const subs = currentData.sections.birthday?.subcategories || {};
+        document.getElementById('fileInfo').textContent = 
+            `📊 Загружено: ${Object.keys(subs).length} подкатегорий, ${getTotalGreetings()} поздравлений`;
     }
 
     // ============================================================
@@ -428,8 +767,9 @@
                 const parsed = JSON.parse(content);
                 if (parsed.sections && parsed.sections.birthday) {
                     currentData = parsed;
-                    document.getElementById('fileInfo').textContent = 
-                        `📊 Загружено: ${Object.keys(currentData.sections.birthday.subcategories).length} подкатегорий, ${getTotalGreetings()} поздравлений`;
+                    hasUnsavedChanges = false;
+                    updateSaveIndicator('saved');
+                    updateFileInfo();
                     expandedSections.clear();
                     expandedSubcats.clear();
                     renderSections();
@@ -459,15 +799,35 @@
     // ===== СОХРАНЕНИЕ НА GITHUB =====
     // ============================================================
     async function saveToGitHub() {
+        // Проверка валидации перед сохранением
+        const issues = validateData(true);
+        const errors = issues.filter(i => i.type === 'error');
+        
+        if (errors.length > 0) {
+            showValidationResults(issues);
+            showToast(`❌ Найдено ${errors.length} ошибок. Исправьте их перед сохранением.`, 'error');
+            return;
+        }
+        
+        const warnings = issues.filter(i => i.type === 'warning');
+        if (warnings.length > 0) {
+            if (!confirm(`Найдено ${warnings.length} предупреждений. Продолжить сохранение?`)) {
+                showValidationResults(issues);
+                return;
+            }
+        }
+        
         if (!githubConfig.token || !githubConfig.repo) {
             showToast('❌ Сначала настройте GitHub в вкладке ⚙️!', 'error');
             switchTab('settings');
             return;
         }
+        
         const statusDiv = document.getElementById('githubStatus');
         statusDiv.textContent = '⏳ Сохранение...';
         statusDiv.className = 'github-status loading';
         showToast('⏳ Сохранение на GitHub...', 'info');
+        
         try {
             const content = JSON.stringify(currentData, null, 2);
             const encodedContent = btoa(unescape(encodeURIComponent(content)));
@@ -497,6 +857,7 @@
             if (putResponse.ok) {
                 statusDiv.textContent = '✅ Сохранено на GitHub';
                 statusDiv.className = 'github-status success';
+                markSaved();
                 showToast('✅ Сохранено на GitHub!', 'success');
             } else {
                 const error = await putResponse.json();
@@ -557,9 +918,19 @@
         const sortedSubcats = Object.entries(subcategories)
             .sort((a, b) => (a[1].order || 999) - (b[1].order || 999));
 
+        // Находим дубликаты order для подсветки
+        const orderCount = {};
+        for (const [, sub] of sortedSubcats) {
+            const o = sub.order || 999;
+            orderCount[o] = (orderCount[o] || 0) + 1;
+        }
+
         for (const [subcatKey, subcat] of sortedSubcats) {
             const isSubExpanded = expandedSubcats.has(subcatKey);
             const greetingCount = (subcat.greetings || []).length;
+            const hasOrderDup = orderCount[subcat.order || 999] > 1;
+            const hasEmptyTranslations = (subcat.greetings || []).some(g => !g.translation_ru || !g.translation_ru.trim());
+            
             html += `
                 <div class="subcategory">
                     <div class="subcategory-header ${!isSubExpanded ? 'collapsed' : ''}" onclick="toggleSubcategory('${subcatKey}')">
@@ -568,6 +939,9 @@
                             <strong>${subcat.emoji || '💬'} ${escapeHtml(subcat.name_ba || subcatKey)}</strong>
                             <span style="font-size:12px;color:#666;">(${escapeHtml(subcat.name_ru || '')})</span>
                             <span style="font-size:11px;background:#cbd5e0;padding:2px 6px;border-radius:10px;margin-left:8px;">${greetingCount}</span>
+                            <span style="font-size:11px;background:#bee3f8;padding:2px 6px;border-radius:10px;margin-left:4px;">order: ${subcat.order || 999}</span>
+                            ${hasOrderDup ? '<span style="font-size:11px;background:#fed7d7;color:#c53030;padding:2px 6px;border-radius:10px;margin-left:4px;">⚠️ дубликат order</span>' : ''}
+                            ${hasEmptyTranslations ? '<span style="font-size:11px;background:#fefcbf;color:#744210;padding:2px 6px;border-radius:10px;margin-left:4px;">⚠️ пустые переводы</span>' : ''}
                         </div>
                         <div onclick="event.stopPropagation()" style="display:flex;gap:6px;flex-wrap:wrap;">
                             <button class="btn btn-sm btn-primary" onclick="editSubcategory('${subcatKey}')">✏️</button>
@@ -580,10 +954,14 @@
             const greetings = subcat.greetings || [];
             for (let i = 0; i < greetings.length; i++) {
                 const g = greetings[i];
+                const isEmptyTrans = !g.translation_ru || !g.translation_ru.trim();
+                const isEmptyText = !g.text_ba || !g.text_ba.trim();
+                const hasWarning = isEmptyTrans || isEmptyText;
+                
                 html += `
-                    <div class="greeting-item">
-                        <div class="greeting-text">📖 ${escapeHtml(g.text_ba)}</div>
-                        <div class="translation-text">🇷🇺 ${escapeHtml(g.translation_ru || '')}</div>
+                    <div class="greeting-item ${hasWarning ? 'has-warning' : ''}">
+                        <div class="greeting-text">📖 ${escapeHtml(g.text_ba)}${isEmptyText ? ' <span style="color:#c53030;">[ПУСТО]</span>' : ''}</div>
+                        <div class="translation-text ${isEmptyTrans ? 'empty' : ''}">🇷🇺 ${isEmptyTrans ? '[Перевод не указан]' : escapeHtml(g.translation_ru)}</div>
                         <div class="inline-actions">
                             <button class="btn btn-sm btn-primary" onclick="editGreeting('${subcatKey}', ${i})">✏️</button>
                             <button class="btn btn-sm btn-danger" onclick="deleteGreeting('${subcatKey}', ${i})">🗑️</button>
@@ -609,20 +987,75 @@
         const section = currentData.sections.birthday;
         const subcats = section ? Object.keys(section.subcategories).length : 0;
         const greetings = getTotalGreetings();
+        
+        // Подсчёт проблем
+        let emptyTranslations = 0;
+        let emptyTexts = 0;
+        const orderMap = {};
+        
+        if (section) {
+            for (const sub of Object.values(section.subcategories)) {
+                if (sub.order !== undefined) {
+                    if (!orderMap[sub.order]) orderMap[sub.order] = [];
+                    orderMap[sub.order].push(sub.name_ru || sub.name_ba);
+                }
+                for (const g of (sub.greetings || [])) {
+                    if (!g.translation_ru || !g.translation_ru.trim()) emptyTranslations++;
+                    if (!g.text_ba || !g.text_ba.trim()) emptyTexts++;
+                }
+            }
+        }
+        
+        const duplicateOrders = Object.entries(orderMap).filter(([_, arr]) => arr.length > 1);
+        
         const html = `
             <div class="fade-in">
                 <div class="stats">
                     <div class="stat-card"><div class="stat-number">${subcats}</div><div class="stat-label">Категорий</div></div>
                     <div class="stat-card"><div class="stat-number">${greetings}</div><div class="stat-label">Поздравлений</div></div>
                     <div class="stat-card"><div class="stat-number">${subcats > 0 ? Math.round(greetings / subcats) : 0}</div><div class="stat-label">В среднем на категорию</div></div>
+                    <div class="stat-card ${emptyTranslations > 0 ? 'warning' : ''}"><div class="stat-number">${emptyTranslations}</div><div class="stat-label">Пустых переводов</div></div>
+                    <div class="stat-card ${emptyTexts > 0 ? 'danger' : ''}"><div class="stat-number">${emptyTexts}</div><div class="stat-label">Пустых текстов</div></div>
+                    <div class="stat-card ${duplicateOrders.length > 0 ? 'warning' : ''}"><div class="stat-number">${duplicateOrders.length}</div><div class="stat-label">Дубликатов order</div></div>
                 </div>
+                
                 <div style="margin-top:20px;padding:15px;background:#f7fafc;border-radius:10px;">
-                    <h4>📋 Список категорий</h4>
-                    <ul style="margin-top:10px;list-style:none;padding:0;">
-                        ${section ? Object.entries(section.subcategories).map(([key, sub]) => 
-                            `<li style="padding:4px 0;border-bottom:1px solid #eee;">${sub.emoji || '💬'} ${escapeHtml(sub.name_ba)} — ${(sub.greetings || []).length} поздравлений</li>`
-                        ).join('') : '<li>Нет категорий</li>'}
-                    </ul>
+                    <h4 style="margin-bottom:10px;">📋 Список категорий</h4>
+                    <table style="width:100%;border-collapse:collapse;font-size:14px;">
+                        <thead>
+                            <tr style="border-bottom:2px solid #e2e8f0;text-align:left;">
+                                <th style="padding:8px;">Emoji</th>
+                                <th style="padding:8px;">Ключ</th>
+                                <th style="padding:8px;">Название (баш)</th>
+                                <th style="padding:8px;">Название (рус)</th>
+                                <th style="padding:8px;">Order</th>
+                                <th style="padding:8px;">Поздравлений</th>
+                                <th style="padding:8px;">Проблемы</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${section ? Object.entries(section.subcategories)
+                                .sort((a, b) => (a[1].order || 999) - (b[1].order || 999))
+                                .map(([key, sub]) => {
+                                    const isEmptyTrans = (sub.greetings || []).filter(g => !g.translation_ru || !g.translation_ru.trim()).length;
+                                    const hasDupOrder = orderMap[sub.order] && orderMap[sub.order].length > 1;
+                                    const problems = [];
+                                    if (isEmptyTrans > 0) problems.push(`⚠️ ${isEmptyTrans} без перевода`);
+                                    if (hasDupOrder) problems.push('⚠️ дубликат order');
+                                    return `
+                                        <tr style="border-bottom:1px solid #eee;">
+                                            <td style="padding:8px;font-size:20px;">${sub.emoji || '💬'}</td>
+                                            <td style="padding:8px;font-family:monospace;font-size:12px;color:#666;">${key}</td>
+                                            <td style="padding:8px;">${escapeHtml(sub.name_ba)}</td>
+                                            <td style="padding:8px;color:#666;">${escapeHtml(sub.name_ru)}</td>
+                                            <td style="padding:8px;">${sub.order || 999}</td>
+                                            <td style="padding:8px;">${(sub.greetings || []).length}</td>
+                                            <td style="padding:8px;font-size:12px;">${problems.join('<br>') || '✅'}</td>
+                                        </tr>
+                                    `;
+                                }).join('') : '<tr><td colspan="7" style="padding:20px;text-align:center;">Нет категорий</td></tr>'}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         `;
@@ -669,6 +1102,21 @@
                     <button class="btn btn-success" onclick="saveToGitHub()">🚀 Сохранить на GitHub</button>
                     <button class="btn btn-info" onclick="loadFromGitHub()">📥 Загрузить с GitHub</button>
                 </div>
+                
+                <div style="margin-top:30px;padding:15px;background:#f7fafc;border-radius:10px;">
+                    <h4 style="margin-bottom:10px;">💾 Автосохранение черновика</h4>
+                    <p style="font-size:14px;color:#666;margin-bottom:10px;">
+                        Изменения автоматически сохраняются в localStorage каждые 2 секунды после правки.
+                        Черновик хранится до момента успешного сохранения на GitHub.
+                    </p>
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                        <button class="btn btn-secondary" onclick="restoreDraft()">↩️ Восстановить черновик</button>
+                        <button class="btn btn-danger" onclick="if(confirm('Удалить черновик?')) { clearDraft(); showToast('Черновик удалён', 'success'); }">🗑️ Удалить черновик</button>
+                        <span id="draftStatus" style="padding:8px 15px;font-size:14px;color:#666;display:flex;align-items:center;">
+                            ${hasDraft() ? '📝 Черновик есть' : '💾 Черновика нет'}
+                        </span>
+                    </div>
+                </div>
             </div>
         `;
         container.innerHTML = html;
@@ -712,14 +1160,31 @@
 
     // ===== ДОБАВЛЕНИЕ КАТЕГОРИИ =====
     function addSubcategory() {
+        // Находим максимальный order
+        const subs = currentData.sections.birthday.subcategories || {};
+        const maxOrder = Math.max(0, ...Object.values(subs).map(s => s.order || 0));
+        
         currentModalContext = { type: 'addSubcategory' };
         showModal('Добавить категорию', `
             <div class="form-group"><label>Ключ (латиницей)</label><input type="text" id="key" placeholder="mother"></div>
             <div class="form-group"><label>Название (баш)</label><input type="text" id="name_ba" placeholder="Әсәйгә"></div>
             <div class="form-group"><label>Название (рус)</label><input type="text" id="name_ru" placeholder="Маме"></div>
             <div class="form-group"><label>Emoji</label><input type="text" id="emoji" value="👩"></div>
-            <div class="form-group"><label>Порядок</label><input type="number" id="order" value="999"></div>
+            <div class="form-group">
+                <label>Порядок</label>
+                <input type="number" id="order" value="${maxOrder + 1}">
+                <div class="form-hint">Используется для сортировки. Уникальное число (1, 2, 3...)</div>
+                <div id="orderWarning" class="form-warning" style="display:none;"></div>
+            </div>
         `);
+        
+        // Проверка order в реальном времени
+        setTimeout(() => {
+            const orderInput = document.getElementById('order');
+            if (orderInput) {
+                orderInput.addEventListener('input', checkOrderDuplicate);
+            }
+        }, 100);
     }
 
     function editSection() {
@@ -739,14 +1204,53 @@
             <div class="form-group"><label>Название (баш)</label><input type="text" id="name_ba" value="${escapeHtml(subcat.name_ba || '')}"></div>
             <div class="form-group"><label>Название (рус)</label><input type="text" id="name_ru" value="${escapeHtml(subcat.name_ru || '')}"></div>
             <div class="form-group"><label>Emoji</label><input type="text" id="emoji" value="${escapeHtml(subcat.emoji || '')}"></div>
-            <div class="form-group"><label>Порядок</label><input type="number" id="order" value="${subcat.order || 999}"></div>
+            <div class="form-group">
+                <label>Порядок</label>
+                <input type="number" id="order" value="${subcat.order || 999}">
+                <div id="orderWarning" class="form-warning" style="display:none;"></div>
+            </div>
         `);
+        
+        setTimeout(() => {
+            const orderInput = document.getElementById('order');
+            if (orderInput) {
+                orderInput.addEventListener('input', () => checkOrderDuplicate(subcatKey));
+            }
+        }, 100);
+    }
+
+    function checkOrderDuplicate(exceptKey = null) {
+        const orderInput = document.getElementById('order');
+        const warningEl = document.getElementById('orderWarning');
+        if (!orderInput || !warningEl) return;
+        
+        const order = parseInt(orderInput.value);
+        if (isNaN(order)) {
+            warningEl.style.display = 'none';
+            return;
+        }
+        
+        const subs = currentData.sections.birthday.subcategories || {};
+        const duplicates = Object.entries(subs)
+            .filter(([key, sub]) => key !== exceptKey && sub.order === order)
+            .map(([key, sub]) => sub.name_ru || sub.name_ba || key);
+        
+        if (duplicates.length > 0) {
+            warningEl.style.display = 'block';
+            warningEl.textContent = `⚠️ Order=${order} уже используется: ${duplicates.join(', ')}`;
+        } else {
+            warningEl.style.display = 'none';
+        }
     }
 
     function deleteSubcategory(subcatKey) {
-        if (confirm(`Удалить категорию "${subcatKey}"?`)) {
+        const subcat = currentData.sections.birthday.subcategories[subcatKey];
+        const count = (subcat.greetings || []).length;
+        if (confirm(`Удалить категорию "${subcat.name_ba || subcatKey}" (${count} поздравлений)?`)) {
             delete currentData.sections.birthday.subcategories[subcatKey];
+            markUnsaved();
             renderSections();
+            updateFileInfo();
             showToast('Категория удалена', 'success');
         }
     }
@@ -769,9 +1273,13 @@
     }
 
     function deleteGreeting(subcatKey, index) {
-        if (confirm('Удалить поздравление?')) {
+        const greeting = currentData.sections.birthday.subcategories[subcatKey].greetings[index];
+        const preview = greeting.text_ba.substring(0, 60) + (greeting.text_ba.length > 60 ? '...' : '');
+        if (confirm(`Удалить поздравление?\n\n"${preview}"`)) {
             currentData.sections.birthday.subcategories[subcatKey].greetings.splice(index, 1);
+            markUnsaved();
             renderSections();
+            updateFileInfo();
             showToast('Поздравление удалено', 'success');
         }
     }
@@ -803,6 +1311,7 @@
             section.name_ba = document.getElementById('name_ba').value;
             section.name_ru = document.getElementById('name_ru').value;
             section.emoji = document.getElementById('emoji').value;
+            markUnsaved();
             closeModal();
             renderSections();
             showToast('✅ Раздел обновлён', 'success');
@@ -812,26 +1321,37 @@
         if (ctx.type === 'addSubcategory') {
             const key = document.getElementById('key').value.trim();
             if (!key) { showToast('Введите ключ', 'error'); return; }
-            if (section.subcategories[key]) { showToast('Категория существует', 'error'); return; }
+            if (!/^[a-z0-9_]+$/.test(key)) {
+                showToast('Ключ должен содержать только латиницу, цифры и _', 'error');
+                return;
+            }
+            if (section.subcategories[key]) { showToast('Категория с таким ключом уже существует', 'error'); return; }
+            
+            const name_ba = document.getElementById('name_ba').value.trim();
+            if (!name_ba) { showToast('Введите название (баш)', 'error'); return; }
+            
             section.subcategories[key] = {
-                name_ba: document.getElementById('name_ba').value,
-                name_ru: document.getElementById('name_ru').value,
-                emoji: document.getElementById('emoji').value,
+                name_ba: name_ba,
+                name_ru: document.getElementById('name_ru').value.trim(),
+                emoji: document.getElementById('emoji').value.trim(),
                 order: parseInt(document.getElementById('order').value) || 999,
                 greetings: []
             };
+            markUnsaved();
             closeModal();
             renderSections();
+            updateFileInfo();
             showToast(`✅ Категория "${key}" добавлена`, 'success');
             return;
         }
 
         if (ctx.type === 'editSubcategory') {
             const subcat = section.subcategories[ctx.subcatKey];
-            subcat.name_ba = document.getElementById('name_ba').value;
-            subcat.name_ru = document.getElementById('name_ru').value;
-            subcat.emoji = document.getElementById('emoji').value;
+            subcat.name_ba = document.getElementById('name_ba').value.trim();
+            subcat.name_ru = document.getElementById('name_ru').value.trim();
+            subcat.emoji = document.getElementById('emoji').value.trim();
             subcat.order = parseInt(document.getElementById('order').value) || 999;
+            markUnsaved();
             closeModal();
             renderSections();
             showToast('✅ Категория обновлена', 'success');
@@ -840,22 +1360,31 @@
 
         if (ctx.type === 'addGreeting') {
             const text_ba = document.getElementById('text_ba').value.trim();
-            if (!text_ba) { showToast('Введите текст', 'error'); return; }
+            if (!text_ba) { showToast('Введите текст (баш)', 'error'); return; }
+            
+            const translation_ru = document.getElementById('translation_ru').value.trim();
+            
             section.subcategories[ctx.subcatKey].greetings.push({
                 text_ba: text_ba,
-                translation_ru: document.getElementById('translation_ru').value
+                translation_ru: translation_ru
             });
+            markUnsaved();
             closeModal();
             renderSections();
             updateFileInfo();
-            showToast('✅ Поздравление добавлено', 'success');
+            if (!translation_ru) {
+                showToast('✅ Добавлено (но перевод пуст)', 'warning');
+            } else {
+                showToast('✅ Поздравление добавлено', 'success');
+            }
             return;
         }
 
         if (ctx.type === 'editGreeting') {
             const greeting = section.subcategories[ctx.subcatKey].greetings[ctx.index];
-            greeting.text_ba = document.getElementById('text_ba').value;
-            greeting.translation_ru = document.getElementById('translation_ru').value;
+            greeting.text_ba = document.getElementById('text_ba').value.trim();
+            greeting.translation_ru = document.getElementById('translation_ru').value.trim();
+            markUnsaved();
             closeModal();
             renderSections();
             showToast('✅ Поздравление обновлено', 'success');
@@ -869,11 +1398,6 @@
     // ============================================================
     // ===== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ =====
     // ============================================================
-    function updateFileInfo() {
-        document.getElementById('fileInfo').textContent = 
-            `📊 Загружено: ${Object.keys(currentData.sections.birthday.subcategories).length} подкатегорий, ${getTotalGreetings()} поздравлений`;
-    }
-
     function switchTab(tab) {
         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
         const tabs = document.querySelectorAll('.tab');
@@ -916,7 +1440,19 @@
 
     function clearAll() {
         if (confirm('Очистить все данные? (необратимо)')) {
-            currentData = { sections: { birthday: { name_ba: 'Тыуған көн', name_ru: 'День рождения', emoji: '🎂', order: 1, subcategories: {} } }, holidays_widget: [] };
+            currentData = { 
+                sections: { 
+                    birthday: { 
+                        name_ba: 'Тыуған көн', 
+                        name_ru: 'День рождения', 
+                        emoji: '🎂', 
+                        order: 1, 
+                        subcategories: {} 
+                    } 
+                }, 
+                holidays_widget: [] 
+            };
+            markUnsaved();
             expandedSections.clear();
             expandedSubcats.clear();
             renderSections();
@@ -930,25 +1466,46 @@
         toast.className = `toast ${type}`;
         toast.textContent = message;
         document.body.appendChild(toast);
-        setTimeout(() => toast.remove(), 3000);
+        setTimeout(() => toast.remove(), 3500);
     }
 
     function escapeHtml(str) {
         if (!str) return '';
-        return str.replace(/[&<>]/g, function(m) {
-            if (m === '&') return '&amp;';
-            if (m === '<') return '&lt;';
-            if (m === '>') return '&gt;';
-            return m;
-        });
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
     }
+
+    // ============================================================
+    // ===== ПРЕДУПРЕЖДЕНИЕ О НЕСОХРАНЁННЫХ ИЗМЕНЕНИЯХ =====
+    // ============================================================
+    window.addEventListener('beforeunload', (e) => {
+        if (hasUnsavedChanges) {
+            e.preventDefault();
+            e.returnValue = 'У вас есть несохранённые изменения. Вы уверены, что хотите уйти?';
+            return e.returnValue;
+        }
+    });
 
     // ============================================================
     // ===== ИНИЦИАЛИЗАЦИЯ =====
     // ============================================================
     loadData();
+    
+    // Индикация черновика
+    if (hasDraft()) {
+        const timestamp = localStorage.getItem(DRAFT_TIMESTAMP_KEY);
+        const date = new Date(parseInt(timestamp));
+        console.log(`📝 Найден черновик от ${date.toLocaleString('ru-RU')}`);
+    }
+    
     console.log('🎂 Редактор поздравлений с днём рождения загружен');
     console.log('📄 Работает с файлом: data/data_birthday.json');
+    console.log('💾 Автосохранение: включено (каждые 2 сек после изменения)');
+    console.log('✅ Валидация: проверка order, пустых полей, переводов');
     </script>
 </body>
 </html>
