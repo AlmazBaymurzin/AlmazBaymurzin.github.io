@@ -28,10 +28,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
     <meta name="theme-color" content="#8b5a2b">
     
-    <!-- ===== YANDEX RTB LOADER (ОБЯЗАТЕЛЬНО В HEAD, ОДИН РАЗ) ===== -->
-    <script>window.yaContextCb = window.yaContextCb || [];</script>
-    <script src="https://yandex.ru/ads/system/context.js" async></script>
-    
     <!-- ===== HREFLANG ===== -->
     <link rel="alternate" hreflang="ba" href="https://yilyhuzzar.ru/">
     <link rel="alternate" hreflang="ru" href="https://yilyhuzzar.ru/">
@@ -120,6 +116,7 @@
             --transition: 0.3s ease;
         }
 
+        /* ===== ТЁМНАЯ ТЕМА ===== */
         body.dark-mode {
             --bg-primary: #1a1410;
             --bg-secondary: #2a1f18;
@@ -163,6 +160,7 @@
             --progress-bar: linear-gradient(to right, #d4a373, #c9944d);
         }
 
+        /* ===== ОСНОВНЫЕ СТИЛИ ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
@@ -189,6 +187,7 @@
             transition: background var(--transition), color var(--transition);
         }
         
+        /* ===== ИНДИКАТОР ПРОГРЕССА ЧТЕНИЯ ===== */
         .reading-progress {
             position: fixed;
             top: 0;
@@ -201,6 +200,7 @@
             box-shadow: 0 0 6px rgba(139, 90, 43, 0.4);
         }
         
+        /* ===== НАВИГАЦИЯ ПО ПОЛУЧАТЕЛЯМ — КАРУСЕЛЬ ===== */
         .recipients-nav-block {
             margin-top: 18px;
             max-width: 900px;
@@ -297,6 +297,7 @@
         }
         .carousel-arrow:active { transform: scale(0.95); }
         
+        /* ===== КНОПКА СЛУЧАЙНОГО ПОЗДРАВЛЕНИЯ ===== */
         .random-btn-wrapper {
             margin-top: 16px;
             text-align: center;
@@ -336,6 +337,7 @@
             100% { transform: rotate(360deg); }
         }
         
+        /* ===== КАРТОЧКА ДНЯ ===== */
         #cardOfDayContainer { min-height: 200px; }
         .card-of-day {
             background: var(--bg-card-of-day);
@@ -366,11 +368,13 @@
         }
         .card-of-day-trans { font-size: 0.75rem; color: var(--text-light); transition: color var(--transition); }
         
+        /* ===== КОНТЕЙНЕРЫ ===== */
         #contentContainer { min-height: 300px; }
         #breadcrumbs { margin-bottom: 12px; }
         .sections-grid { min-height: 200px; }
         .cards-grid { min-height: 200px; }
         
+        /* ===== КНОПКА ТЕМЫ ===== */
         .theme-toggle {
             position: fixed;
             top: 20px;
@@ -391,6 +395,7 @@
         }
         .theme-toggle:hover { transform: scale(1.05); box-shadow: var(--shadow-hover); }
         
+        /* ===== КНОПКА НАВЕРХ ===== */
         .scroll-top {
             position: fixed;
             bottom: 30px;
@@ -425,8 +430,11 @@
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 10px 25px rgba(139, 90, 43, 0.4);
         }
-        body.dark-mode .scroll-top { color: #1a1410; }
+        body.dark-mode .scroll-top {
+            color: #1a1410;
+        }
         
+        /* ===== НАВИГАЦИЯ ===== */
         .back-button {
             display: none;
             align-items: center;
@@ -443,6 +451,7 @@
         }
         .back-button:hover { background: var(--btn-share); transform: translateX(-2px); }
         
+        /* ===== ХЛЕБНЫЕ КРОШКИ ===== */
         #breadcrumbs {
             display: flex;
             align-items: center;
@@ -478,7 +487,9 @@
             cursor: default;
             background: var(--bg-badge);
         }
-        #breadcrumbs .crumb.current:hover { background: var(--bg-badge); }
+        #breadcrumbs .crumb.current:hover {
+            background: var(--bg-badge);
+        }
         #breadcrumbs .crumb .crumb-count {
             font-size: 0.65rem;
             background: var(--bg-card);
@@ -495,6 +506,7 @@
             user-select: none;
         }
         
+        /* ===== ИНДИКАТОР ЗАГРУЗКИ (тонкая полоска) ===== */
         #loadingIndicator {
             display: none;
             position: fixed;
@@ -518,6 +530,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
+        /* ===== АНИМАЦИЯ ПОЯВЛЕНИЯ КАРТОЧЕК ===== */
         @keyframes cardAppear {
             from { opacity: 0; transform: translateY(20px) scale(0.98); }
             to { opacity: 1; transform: translateY(0) scale(1); }
@@ -525,6 +538,7 @@
         .subcat-card, .card {
             animation: cardAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1) backwards;
         }
+        /* Задержки для эффекта волны */
         .subcat-card:nth-child(1), .card:nth-child(1) { animation-delay: 0.03s; }
         .subcat-card:nth-child(2), .card:nth-child(2) { animation-delay: 0.06s; }
         .subcat-card:nth-child(3), .card:nth-child(3) { animation-delay: 0.09s; }
@@ -533,66 +547,15 @@
         .subcat-card:nth-child(6), .card:nth-child(6) { animation-delay: 0.18s; }
         .subcat-card:nth-child(7), .card:nth-child(7) { animation-delay: 0.21s; }
         .subcat-card:nth-child(8), .card:nth-child(8) { animation-delay: 0.24s; }
-        .subcat-card:nth-child(n+9), .card:nth-child(n+9) { animation-delay: 0.27s; }
+        .subcat-card:nth-child(9), .card:nth-child(9) { animation-delay: 0.27s; }
+        .subcat-card:nth-child(10), .card:nth-child(10) { animation-delay: 0.3s; }
+        .subcat-card:nth-child(n+11), .card:nth-child(n+11) { animation-delay: 0.33s; }
         
         .card-of-day {
             animation: cardAppear 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards;
         }
         
-        /* ===== РЕКЛАМНЫЕ БЛОКИ (Лента) ===== */
-        .ad-lenta-block {
-            grid-column: 1 / -1;
-            margin: 20px 0;
-            padding: 10px 0 6px 0;
-            background: var(--bg-card);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-            animation: cardAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1) backwards;
-            animation-delay: 0.15s;
-            box-shadow: var(--shadow-card);
-            min-height: 130px;
-        }
-        .ad-lenta-block .ad-label {
-            font-size: 0.6rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            padding: 0 16px 6px 16px;
-            font-weight: 600;
-            opacity: 0.55;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .ad-lenta-block .ad-label::before {
-            content: '';
-            display: inline-block;
-            width: 3px;
-            height: 3px;
-            background: var(--text-muted);
-            border-radius: 50%;
-            opacity: 0.6;
-        }
-        .ad-lenta-block > div:last-child {
-            min-height: 100px;
-        }
-        .ad-lenta-block.ad-empty {
-            display: none !important;
-        }
-        
-        @media (max-width: 600px) {
-            .ad-lenta-block {
-                margin: 16px 0;
-                border-radius: 14px;
-                padding: 8px 0 4px 0;
-            }
-            .ad-lenta-block .ad-label {
-                font-size: 0.55rem;
-                padding: 0 12px 4px 12px;
-            }
-        }
-        
+        /* ===== СКЕЛЕТОН ===== */
         .skeleton-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -692,6 +655,7 @@
             100% { opacity: 1; }
         }
         
+        /* ===== ОСНОВНЫЕ КАРТОЧКИ ===== */
         .sections-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -716,6 +680,7 @@
         .section-name, .subcat-name { font-size: 1.1rem; font-weight: 600; color: var(--text-secondary); transition: color var(--transition); }
         .section-desc, .subcat-desc { font-size: 0.7rem; color: var(--text-muted); margin-top: 4px; transition: color var(--transition); }
         
+        /* ===== КАРТОЧКИ ПОЗДРАВЛЕНИЙ ===== */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -784,6 +749,7 @@
         .copy-only-btn { background: var(--btn-copy); color: var(--text-secondary); }
         .copy-only-btn:hover { background: var(--btn-copy-hover); transform: translateY(-1px); }
         
+        /* ===== TOAST ===== */
         .toast-notification {
             position: fixed;
             bottom: 20px;
@@ -804,6 +770,7 @@
             to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
         
+        /* ===== МОДАЛКА СЛУЧАЙНОГО ПОЗДРАВЛЕНИЯ ===== */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -917,68 +884,7 @@
         .modal-btn-secondary { background: var(--btn-share); color: var(--text-secondary); }
         .modal-btn-secondary:hover { background: var(--btn-share-hover); transform: translateY(-2px); }
         
-        /* ===== ОБ АВТОРЕ ===== */
-        .about-author-footer {
-            margin-top: 40px;
-            padding: 28px 32px;
-            background: var(--bg-card);
-            border-radius: 24px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-card);
-            text-align: center;
-            transition: background var(--transition), border-color var(--transition);
-            animation: cardAppear 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards;
-            display: none;
-        }
-        .about-author-footer.visible {
-            display: block;
-        }
-        .about-author-emoji {
-            font-size: 2.2rem;
-            margin-bottom: 8px;
-            display: inline-block;
-            animation: pulse-heart 2.5s ease-in-out infinite;
-        }
-        @keyframes pulse-heart {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-        }
-        .about-author-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-            font-family: 'Georgia', serif;
-            letter-spacing: 0.5px;
-            transition: color var(--transition);
-        }
-        .about-author-title::after {
-            content: '';
-            display: block;
-            width: 40px;
-            height: 2px;
-            background: var(--text-muted);
-            margin: 10px auto 0;
-            border-radius: 2px;
-            opacity: 0.4;
-        }
-        .about-author-text {
-            font-size: 0.92rem;
-            line-height: 1.7;
-            color: var(--text-primary);
-            margin-bottom: 12px;
-            max-width: 680px;
-            margin-left: auto;
-            margin-right: auto;
-            font-family: 'Georgia', serif;
-            transition: color var(--transition);
-        }
-        .about-author-text:last-child { margin-bottom: 0; }
-        .about-author-text strong {
-            color: var(--text-secondary);
-            font-weight: 700;
-        }
-        
+        /* ===== ФУТЕР ===== */
         .footer {
             text-align: center;
             margin-top: 40px;
@@ -1068,6 +974,7 @@
             transition: color var(--transition);
         }
         
+        /* ===== ОШИБКА ===== */
         .error-container {
             display: flex;
             flex-direction: column;
@@ -1098,6 +1005,7 @@
         body.dark-mode .error-btn:hover { background: #d4a373; color: #1a1410; }
         .error-details { font-size: 0.65rem; color: var(--text-muted); margin-top: 12px; transition: color var(--transition); }
         
+        /* ===== АДАПТИВ ===== */
         @media (max-width: 900px) {
             .card-of-day-content { font-size: 0.9rem; }
             h1 { font-size: 1.6rem; }
@@ -1107,7 +1015,9 @@
                 font-size: 0.78rem;
                 padding: 10px 12px;
             }
-            #breadcrumbs .crumb { padding: 3px 8px; }
+            #breadcrumbs .crumb {
+                padding: 3px 8px;
+            }
             .back-button { padding: 6px 12px; font-size: 0.75rem; }
             .theme-toggle {
                 top: 10px;
@@ -1139,14 +1049,6 @@
             .carousel-arrow { width: 28px; height: 28px; font-size: 1rem; }
             .recipients-track { gap: 6px; }
             .random-btn { padding: 10px 22px; font-size: 0.82rem; }
-            .about-author-footer {
-                padding: 22px 18px;
-                border-radius: 20px;
-                margin-top: 30px;
-            }
-            .about-author-emoji { font-size: 1.9rem; }
-            .about-author-title { font-size: 1rem; }
-            .about-author-text { font-size: 0.87rem; line-height: 1.65; }
         }
         @media (max-width: 480px) {
             body { padding: 10px; }
@@ -1189,6 +1091,7 @@
             .modal-actions button { min-width: 100%; }
         }
         
+        /* ===== УМЕНЬШЕНИЕ АНИМАЦИЙ ДЛЯ ПРЕДПОЧТЕНИЙ ===== */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
@@ -1199,9 +1102,16 @@
     </style>
 </head>
 <body>
+    <!-- Индикатор прогресса чтения -->
     <div class="reading-progress" id="readingProgress"></div>
+    
+    <!-- Индикатор загрузки -->
     <div id="loadingIndicator"></div>
+
+    <!-- Кнопка переключения темы -->
     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Переключить тему">🌙</button>
+
+    <!-- Кнопка наверх -->
     <button class="scroll-top" id="scrollTop" onclick="scrollToTop()" aria-label="Наверх">↑</button>
 
     <div class="container">
@@ -1209,17 +1119,21 @@
             <h1>🎂 Тыуған көн менән башҡортса ҡотлауҙар</h1>
             <div class="sub">1000+ поздравлений на башкирском языке с переводом на русский</div>
 
+            <!-- ===== НАВИГАЦИЯ ПО ПОЛУЧАТЕЛЯМ — КАРУСЕЛЬ ===== -->
             <div class="recipients-nav-block" id="recipientsNavBlock">
                 <span class="recipients-label">🎁 Кемде ҡотларға? / Кого поздравить?</span>
                 <div class="recipients-carousel-wrapper">
                     <button class="carousel-arrow carousel-arrow-left" id="carouselPrev" aria-label="Назад">‹</button>
                     <div class="recipients-carousel" id="recipientsCarousel">
-                        <div class="recipients-track" id="recipientsTrack"></div>
+                        <div class="recipients-track" id="recipientsTrack">
+                            <!-- Заполняется через JS -->
+                        </div>
                     </div>
                     <button class="carousel-arrow carousel-arrow-right" id="carouselNext" aria-label="Вперёд">›</button>
                 </div>
             </div>
 
+            <!-- ===== КНОПКА СЛУЧАЙНОГО ПОЗДРАВЛЕНИЯ ===== -->
             <div class="random-btn-wrapper">
                 <button class="random-btn" onclick="showRandomGreeting()">
                     <span class="dice">🎲</span>
@@ -1244,28 +1158,7 @@
             <div id="contentContainer"></div>
         </div>
 
-        <!-- ===== ОБ АВТОРЕ ===== -->
-        <div class="about-author-footer" id="aboutAuthorFooter">
-            <div class="about-author-emoji">🤍</div>
-            <h3 class="about-author-title">Автор тураһында</h3>
-            <p class="about-author-text">
-                Һаумыһығыҙ! Минең исемем — <strong>Назгөл</strong>, миңә 25 йәш. 
-                Мин декрет ялымда был сайтты эшләргә булдым: бер яҡтан — үҙемде 
-                юғалтмаҫ өсөн, икенсе яҡтан — туған башҡорт телемде һаҡлау 
-                өсөн бер өлөш индерер өсөн.
-            </p>
-            <p class="about-author-text">
-                Бында һеҙ 1000-дән ашыу ҡотлау таба алаһығыҙ — уларҙы мин 
-                һөйөү менән йыйҙым, тикшерҙем һәм тәржемә иттем. 
-                Был минең өсөн ябай эш түгел, ә йөрәктән килгән хеҙмәт.
-            </p>
-            <p class="about-author-text">
-                Әгәр был сайт һеҙгә яҡын булһа, файҙалы булһа — 
-                миңә бер һүҙ яҙығыҙ. Быны ишетһәм, мин тағы ла тырышып 
-                эшләрмен. 💛
-            </p>
-        </div>
-
+        <!-- ===== ФУТЕР ===== -->
         <div class="footer">
             <div class="project-name">ЙЫЛЫ һҮҘҘӘР<br><small>yily huzzar</small></div>
             <div class="footer-divider"></div>
@@ -1292,17 +1185,21 @@
         </div>
     </div>
 
+    <!-- ===== МОДАЛКА СЛУЧАЙНОГО ПОЗДРАВЛЕНИЯ ===== -->
     <div class="modal-overlay" id="randomModal" onclick="if(event.target === this) closeRandomModal()">
         <div class="modal-card">
             <button class="modal-close" onclick="closeRandomModal()" aria-label="Закрыть">✕</button>
-            <div id="randomModalContent"></div>
+            <div id="randomModalContent">
+                <!-- Заполняется через JS -->
+            </div>
         </div>
     </div>
 
     <script>
     // ================================================================
-    // ===== КОНФИГ =====
+    // ========== ПОЛНАЯ ВЕРСИЯ — ТОЛЬКО ДЕНЬ РОЖДЕНИЯ + РОТАЦИЯ ==========
     // ================================================================
+
     let siteData = null;
     let currentSection = null;
     let currentSubcat = null;
@@ -1317,71 +1214,6 @@
     const themeToggle = document.getElementById('themeToggle');
     const scrollTopBtn = document.getElementById('scrollTop');
     const readingProgress = document.getElementById('readingProgress');
-    const aboutAuthorFooter = document.getElementById('aboutAuthorFooter');
-
-    // ================================================================
-    // ===== ЯНДЕКС.РЕКЛАМА — ПРАВИЛЬНАЯ ИНИЦИАЛИЗАЦИЯ =====
-    // ================================================================
-    
-    // ID блоков из Яндекс.Рекламы (Лента)
-    const AD_BLOCKS = {
-        home1: 'R-A-19695489-12',
-        home2: 'R-A-19695489-13',
-        cat1: 'R-A-19695489-14',
-        cat2: 'R-A-19695489-15',
-        cat3: 'R-A-19695489-16'
-    };
-    
-    window.__loadedAds = window.__loadedAds || {};
-    
-    // ✅ ПРАВИЛЬНАЯ загрузка через yaContextCb
-    function loadAdBlock(blockId) {
-        if (!blockId) return;
-        if (window.__loadedAds[blockId]) return;
-        window.__loadedAds[blockId] = true;
-        
-        window.yaContextCb = window.yaContextCb || [];
-        window.yaContextCb.push(() => {
-            try {
-                Ya.Context.AdvManager.render({
-                    blockId: blockId,
-                    renderTo: 'yandex_rtb_' + blockId,
-                    type: 'feed',       // 👈 ОБЯЗАТЕЛЬНО для «Ленты»!
-                    async: true
-                });
-            } catch (e) {
-                console.warn('Ошибка загрузки рекламы', blockId, e);
-            }
-        });
-    }
-    
-    function renderAdBlock(blockId) {
-        if (!blockId) return '';
-        return `
-            <div class="ad-lenta-block" data-ad-id="${blockId}">
-                <div class="ad-label">Реклама</div>
-                <div id="yandex_rtb_${blockId}"></div>
-            </div>
-        `;
-    }
-    
-    function renderAdsInContainer() {
-        const ads = contentContainer.querySelectorAll('[data-ad-id]');
-        ads.forEach((adBlock) => {
-            const adId = adBlock.getAttribute('data-ad-id');
-            if (!adId) return;
-            
-            loadAdBlock(adId);
-            
-            // Проверяем через 8 секунд — если пусто, значит AdBlock
-            setTimeout(() => {
-                const inner = document.getElementById('yandex_rtb_' + adId);
-                if (inner && inner.children.length === 0 && !inner.innerHTML.trim()) {
-                    adBlock.classList.add('ad-empty');
-                }
-            }, 8000);
-        });
-    }
 
     // ================================================================
     // ===== ПРОГРЕСС ЧТЕНИЯ + КНОПКА НАВЕРХ =====
@@ -1392,10 +1224,12 @@
         if (scrollThrottle) return;
         scrollThrottle = true;
         requestAnimationFrame(() => {
+            // Прогресс чтения
             const h = document.documentElement.scrollHeight - window.innerHeight;
             const progress = h > 0 ? (window.scrollY / h) * 100 : 0;
             readingProgress.style.width = Math.min(100, Math.max(0, progress)) + '%';
             
+            // Кнопка наверх
             if (window.scrollY > 500) {
                 scrollTopBtn.classList.add('visible');
             } else {
@@ -1411,7 +1245,7 @@
     }
 
     // ================================================================
-    // ===== КАРУСЕЛЬ =====
+    // ===== НАВИГАЦИЯ ПО ПОЛУЧАТЕЛЯМ — КАРУСЕЛЬ =====
     // ================================================================
     
     let carouselState = {
@@ -1454,7 +1288,10 @@
         }
         
         track.innerHTML = html;
-        requestAnimationFrame(() => initCarousel());
+        
+        requestAnimationFrame(() => {
+            initCarousel();
+        });
     }
 
     function initCarousel() {
@@ -1482,12 +1319,28 @@
         const prevBtn = document.getElementById('carouselPrev');
         const nextBtn = document.getElementById('carouselNext');
         
-        if (prevBtn) prevBtn.onclick = () => { pauseAutoScroll(5000); moveCarousel(-1); };
-        if (nextBtn) nextBtn.onclick = () => { pauseAutoScroll(5000); moveCarousel(1); };
+        if (prevBtn) {
+            prevBtn.onclick = () => {
+                pauseAutoScroll(5000);
+                moveCarousel(-1);
+            };
+        }
+        if (nextBtn) {
+            nextBtn.onclick = () => {
+                pauseAutoScroll(5000);
+                moveCarousel(1);
+            };
+        }
         
-        carousel.addEventListener('mouseenter', () => { carouselState.isPaused = true; });
-        carousel.addEventListener('mouseleave', () => { carouselState.isPaused = false; });
-        carousel.addEventListener('touchstart', () => { carouselState.isPaused = true; }, { passive: true });
+        carousel.addEventListener('mouseenter', () => {
+            carouselState.isPaused = true;
+        });
+        carousel.addEventListener('mouseleave', () => {
+            carouselState.isPaused = false;
+        });
+        carousel.addEventListener('touchstart', () => {
+            carouselState.isPaused = true;
+        }, { passive: true });
         carousel.addEventListener('touchend', () => {
             setTimeout(() => { carouselState.isPaused = false; }, 3000);
         });
@@ -1502,36 +1355,49 @@
         const step = 160;
         const newOffset = carouselState.offset + (direction * step);
         
-        if (newOffset > carouselState.maxOffset) carouselState.offset = 0;
-        else if (newOffset < 0) carouselState.offset = carouselState.maxOffset;
-        else carouselState.offset = newOffset;
+        if (newOffset > carouselState.maxOffset) {
+            carouselState.offset = 0;
+        } else if (newOffset < 0) {
+            carouselState.offset = carouselState.maxOffset;
+        } else {
+            carouselState.offset = newOffset;
+        }
         
         track.style.transform = `translateX(-${carouselState.offset}px)`;
     }
 
     function startAutoScroll() {
-        if (carouselState.autoScrollTimer) clearInterval(carouselState.autoScrollTimer);
+        if (carouselState.autoScrollTimer) {
+            clearInterval(carouselState.autoScrollTimer);
+        }
         
         carouselState.autoScrollTimer = setInterval(() => {
             if (carouselState.isPaused || carouselState.maxOffset === 0) return;
             
             const step = 160;
             let newOffset = carouselState.offset + step;
-            if (newOffset > carouselState.maxOffset) newOffset = 0;
+            
+            if (newOffset > carouselState.maxOffset) {
+                newOffset = 0;
+            }
             
             carouselState.offset = newOffset;
             const track = document.getElementById('recipientsTrack');
-            if (track) track.style.transform = `translateX(-${carouselState.offset}px)`;
+            if (track) {
+                track.style.transform = `translateX(-${carouselState.offset}px)`;
+            }
         }, 4000);
     }
 
     function pauseAutoScroll(duration = 4000) {
         carouselState.isPaused = true;
-        setTimeout(() => { carouselState.isPaused = false; }, duration);
+        setTimeout(() => {
+            carouselState.isPaused = false;
+        }, duration);
     }
 
     // ================================================================
-    // ===== РОТАЦИЯ =====
+    // ===== ФУНКЦИИ РОТАЦИИ =====
     // ================================================================
     
     function getRotationSeed() {
@@ -1565,47 +1431,69 @@
             const j = Math.floor(random() * (i + 1));
             [arr[i], arr[j]] = [arr[j], arr[i]];
         }
+        
         return arr;
     }
     
     function shuffleGreetings(greetings, subcatKey) {
         if (!greetings || greetings.length === 0) return greetings;
-        return seededShuffle(greetings, getRotationSeed() + '_' + subcatKey);
+        const seed = getRotationSeed() + '_' + subcatKey;
+        return seededShuffle(greetings, seed);
     }
 
-    // ===== ТЕМА =====
+    // ===== ПЕРЕКЛЮЧЕНИЕ ТЕМЫ =====
     function toggleTheme() {
-        const isDark = document.body.classList.toggle('dark-mode');
+        const body = document.body;
+        const isDark = body.classList.toggle('dark-mode');
         themeToggle.textContent = isDark ? '☀️' : '🌙';
         localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light');
     }
 
     function loadTheme() {
-        const isDark = localStorage.getItem(THEME_KEY) === 'dark';
-        document.body.classList.toggle('dark-mode', isDark);
-        themeToggle.textContent = isDark ? '☀️' : '🌙';
+        const saved = localStorage.getItem(THEME_KEY);
+        const isDark = saved === 'dark';
+        if (isDark) {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        } else {
+            document.body.classList.remove('dark-mode');
+            themeToggle.textContent = '🌙';
+        }
     }
 
     // ===== ШАРИНГ =====
-    function getShareUrl() { return encodeURIComponent(window.location.href); }
-    function getShareTitle() { return encodeURIComponent('Тыуған көн менән башҡортса ҡотлауҙар'); }
+    function getShareUrl() {
+        return encodeURIComponent(window.location.href);
+    }
+
+    function getShareTitle() {
+        return encodeURIComponent('Тыуған көн менән башҡортса ҡотлауҙар');
+    }
 
     function shareTelegram() {
-        window.open(`https://t.me/share/url?url=${getShareUrl()}&text=${getShareTitle()}`, '_blank', 'width=600,height=400');
+        const url = `https://t.me/share/url?url=${getShareUrl()}&text=${getShareTitle()}`;
+        window.open(url, '_blank', 'width=600,height=400');
         if (typeof ym !== 'undefined') ym(109825367, 'reachGoal', 'share_telegram');
     }
+
     function shareVK() {
-        window.open(`https://vk.com/share.php?url=${getShareUrl()}&title=${getShareTitle()}`, '_blank', 'width=600,height=400');
+        const url = `https://vk.com/share.php?url=${getShareUrl()}&title=${getShareTitle()}`;
+        window.open(url, '_blank', 'width=600,height=400');
         if (typeof ym !== 'undefined') ym(109825367, 'reachGoal', 'share_vk');
     }
+
     function shareWhatsApp() {
-        window.open(`https://api.whatsapp.com/send?text=${getShareTitle()}%0A${getShareUrl()}`, '_blank', 'width=600,height=400');
+        const url = `https://api.whatsapp.com/send?text=${getShareTitle()}%0A${getShareUrl()}`;
+        window.open(url, '_blank', 'width=600,height=400');
         if (typeof ym !== 'undefined') ym(109825367, 'reachGoal', 'share_whatsapp');
     }
+
     function shareOK() {
-        window.open(`https://connect.ok.ru/offer?url=${getShareUrl()}&title=${getShareTitle()}`, '_blank', 'width=600,height=400');
+        const url = `https://connect.ok.ru/offer?url=${getShareUrl()}&title=${getShareTitle()}`;
+        window.open(url, '_blank', 'width=600,height=400');
         if (typeof ym !== 'undefined') ym(109825367, 'reachGoal', 'share_ok');
     }
+
     function copyLink() {
         const url = window.location.href;
         if (navigator.clipboard) {
@@ -1613,8 +1501,11 @@
                 showToast('🔗 Ссылка скопирована!');
                 if (typeof ym !== 'undefined') ym(109825367, 'reachGoal', 'copy_link');
             }).catch(() => fallbackCopy(url));
-        } else fallbackCopy(url);
+        } else {
+            fallbackCopy(url);
+        }
     }
+
     function fallbackCopy(text) {
         const textarea = document.createElement('textarea');
         textarea.value = text;
@@ -1623,27 +1514,39 @@
         document.execCommand('copy');
         document.body.removeChild(textarea);
         showToast('🔗 Ссылка скопирована!');
+        if (typeof ym !== 'undefined') ym(109825367, 'reachGoal', 'copy_link');
     }
 
-    // ===== ЗАГРУЗКА =====
+    // ================================================================
+    // ===== ОПТИМИЗИРОВАННАЯ ЗАГРУЗКА =====
+    // ================================================================
     async function loadAllJsonFiles() {
         try {
             const response = await fetch('data/data_birthday.json?v=' + Date.now());
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
             
             const data = await response.json();
+            
             if (!data.sections || !data.sections.birthday) {
-                throw new Error('Раздел "birthday" не найден');
+                throw new Error('Раздел "birthday" не найден в data_birthday.json');
             }
             
             siteData = {
-                sections: { birthday: data.sections.birthday },
+                sections: {
+                    birthday: data.sections.birthday
+                },
                 holidays_widget: data.holidays_widget || []
             };
             
-            console.log('✅ Загружено:', Object.keys(siteData.sections.birthday.subcategories).length, 'категорий');
-            console.log('📊 Всего поздравлений:', getTotalGreetingsCount());
+            console.log('✅ Загружено: data/data_birthday.json');
+            console.log(`📊 Подкатегорий: ${Object.keys(siteData.sections.birthday.subcategories).length}`);
+            console.log(`📊 Всего поздравлений: ${getTotalGreetingsCount()}`);
+            
             return true;
+            
         } catch (error) {
             console.error('❌ Ошибка загрузки:', error);
             showError('Не удалось загрузить данные', error.message);
@@ -1660,61 +1563,136 @@
         return count;
     }
 
-    // ===== СКЕЛЕТОН =====
+    // ================================================================
+    // ===== УЛУЧШЕННЫЙ СКЕЛЕТОН =====
+    // ================================================================
+    
     function showSkeleton(type = 'sections') {
         let html = '';
+        
         if (type === 'sections') {
-            html = `<div class="skeleton-header"></div><div class="skeleton-grid">`;
+            // Скелетон для главной — карточки категорий
+            html = `
+                <div class="skeleton-header"></div>
+                <div class="skeleton-grid">
+            `;
             for (let i = 0; i < 8; i++) {
-                html += `<div class="skeleton-card"><div class="skeleton-emoji"></div><div class="skeleton-line short"></div><div class="skeleton-line medium"></div></div>`;
+                html += `
+                    <div class="skeleton-card">
+                        <div class="skeleton-emoji"></div>
+                        <div class="skeleton-line short"></div>
+                        <div class="skeleton-line medium"></div>
+                    </div>
+                `;
             }
             html += `</div>`;
         } else if (type === 'greetings') {
-            html = `<div class="skeleton-header"></div><div class="skeleton-grid-cards">`;
+            // Скелетон для категории — карточки поздравлений
+            html = `
+                <div class="skeleton-header"></div>
+                <div class="skeleton-grid-cards">
+            `;
             for (let i = 0; i < 6; i++) {
-                html += `<div class="skeleton-card-greeting"><div class="skeleton-badge"></div><div class="skeleton-text-line w90"></div><div class="skeleton-text-line w80"></div><div class="skeleton-text-line w70"></div><div class="skeleton-text-line w60"></div><div class="skeleton-divider"></div><div class="skeleton-text-line w70"></div><div class="skeleton-text-line w50"></div><div class="skeleton-btn-group"><div class="skeleton-btn"></div><div class="skeleton-btn"></div></div></div>`;
+                html += `
+                    <div class="skeleton-card-greeting">
+                        <div class="skeleton-badge"></div>
+                        <div class="skeleton-text-line w90"></div>
+                        <div class="skeleton-text-line w80"></div>
+                        <div class="skeleton-text-line w70"></div>
+                        <div class="skeleton-text-line w60"></div>
+                        <div class="skeleton-divider"></div>
+                        <div class="skeleton-text-line w70"></div>
+                        <div class="skeleton-text-line w50"></div>
+                        <div class="skeleton-btn-group">
+                            <div class="skeleton-btn"></div>
+                            <div class="skeleton-btn"></div>
+                        </div>
+                    </div>
+                `;
             }
             html += `</div>`;
+        } else if (type === 'cardOfDay') {
+            html = `
+                <div class="skeleton-card-greeting" style="margin-bottom:20px;">
+                    <div class="skeleton-badge" style="width:180px;"></div>
+                    <div class="skeleton-text-line w90"></div>
+                    <div class="skeleton-text-line w80"></div>
+                    <div class="skeleton-text-line w60"></div>
+                </div>
+            `;
         }
+        
         contentContainer.innerHTML = html;
     }
     
+    // Скелетон для карточки дня (отдельный)
     function showCardOfDaySkeleton() {
-        cardOfDayContainer.innerHTML = `<div class="skeleton-card-greeting" style="margin-bottom:0;"><div class="skeleton-badge" style="width:200px;"></div><div class="skeleton-text-line w90"></div><div class="skeleton-text-line w80"></div><div class="skeleton-text-line w60"></div></div>`;
+        cardOfDayContainer.innerHTML = `
+            <div class="skeleton-card-greeting" style="margin-bottom:0;">
+                <div class="skeleton-badge" style="width:200px;"></div>
+                <div class="skeleton-text-line w90"></div>
+                <div class="skeleton-text-line w80"></div>
+                <div class="skeleton-text-line w60"></div>
+            </div>
+        `;
     }
 
+    // ===== ОШИБКА =====
     function showError(message, details = '') {
-        contentContainer.innerHTML = `<div class="error-container"><div class="error-icon">😔</div><div class="error-title">${escapeHtml(message)}</div><div class="error-message">${escapeHtml(details || 'Попробуйте обновить страницу')}</div><button class="error-btn" onclick="retryLoad()">🔄 Повторить</button><div class="error-details">Проверьте файл <strong>data/data_birthday.json</strong></div></div>`;
+        contentContainer.innerHTML = `
+            <div class="error-container">
+                <div class="error-icon">😔</div>
+                <div class="error-title">${escapeHtml(message)}</div>
+                <div class="error-message">${escapeHtml(details || 'Попробуйте обновить страницу')}</div>
+                <button class="error-btn" onclick="retryLoad()">🔄 Повторить / Ҡабатлау</button>
+                <div class="error-details">Если проблема повторяется, проверьте файл <strong>data/data_birthday.json</strong></div>
+            </div>
+        `;
     }
 
     async function retryLoad() {
         showSkeleton('sections');
-        await new Promise(r => setTimeout(r, 300));
+        await new Promise(resolve => setTimeout(resolve, 300));
         const loaded = await loadAllJsonFiles();
-        if (loaded) { renderRecipientsNav(); renderSections(); }
+        if (loaded) {
+            renderRecipientsNav();
+            renderSections();
+        }
     }
 
     // ===== SPA-НАВИГАЦИЯ =====
-    const navState = { currentSection: null, currentSubcat: null, navigationHistory: [] };
+    const navState = {
+        currentSection: null,
+        currentSubcat: null,
+        navigationHistory: []
+    };
 
     function parseUrl() {
         const hash = window.location.hash.replace('#', '');
         if (!hash) return { section: null, subcat: null };
         const parts = hash.split('/');
-        return { section: parts[0] || null, subcat: parts[1] || null };
+        return {
+            section: parts[0] || null,
+            subcat: parts[1] || null
+        };
     }
 
     function navigateTo(section, subcat, options = {}) {
         const { replace = false, animate = true } = options;
+        
         navState.currentSection = section;
         navState.currentSubcat = subcat;
         
         const url = new URL(window.location);
-        if (section) url.hash = subcat ? `${section}/${subcat}` : section;
-        else url.hash = '';
+        if (section) {
+            url.hash = subcat ? `${section}/${subcat}` : section;
+        } else {
+            url.hash = '';
+        }
         
-        if (replace) history.replaceState({ section, subcat }, '', url.toString());
-        else {
+        if (replace) {
+            history.replaceState({ section, subcat }, '', url.toString());
+        } else {
             history.pushState({ section, subcat }, '', url.toString());
             navState.navigationHistory.push({ section, subcat });
         }
@@ -1723,21 +1701,30 @@
         updateBreadcrumbs(section, subcat);
         updateBackButton();
         updateMeta(section, subcat);
+        
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // ===== ОБНОВЛЕНИЕ КОНТЕНТА =====
     function updateContent(section, subcat, animate = true) {
         showLoading(true);
         
-        if (section && subcat) showSkeleton('greetings');
-        else showSkeleton('sections');
+        // Показываем правильный скелетон
+        if (section && subcat) {
+            showSkeleton('greetings');
+        } else {
+            showSkeleton('sections');
+        }
         
         setTimeout(() => {
             let html = '';
+            
             if (!siteData || !siteData.sections.birthday) {
-                html = '<div style="text-align:center;padding:60px;">⚠️ Раздел не найден.</div>';
+                html = '<div style="text-align:center;padding:60px;">⚠️ Раздел "Тыуған көн" не найден.</div>';
             } else if (section && subcat) {
                 html = renderGreetingsContent(section, subcat);
+            } else if (section) {
+                html = renderSubcategoriesContent(section);
             } else {
                 html = renderSectionsContent();
             }
@@ -1747,13 +1734,6 @@
             
             bindEvents(section, subcat);
             showLoading(false);
-            renderAdsInContainer();
-            
-            // Показываем/скрываем блок "Об авторе"
-            if (aboutAuthorFooter) {
-                if (!section && !subcat) aboutAuthorFooter.classList.add('visible');
-                else aboutAuthorFooter.classList.remove('visible');
-            }
             
             if (!section && !subcat) {
                 cardOfDayContainer.style.display = 'block';
@@ -1765,6 +1745,7 @@
         }, 100);
     }
 
+    // ===== РЕНДЕР РАЗДЕЛОВ =====
     function renderSectionsContent() {
         const section = siteData.sections.birthday;
         if (!section) return '<div style="text-align:center;padding:40px;">❌ Раздел не найден</div>';
@@ -1772,7 +1753,8 @@
         let html = `
             <div style="margin-bottom:16px;">
                 <h2 style="color:var(--text-secondary);display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-                    <span>🎂</span><span>Кемде ҡотларға?</span>
+                    <span>🎂</span>
+                    <span>Кемде ҡотларға?</span>
                     <span style="font-size:0.7rem;color:var(--text-muted);">Выберите получателя</span>
                 </h2>
             </div>
@@ -1782,15 +1764,9 @@
         const subcats = Object.entries(section.subcategories)
             .sort((a, b) => (a[1].order || 999) - (b[1].order || 999));
         
-        let cardCount = 0;
         for (const [key, subcat] of subcats) {
             const hasGreetings = (subcat.greetings || []).length > 0;
             const greetingCount = hasGreetings ? subcat.greetings.length : 0;
-            
-            cardCount++;
-            
-            if (cardCount === 5) html += renderAdBlock(AD_BLOCKS.home1);
-            if (cardCount === 10) html += renderAdBlock(AD_BLOCKS.home2);
             
             html += `
                 <div class="subcat-card" data-subcat="${key}" ${!hasGreetings ? 'style="opacity:0.6;"' : ''}>
@@ -1807,6 +1783,11 @@
         return html;
     }
 
+    function renderSubcategoriesContent(sectionKey) {
+        return renderSectionsContent();
+    }
+
+    // ===== РЕНДЕР ПОЗДРАВЛЕНИЙ =====
     function renderGreetingsContent(sectionKey, subcatKey) {
         const section = siteData.sections.birthday;
         if (!section) return '<div style="text-align:center;padding:40px;">❌ Раздел не найден</div>';
@@ -1814,10 +1795,17 @@
         const subcat = section.subcategories[subcatKey];
         if (!subcat) return '<div style="text-align:center;padding:40px;">❌ Подкатегория не найдена</div>';
         
-        const greetings = shuffleGreetings(subcat.greetings || [], subcatKey);
+        const originalGreetings = subcat.greetings || [];
+        const greetings = shuffleGreetings(originalGreetings, subcatKey);
         
         if (greetings.length === 0) {
-            return `<div style="text-align:center;padding:60px;color:var(--text-muted);"><div style="font-size:3rem;margin-bottom:16px;">${escapeHtml(subcat.emoji)}</div><h3 style="color:var(--text-secondary);">${escapeHtml(subcat.name_ba)}</h3><p style="margin-top:8px;">⏳ Поздравления скоро появятся</p></div>`;
+            return `
+                <div style="text-align:center;padding:60px;color:var(--text-muted);">
+                    <div style="font-size:3rem;margin-bottom:16px;">${escapeHtml(subcat.emoji)}</div>
+                    <h3 style="color:var(--text-secondary);">${escapeHtml(subcat.name_ba)}</h3>
+                    <p style="margin-top:8px;">⏳ Поздравления скоро появятся</p>
+                </div>
+            `;
         }
         
         let html = `
@@ -1834,11 +1822,6 @@
         
         greetings.forEach((g, index) => {
             const greetingId = generateGreetingId(sectionKey, subcatKey, index, g.text_ba);
-            const cardNum = index + 1;
-            
-            if (cardNum === 6) html += renderAdBlock(AD_BLOCKS.cat1);
-            if (cardNum === 11) html += renderAdBlock(AD_BLOCKS.cat2);
-            if (cardNum === 16) html += renderAdBlock(AD_BLOCKS.cat3);
             
             html += `
                 <div class="card">
@@ -1846,8 +1829,12 @@
                     <div class="card-text">${escapeHtml(g.text_ba)}</div>
                     <div class="card-translation">💭 ${escapeHtml(g.translation_ru)}</div>
                     <div class="button-group">
-                        <button class="share-btn" data-greeting-id="${greetingId}" data-ba='${escapeHtml(g.text_ba)}' data-ru='${escapeHtml(g.translation_ru)}'>📤 Поделиться</button>
-                        <button class="copy-only-btn" data-greeting-id="${greetingId}" data-ba='${escapeHtml(g.text_ba)}'>📋 Только башк.</button>
+                        <button class="share-btn" data-greeting-id="${greetingId}" data-ba='${escapeHtml(g.text_ba)}' data-ru='${escapeHtml(g.translation_ru)}'>
+                            📤 Поделиться
+                        </button>
+                        <button class="copy-only-btn" data-greeting-id="${greetingId}" data-ba='${escapeHtml(g.text_ba)}'>
+                            📋 Только башк.
+                        </button>
                     </div>
                 </div>
             `;
@@ -1857,49 +1844,83 @@
         return html;
     }
 
+    // ===== BIND EVENTS =====
     function bindEvents(section, subcat) {
         document.querySelectorAll('.subcat-card').forEach(card => {
             card.addEventListener('click', function() {
-                const key = this.getAttribute('data-subcat');
+                const subcatKey = this.getAttribute('data-subcat');
                 const hasGreetings = !this.style.opacity || this.style.opacity !== '0.6';
-                if (hasGreetings) navigateTo('birthday', key);
-                else showToast('⏳ Поздравления в разработке');
+                if (hasGreetings) {
+                    navigateTo('birthday', subcatKey);
+                } else {
+                    showToast('⏳ Поздравления в разработке');
+                }
             });
         });
         
         document.querySelectorAll('.share-btn').forEach(btn => {
             btn.addEventListener('click', function() {
-                copyToClipboard(this.getAttribute('data-ru'), this.getAttribute('data-ba'), this.getAttribute('data-greeting-id'));
+                const baText = this.getAttribute('data-ba');
+                const ruText = this.getAttribute('data-ru');
+                const id = this.getAttribute('data-greeting-id');
+                copyToClipboard(ruText, baText, id);
             });
         });
         
         document.querySelectorAll('.copy-only-btn').forEach(btn => {
             btn.addEventListener('click', function() {
-                copyOnlyBashkir(this.getAttribute('data-ba'), this.getAttribute('data-greeting-id'));
+                const baText = this.getAttribute('data-ba');
+                const id = this.getAttribute('data-greeting-id');
+                copyOnlyBashkir(baText, id);
             });
         });
     }
 
+    // ================================================================
+    // ===== ХЛЕБНЫЕ КРОШКИ (улучшенные) =====
+    // ================================================================
+    
     function updateBreadcrumbs(section, subcat) {
         if (!breadcrumbs) return;
-        let html = `<span class="crumb" onclick="navigateTo()"><span>🏠</span><span>Главная</span></span>`;
+        
+        const totalCount = getTotalGreetingsCount();
+        let html = '';
+        
+        // Главная
+        html += `<span class="crumb" onclick="navigateTo()">
+            <span>🏠</span>
+            <span>Главная</span>
+        </span>`;
         
         if (section) {
             html += `<span class="separator">›</span>`;
-            const catCount = siteData?.sections?.birthday ? Object.keys(siteData.sections.birthday.subcategories).length : 0;
-            html += `<span class="crumb" onclick="navigateTo('birthday')"><span>🎂</span><span>Тыуған көн</span>${catCount > 0 ? `<span class="crumb-count">${catCount}</span>` : ''}</span>`;
+            
+            // Раздел "Тыуған көн"
+            const birthdayData = siteData?.sections?.birthday;
+            const catCount = birthdayData ? Object.keys(birthdayData.subcategories).length : 0;
+            html += `<span class="crumb" onclick="navigateTo('birthday')">
+                <span>🎂</span>
+                <span>Тыуған көн</span>
+                ${catCount > 0 ? `<span class="crumb-count">${catCount}</span>` : ''}
+            </span>`;
         }
         
         if (subcat && siteData?.sections.birthday?.subcategories[subcat]) {
             const subcatData = siteData.sections.birthday.subcategories[subcat];
             const greetingsCount = (subcatData.greetings || []).length;
+            
             html += `<span class="separator">›</span>`;
-            html += `<span class="crumb current"><span>${escapeHtml(subcatData.emoji || '💬')}</span><span>${escapeHtml(subcatData.name_ba || subcat)}</span>${greetingsCount > 0 ? `<span class="crumb-count">${greetingsCount}</span>` : ''}</span>`;
+            html += `<span class="crumb current">
+                <span>${escapeHtml(subcatData.emoji || '💬')}</span>
+                <span>${escapeHtml(subcatData.name_ba || subcat)}</span>
+                ${greetingsCount > 0 ? `<span class="crumb-count">${greetingsCount}</span>` : ''}
+            </span>`;
         }
         
         breadcrumbs.innerHTML = html;
     }
 
+    // ===== КНОПКА НАЗАД =====
     function updateBackButton() {
         if (!backBtn) return;
         const show = navState.currentSection !== null || navState.navigationHistory.length > 0;
@@ -1907,25 +1928,44 @@
     }
 
     backBtn.addEventListener('click', function() {
-        if (navState.navigationHistory.length > 1) history.back();
-        else if (navState.currentSection) navigateTo(null);
-        else showToast('🏠 Вы на главной');
+        if (navState.navigationHistory.length > 1) {
+            history.back();
+        } else if (navState.currentSection) {
+            navigateTo(null);
+        } else {
+            showToast('🏠 Вы на главной странице');
+        }
     });
 
-    // ===== СЛУЧАЙНОЕ =====
+    // ================================================================
+    // ===== СЛУЧАЙНОЕ ПОЗДРАВЛЕНИЕ =====
+    // ================================================================
+    
     function showRandomGreeting() {
-        if (!siteData?.sections?.birthday) { showToast('⏳ Данные загружаются...'); return; }
-        
-        const all = [];
-        for (const [subcatKey, subcat] of Object.entries(siteData.sections.birthday.subcategories)) {
-            (subcat.greetings || []).forEach(g => all.push({ subcat, subcatKey, greeting: g }));
+        if (!siteData?.sections?.birthday) {
+            showToast('⏳ Данные ещё загружаются...');
+            return;
         }
         
-        if (all.length === 0) { showToast('⏳ Поздравления не добавлены'); return; }
+        // Собираем все поздравления
+        const allGreetings = [];
+        for (const [subcatKey, subcat] of Object.entries(siteData.sections.birthday.subcategories)) {
+            (subcat.greetings || []).forEach(g => {
+                allGreetings.push({ subcat, subcatKey, greeting: g });
+            });
+        }
         
-        const { subcat, greeting } = all[Math.floor(Math.random() * all.length)];
+        if (allGreetings.length === 0) {
+            showToast('⏳ Поздравления ещё не добавлены');
+            return;
+        }
         
-        document.getElementById('randomModalContent').innerHTML = `
+        const random = allGreetings[Math.floor(Math.random() * allGreetings.length)];
+        const { subcat, greeting } = random;
+        
+        // Заполняем модалку
+        const modalContent = document.getElementById('randomModalContent');
+        modalContent.innerHTML = `
             <div class="modal-category">
                 <span>${escapeHtml(subcat.emoji || '💬')}</span>
                 <span>${escapeHtml(subcat.name_ba)}</span>
@@ -1935,16 +1975,26 @@
             <div class="modal-text">${escapeHtml(greeting.text_ba)}</div>
             <div class="modal-translation">💭 ${escapeHtml(greeting.translation_ru)}</div>
             <div class="modal-actions">
-                <button class="modal-btn-primary" onclick="copyRandomGreeting()">📋 Скопировать</button>
-                <button class="modal-btn-secondary" onclick="showRandomGreeting()">🎲 Ещё одно</button>
-                <button class="modal-btn-secondary" onclick="shareRandomGreeting()">📤 Поделиться</button>
+                <button class="modal-btn-primary" onclick="copyRandomGreeting()">
+                    📋 Скопировать
+                </button>
+                <button class="modal-btn-secondary" onclick="showRandomGreeting()">
+                    🎲 Ещё одно
+                </button>
+                <button class="modal-btn-secondary" onclick="shareRandomGreeting()">
+                    📤 Поделиться
+                </button>
             </div>
         `;
         
+        // Сохраняем текущее поздравление
         window.__currentRandomGreeting = greeting;
+        
+        // Показываем модалку
         document.getElementById('randomModal').classList.add('active');
         document.body.style.overflow = 'hidden';
         
+        // Метрика
         if (typeof ym !== 'undefined') ym(109825367, 'reachGoal', 'random_greeting');
     }
     
@@ -1956,51 +2006,118 @@
     async function copyRandomGreeting() {
         const g = window.__currentRandomGreeting;
         if (!g) return;
+        
         const text = `${g.text_ba}\n\n💭 ${g.translation_ru}`;
+        
         try {
             await navigator.clipboard.writeText(text);
             showToast('✅ Скопировано!');
-        } catch (e) { fallbackCopy(text); }
+        } catch (e) {
+            fallbackCopy(text);
+        }
+        
+        if (typeof ym !== 'undefined') ym(109825367, 'reachGoal', 'random_greeting_copy');
     }
     
     async function shareRandomGreeting() {
         const g = window.__currentRandomGreeting;
         if (!g) return;
+        
         const text = `${g.text_ba}\n\n💭 ${g.translation_ru}\n\n🔗 https://yilyhuzzar.ru`;
+        
         if (navigator.share) {
             try {
-                await navigator.share({ title: 'Поздравление на башкирском', text });
+                await navigator.share({
+                    title: 'Поздравление с днём рождения на башкирском',
+                    text: text
+                });
                 showToast('Поделились!');
-            } catch (err) { if (err.name !== 'AbortError') fallbackCopy(text); }
-        } else fallbackCopy(text);
-    }
-    
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeRandomModal();
-    });
-
-    // ===== META =====
-    function updateMeta(section, subcat) {
-        let title = 'Тыуған көн менән башҡортса ҡотлауҙар — 1000+ теләктәр, шиғырҙар, тостар';
-        let description = 'Тыуған көн менән башҡортса ҡотлауҙар. 1000+ матур теләктәр, шиғырҙар, тостар. Маме, папе, бабушке, дедушке, брату, сестре, другу, подруге — на башкирском языке с переводом.';
-        
-        if (subcat && siteData?.sections.birthday?.subcategories[subcat]) {
-            const s = siteData.sections.birthday.subcategories[subcat];
-            title = `${s.name_ba} тыуған көн менән ҡотлау башҡортса — ${s.name_ru}`;
-            description = `${s.name_ba} (${s.name_ru}) — ${(s.greetings || []).length}+ поздравлений на башкирском языке с переводом.`;
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    fallbackCopy(text);
+                }
+            }
+        } else {
+            fallbackCopy(text);
         }
         
+        if (typeof ym !== 'undefined') ym(109825367, 'reachGoal', 'random_greeting_share');
+    }
+    
+    // Закрытие модалки по Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeRandomModal();
+        }
+    });
+
+    // ===== МЕТА-ТЕГИ =====
+    function updateMeta(section, subcat) {
+        let title = 'Тыуған көн менән башҡортса ҡотлауҙар — 1000+ теләктәр, шиғырҙар, тостар';
+        let description = 'Тыуған көн менән башҡортса ҡотлауҙар. 1000+ матур теләктәр, шиғырҙар, тостар. Маме, папе, бабушке, дедушке, брату, сестре, другу, подруге — на башкирском языке с переводом. Башҡортса ҡотлау тыуған көнгә — йөрәктән килгән йылы һүҙҙәр.';
+        let keywords = 'тыуған көн менән ҡотлау башҡортса, поздравление с днем рождения на башкирском языке, башҡортса ҡотлау тыуған көн, с днём рождения на башкирском, башкирские поздравления с днём рождения';
+
+        if (section === 'birthday') {
+            title = 'Тыуған көн менән башҡортса ҡотлауҙар — 1000+ теләктәр, шиғырҙар, тостар';
+            description = 'Тыуған көн менән башҡортса ҡотлауҙар. 1000+ матур теләктәр, шиғырҙар, тостар. Маме, папе, бабушке, дедушке, брату, сестре, другу, подруге — на башкирском языке с переводом.';
+            keywords = 'тыуған көн менән башҡортса ҡотлауҙар, башҡортса ҡотлауҙар, поздравления на башкирском языке';
+        }
+
+        const subcatMeta = {
+            'mother': { title: 'Әсәйгә тыуған көн менән ҡотлау башҡортса — 20+ матур теләктәр', description: 'Әсәйегеҙҙе тыуған көнө менән башҡортса матур итеп ҡотлау. 20+ теләктәр, шиғырҙар, тостар. С переводом на русский.' },
+            'father': { title: 'Атайға тыуған көн менән ҡотлау башҡортса — 25+ теләктәр', description: 'Атайығыҙҙы тыуған көнө менән башҡортса матур итеп ҡотлау. 25+ теләктәр, шиғырҙар, тостар. С переводом на русский.' },
+            'brother': { title: 'Ҡустыға тыуған көн менән ҡотлау башҡортса — 20+ теләктәр', description: 'Ҡустығыҙҙы тыуған көнө менән башҡортса матур итеп ҡотлау. 20+ теләктәр, шиғырҙар, тостар.' },
+            'sister': { title: 'Һеңлегә тыуған көн менән ҡотлау башҡортса — 20+ теләктәр', description: 'Һеңлегеҙҙе тыуған көнө менән башҡортса матур итеп ҡотлау. 20+ теләктәр, шиғырҙар, тостар.' },
+            'stelder_sister': { title: 'Апайға тыуған көн менән ҡотлау башҡортса — 20+ теләктәр', description: 'Апайығыҙҙы тыуған көнө менән башҡортса матур итеп ҡотлау.' },
+            'elder_brother': { title: 'Ағайға тыуған көн менән ҡотлау башҡортса — 20+ теләктәр', description: 'Ағайығыҙҙы тыуған көнө менән башҡортса матур итеп ҡотлау.' },
+            'grandma': { title: 'Өләсәйгә тыуған көн менән ҡотлау башҡортса — 20+ теләктәр', description: 'Өләсәйегеҙҙе тыуған көнө менән башҡортса матур итеп ҡотлау.' },
+            'grandpa': { title: 'Олатайға тыуған көн менән ҡотлау башҡортса — 25+ теләктәр', description: 'Олатайығыҙҙы тыуған көнө менән башҡортса матур итеп ҡотлау.' },
+            'bestfriend': { title: 'Иң яҡшы дуҫҡа тыуған көн менән ҡотлау башҡортса — 20+ теләктәр', description: 'Иң яҡшы дуҫығыҙҙы тыуған көнө менән башҡортса матур итеп ҡотлау.' },
+            'bestgirlfriend': { title: 'Иң яҡшы әхирәткә тыуған көн менән ҡотлау башҡортса — 20+ теләктәр', description: 'Иң яҡшы әхирәтегеҙҙе тыуған көнө менән башҡортса матур итеп ҡотлау.' },
+            'daughter': { title: 'Ҡыҙға тыуған көн менән ҡотлау башҡортса — 15+ теләктәр', description: 'Ҡыҙығыҙҙы тыуған көнө менән башҡортса матур итеп ҡотлау.' },
+            'son': { title: 'Улыға тыуған көн менән ҡотлау башҡортса — 20+ теләктәр', description: 'Улығыҙҙы тыуған көнө менән башҡортса матур итеп ҡотлау.' },
+            'beloved_wife': { title: 'Ҡатынға тыуған көн менән ҡотлау башҡортса — 15+ теләктәр', description: 'Ҡатынығыҙҙы тыуған көнө менән башҡортса матур итеп ҡотлау.' },
+            'beloved_girl': { title: 'Ҡыҙға тыуған көн менән ҡотлау башҡортса — 10+ теләктәр', description: 'Яратҡан ҡыҙығыҙҙы тыуған көнө менән башҡортса матур итеп ҡотлау.' },
+            'woman': { title: 'Яратҡан ҡатынға тыуған көн менән ҡотлау башҡортса — 10+ теләктәр', description: 'Яратҡан ҡатынығыҙҙы тыуған көнө менән башҡортса матур итеп ҡотлау.' },
+            'man': { title: 'Ир-егеткә тыуған көн менән ҡотлау башҡортса — 20+ теләктәр', description: 'Ир-егетте тыуған көнө менән башҡортса матур итеп ҡотлау.' },
+            'mother_in_law': { title: 'Ҡәйнәгә тыуған көн менән ҡотлау башҡортса — 13+ теләктәр', description: 'Ҡәйнәгеҙҙе тыуған көнө менән башҡортса матур итеп ҡотлау.' },
+            'sister_in_law': { title: 'Еңгәйгә (жене брата) тыуған көн менән ҡотлау башҡортса — 10+ теләктәр', description: 'Еңгәйегеҙҙе (жена брата) тыуған көнө менән башҡортса матур итеп ҡотлау.' },
+            'aunt': { title: 'Инәйгә (тёте) тыуған көн менән ҡотлау башҡортса — 5+ теләктәр', description: 'Инәйегеҙҙе (тётю) тыуған көнө менән башҡортса матур итеп ҡотлау.' },
+            'uncle': { title: 'Бабайға (дяде) тыуған көн менән ҡотлау башҡортса — 5+ теләктәр', description: 'Бабайығыҙҙы (дядю) тыуған көнө менән башҡортса матур итеп ҡотлау.' },
+            'jubilee': { title: 'Юбилейға ҡотлауҙар башҡортса — 50, 55, 60, 70 йәш', description: 'Юбилейға ҡотлауҙар башҡортса. 50, 55, 60, 70 йәшлек юбилейҙар өсөн матур теләктәр.' }
+        };
+
+        if (subcat && subcatMeta[subcat]) {
+            title = subcatMeta[subcat].title;
+            description = subcatMeta[subcat].description;
+            keywords = `${subcat}, ${subcatMeta[subcat].title}, тыуған көн менән ҡотлау башҡортса, поздравление на башкирском языке с днём рождения`;
+        } else if (subcat && siteData?.sections.birthday?.subcategories[subcat]) {
+            const subcatData = siteData.sections.birthday.subcategories[subcat];
+            const targetBa = subcatData.name_ba;
+            const targetRu = subcatData.name_ru || '';
+            title = `${targetBa} тыуған көн менән ҡотлау башҡортса — ${targetRu}`;
+            description = `${targetBa} (${targetRu}) тыуған көн менән ҡотлау башҡортса. ${subcatData.greetings?.length || 0}+ матур теләктәр, шиғырҙар, тостар.`;
+        }
+
         document.title = title;
-        const m = document.querySelector('meta[name="description"]');
-        if (m) m.setAttribute('content', description);
-        const ot = document.querySelector('meta[property="og:title"]');
-        if (ot) ot.setAttribute('content', title);
-        const od = document.querySelector('meta[property="og:description"]');
-        if (od) od.setAttribute('content', description);
+        
+        const metaDescription = document.querySelector('meta[name="description"]');
+        if (metaDescription) metaDescription.setAttribute('content', description);
+        
+        const metaKeywords = document.querySelector('meta[name="keywords"]');
+        if (metaKeywords) metaKeywords.setAttribute('content', keywords);
+        
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) ogTitle.setAttribute('content', title);
+        
+        const ogDescription = document.querySelector('meta[property="og:description"]');
+        if (ogDescription) ogDescription.setAttribute('content', description);
     }
 
     function showLoading(active) {
-        if (loadingIndicator) loadingIndicator.className = active ? 'active' : '';
+        if (loadingIndicator) {
+            loadingIndicator.className = active ? 'active' : '';
+        }
     }
 
     window.addEventListener('popstate', function(e) {
@@ -2011,25 +2128,41 @@
         updateBreadcrumbs(section, subcat);
         updateBackButton();
         updateMeta(section, subcat);
-        if (navState.navigationHistory.length > 0) navState.navigationHistory.pop();
+        if (navState.navigationHistory.length > 0) {
+            navState.navigationHistory.pop();
+        }
     });
 
     // ===== КОПИРОВАНИЕ =====
     async function copyToClipboard(ruText, baText, greetingId) {
-        const text = `${baText}\n\n💭 ${ruText}`;
+        const shareText = `${baText}\n\n💭 ${ruText}`;
+        
         if (typeof ym !== 'undefined') ym(109825367, 'reachGoal', 'copy_greeting');
         
         if (navigator.share && window.innerWidth <= 768) {
             try {
-                await navigator.share({ title: 'Поздравление на башкирском', text });
+                await navigator.share({ title: 'Поздравление на башкирском', text: shareText });
                 showToast('Поделились!');
                 return;
-            } catch (err) { if (err.name !== 'AbortError') console.log(err); }
+            } catch (err) {
+                if (err.name !== 'AbortError') console.log('Share failed:', err);
+            }
         }
         try {
-            await navigator.clipboard.writeText(text);
+            await navigator.clipboard.writeText(shareText);
             showToast('✅ Поздравление скопировано!');
-        } catch (err) { fallbackCopy(text); }
+        } catch (err) {
+            const textarea = document.createElement('textarea');
+            textarea.value = shareText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            showToast('✅ Поздравление скопировано!');
+        }
+        if (navState.currentSection && navState.currentSubcat) {
+            updateContent(navState.currentSection, navState.currentSubcat, false);
+        }
     }
 
     async function copyOnlyBashkir(baText, greetingId) {
@@ -2040,12 +2173,25 @@
                 await navigator.share({ title: 'Поздравление на башкирском', text: baText });
                 showToast('Поделились!');
                 return;
-            } catch (err) { if (err.name !== 'AbortError') console.log(err); }
+            } catch (err) {
+                if (err.name !== 'AbortError') console.log('Share failed:', err);
+            }
         }
         try {
             await navigator.clipboard.writeText(baText);
             showToast('✅ Только башкирский текст скопирован!');
-        } catch (err) { fallbackCopy(baText); }
+        } catch (err) {
+            const textarea = document.createElement('textarea');
+            textarea.value = baText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            showToast('✅ Только башкирский текст скопирован!');
+        }
+        if (navState.currentSection && navState.currentSubcat) {
+            updateContent(navState.currentSection, navState.currentSubcat, false);
+        }
     }
 
     function generateGreetingId(sectionKey, subcatKey, index, text) {
@@ -2056,9 +2202,16 @@
     function getAllGreetings() {
         if (!siteData || !siteData.sections.birthday) return [];
         const all = [];
-        for (const sub of Object.values(siteData.sections.birthday.subcategories)) {
-            (sub.greetings || []).forEach(g => {
-                all.push({ text_ba: g.text_ba, translation_ru: g.translation_ru, category: sub.name_ba, categoryRu: sub.name_ru });
+        const section = siteData.sections.birthday;
+        for (let subKey in section.subcategories) {
+            const subcat = section.subcategories[subKey];
+            (subcat.greetings || []).forEach(g => {
+                all.push({
+                    text_ba: g.text_ba,
+                    translation_ru: g.translation_ru,
+                    category: subcat.name_ba,
+                    categoryRu: subcat.name_ru
+                });
             });
         }
         return all;
@@ -2068,20 +2221,24 @@
         const all = getAllGreetings();
         if (!all.length) return null;
         const today = new Date().toDateString();
-        const stored = localStorage.getItem('cardOfDay');
+        let stored = localStorage.getItem('cardOfDay');
         if (stored) {
             const parsed = JSON.parse(stored);
             if (parsed.date === today) return parsed.greeting;
         }
-        const greeting = all[Math.floor(Math.random() * all.length)];
-        localStorage.setItem('cardOfDay', JSON.stringify({ date: today, greeting }));
+        const randomIndex = Math.floor(Math.random() * all.length);
+        const greeting = all[randomIndex];
+        localStorage.setItem('cardOfDay', JSON.stringify({ date: today, greeting: greeting }));
         return greeting;
     }
 
     function renderCardOfDay() {
         if (!cardOfDayContainer) return;
         const card = getTodaysGreeting();
-        if (!card) { cardOfDayContainer.innerHTML = ''; return; }
+        if (!card) {
+            cardOfDayContainer.innerHTML = '';
+            return;
+        }
         cardOfDayContainer.innerHTML = `
             <div class="card-of-day">
                 <div class="card-of-day-title"><span>⭐</span> Бөгөнгө йылы һүҙ / Тёплое слово дня</div>
@@ -2114,17 +2271,24 @@
         const now = new Date();
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         const ruDate = now.toLocaleDateString('ru-RU', options);
-        const baMap = { 'понедельник':'Дүшәмбе', 'вторник':'Шишәмбе', 'среда':'Шаршамбы', 'четверг':'Кесаҙна', 'пятница':'Йома', 'суббота':'Шәмбе', 'воскресенье':'Йәкшәмбе' };
+        const baMap = { 
+            'понедельник':'Дүшәмбе', 'вторник':'Шишәмбе', 'среда':'Шаршамбы',
+            'четверг':'Кесаҙна', 'пятница':'Йома', 'суббота':'Шәмбе', 'воскресенье':'Йәкшәмбе' 
+        };
         let baDate = ruDate;
         for (let [ru, ba] of Object.entries(baMap)) baDate = baDate.replace(ru, ba);
         document.getElementById('currentDateBox').innerHTML = `📅 ${baDate}`;
     }
 
-    // ===== ИНИЦИАЛИЗАЦИЯ =====
+    // ================================================================
+    // ========== ИНИЦИАЛИЗАЦИЯ ==========
+    // ================================================================
+
     renderCurrentDate();
     loadTheme();
 
     async function init() {
+        // Скелетон для главной
         showSkeleton('sections');
         showCardOfDaySkeleton();
         
@@ -2152,11 +2316,14 @@
     }
 
     init();
-    console.log('🚀 Сайт загружен');
-    console.log('📢 Yandex RTB: context.js в <head>, yaContextCb.push() с type: "feed"');
-    console.log('💛 Блок «Об авторе» показывается только на главной');
+    console.log('🚀 Сайт переориентирован на поздравления с днём рождения');
+    console.log('🎨 Анимация карточек, кнопка наверх, прогресс чтения');
+    console.log('🎲 Случайное поздравление в шапке');
+    console.log('🍞 Хлебные крошки с иконками и счётчиками');
+    console.log('💀 Улучшенный скелетон для всех типов контента');
     </script>
-    <!-- Yandex Autoplacement (если нужен, оставь только это) -->
+    <!-- Yandex Autoplacement 19695489 -->
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
     <script data-page-id="19695489" src="https://yandex.ru/ads/system/ap-loader.js" async></script>
 </body>
 </html>
