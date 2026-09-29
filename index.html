@@ -506,7 +506,7 @@
             user-select: none;
         }
         
-        /* ===== ИНДИКАТОР ЗАГРУЗКИ (тонкая полоска) ===== */
+        /* ===== ИНДИКАТОР ЗАГРУЗКИ ===== */
         #loadingIndicator {
             display: none;
             position: fixed;
@@ -538,7 +538,6 @@
         .subcat-card, .card {
             animation: cardAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1) backwards;
         }
-        /* Задержки для эффекта волны */
         .subcat-card:nth-child(1), .card:nth-child(1) { animation-delay: 0.03s; }
         .subcat-card:nth-child(2), .card:nth-child(2) { animation-delay: 0.06s; }
         .subcat-card:nth-child(3), .card:nth-child(3) { animation-delay: 0.09s; }
@@ -547,12 +546,64 @@
         .subcat-card:nth-child(6), .card:nth-child(6) { animation-delay: 0.18s; }
         .subcat-card:nth-child(7), .card:nth-child(7) { animation-delay: 0.21s; }
         .subcat-card:nth-child(8), .card:nth-child(8) { animation-delay: 0.24s; }
-        .subcat-card:nth-child(9), .card:nth-child(9) { animation-delay: 0.27s; }
-        .subcat-card:nth-child(10), .card:nth-child(10) { animation-delay: 0.3s; }
-        .subcat-card:nth-child(n+11), .card:nth-child(n+11) { animation-delay: 0.33s; }
+        .subcat-card:nth-child(n+9), .card:nth-child(n+9) { animation-delay: 0.27s; }
         
         .card-of-day {
             animation: cardAppear 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+        }
+        
+        /* ===== РЕКЛАМНЫЕ БЛОКИ (Лента) ===== */
+        .ad-lenta-block {
+            grid-column: 1 / -1;
+            margin: 20px 0;
+            padding: 10px 0 6px 0;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            animation: cardAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+            animation-delay: 0.15s;
+            box-shadow: var(--shadow-card);
+        }
+        .ad-lenta-block .ad-label {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 0 16px 6px 16px;
+            font-weight: 600;
+            opacity: 0.55;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .ad-lenta-block .ad-label::before {
+            content: '';
+            display: inline-block;
+            width: 3px;
+            height: 3px;
+            background: var(--text-muted);
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+        .ad-lenta-block > div:last-child {
+            min-height: 100px;
+        }
+        /* Скрыть пустой блок (AdBlock или ошибка) */
+        .ad-lenta-block.ad-empty {
+            display: none !important;
+        }
+        
+        @media (max-width: 600px) {
+            .ad-lenta-block {
+                margin: 16px 0;
+                border-radius: 14px;
+                padding: 8px 0 4px 0;
+            }
+            .ad-lenta-block .ad-label {
+                font-size: 0.55rem;
+                padding: 0 12px 4px 12px;
+            }
         }
         
         /* ===== СКЕЛЕТОН ===== */
@@ -1091,7 +1142,7 @@
             .modal-actions button { min-width: 100%; }
         }
         
-        /* ===== УМЕНЬШЕНИЕ АНИМАЦИЙ ДЛЯ ПРЕДПОЧТЕНИЙ ===== */
+        /* ===== УМЕНЬШЕНИЕ АНИМАЦИЙ ===== */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
@@ -1197,7 +1248,7 @@
 
     <script>
     // ================================================================
-    // ========== ПОЛНАЯ ВЕРСИЯ — ТОЛЬКО ДЕНЬ РОЖДЕНИЯ + РОТАЦИЯ ==========
+    // ========== ПОЛНАЯ ВЕРСИЯ — ДЕНЬ РОЖДЕНИЯ + РЕКЛАМА + ФИШКИ ==========
     // ================================================================
 
     let siteData = null;
@@ -1216,6 +1267,78 @@
     const readingProgress = document.getElementById('readingProgress');
 
     // ================================================================
+    // ===== ЯНДЕКС.РЕКЛАМА — КОНФИГУРАЦИЯ И ХЕЛПЕРЫ =====
+    // ================================================================
+    
+    // ⚠️ ID блоков из Яндекс.Рекламы (Лента)
+    const AD_BLOCKS = {
+        // Главная страница (мобильный приоритет)
+        home1: 'R-A-19695489-12',  // после 4-й категории
+        home2: 'R-A-19695489-13',  // после 9-й категории
+        
+        // Страницы категорий (мобильный приоритет)
+        cat1: 'R-A-19695489-14',   // после 5-й карточки
+        cat2: 'R-A-19695489-15',   // после 10-й карточки
+        cat3: 'R-A-19695489-16'    // после 15-й карточки
+    };
+    
+    // Загруженные блоки (чтобы не грузить дважды)
+    window.__loadedAds = window.__loadedAds || {};
+    
+    // Хелпер: загрузка одного блока
+    function loadAdBlock(blockId) {
+        if (!blockId) return;
+        if (window.__loadedAds[blockId]) return;
+        window.__loadedAds[blockId] = true;
+        
+        if (typeof Ya !== 'undefined' && Ya.Context && Ya.Context.AdvManager) {
+            try {
+                Ya.Context.AdvManager.render({
+                    blockId: blockId,
+                    renderTo: 'yandex_rtb_' + blockId,
+                    async: true
+                });
+            } catch (e) {
+                console.warn('Ошибка загрузки рекламы', blockId, e);
+            }
+        } else {
+            // Ждём загрузки Ya
+            setTimeout(() => loadAdBlock(blockId), 200);
+        }
+    }
+    
+    // Хелпер: HTML рекламного блока
+    function renderAdBlock(blockId) {
+        if (!blockId) return '';
+        return `
+            <div class="ad-lenta-block" data-ad-id="${blockId}">
+                <div class="ad-label">Реклама</div>
+                <div id="yandex_rtb_${blockId}"></div>
+            </div>
+        `;
+    }
+    
+    // Хелпер: рендер всех рекламных маркеров после вставки HTML
+    function renderAdsInContainer() {
+        const ads = contentContainer.querySelectorAll('[data-ad-id]');
+        ads.forEach((adBlock) => {
+            const adId = adBlock.getAttribute('data-ad-id');
+            if (!adId) return;
+            
+            loadAdBlock(adId);
+            
+            // Через 3 секунды проверяем, загрузилась ли реклама
+            setTimeout(() => {
+                const inner = document.getElementById('yandex_rtb_' + adId);
+                if (inner && inner.children.length === 0) {
+                    // Реклама не загрузилась (AdBlock / ошибка) — скрываем
+                    adBlock.classList.add('ad-empty');
+                }
+            }, 3000);
+        });
+    }
+
+    // ================================================================
     // ===== ПРОГРЕСС ЧТЕНИЯ + КНОПКА НАВЕРХ =====
     // ================================================================
     
@@ -1224,12 +1347,10 @@
         if (scrollThrottle) return;
         scrollThrottle = true;
         requestAnimationFrame(() => {
-            // Прогресс чтения
             const h = document.documentElement.scrollHeight - window.innerHeight;
             const progress = h > 0 ? (window.scrollY / h) * 100 : 0;
             readingProgress.style.width = Math.min(100, Math.max(0, progress)) + '%';
             
-            // Кнопка наверх
             if (window.scrollY > 500) {
                 scrollTopBtn.classList.add('visible');
             } else {
@@ -1518,7 +1639,7 @@
     }
 
     // ================================================================
-    // ===== ОПТИМИЗИРОВАННАЯ ЗАГРУЗКА =====
+    // ===== ЗАГРУЗКА ДАННЫХ =====
     // ================================================================
     async function loadAllJsonFiles() {
         try {
@@ -1563,19 +1684,12 @@
         return count;
     }
 
-    // ================================================================
-    // ===== УЛУЧШЕННЫЙ СКЕЛЕТОН =====
-    // ================================================================
-    
+    // ===== СКЕЛЕТОН =====
     function showSkeleton(type = 'sections') {
         let html = '';
         
         if (type === 'sections') {
-            // Скелетон для главной — карточки категорий
-            html = `
-                <div class="skeleton-header"></div>
-                <div class="skeleton-grid">
-            `;
+            html = `<div class="skeleton-header"></div><div class="skeleton-grid">`;
             for (let i = 0; i < 8; i++) {
                 html += `
                     <div class="skeleton-card">
@@ -1587,11 +1701,7 @@
             }
             html += `</div>`;
         } else if (type === 'greetings') {
-            // Скелетон для категории — карточки поздравлений
-            html = `
-                <div class="skeleton-header"></div>
-                <div class="skeleton-grid-cards">
-            `;
+            html = `<div class="skeleton-header"></div><div class="skeleton-grid-cards">`;
             for (let i = 0; i < 6; i++) {
                 html += `
                     <div class="skeleton-card-greeting">
@@ -1611,21 +1721,11 @@
                 `;
             }
             html += `</div>`;
-        } else if (type === 'cardOfDay') {
-            html = `
-                <div class="skeleton-card-greeting" style="margin-bottom:20px;">
-                    <div class="skeleton-badge" style="width:180px;"></div>
-                    <div class="skeleton-text-line w90"></div>
-                    <div class="skeleton-text-line w80"></div>
-                    <div class="skeleton-text-line w60"></div>
-                </div>
-            `;
         }
         
         contentContainer.innerHTML = html;
     }
     
-    // Скелетон для карточки дня (отдельный)
     function showCardOfDaySkeleton() {
         cardOfDayContainer.innerHTML = `
             <div class="skeleton-card-greeting" style="margin-bottom:0;">
@@ -1709,7 +1809,6 @@
     function updateContent(section, subcat, animate = true) {
         showLoading(true);
         
-        // Показываем правильный скелетон
         if (section && subcat) {
             showSkeleton('greetings');
         } else {
@@ -1735,6 +1834,9 @@
             bindEvents(section, subcat);
             showLoading(false);
             
+            // 🔥 РЕНДЕР РЕКЛАМЫ — после вставки HTML
+            renderAdsInContainer();
+            
             if (!section && !subcat) {
                 cardOfDayContainer.style.display = 'block';
                 renderCardOfDay();
@@ -1745,7 +1847,7 @@
         }, 100);
     }
 
-    // ===== РЕНДЕР РАЗДЕЛОВ =====
+    // ===== РЕНДЕР РАЗДЕЛОВ (главная, с рекламой) =====
     function renderSectionsContent() {
         const section = siteData.sections.birthday;
         if (!section) return '<div style="text-align:center;padding:40px;">❌ Раздел не найден</div>';
@@ -1764,9 +1866,22 @@
         const subcats = Object.entries(section.subcategories)
             .sort((a, b) => (a[1].order || 999) - (b[1].order || 999));
         
+        let cardCount = 0;
+        
         for (const [key, subcat] of subcats) {
             const hasGreetings = (subcat.greetings || []).length > 0;
             const greetingCount = hasGreetings ? subcat.greetings.length : 0;
+            
+            cardCount++;
+            
+            // 🔥 РЕКЛАМА: после 4-й категории
+            if (cardCount === 5) {
+                html += renderAdBlock(AD_BLOCKS.home1);
+            }
+            // 🔥 РЕКЛАМА: после 9-й категории
+            if (cardCount === 10) {
+                html += renderAdBlock(AD_BLOCKS.home2);
+            }
             
             html += `
                 <div class="subcat-card" data-subcat="${key}" ${!hasGreetings ? 'style="opacity:0.6;"' : ''}>
@@ -1787,7 +1902,7 @@
         return renderSectionsContent();
     }
 
-    // ===== РЕНДЕР ПОЗДРАВЛЕНИЙ =====
+    // ===== РЕНДЕР ПОЗДРАВЛЕНИЙ (с рекламой) =====
     function renderGreetingsContent(sectionKey, subcatKey) {
         const section = siteData.sections.birthday;
         if (!section) return '<div style="text-align:center;padding:40px;">❌ Раздел не найден</div>';
@@ -1822,6 +1937,20 @@
         
         greetings.forEach((g, index) => {
             const greetingId = generateGreetingId(sectionKey, subcatKey, index, g.text_ba);
+            const cardNum = index + 1;
+            
+            // 🔥 РЕКЛАМА: после 5-й карточки
+            if (cardNum === 6) {
+                html += renderAdBlock(AD_BLOCKS.cat1);
+            }
+            // 🔥 РЕКЛАМА: после 10-й карточки
+            if (cardNum === 11) {
+                html += renderAdBlock(AD_BLOCKS.cat2);
+            }
+            // 🔥 РЕКЛАМА: после 15-й карточки
+            if (cardNum === 16) {
+                html += renderAdBlock(AD_BLOCKS.cat3);
+            }
             
             html += `
                 <div class="card">
@@ -1876,17 +2005,11 @@
         });
     }
 
-    // ================================================================
-    // ===== ХЛЕБНЫЕ КРОШКИ (улучшенные) =====
-    // ================================================================
-    
+    // ===== ХЛЕБНЫЕ КРОШКИ =====
     function updateBreadcrumbs(section, subcat) {
         if (!breadcrumbs) return;
         
-        const totalCount = getTotalGreetingsCount();
         let html = '';
-        
-        // Главная
         html += `<span class="crumb" onclick="navigateTo()">
             <span>🏠</span>
             <span>Главная</span>
@@ -1895,7 +2018,6 @@
         if (section) {
             html += `<span class="separator">›</span>`;
             
-            // Раздел "Тыуған көн"
             const birthdayData = siteData?.sections?.birthday;
             const catCount = birthdayData ? Object.keys(birthdayData.subcategories).length : 0;
             html += `<span class="crumb" onclick="navigateTo('birthday')">
@@ -1947,7 +2069,6 @@
             return;
         }
         
-        // Собираем все поздравления
         const allGreetings = [];
         for (const [subcatKey, subcat] of Object.entries(siteData.sections.birthday.subcategories)) {
             (subcat.greetings || []).forEach(g => {
@@ -1963,7 +2084,6 @@
         const random = allGreetings[Math.floor(Math.random() * allGreetings.length)];
         const { subcat, greeting } = random;
         
-        // Заполняем модалку
         const modalContent = document.getElementById('randomModalContent');
         modalContent.innerHTML = `
             <div class="modal-category">
@@ -1987,14 +2107,11 @@
             </div>
         `;
         
-        // Сохраняем текущее поздравление
         window.__currentRandomGreeting = greeting;
         
-        // Показываем модалку
         document.getElementById('randomModal').classList.add('active');
         document.body.style.overflow = 'hidden';
         
-        // Метрика
         if (typeof ym !== 'undefined') ym(109825367, 'reachGoal', 'random_greeting');
     }
     
@@ -2044,7 +2161,6 @@
         if (typeof ym !== 'undefined') ym(109825367, 'reachGoal', 'random_greeting_share');
     }
     
-    // Закрытие модалки по Escape
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeRandomModal();
@@ -2160,9 +2276,6 @@
             document.body.removeChild(textarea);
             showToast('✅ Поздравление скопировано!');
         }
-        if (navState.currentSection && navState.currentSubcat) {
-            updateContent(navState.currentSection, navState.currentSubcat, false);
-        }
     }
 
     async function copyOnlyBashkir(baText, greetingId) {
@@ -2188,9 +2301,6 @@
             document.execCommand('copy');
             document.body.removeChild(textarea);
             showToast('✅ Только башкирский текст скопирован!');
-        }
-        if (navState.currentSection && navState.currentSubcat) {
-            updateContent(navState.currentSection, navState.currentSubcat, false);
         }
     }
 
@@ -2288,7 +2398,6 @@
     loadTheme();
 
     async function init() {
-        // Скелетон для главной
         showSkeleton('sections');
         showCardOfDaySkeleton();
         
@@ -2316,11 +2425,10 @@
     }
 
     init();
-    console.log('🚀 Сайт переориентирован на поздравления с днём рождения');
-    console.log('🎨 Анимация карточек, кнопка наверх, прогресс чтения');
-    console.log('🎲 Случайное поздравление в шапке');
-    console.log('🍞 Хлебные крошки с иконками и счётчиками');
-    console.log('💀 Улучшенный скелетон для всех типов контента');
+    console.log('🚀 Сайт с мобильно-ориентированной рекламой');
+    console.log('📢 Реклама: 5 блоков «Лента» с приоритетом на мобильные');
+    console.log('   - Главная: R-A-19695489-12 (после 4-й), R-A-19695489-13 (после 9-й)');
+    console.log('   - Категория: R-A-19695489-14 (5-я), -15 (10-я), -16 (15-я)');
     </script>
     <!-- Yandex Autoplacement 19695489 -->
     <script src="https://yandex.ru/ads/system/context.js" async></script>
