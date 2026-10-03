@@ -22,7 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     
-    <title>Тыуған көн менән башҡортса ҡотлауҙар — 1000+ теләктәр, шиғырҙар, тостар</title>
+    <title>Тыуған көн менән башҡортса ҡотлауҙар — 1000+ теләктәр, шиғырҙар, открыткалар</title>
 
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
@@ -36,7 +36,7 @@
     <!-- ===== PRELOAD DATA ===== -->
     <link rel="preload" href="data/data_birthday.json" as="fetch" type="application/json" crossorigin>
     
-    <!-- ===== META-ТЕГИ (ОБНОВЛЕНО — ПРАВКА C) ===== -->
+    <!-- ===== META-ТЕГИ ===== -->
     <meta name="description" content="С днём рождения на башкирском языке — 1000+ поздравлений с переводом на русский. Тыуған көн менән башҡортса ҡотлауҙар: маме, папе, сестре, брату, другу, коллеге. Готовый текст можно сразу скопировать и отправить. Башҡортса ҡотлау тыуған көнгә — йөрәктән килгән йылы һүҙҙәр.">
     <meta name="keywords" content="тыуған көн менән ҡотлау башҡортса, поздравление с днем рождения на башкирском языке, башҡортса ҡотлау тыуған көн, с днём рождения на башкирском, башкирские поздравления с днём рождения, тыуған көн менән, котлаузар башкортса, йылы һүҙҙәр, башҡорт телендә ҡотлау">
     <meta name="author" content="Алмаз Баймурзин, Project Yily Huzzar">
@@ -69,7 +69,7 @@
     }
     </script>
     
-    <!-- ===== JSON-LD: FAQPage (ПРАВКА B + C) ===== -->
+    <!-- ===== JSON-LD: FAQPage ===== -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -113,6 +113,14 @@
                 "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "Да, на сайте есть отдельные категории: «Хатын-ҡыҙға» (Женщине), «Иң яҡшы әхирәткә» (Лучшей подруге), «Әсәйгә» (Маме), «Һеңлегә» (Сестре), «Апайға» (Старшей сестре). Все тексты — на башкирском языке с переводом."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Есть ли башкирские открытки с днём рождения?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Да, на сайте есть отдельный раздел «Башҡортса открыткалар» — башкирские открытки с днём рождения. Их можно скачать бесплатно и отправить в WhatsApp, Telegram или ВКонтакте."
                 }
             }
         ]
@@ -798,6 +806,106 @@
         .copy-only-btn { background: var(--btn-copy); color: var(--text-secondary); }
         .copy-only-btn:hover { background: var(--btn-copy-hover); transform: translateY(-1px); }
         
+        /* ===== БЛОК ОТКРЫТОК НА ГЛАВНОЙ ===== */
+        .postcards-section {
+            margin-top: 40px;
+            padding: 24px;
+            background: var(--bg-card);
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-card);
+            transition: background var(--transition), border-color var(--transition);
+        }
+
+        .postcards-section-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .postcards-section-header h2 {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            transition: color var(--transition);
+        }
+
+        .postcards-section-sub {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            transition: color var(--transition);
+        }
+
+        .postcards-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .postcard-preview-item {
+            display: block;
+            text-decoration: none;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 3 / 4;
+            background: var(--bg-skeleton);
+            transition: all var(--transition);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .postcard-preview-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .postcard-preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .postcard-preview-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .postcards-section-footer {
+            text-align: center;
+        }
+
+        .postcards-all-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: var(--text-secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all var(--transition);
+            box-shadow: 0 4px 14px rgba(139, 90, 43, 0.3);
+        }
+
+        .postcards-all-btn:hover {
+            background: #6b4220;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 90, 43, 0.4);
+        }
+
+        body.dark-mode .postcards-all-btn:hover {
+            background: #d4a373;
+            color: #1a1410;
+        }
+        
         /* ===== TOAST ===== */
         .toast-notification {
             position: fixed;
@@ -1091,6 +1199,18 @@
             .footer-link { font-size: 0.7rem; }
             .modal-card { padding: 24px 20px; }
             .modal-text { font-size: 0.95rem; }
+            
+            /* Блок открыток на планшете */
+            .postcards-preview-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+            .postcards-section {
+                padding: 16px;
+            }
+            .postcards-section-header h2 {
+                font-size: 1.1rem;
+            }
         }
         @media (max-width: 600px) {
             .recipients-nav-block { padding: 10px 12px; }
@@ -1138,6 +1258,16 @@
             .modal-card { padding: 20px 16px; border-radius: 20px; }
             .modal-text { font-size: 0.9rem; }
             .modal-actions button { min-width: 100%; }
+            
+            /* Блок открыток на мобильных */
+            .postcards-preview-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .postcards-all-btn {
+                padding: 10px 22px;
+                font-size: 0.82rem;
+            }
         }
         
         /* ===== УМЕНЬШЕНИЕ АНИМАЦИЙ ДЛЯ ПРЕДПОЧТЕНИЙ ===== */
@@ -1207,6 +1337,25 @@
             <div id="contentContainer"></div>
         </div>
 
+        <!-- ===== БЛОК ОТКРЫТОК ===== -->
+        <div class="postcards-section" id="postcardsSection">
+            <div class="postcards-section-header">
+                <h2>
+                    <span>🎨</span>
+                    <span>Башҡортса открыткалар</span>
+                    <span class="postcards-section-sub">Открытки с днём рождения</span>
+                </h2>
+            </div>
+            <div class="postcards-preview-grid" id="postcardsPreview">
+                <!-- Заполняется через JS -->
+            </div>
+            <div class="postcards-section-footer">
+                <a href="postcards.html" class="postcards-all-btn">
+                    🎨 Все открытки →
+                </a>
+            </div>
+        </div>
+
         <!-- ===== ФУТЕР ===== -->
         <div class="footer">
             <div class="project-name">ЙЫЛЫ һҮҘҘӘР<br><small>yily huzzar</small></div>
@@ -1273,12 +1422,10 @@
         if (scrollThrottle) return;
         scrollThrottle = true;
         requestAnimationFrame(() => {
-            // Прогресс чтения
             const h = document.documentElement.scrollHeight - window.innerHeight;
             const progress = h > 0 ? (window.scrollY / h) * 100 : 0;
             readingProgress.style.width = Math.min(100, Math.max(0, progress)) + '%';
             
-            // Кнопка наверх
             if (window.scrollY > 500) {
                 scrollTopBtn.classList.add('visible');
             } else {
@@ -1613,6 +1760,65 @@
     }
 
     // ================================================================
+    // ===== ПРЕВЬЮ ОТКРЫТОК НА ГЛАВНОЙ =====
+    // ================================================================
+    
+    const POSTCARDS_PREVIEW_COUNT = 5;
+    
+    async function loadPostcardsPreview() {
+        const container = document.getElementById('postcardsPreview');
+        const section = document.getElementById('postcardsSection');
+        if (!container || !section) return;
+        
+        try {
+            const response = await fetch('data/data_postcards.json?v=' + Date.now());
+            if (!response.ok) {
+                section.style.display = 'none';
+                return;
+            }
+            
+            const data = await response.json();
+            
+            if (!data.postcards || !Array.isArray(data.postcards) || data.postcards.length === 0) {
+                section.style.display = 'none';
+                return;
+            }
+            
+            // Сортировка: новые первые
+            const sorted = data.postcards.sort((a, b) => {
+                const dateA = new Date(a.added || 0).getTime();
+                const dateB = new Date(b.added || 0).getTime();
+                if (dateA !== dateB) return dateB - dateA;
+                return (b.id || '').localeCompare(a.id || '');
+            });
+            
+            const preview = sorted.slice(0, POSTCARDS_PREVIEW_COUNT);
+            
+            let html = '';
+            for (const postcard of preview) {
+                const alt = escapeHtml(postcard.alt_ru || postcard.title_ru || 'Открытка');
+                html += `
+                    <a href="postcards.html" class="postcard-preview-item" title="${escapeHtml(postcard.title_ru || '')}">
+                        <img 
+                            src="${escapeAttr(postcard.thumb)}" 
+                            alt="${alt}"
+                            loading="lazy"
+                            onerror="this.parentElement.style.display='none'"
+                        >
+                    </a>
+                `;
+            }
+            
+            container.innerHTML = html;
+            console.log(`✅ Загружено ${preview.length} превью открыток на главной`);
+            
+        } catch (error) {
+            console.warn('⚠️ Открытки не загружены:', error.message);
+            section.style.display = 'none';
+        }
+    }
+
+    // ================================================================
     // ===== УЛУЧШЕННЫЙ СКЕЛЕТОН =====
     // ================================================================
     
@@ -1925,7 +2131,6 @@
     function updateBreadcrumbs(section, subcat) {
         if (!breadcrumbs) return;
         
-        const totalCount = getTotalGreetingsCount();
         let html = '';
         
         html += `<span class="crumb" onclick="navigateTo()">
@@ -2086,7 +2291,7 @@
     });
 
     // ================================================================
-    // ===== МЕТА-ТЕГИ (ОБНОВЛЕНО — ПРАВКА C) =====
+    // ===== МЕТА-ТЕГИ =====
     // ================================================================
     function updateMeta(section, subcat) {
         let title = 'Тыуған көн менән башҡортса ҡотлауҙар — 1000+ теләктәр, шиғырҙар, открыткалар';
@@ -2120,7 +2325,6 @@
             'aunt': { title: 'Инәйгә (тёте) тыуған көн менән ҡотлау башҡортса — 5+ теләктәр', description: 'Инәйегеҙҙе (тётю) тыуған көнө менән башҡортса матур итеп ҡотлау. С переводом на русский.' },
             'uncle': { title: 'Бабайға (дяде) тыуған көн менән ҡотлау башҡортса — 5+ теләктәр', description: 'Бабайығыҙҙы (дядю) тыуған көнө менән башҡортса матур итеп ҡотлау. С переводом на русский.' },
             'jubilee': { title: 'Юбилейға ҡотлауҙар башҡортса — 50, 55, 60, 70 йәш', description: 'Юбилейға ҡотлауҙар башҡортса. 50, 55, 60, 70 йәшлек юбилейҙар өсөн матур теләктәр. С переводом.' },
-            // ===== ПРАВКА №3: обновлено с 'woman' на 'woman_general' =====
             'woman_general': { 
                 title: 'Катын-ҡыҙға (Хатын-ҡыҙға) тыуған көн менән ҡотлауҙар башҡортса — 20+ теләктәр һәм открыткалар', 
                 description: 'Катын-ҡыҙға (Хатын-ҡыҙға), ҡыҙға, әхирәткә тыуған көн менән йылы ҡотлауҙар башҡортса. Ҡатын-ҡыҙға һәм ҡыҙға бағышланған матур теләктәр, открыткалар, шиғырҙар. 20+ вариант, рус теленә тәржемә менән.' 
@@ -2307,6 +2511,16 @@
             .replace(/'/g, '&#39;');
     }
 
+    function escapeAttr(str) {
+        if (!str) return '';
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+    }
+
     function renderCurrentDate() {
         const now = new Date();
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -2351,6 +2565,9 @@
                 updateMeta(null, null);
                 renderCardOfDay();
             }
+            
+            // ЗАГРУЗКА ПРЕВЬЮ ОТКРЫТОК НА ГЛАВНОЙ
+            loadPostcardsPreview();
         }
     }
 
@@ -2360,9 +2577,7 @@
     console.log('🎲 Случайное поздравление в шапке');
     console.log('🍞 Хлебные крошки с иконками и счётчиками');
     console.log('💀 Улучшенный скелетон для всех типов контента');
-    console.log('✅ Правка №3: woman_general с title/description для запросов «хатын-кызга»');
-    console.log('✅ FAQPage Schema.org добавлен — расширенный сниппет в Яндексе/Google');
-    console.log('✅ Description главной обновлён под ключ «С днём рождения на башкирском языке»');
+    console.log('🎨 Блок открыток на главной — превью 5 шт из data_postcards.json');
     </script>
     <!-- Yandex Autoplacement 19695489 -->
     <script src="https://yandex.ru/ads/system/context.js" async></script>
