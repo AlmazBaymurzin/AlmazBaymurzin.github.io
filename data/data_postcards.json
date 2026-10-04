@@ -14,41 +14,61 @@
       "id": "postcard-02",
       "thumb": "data/postcards/thumb/postcard-02.webp",
       "full": "data/postcards/full/postcard-02.webp",
-      "title_ba": "Ҡәҙерле дуҫым, тыуған көнөң менән!",
-      "title_ru": "Дорогой друг, с днём рождения!",
-      "alt_ba": "Дуҫҡа тыуған көн открыткаһы",
-      "alt_ru": "Открытка другу с днём рождения на башкирском",
+      "title_ba": "Тыуған көн менән!",
+      "title_ru": "С днём рождения!",
+      "alt_ba": "Тыуған көн менән ҡотлау открыткаһы",
+      "alt_ru": "Открытка с днём рождения на башкирском языке",
       "added": "2026-10-04"
     },
     {
       "id": "postcard-03",
       "thumb": "data/postcards/thumb/postcard-03.webp",
       "full": "data/postcards/full/postcard-03.webp",
-      "title_ba": "Әсәйем, тыуған көнөң менән!",
-      "title_ru": "Мамочка, с днём рождения!",
-      "alt_ba": "Әсәйгә тыуған көн открыткаһы",
-      "alt_ru": "Открытка маме с днём рождения на башкирском",
+      "title_ba": "Тыуған көн менән!",
+      "title_ru": "С днём рождения!",
+      "alt_ba": "Тыуған көн менән ҡотлау открыткаһы",
+      "alt_ru": "Открытка с днём рождения на башкирском языке",
       "added": "2026-10-04"
     },
     {
       "id": "postcard-04",
       "thumb": "data/postcards/thumb/postcard-04.webp",
       "full": "data/postcards/full/postcard-04.webp",
-      "title_ba": "Бәхет, һаулыҡ һәм уңыштар!",
-      "title_ru": "Счастья, здоровья и успехов!",
-      "alt_ba": "Бәхет теләү открыткаһы",
-      "alt_ru": "Открытка с пожеланием счастья на башкирском",
+      "title_ba": "Тыуған көн менән!",
+      "title_ru": "С днём рождения!",
+      "alt_ba": "Тыуған көн менән ҡотлау открыткаһы",
+      "alt_ru": "Открытка с днём рождения на башкирском языке",
       "added": "2026-10-04"
     },
     {
       "id": "postcard-05",
       "thumb": "data/postcards/thumb/postcard-05.webp",
       "full": "data/postcards/full/postcard-05.webp",
-      "title_ba": "Йөрәктән ҡотлайым!",
-      "title_ru": "Поздравляю от души!",
-      "alt_ba": "Йөрәктән ҡотлау открыткаһы",
-      "alt_ru": "Открытка с поздравлением от души на башкирском",
+      "title_ba": "Тыуған көн менән!",
+      "title_ru": "С днём рождения!",
+      "alt_ba": "Тыуған көн менән ҡотлау открыткаһы",
+      "alt_ru": "Открытка с днём рождения на башкирском языке",
       "added": "2026-10-04"
+    },
+    {
+      "id": "postcard-06",
+      "thumb": "data/postcards/thumb/postcard-05.webp",
+      "full": "data/postcards/full/postcard-05.webp",
+      "title_ba": "Тыуған көн менән!",
+      "title_ru": "С днём рождения!",
+      "alt_ba": "Тыуған көн менән ҡотлау открыткаһы",
+      "alt_ru": "Открытка с днём рождения на башкирском языке",
+      "added": "2026-10-05"
+    },
+    {
+      "id": "postcard-06",
+      "thumb": "data/postcards/thumb/postcard-05.webp",
+      "full": "data/postcards/full/postcard-05.webp",
+      "title_ba": "Тыуған көн менән!",
+      "title_ru": "С днём рождения!",
+      "alt_ba": "Тыуған көн менән ҡотлау открыткаһы",
+      "alt_ru": "Открытка с днём рождения на башкирском языке",
+      "added": "2026-10-05"
     }
   ]
 }
