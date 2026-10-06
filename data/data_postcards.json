@@ -129,6 +129,26 @@
       "alt_ba": "Тыуған көн менән ҡотлау открыткаһы",
       "alt_ru": "Открытка с днём рождения на башкирском языке",
       "added": "2026-10-06"
+    },
+    {
+      "id": "postcard-14",
+      "thumb": "data/postcards/thumb/postcard-14.webp",
+      "full": "data/postcards/full/postcard-14.webp",
+      "title_ba": "Тыуған көн менән!",
+      "title_ru": "С днём рождения!",
+      "alt_ba": "Тыуған көн менән ҡотлау открыткаһы",
+      "alt_ru": "Открытка с днём рождения на башкирском языке",
+      "added": "2026-10-06"
+    },
+    {
+      "id": "postcard-15",
+      "thumb": "data/postcards/thumb/postcard-15.webp",
+      "full": "data/postcards/full/postcard-15.webp",
+      "title_ba": "Тыуған көн менән!",
+      "title_ru": "С днём рождения!",
+      "alt_ba": "Тыуған көн менән ҡотлау открыткаһы",
+      "alt_ru": "Открытка с днём рождения на башкирском языке",
+      "added": "2026-10-06"
     }
   ]
 }
